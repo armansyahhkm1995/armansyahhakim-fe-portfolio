@@ -1,0 +1,156 @@
+/*
+ * Corteva Case Study
+ * Transformation 01 — Editorial Design System
+ */
+
+@theme inline {
+  --color-corteva-background: var(--corteva-background);
+  --color-corteva-foreground: var(--corteva-foreground);
+  --color-corteva-surface: var(--corteva-surface);
+  --color-corteva-ink: var(--corteva-ink);
+  --color-corteva-ink-dim: var(--corteva-ink-dim);
+  --color-corteva-ink-faint: var(--corteva-ink-faint);
+  --color-corteva-hairline: var(--corteva-hairline);
+  --color-corteva-gold: var(--corteva-gold);
+  --color-corteva-field: var(--corteva-field);
+}
+
+.corteva {
+  --corteva-background: oklch(0.145 0.006 90);
+  --corteva-foreground: oklch(0.955 0.006 90);
+
+  --corteva-surface: oklch(0.185 0.007 90);
+
+  --corteva-hairline: oklch(1 0 0 / 9%);
+
+  --corteva-ink: oklch(0.955 0.006 90);
+  --corteva-ink-dim: oklch(0.74 0.008 90);
+  --corteva-ink-faint: oklch(0.55 0.008 90);
+
+  --corteva-gold: oklch(0.78 0.125 72);
+  --corteva-field: oklch(0.66 0.11 138);
+
+  --corteva-font-display: var(--font-instrument-serif);
+  --corteva-font-sans: var(--font-inter-tight);
+  --corteva-font-mono: var(--font-jetbrains-mono);
+
+  background-color: var(--corteva-background);
+  color: var(--corteva-foreground);
+
+  font-family: var(--corteva-font-sans);
+  font-synthesis-weight: none;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------
+   Typography
+--------------------------------- */
+
+.corteva .label {
+  font-family: var(--corteva-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--corteva-ink-faint);
+}
+
+.corteva .display-xl {
+  font-family: var(--corteva-font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 7.2vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.corteva .display-lg {
+  font-family: var(--corteva-font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 5.2vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.corteva .display-md {
+  font-family: var(--corteva-font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.1vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.corteva .lede {
+  font-size: clamp(1.0625rem, 1.25vw, 1.3125rem);
+  line-height: 1.62;
+  color: var(--corteva-ink-dim);
+  font-weight: 300;
+  text-wrap: pretty;
+}
+
+.corteva .body-note {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--corteva-ink-faint);
+  font-weight: 300;
+  text-wrap: pretty;
+}
+
+/* --------------------------------
+   Editorial media
+--------------------------------- */
+
+.corteva .film {
+  filter: saturate(0.78) contrast(1.04) brightness(0.86);
+}
+
+/* --------------------------------
+   Motion
+--------------------------------- */
+
+.corteva .reveal-still {
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corteva .reveal-still[data-visible="true"] {
+  opacity: 1;
+}
+
+.corteva .rule-grow {
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corteva .rule-grow[data-visible="true"] {
+  transform: scaleX(1);
+}
+
+.corteva .line-grow {
+  transform: scaleY(0);
+  transform-origin: top;
+
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corteva .line-grow[data-visible="true"] {
+  transform: scaleY(1);
+}
+
+/* --------------------------------
+   Accessibility
+--------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .corteva .reveal-still,
+  .corteva .rule-grow,
+  .corteva .line-grow {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -27,7 +27,7 @@ export function EditorialSection({
                 {label}
               </span>
 
-              <span className="rule-line flex-1" />
+              <span className="h-px flex-1 bg-border" />
             </div>
           </Reveal>
         )}

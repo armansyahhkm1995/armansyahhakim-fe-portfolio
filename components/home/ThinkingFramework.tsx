@@ -48,7 +48,7 @@ export function ThinkingFramework() {
             }}
           >
             <div className="flex items-center">
-              <span className="size-[1.75 shrink-0 rounded-full bg-accent" />
+              <span className="size-7 shrink-0 rounded-full bg-accent" />
 
               {index < steps.length - 1 && (
                 <motion.span

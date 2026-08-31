@@ -1,3 +1,5 @@
+import "@/components/home/styles/home.css";
+
 import { AboutSection } from "@/components/home/AboutSection";
 import { DesignPhilosophy } from "@/components/home/DesignPhilosophy";
 import { FooterCTA } from "@/components/home/FooterCTA";
@@ -7,7 +9,7 @@ import { TransformationList } from "@/components/home/TransformationList";
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="home">
       <Hero />
       <DesignPhilosophy />
       <TransformationList />

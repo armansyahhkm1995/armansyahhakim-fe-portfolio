@@ -1,0 +1,693 @@
+/*
+ * AMASE — Case Study Styles
+ *
+ * Documentary / immersive storytelling layer.
+ * Design tokens live in globals.css.
+ * This file contains AMASE-specific layout,
+ * scene treatment, media behavior and transitions.
+ */
+
+/* =========================================================
+   CASE STUDY ROOT
+   ========================================================= */
+
+.amase-case-study {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* =========================================================
+   SCENE FOUNDATION
+   ========================================================= */
+
+.amase-scene {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: clip;
+}
+
+.amase-scene-inner {
+  position: relative;
+  width: min(100% - 2rem, 90rem);
+  min-height: 100svh;
+  margin-inline: auto;
+  padding-block: 6rem;
+}
+
+@media (min-width: 768px) {
+  .amase-scene-inner {
+    width: min(100% - 4rem, 90rem);
+    padding-block: 8rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .amase-scene-inner {
+    padding-block: 10rem;
+  }
+}
+
+/* =========================================================
+   SCENE VARIANTS
+   ========================================================= */
+
+.amase-scene--dark {
+  background: var(--ink);
+  color: var(--bone);
+}
+
+.amase-scene--soft {
+  background: var(--ink-soft);
+  color: var(--bone);
+}
+
+.amase-scene--paper {
+  background: var(--paper);
+  color: var(--paper-foreground);
+}
+
+.amase-scene--ember {
+  background: var(--ember);
+  color: var(--ink);
+}
+
+/* =========================================================
+   CHAPTER MARKER
+   ========================================================= */
+
+.amase-chapter {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.amase-chapter-number {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.amase-chapter-line {
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.amase-chapter-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+.amase-title {
+  max-width: 14ch;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+}
+
+.amase-title--medium {
+  max-width: 16ch;
+  font-size: clamp(2.75rem, 7vw, 6rem);
+}
+
+.amase-title--small {
+  max-width: 20ch;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+.amase-lead {
+  max-width: 42rem;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.55;
+}
+
+.amase-body {
+  max-width: 38rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.amase-muted {
+  color: var(--muted-foreground);
+}
+
+/* =========================================================
+   CONTENT WIDTHS
+   ========================================================= */
+
+.amase-copy {
+  width: 100%;
+  max-width: 42rem;
+}
+
+.amase-copy--narrow {
+  max-width: 32rem;
+}
+
+.amase-copy--wide {
+  max-width: 56rem;
+}
+
+/* =========================================================
+   EDITORIAL GRID
+   ========================================================= */
+
+.amase-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .amase-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.amase-grid-span-4 {
+  grid-column: span 4;
+}
+
+.amase-grid-span-5 {
+  grid-column: span 5;
+}
+
+.amase-grid-span-6 {
+  grid-column: span 6;
+}
+
+.amase-grid-span-7 {
+  grid-column: span 7;
+}
+
+.amase-grid-span-8 {
+  grid-column: span 8;
+}
+
+.amase-grid-span-12 {
+  grid-column: span 12;
+}
+
+/* =========================================================
+   VERTICAL RHYTHM
+   ========================================================= */
+
+.amase-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.amase-stack--sm {
+  gap: 1rem;
+}
+
+.amase-stack--md {
+  gap: 1.5rem;
+}
+
+.amase-stack--lg {
+  gap: 2.5rem;
+}
+
+.amase-stack--xl {
+  gap: 4rem;
+}
+
+/* =========================================================
+   MEDIA
+   ========================================================= */
+
+.amase-media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--ink-soft);
+}
+
+.amase-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.amase-media--full {
+  min-height: 70svh;
+}
+
+.amase-media--full img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.amase-media--portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.amase-media--portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.amase-media--landscape {
+  aspect-ratio: 16 / 10;
+}
+
+.amase-media--landscape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================================
+   DOCUMENTARY IMAGE TREATMENT
+   ========================================================= */
+
+.amase-documentary-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-soft);
+}
+
+.amase-documentary-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(0.96);
+  transform: scale(1.001);
+}
+
+.amase-documentary-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    oklch(0 0 0 / 4%),
+    transparent 35%,
+    oklch(0 0 0 / 12%)
+  );
+}
+
+/* =========================================================
+   IMAGE CAPTION
+   ========================================================= */
+
+.amase-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+}
+
+.amase-caption-label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.amase-caption-text {
+  max-width: 36rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+/* =========================================================
+   MASK / REVEAL TEXT
+   ========================================================= */
+
+.amase-mask {
+  overflow: hidden;
+}
+
+.amase-mask-inner {
+  display: block;
+  transform: translateY(105%);
+  opacity: 0;
+}
+
+.amase-mask-inner.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 700ms ease;
+}
+
+/* =========================================================
+   HORIZONTAL RULE
+   ========================================================= */
+
+.amase-rule {
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.18;
+}
+
+/* =========================================================
+   DOMAIN / ECOSYSTEM LIST
+   ========================================================= */
+
+.amase-domain-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--hairline);
+}
+
+.amase-domain-item {
+  position: relative;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.amase-domain-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--ember);
+  transform: translateY(-50%);
+  transition: width 300ms ease;
+}
+
+.amase-domain-item:hover {
+  padding-left: 1.5rem;
+}
+
+.amase-domain-item:hover::before {
+  width: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .amase-domain-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+  }
+}
+
+/* =========================================================
+   JOURNEY / SEQUENCE
+   ========================================================= */
+
+.amase-sequence {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.amase-sequence-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.amase-sequence-index {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+}
+
+.amase-sequence-label {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.amase-sequence-note {
+  max-width: 32rem;
+  margin-top: 0.5rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   BEFORE / AFTER
+   ========================================================= */
+
+.amase-transformation {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.amase-transformation-column {
+  padding-block: 2rem;
+}
+
+.amase-transformation-column + .amase-transformation-column {
+  border-top: 1px solid var(--hairline);
+}
+
+.amase-transformation-label {
+  margin-bottom: 2rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.amase-transformation-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.amase-transformation-item {
+  padding-block: 1rem;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+@media (min-width: 768px) {
+  .amase-transformation {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .amase-transformation-column {
+    padding: 3rem;
+  }
+
+  .amase-transformation-column:first-child {
+    padding-left: 0;
+  }
+
+  .amase-transformation-column + .amase-transformation-column {
+    border-top: 0;
+    border-left: 1px solid var(--hairline);
+  }
+}
+
+/* =========================================================
+   EVIDENCE / VALIDATION
+   ========================================================= */
+
+.amase-evidence {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--hairline);
+}
+
+.amase-evidence-item {
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.amase-evidence-label {
+  margin-bottom: 0.4rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.amase-evidence-value {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .amase-evidence {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+  }
+
+  .amase-evidence-item {
+    border-bottom: 0;
+  }
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.amase-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid currentColor;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    gap 300ms ease,
+    opacity 300ms ease;
+}
+
+.amase-cta:hover {
+  gap: 1.25rem;
+}
+
+.amase-cta-arrow {
+  display: inline-block;
+  transition: transform 300ms ease;
+}
+
+.amase-cta:hover .amase-cta-arrow {
+  transform: translateX(0.2rem);
+}
+
+/* =========================================================
+   PROGRESS RAIL
+   ========================================================= */
+
+.amase-progress-rail {
+  position: fixed;
+  z-index: 40;
+  top: 50%;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transform: translateY(-50%);
+}
+
+.amase-progress-item {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.25;
+  transition:
+    height 300ms ease,
+    opacity 300ms ease,
+    background-color 300ms ease;
+}
+
+.amase-progress-item.is-active {
+  height: 1.25rem;
+  opacity: 1;
+  background: var(--ember);
+}
+
+@media (max-width: 767px) {
+  .amase-progress-rail {
+    right: 0.75rem;
+  }
+}
+
+/* =========================================================
+   GRAIN
+   ========================================================= */
+
+.amase-grain {
+  position: relative;
+}
+
+.amase-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+}
+
+/* =========================================================
+   IMMERSIVE FULL-BLEED SCENE
+   ========================================================= */
+
+.amase-full-bleed {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+}
+
+.amase-full-bleed-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  width: min(100% - 2rem, 90rem);
+  min-height: 100svh;
+  margin-inline: auto;
+  padding-block: 4rem;
+}
+
+@media (min-width: 768px) {
+  .amase-full-bleed-content {
+    width: min(100% - 4rem, 90rem);
+    padding-block: 6rem;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .amase-mask-inner,
+  .amase-domain-item,
+  .amase-cta,
+  .amase-cta-arrow,
+  .amase-progress-item {
+    transition: none !important;
+  }
+
+  .amase-mask-inner {
+    transform: none;
+    opacity: 1;
+  }
+}

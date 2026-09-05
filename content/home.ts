@@ -19,4 +19,13 @@ export const featuredProjects: PortfolioProject[] = [
     discipline: "Product Design",
     image: "https://images.unsplash.com/...",
   },
+  {
+    slug: "amase",
+    index: "02",
+    title: "AMASE",
+    description: "Redesigning an existing social support platform.",
+    partner: "AMASE",
+    discipline: "Product Design",
+    image: "https://images.unsplash.com/...",
+  },
 ];

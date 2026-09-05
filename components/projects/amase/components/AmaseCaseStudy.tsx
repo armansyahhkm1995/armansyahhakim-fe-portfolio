@@ -15,7 +15,6 @@ import {
   SectionOutput,
   SectionComparison,
   SectionReflection,
-  CaseStudyFooter,
 } from ".";
 
 type CaseStudyCSSVariables = CSSProperties & {
@@ -83,7 +82,6 @@ export default function AmaseCaseStudyPage() {
       <SectionOutput />
       <SectionComparison />
       <SectionReflection />
-      <CaseStudyFooter />
     </main>
   );
 }

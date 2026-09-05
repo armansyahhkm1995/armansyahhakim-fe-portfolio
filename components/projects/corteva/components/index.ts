@@ -9,4 +9,3 @@ export { default as SectionBehavior } from "./SectionBehavior";
 export { default as SectionSystem } from "./SectionSystem";
 export { default as SectionValidation } from "./SectionValidation";
 export { default as SectionReflection } from "./SectionReflection";
-export { default as CaseStudyFooter } from "./CaseStudyFooter";

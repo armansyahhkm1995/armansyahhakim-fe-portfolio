@@ -12,4 +12,3 @@ export { default as SectionIaFlow } from "./SectionIaFlow";
 export { default as SectionOutput } from "./SectionOutput";
 export { default as SectionComparison } from "./SectionComparison";
 export { default as SectionReflection } from "./SectionReflection";
-export { default as CaseStudyFooter } from "./CaseStudyFooter";

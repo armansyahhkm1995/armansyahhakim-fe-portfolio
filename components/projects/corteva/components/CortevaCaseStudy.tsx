@@ -11,7 +11,6 @@ import {
   SectionSystem,
   SectionValidation,
   SectionReflection,
-  CaseStudyFooter,
 } from ".";
 
 type CaseStudyCSSVariables = CSSProperties & {
@@ -76,8 +75,6 @@ export default function CortevaCaseStudyPage() {
       <SectionSystem />
       <SectionValidation />
       <SectionReflection />
-
-      <CaseStudyFooter />
     </main>
   );
 }

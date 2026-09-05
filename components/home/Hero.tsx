@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { AnimatedDecisionDiagram } from "./AnimateDecisionDiagram";
 
 const lines = [
-  "I design products",
+  "I design experiences",
   "that change",
   "how people think,",
   "feel,",

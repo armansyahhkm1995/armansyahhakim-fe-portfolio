@@ -18,8 +18,10 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     }
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.4,
       smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1,
     });
 
     let animationFrameId = 0;

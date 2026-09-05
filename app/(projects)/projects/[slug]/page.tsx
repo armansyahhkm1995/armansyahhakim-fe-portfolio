@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getProjectBySlug } from "@/content/projects";
-import { CortevaCaseStudy } from "@/components/projects/corteva/CortevaCaseStudy";
+import CortevaCaseStudy from "@/components/projects/corteva/components/CortevaCaseStudy";
+import AmaseCaseStudy from "@/components/projects/amase/components/AmaseCaseStudy";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -22,7 +23,6 @@ export async function generateMetadata({
   }
 
   const title = `${project.title} — Armansyah Hakim`;
-  const description = project.seoDescription ?? project.description;
 
   const ogImage =
     project.slug === "corteva"
@@ -31,11 +31,9 @@ export async function generateMetadata({
 
   return {
     title,
-    description,
 
     openGraph: {
       title,
-      description,
       type: "article",
       ...(ogImage && {
         images: [
@@ -50,7 +48,6 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title,
-      description,
       ...(ogImage && {
         images: [encodeURI(ogImage)],
       }),
@@ -71,13 +68,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return <CortevaCaseStudy />;
   }
 
-  return (
-    <main>
-      <h1>{project.title}</h1>
-      <p>{project.description}</p>
-      <p>{project.year}</p>
-      <p>{project.role}</p>
-      <p>{project.discipline}</p>
-    </main>
-  );
+  if (project.slug === "amase") {
+    return <AmaseCaseStudy />;
+  }
+
+  notFound();
 }

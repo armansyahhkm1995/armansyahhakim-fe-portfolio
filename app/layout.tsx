@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SmoothScroll } from "@/components/primitives/SmoothScroll";
 import {
   Instrument_Serif,
   Inter_Tight,
@@ -45,7 +46,7 @@ export default function RootLayout({
       <body
         className={`${instrumentSerif.variable} ${interTight.variable} ${jetBrainsMono.variable} ${workSans.variable}`}
       >
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

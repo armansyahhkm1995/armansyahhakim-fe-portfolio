@@ -1,6 +1,8 @@
+import { amaseProject } from "./amase";
 import { cortevaProject } from "./corteva";
 
 export const projects = {
+  amase: amaseProject,
   corteva: cortevaProject,
 } as const;
 

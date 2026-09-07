@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/content/projects";
 import CortevaCaseStudy from "@/components/projects/corteva/components/CortevaCaseStudy";
 import AmaseCaseStudy from "@/components/projects/amase/components/AmaseCaseStudy";
+import EMSCaseStudy from "@/components/projects/ems/components/EMSCaseStudy";
+import FalahOneCaseStudy from "@/components/projects/falahOne/components/FalahOneCaseStudy";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -70,6 +72,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   if (project.slug === "amase") {
     return <AmaseCaseStudy />;
+  }
+
+  if (project.slug === "ems") {
+    return <EMSCaseStudy />;
+  }
+
+  if (project.slug === "falahOne") {
+    return <FalahOneCaseStudy />;
   }
 
   notFound();

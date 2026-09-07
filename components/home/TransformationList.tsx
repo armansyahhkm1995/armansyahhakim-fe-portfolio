@@ -36,6 +36,7 @@ function TransformationItem({ item }: { item: PortfolioProject }) {
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
       >
+        {/* Project background image */}
         <motion.div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -63,17 +64,47 @@ function TransformationItem({ item }: { item: PortfolioProject }) {
             }}
           />
 
-          <span className="absolute inset-0 bg-background/72" />
+          {/* Black overlay — 75% */}
+          <span className="absolute inset-0 bg-black/75" />
         </motion.div>
 
-        <div className="relative flex flex-col gap-6 px-1 py-12 md:flex-row md:items-baseline md:gap-12 md:py-16">
-          <span className="w-16 shrink-0 text-[0.7rem] tracking-[0.28em] text-muted-foreground">
+        {/* Project content */}
+        <div
+          className={`
+            relative
+            flex
+            flex-col
+            gap-6
+            px-1
+            py-12
+            transition-colors
+            duration-700
+            md:flex-row
+            md:items-baseline
+            md:gap-12
+            md:py-16
+            ${isHovered ? "text-white" : "text-foreground"}
+          `}
+        >
+          {/* Project index */}
+          <span
+            className={`
+              w-16
+              shrink-0
+              text-[0.7rem]
+              tracking-[0.28em]
+              transition-colors
+              duration-700
+              ${isHovered ? "text-white/70" : "text-muted-foreground"}
+            `}
+          >
             {item.index}
           </span>
 
+          {/* Main content */}
           <div className="flex-1">
             <motion.h3
-              className="font-display origin-left text-[2rem] leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
+              className="origin-left font-display text-[2rem] leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
               animate={{
                 scale: isHovered ? 1.02 : 1,
               }}
@@ -86,7 +117,15 @@ function TransformationItem({ item }: { item: PortfolioProject }) {
             </motion.h3>
 
             <motion.p
-              className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground"
+              className={`
+                mt-4
+                max-w-xl
+                text-sm
+                leading-relaxed
+                transition-colors
+                duration-700
+                ${isHovered ? "text-white/80" : "text-muted-foreground"}
+              `}
               animate={{
                 opacity: isHovered ? 1 : 0.35,
                 y: isHovered ? 0 : 6,
@@ -100,10 +139,29 @@ function TransformationItem({ item }: { item: PortfolioProject }) {
             </motion.p>
           </div>
 
+          {/* Project metadata */}
           <div className="flex shrink-0 items-center gap-8 md:flex-col md:items-end md:gap-3">
-            <span className="text-sm">{item.partner}</span>
+            <span
+              className={`
+                text-sm
+                transition-colors
+                duration-700
+                ${isHovered ? "text-white" : "text-foreground"}
+              `}
+            >
+              {item.partner}
+            </span>
 
-            <span className="text-[0.7rem] tracking-[0.22em] text-muted-foreground uppercase">
+            <span
+              className={`
+                text-[0.7rem]
+                tracking-[0.22em]
+                uppercase
+                transition-colors
+                duration-700
+                ${isHovered ? "text-white/70" : "text-muted-foreground"}
+              `}
+            >
               {item.discipline}
             </span>
           </div>

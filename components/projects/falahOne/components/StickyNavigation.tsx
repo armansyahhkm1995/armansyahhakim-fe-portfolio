@@ -205,7 +205,7 @@ export default function StickyNavigation() {
       tracking-[0.02em]
     "
           >
-            CORTEVA
+            Falah One
           </span>
         </a>
 

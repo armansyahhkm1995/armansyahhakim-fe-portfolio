@@ -26,11 +26,32 @@ const CHECKBOX_SIZES = [
   { label: "Large checkbox", size: "lg" },
 ] as const;
 
+type SwitchState = {
+  label: string;
+  enabled: boolean;
+  disabled?: boolean;
+  withLabel?: boolean;
+};
+
 const SWITCH_STATES = [
-  { label: "Off", enabled: false },
-  { label: "On", enabled: true },
-  { label: "Airplane Mode", enabled: false, withLabel: true },
-  { label: "Airplane Mode", enabled: true, withLabel: true },
+  {
+    label: "Off",
+    enabled: false,
+  },
+  {
+    label: "On",
+    enabled: true,
+  },
+  {
+    label: "Airplane Mode",
+    enabled: false,
+    withLabel: true,
+  },
+  {
+    label: "Airplane Mode",
+    enabled: true,
+    withLabel: true,
+  },
   {
     label: "Disabled Off",
     enabled: false,
@@ -43,7 +64,7 @@ const SWITCH_STATES = [
     disabled: true,
     withLabel: true,
   },
-] as const;
+] satisfies readonly SwitchState[];
 
 const DATA_TABLE_ROWS = [
   {

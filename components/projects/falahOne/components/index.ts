@@ -13,3 +13,4 @@ export { default as SectionCurrent } from "./SectionCurrent";
 export { default as SectionArtifact } from "./SectionArtifact";
 export { default as SectionApplication } from "./SectionApplication";
 export { default as SectionReflection } from "./SectionReflection";
+export { default as SectionProgress } from "./SectionProgress";

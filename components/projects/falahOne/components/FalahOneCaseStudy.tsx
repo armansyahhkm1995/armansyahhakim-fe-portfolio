@@ -16,6 +16,7 @@ import {
   SectionArtifact,
   SectionApplication,
   SectionReflection,
+  SectionProgress,
 } from ".";
 
 type CaseStudyCSSVariables = CSSProperties & {
@@ -84,6 +85,7 @@ export default function FalahOneCaseStudyPage() {
       <SectionArtifact />
       <SectionApplication />
       <SectionReflection />
+      <SectionProgress />
     </main>
   );
 }

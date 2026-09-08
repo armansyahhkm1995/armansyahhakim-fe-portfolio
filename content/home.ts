@@ -48,6 +48,16 @@ export const featuredProjects: PortfolioProject[] = [
       "An internal design system designed to organize cross-team design language.",
     partner: "Falah Inovasi Teknologi",
     discipline: "Product Design",
-    image: "./images/falahone/Falah One - Hero Image.webp",
+    image: "./images/falahone/falah_hero.webp",
+  },
+  {
+    slug: "vts",
+    index: "05",
+    title: "VTS Workbench & Maintenance Training",
+    description:
+      "A product experience designed to simplify 3D training content creation by turning complex Unity workflows into a more approachable authoring and training experience.",
+    partner: "VTS",
+    discipline: "Product Design",
+    image: "./images/vts/Hero.webp",
   },
 ];

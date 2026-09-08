@@ -27,7 +27,8 @@ const COMPLEXITY_COMPARISON = [
   },
 ] as const;
 
-const TRAINING_SHOWCASE_IMAGE = "https://placehold.co/1280x845";
+const TRAINING_SHOWCASE_IMAGE =
+  "/images/vts/Simulation - fullscreen - outline & label state - outline & label active.webp" as const;
 
 function SectionHeader() {
   return (

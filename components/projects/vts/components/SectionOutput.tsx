@@ -42,14 +42,16 @@ const WORKFLOW_STAGES: readonly Stage[] = [
     title: "Project Hub",
     description:
       "Centralized environment sandbox. Immutable raw FBX assets are partitioned from serialized configurations.",
-    images: ["https://placehold.co/580x387"],
+    images: ["/images/vts/Project hub - fbx management.webp"],
   },
   {
     number: "02",
     title: "Workbench Canvas",
     description:
       "Primary 3D coordinate Workspace. Coordinates hierarchy tree left, transform parameters right, interactive model center.",
-    images: ["https://placehold.co/580x383"],
+    images: [
+      "/images/vts/Workspace - normal screen - hierarchy - no script.webp",
+    ],
   },
   {
     number: "03",
@@ -57,9 +59,9 @@ const WORKFLOW_STAGES: readonly Stage[] = [
     description:
       "Behavior inspector configuration. Eliminates manual C# event handler creation using standard parameter inputs.",
     images: [
-      "https://placehold.co/167x378",
-      "https://placehold.co/167x378",
-      "https://placehold.co/167x378",
+      "/images/vts/Object properties - default.webp",
+      "/images/vts/Object properties - ordinat applied.webp",
+      "/images/vts/Object properties - script applied.webp",
     ],
   },
   {
@@ -67,7 +69,9 @@ const WORKFLOW_STAGES: readonly Stage[] = [
     title: "Maintenance Training Player",
     description:
       "Runtime evaluation container. Isolated operations viewport focusing purely on step-by-step checklist validation runtimes.",
-    images: ["https://placehold.co/580x383"],
+    images: [
+      "/images/vts/Simulation - fullscreen - outline & label state - outline & label active.webp",
+    ],
   },
 ] as const;
 

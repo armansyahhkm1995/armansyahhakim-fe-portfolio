@@ -83,7 +83,7 @@ const REVEAL_TRANSITION = {
 export default function SectionInitialDesign() {
   return (
     <section
-      id="initial-design"
+      id="initial design"
       aria-labelledby="initial-design-title"
       className="p-8 md:pt-24 lg:pt-28"
     >

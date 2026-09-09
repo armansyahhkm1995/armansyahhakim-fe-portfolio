@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const SUPPORT_DOMAINS = [
   "Employment",
   "Housing",
@@ -9,22 +5,6 @@ const SUPPORT_DOMAINS = [
   "Counseling",
   "Financial",
 ] as const;
-
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
 
 function FlowNode({
   children,
@@ -60,6 +40,7 @@ function FlowConnector() {
         items-center
         justify-center
         text-stone-400
+        rotate-270
       "
     >
       <span className="block rotate-90 text-lg leading-none">⌄</span>
@@ -71,13 +52,8 @@ export default function SectionExist() {
   return (
     <section
       id="exist"
-      aria-labelledby="exist-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="the existing-product"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -90,14 +66,7 @@ export default function SectionExist() {
         "
       >
         {/* SECTION HEADER */}
-        <motion.header
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <header
           className="
             flex
             flex-col
@@ -110,11 +79,7 @@ export default function SectionExist() {
             sm:justify-between
           "
         >
-          <motion.div
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
-            className="flex items-center gap-2"
-          >
+          <div className="flex items-center gap-2">
             <span
               className="
                 font-[var(--cs-font-mono)]
@@ -138,14 +103,9 @@ export default function SectionExist() {
             >
               The Existing Product
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <p
             className="
               font-[var(--cs-font-mono)]
               text-xs
@@ -154,8 +114,8 @@ export default function SectionExist() {
             "
           >
             ACTS PLATFORM SCHEMATIC & ARCHIVE
-          </motion.p>
-        </motion.header>
+          </p>
+        </header>
 
         {/* PRODUCT OVERVIEW */}
         <div
@@ -167,19 +127,8 @@ export default function SectionExist() {
           "
         >
           {/* COPY */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={{
-              hidden: {},
-              visible: {},
-            }}
-            className="flex flex-col gap-6"
-          >
-            <motion.h3
-              variants={REVEAL_VARIANTS}
-              transition={REVEAL_TRANSITION}
+          <div className="flex flex-col gap-6">
+            <h3
               className="
                 max-w-[520px]
                 font-[var(--cs-font-serif)]
@@ -193,14 +142,9 @@ export default function SectionExist() {
               "
             >
               ACTS was originally built to manage five primary support domains.
-            </motion.h3>
+            </h3>
 
-            <motion.p
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: 0.1,
-              }}
+            <p
               className="
                 max-w-[520px]
                 font-[var(--cs-font-sans)]
@@ -216,23 +160,12 @@ export default function SectionExist() {
               support domains. However, the product was primarily framed around
               connecting users with support agencies rather than facilitating
               true navigation or personal ownership of their journey.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* LEGACY ECOSYSTEM MODEL */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: {},
-            }}
-            className="flex min-w-0 flex-col gap-6"
-          >
-            <motion.p
-              variants={REVEAL_VARIANTS}
-              transition={REVEAL_TRANSITION}
+          <div className="flex min-w-0 flex-col gap-6">
+            <p
               className="
                 font-[var(--cs-font-mono)]
                 text-xs
@@ -241,14 +174,9 @@ export default function SectionExist() {
               "
             >
               LEGACY ECOSYSTEM CONNECTION MODEL
-            </motion.p>
+            </p>
 
-            <motion.div
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: 0.1,
-              }}
+            <div
               className="
                 flex
                 min-h-[360px]
@@ -304,14 +232,9 @@ export default function SectionExist() {
               <FlowConnector />
 
               <FlowNode muted>AGENCIES & GROUPS</FlowNode>
-            </motion.div>
+            </div>
 
-            <motion.p
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: 0.2,
-              }}
+            <p
               className="
                 font-[var(--cs-font-mono)]
                 text-xs
@@ -322,19 +245,12 @@ export default function SectionExist() {
             >
               The legacy architecture treated support primarily as a directory
               connection task.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
 
         {/* LEGACY SYSTEM ARTIFACT */}
-        <motion.aside
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <aside
           className="
             flex
             flex-col
@@ -347,9 +263,7 @@ export default function SectionExist() {
             sm:p-6
           "
         >
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <p
             className="
               font-[var(--cs-font-mono)]
               text-xs
@@ -358,19 +272,14 @@ export default function SectionExist() {
             "
           >
             LEGACY SYSTEM ARTIFACT [01]
-          </motion.p>
+          </p>
 
           <div
             aria-hidden="true"
             className="h-px w-full bg-[var(--cs-color-border)]"
           />
 
-          <motion.h3
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <h3
             className="
               font-[var(--cs-font-serif)]
               text-xl
@@ -378,15 +287,10 @@ export default function SectionExist() {
               text-[var(--cs-color-text-primary)]
             "
           >
-            &quot;Connecting was not navigating&quot;
-          </motion.h3>
+            Connecting was not navigating
+          </h3>
 
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
+          <p
             className="
               max-w-[1000px]
               font-[var(--cs-font-sans)]
@@ -400,8 +304,8 @@ export default function SectionExist() {
             Searching for mental or counselling presented users with
             institutional descriptions and rigid forms. The system assumed users
             already knew exactly what they qualified for and how to request it.
-          </motion.p>
-        </motion.aside>
+          </p>
+        </aside>
       </div>
     </section>
   );

@@ -70,49 +70,52 @@ function StatusIndicator({ variant }: { variant: "blue" | "green" }) {
   );
 }
 
+const lines = ["VTS Workbench &", "maintenance", "traning"];
+
 export default function SectionHero() {
   return (
-    <section
-      id="hero"
-      className="w-full bg-[var(--cs-color-bg)] px-[var(--cs-content-padding)] pb-16 pt-10 sm:pb-20 md:pb-24"
-    >
-      <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
+    <section className="pt-16 md:pt-24 lg:pt-28">
+      <div
+        className="mx-auto
+          flex
+          w-full
+          max-w-[var(--cs-content-max-width)]
+          flex-col
+          gap-12"
+      >
         {/* Intro */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4"
-        >
-          <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-secondary)]">
-            PRODUCT DESIGN CASE STUDY · FALAH INOVASI TEKNOLOGI · 2026
-          </span>
+        <header className="flex flex-col gap-4">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--cs-color-accent)] md:text-xs">
+            INTERNAL PRODUCT · FALAH INOVASI TEKNOLOGI · Q1 2026
+          </p>
 
-          <h1 className="max-w-[1100px] font-[var(--cs-font-serif)] text-5xl font-normal leading-[0.98] text-[var(--cs-color-text-primary)] sm:text-6xl md:text-7xl lg:text-8xl">
-            VTS WORKBENCH &<br className="hidden sm:block" /> MAINTENANCE
-            TRAINING
+          <h1 className="font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]">
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
           </h1>
 
           <p className="max-w-[840px] font-[var(--cs-font-sans)] text-lg font-normal leading-8 text-[var(--cs-color-text-secondary)] sm:text-xl">
             Designing a simplified 3D authoring workflow for creating and
             operating interactive training content.
           </p>
-        </motion.div>
+        </header>
 
         {/* Project Metadata */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
-          className="grid grid-cols-1 border-t border-[var(--cs-color-border)] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6"
-        >
+        <div className="grid grid-cols-1 border-t border-[var(--cs-color-border)] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {PROJECT_META.map((item) => (
             <div
               key={item.label}
@@ -127,7 +130,7 @@ export default function SectionHero() {
               </span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* System Overview */}
         <motion.div

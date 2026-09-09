@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface ContextRow {
   condition: string;
   consequence: string;
@@ -35,34 +31,12 @@ const CONTEXT_ROWS: ContextRow[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionContext() {
   return (
     <section
       id="context"
-      aria-labelledby="project-context-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      aria-labelledby="project context"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -83,12 +57,7 @@ export default function SectionContext() {
 
         {/* Section label */}
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -134,19 +103,11 @@ export default function SectionContext() {
           >
             OPERATIONAL FRAGMENTATION
           </span>
-        </motion.div>
+        </div>
 
         {/* Intro */}
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             flex
             w-full
@@ -193,21 +154,11 @@ export default function SectionContext() {
             labor-intensive task that yielded stale, retrospective statistics
             instead of runtime operational agency.
           </p>
-        </motion.div>
+        </div>
 
         {/* Existing condition table */}
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
-          className="flex w-full flex-col gap-12"
-        >
+        <div className="flex w-full flex-col gap-12">
           <div
             className="
               w-full
@@ -311,7 +262,7 @@ export default function SectionContext() {
             The initial requirement was clear: make electricity monitoring and
             control available through a centralized platform.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,4 +1,8 @@
+"use client";
+
 import SectionDivider from "./SectionDivider";
+
+import { motion } from "framer-motion";
 
 const REFLECTIONS = [
   {
@@ -17,6 +21,8 @@ const REFLECTIONS = [
     body: "Instead of starting with what the event should look like, I learned to start with what people should be able to see, understand and do. Spacing parameters and walkway elevations must solve for human sightlines.",
   },
 ];
+
+const lines = ["I used to think i was", "designing an event"];
 
 export default function SectionReflection() {
   return (
@@ -43,20 +49,46 @@ export default function SectionReflection() {
             EPILOGUE
           </span>
 
-          <h2 className="max-w-[680px] whitespace-pre-line font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] font-normal leading-[1.25] tracking-[-0.02em] text-[var(--cs-color-text-primary)]">
-            &ldquo;I USED TO THINK I WAS DESIGNING AN EVENT.&rdquo;
-          </h2>
-
-          <p
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            variants={{
+              hidden: {},
+              visible: {},
+            }}
             className="
-              max-w-[900px]
-              font-[var(--cs-font-serif)]
-              text-[clamp(22px,2.6vw,38px)]
-              font-normal
-              leading-[1.4]
-              text-[var(--cs-color-text-primary)]
-            "
+            font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]
+          "
           >
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: {
+                      y: "110%",
+                    },
+                    visible: {
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </motion.h2>
+
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-lg font-normal leading-8 text-[var(--cs-color-text-secondary)] sm:text-xl">
             Looking back, I was really designing how people moved through
             information. The most important lesson was that experience design
             does not always begin with a screen. Sometimes the interface is a

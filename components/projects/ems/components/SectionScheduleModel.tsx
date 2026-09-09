@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface ScheduleModel {
   number: string;
   label: string;
@@ -40,34 +36,12 @@ const SCHEDULE_MODELS: ScheduleModel[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionScheduleModel() {
   return (
     <section
       id="scheduling"
       aria-labelledby="scheduling-model-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -84,12 +58,7 @@ export default function SectionScheduleModel() {
           className="h-px w-full bg-[var(--cs-color-border)]"
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -135,18 +104,10 @@ export default function SectionScheduleModel() {
           >
             TEMPORAL OPERATION CONFIG
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h2
+        <h2
           id="scheduling-model-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
           className="
             w-full
             max-w-[1120px]
@@ -161,17 +122,9 @@ export default function SectionScheduleModel() {
           "
         >
           Scheduling turned manual control into repeatable operations.
-        </motion.h2>
+        </h2>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             grid
             w-full
@@ -233,7 +186,7 @@ export default function SectionScheduleModel() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

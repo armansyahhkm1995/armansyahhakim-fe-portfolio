@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const DESIGN_PRINCIPLES = [
   {
     number: "01",
@@ -38,32 +34,9 @@ const DESIGN_PRINCIPLES = [
   },
 ] as const;
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{
-        hidden: {},
-        visible: {},
-      }}
+    <header
       className="
         flex
         flex-col
@@ -76,11 +49,7 @@ function SectionHeader() {
         sm:justify-between
       "
     >
-      <motion.div
-        variants={REVEAL_VARIANTS}
-        transition={REVEAL_TRANSITION}
-        className="flex items-center gap-2"
-      >
+      <div className="flex items-center gap-2">
         <span
           className="
             font-[var(--cs-font-mono)]
@@ -104,14 +73,9 @@ function SectionHeader() {
         >
           Design Principles
         </h2>
-      </motion.div>
+      </div>
 
-      <motion.p
-        variants={REVEAL_VARIANTS}
-        transition={{
-          ...REVEAL_TRANSITION,
-          delay: 0.1,
-        }}
+      <p
         className="
           font-[var(--cs-font-mono)]
           text-xs
@@ -120,8 +84,8 @@ function SectionHeader() {
         "
       >
         GUIDING INTERFACE CONSTRAINTS
-      </motion.p>
-    </motion.header>
+      </p>
+    </header>
   );
 }
 
@@ -129,13 +93,8 @@ export default function SectionPrinciples() {
   return (
     <section
       id="principles"
-      aria-labelledby="principles-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="design principles"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -150,24 +109,10 @@ export default function SectionPrinciples() {
         <SectionHeader />
 
         {/* DESIGN PRINCIPLES */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
-          className="flex w-full flex-col gap-4"
-        >
+        <div className="flex w-full flex-col gap-4">
           {DESIGN_PRINCIPLES.map((principle, index) => (
-            <motion.article
+            <article
               key={principle.number}
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: index * 0.08,
-              }}
               className="
                 grid
                 w-full
@@ -258,9 +203,9 @@ export default function SectionPrinciples() {
                   {principle.consequence}
                 </p>
               </div>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

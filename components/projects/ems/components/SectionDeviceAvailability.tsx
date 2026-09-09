@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface AvailabilityState {
   status: string;
   description: string;
@@ -26,34 +22,12 @@ const AVAILABILITY_STATES: AvailabilityState[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionDeviceAvailability() {
   return (
     <section
       id="device availability"
       aria-labelledby="device-availability-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -72,12 +46,7 @@ export default function SectionDeviceAvailability() {
         />
 
         {/* Section meta */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -123,18 +92,10 @@ export default function SectionDeviceAvailability() {
           >
             OPERATIONAL ALERT SYSTEM
           </span>
-        </motion.div>
+        </div>
 
         {/* Introduction */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             flex
             w-full
@@ -179,18 +140,10 @@ export default function SectionDeviceAvailability() {
             is flagged. This changes the interface to block control interactions
             until connection is restored.
           </p>
-        </motion.div>
+        </div>
 
         {/* Availability states */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             grid
             w-full
@@ -251,7 +204,7 @@ export default function SectionDeviceAvailability() {
               </p>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

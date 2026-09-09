@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const PROBLEM_PATHWAY = [
   {
     number: "01",
@@ -25,33 +21,12 @@ const PROBLEM_PATHWAY = [
   },
 ] as const;
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionReframe() {
   return (
     <section
       id="reframe"
-      aria-labelledby="reframe-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="reframing the problem"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -64,14 +39,7 @@ export default function SectionReframe() {
         "
       >
         {/* SECTION HEADER */}
-        <motion.header
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <header
           className="
             flex
             flex-col
@@ -84,11 +52,7 @@ export default function SectionReframe() {
             sm:justify-between
           "
         >
-          <motion.div
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
-            className="flex items-center gap-2"
-          >
+          <div className="flex items-center gap-2">
             <span
               className="
                 font-[var(--cs-font-mono)]
@@ -112,14 +76,9 @@ export default function SectionReframe() {
             >
               Reframing the Problem
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <p
             className="
               font-[var(--cs-font-mono)]
               text-xs
@@ -128,8 +87,8 @@ export default function SectionReframe() {
             "
           >
             ECOSYSTEM INVESTIGATION OVER DIRECT TRANSCRIPTION
-          </motion.p>
-        </motion.header>
+          </p>
+        </header>
 
         {/* REFRAMING INTRO */}
         <div
@@ -142,12 +101,7 @@ export default function SectionReframe() {
           "
         >
           {/* MAIN STATEMENT */}
-          <motion.h3
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <h3
             className="
               w-full
               font-[var(--cs-font-serif)]
@@ -162,18 +116,10 @@ export default function SectionReframe() {
             "
           >
             The brief was the starting point, not the whole problem.
-          </motion.h3>
+          </h3>
 
           {/* SUPPORTING STATEMENT */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <div
             className="
               w-full
               border-l-[3px]
@@ -198,17 +144,10 @@ export default function SectionReframe() {
               investigated the surrounding reintegration ecosystem to understand
               what the product needed to support.
             </p>
-          </motion.div>
+          </div>
 
           {/* PROBLEM EVOLUTION PATHWAY */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: {},
-            }}
+          <div
             className="
               w-full
               rounded-2xl
@@ -219,9 +158,7 @@ export default function SectionReframe() {
               sm:p-8
             "
           >
-            <motion.p
-              variants={REVEAL_VARIANTS}
-              transition={REVEAL_TRANSITION}
+            <p
               className="
                 mb-6
                 font-[var(--cs-font-mono)]
@@ -231,7 +168,7 @@ export default function SectionReframe() {
               "
             >
               PROBLEM EVOLUTION PATHWAY
-            </motion.p>
+            </p>
 
             <div
               className="
@@ -242,13 +179,8 @@ export default function SectionReframe() {
               "
             >
               {PROBLEM_PATHWAY.map((item, index) => (
-                <motion.article
+                <article
                   key={item.number}
-                  variants={REVEAL_VARIANTS}
-                  transition={{
-                    ...REVEAL_TRANSITION,
-                    delay: 0.1 + index * 0.1,
-                  }}
                   className={[
                     "flex min-h-[190px] flex-col gap-3 rounded-xl p-5 sm:p-6",
                     item.highlighted
@@ -296,10 +228,10 @@ export default function SectionReframe() {
                       {item.description}
                     </p>
                   </div>
-                </motion.article>
+                </article>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

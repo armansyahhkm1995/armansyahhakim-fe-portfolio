@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const RESEARCH_AREAS = [
   {
     number: "1",
@@ -31,51 +27,28 @@ const RESEARCH_AREAS = [
 
 const COMPARATIVE_ROWS = [
   {
-    sector: "Support Directories",
+    id: "Support Directories",
     discovery: "Flat lists",
     search: "Keyword only",
     pattern: "Surface eligibility transparently up front.",
   },
   {
-    sector: "Job Platforms",
+    id: "Job Platforms",
     discovery: "Personalised feed",
     search: "Highly segmented",
     pattern: "Ensure non-linear explore mode stays accessible.",
   },
   {
-    sector: "Community / Mentoring",
+    id: "Community / Mentoring",
     discovery: "Group listings",
     search: "By interest tags",
     pattern: "Differentiate peer chat from institutional aid.",
   },
 ] as const;
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{
-        hidden: {},
-        visible: {},
-      }}
+    <header
       className="
         flex
         flex-col
@@ -88,11 +61,7 @@ function SectionHeader() {
         sm:justify-between
       "
     >
-      <motion.div
-        variants={REVEAL_VARIANTS}
-        transition={REVEAL_TRANSITION}
-        className="flex items-center gap-2"
-      >
+      <div className="flex items-center gap-2">
         <span
           className="
             font-[var(--cs-font-mono)]
@@ -116,14 +85,9 @@ function SectionHeader() {
         >
           Research Scope
         </h2>
-      </motion.div>
+      </div>
 
-      <motion.p
-        variants={REVEAL_VARIANTS}
-        transition={{
-          ...REVEAL_TRANSITION,
-          delay: 0.1,
-        }}
+      <p
         className="
           font-[var(--cs-font-mono)]
           text-xs
@@ -132,8 +96,8 @@ function SectionHeader() {
         "
       >
         4 CORE LINES OF ENQUIRY
-      </motion.p>
-    </motion.header>
+      </p>
+    </header>
   );
 }
 
@@ -141,13 +105,8 @@ export default function SectionResearch() {
   return (
     <section
       id="research"
-      aria-labelledby="research-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="research scope"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -162,14 +121,7 @@ export default function SectionResearch() {
         <SectionHeader />
 
         {/* INTRO */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <div
           className="
             flex
             flex-col
@@ -177,9 +129,7 @@ export default function SectionResearch() {
             gap-6
           "
         >
-          <motion.h3
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <h3
             className="
               w-full
               max-w-[1280px]
@@ -193,14 +143,9 @@ export default function SectionResearch() {
             "
           >
             Establishing a comprehensive research matrix before building.
-          </motion.h3>
+          </h3>
 
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <p
             className="
               w-full
               max-w-[680px]
@@ -214,18 +159,11 @@ export default function SectionResearch() {
             I mapped my research into four distinct areas to ensure the redesign
             was grounded in real-world systemic complexity rather than purely
             aesthetic intuition.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* RESEARCH MATRIX */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <div
           className="
             flex
             flex-col
@@ -237,13 +175,8 @@ export default function SectionResearch() {
           "
         >
           {RESEARCH_AREAS.map((area, index) => (
-            <motion.article
+            <article
               key={area.number}
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: index * 0.08,
-              }}
               className="
                 flex
                 flex-col
@@ -279,9 +212,9 @@ export default function SectionResearch() {
               >
                 {area.description}
               </p>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
+        </div>
 
         {/* COMPETITIVE RESEARCH */}
         <div
@@ -298,12 +231,7 @@ export default function SectionResearch() {
               gap-6
             "
           >
-            <motion.h3
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={REVEAL_VARIANTS}
-              transition={REVEAL_TRANSITION}
+            <h3
               className="
                 w-full
                 max-w-[520px]
@@ -318,17 +246,9 @@ export default function SectionResearch() {
               "
             >
               How do other products solve adjacent problems?
-            </motion.h3>
+            </h3>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: 0.1,
-              }}
+            <div
               className="
                 w-full
                 max-w-[680px]
@@ -353,18 +273,11 @@ export default function SectionResearch() {
                 The opportunity for ACTS was to support both without allowing
                 personalisation to restrict exploration.
               </p>
-            </motion.div>
+            </div>
           </div>
 
           {/* COMPARATIVE MATRIX */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={{
-              hidden: {},
-              visible: {},
-            }}
+          <div
             className="
               w-full
               overflow-x-auto
@@ -408,17 +321,9 @@ export default function SectionResearch() {
               </div>
 
               {/* TABLE ROWS */}
-              {COMPARATIVE_ROWS.map((row, index) => (
-                <motion.div
-                  key={row.sector}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={REVEAL_VARIANTS}
-                  transition={{
-                    ...REVEAL_TRANSITION,
-                    delay: index * 0.08,
-                  }}
+              {COMPARATIVE_ROWS.map((row, id) => (
+                <div
+                  key={row.id}
                   className="
                     grid
                     grid-cols-[12rem_12rem_12rem_minmax(0,1fr)]
@@ -437,7 +342,7 @@ export default function SectionResearch() {
                       text-black
                     "
                   >
-                    {row.sector}
+                    {row.id}
                   </div>
 
                   <div
@@ -472,30 +377,21 @@ export default function SectionResearch() {
                   >
                     {row.pattern}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* THE SHIFT */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <div
           className="
             flex
             flex-col
             gap-6
           "
         >
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <p
             className="
               text-center
               font-[var(--cs-font-mono)]
@@ -506,7 +402,7 @@ export default function SectionResearch() {
             "
           >
             THE SHIFT
-          </motion.p>
+          </p>
 
           <div
             className="
@@ -517,9 +413,7 @@ export default function SectionResearch() {
             "
           >
             {/* BEFORE */}
-            <motion.article
-              variants={REVEAL_VARIANTS}
-              transition={REVEAL_TRANSITION}
+            <article
               className="
                 flex
                 min-h-[260px]
@@ -561,7 +455,7 @@ export default function SectionResearch() {
                 &quot;Support discovery was treated primarily as a connection
                 problem.&quot;
               </p>
-            </motion.article>
+            </article>
 
             {/* DIVIDER */}
             <div
@@ -574,12 +468,7 @@ export default function SectionResearch() {
             />
 
             {/* AFTER */}
-            <motion.article
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: 0.1,
-              }}
+            <article
               className="
                 flex
                 min-h-[260px]
@@ -628,9 +517,9 @@ export default function SectionResearch() {
                   support ecosystem.&quot;
                 </p>
               </div>
-            </motion.article>
+            </article>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

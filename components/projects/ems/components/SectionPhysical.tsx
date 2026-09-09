@@ -87,14 +87,8 @@ export default function SectionPhysical() {
   return (
     <section
       id="physical"
-      aria-labelledby="physical-system-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      aria-labelledby="understanding the physical system"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -115,12 +109,7 @@ export default function SectionPhysical() {
           className="h-px w-full bg-[var(--cs-color-border)]"
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -166,22 +155,14 @@ export default function SectionPhysical() {
           >
             HARDWARE SENSING ECOSYSTEM
           </span>
-        </motion.div>
+        </div>
 
         {/* =========================================================
             INTRODUCTION
         ========================================================= */}
 
-        <motion.h2
+        <h2
           id="physical-system-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
           className="
             w-full
             max-w-[1120px]
@@ -197,21 +178,13 @@ export default function SectionPhysical() {
         >
           Before designing the interface, I needed to map the physical
           constraints.
-        </motion.h2>
+        </h2>
 
         {/* =========================================================
             METROLOGY LANDSCAPE + ENDPOINT MAPPING
         ========================================================= */}
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             flex
             w-full
@@ -445,7 +418,7 @@ export default function SectionPhysical() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* =========================================================
             PHYSICAL SYSTEM DIAGRAM
@@ -502,15 +475,7 @@ export default function SectionPhysical() {
             STRUCTURAL HIERARCHY
         ========================================================= */}
 
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <h2
           className="
             w-full
             max-w-[1120px]
@@ -525,21 +490,13 @@ export default function SectionPhysical() {
           "
         >
           We modeled physical structural hierarchy to guide navigation.
-        </motion.h2>
+        </h2>
 
         {/* =========================================================
             DATA RELATIONSHIPS + DEVICE REGISTRATION
         ========================================================= */}
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             flex
             w-full
@@ -668,7 +625,7 @@ export default function SectionPhysical() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -127,14 +127,8 @@ const REVEAL_TRANSITION = {
 
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{
-        hidden: {},
-        visible: {},
-      }}
+    <header
+      id="ia & flow"
       className="
         flex
         flex-col
@@ -147,11 +141,7 @@ function SectionHeader() {
         sm:justify-between
       "
     >
-      <motion.div
-        variants={REVEAL_VARIANTS}
-        transition={REVEAL_TRANSITION}
-        className="flex items-center gap-2"
-      >
+      <div className="flex items-center gap-2">
         <span
           className="
             font-[var(--cs-font-mono)]
@@ -175,7 +165,7 @@ function SectionHeader() {
         >
           Information Architecture & Key User Flows
         </h2>
-      </motion.div>
+      </div>
 
       <motion.p
         variants={REVEAL_VARIANTS}
@@ -192,7 +182,7 @@ function SectionHeader() {
       >
         CORE MAP TREE
       </motion.p>
-    </motion.header>
+    </header>
   );
 }
 
@@ -432,12 +422,7 @@ export default function SectionIaFlow() {
     <section
       id="ia-flow"
       aria-labelledby="ia-flow-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="

@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface RequirementRow {
   requirement: string;
   need: string;
@@ -34,34 +30,12 @@ const REQUIREMENT_ROWS: RequirementRow[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionRequirement() {
   return (
     <section
       id="requirement"
-      aria-labelledby="system-requirement-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      aria-labelledby="from requirement to system question"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -80,12 +54,7 @@ export default function SectionRequirement() {
         />
 
         {/* Section label */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -131,18 +100,10 @@ export default function SectionRequirement() {
           >
             COGNITIVE TRANSFORMATION
           </span>
-        </motion.div>
+        </div>
 
         {/* Introduction */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.05,
-          }}
+        <div
           className="
             flex
             w-full
@@ -188,18 +149,10 @@ export default function SectionRequirement() {
             evolved: we needed to frame data so it immediately points to an
             operational action.
           </p>
-        </motion.div>
+        </div>
 
         {/* Requirement table */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             w-full
             overflow-hidden
@@ -285,18 +238,10 @@ export default function SectionRequirement() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* System question */}
-        <motion.blockquote
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <blockquote
           className="
             w-full
             border-l-4
@@ -320,7 +265,7 @@ export default function SectionRequirement() {
             &quot;What information and controls do building operators actually
             need to manage electricity effectively?&quot;
           </p>
-        </motion.blockquote>
+        </blockquote>
       </div>
     </section>
   );

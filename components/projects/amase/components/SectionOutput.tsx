@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "motion/react";
 
 const DESIGN_IMPROVEMENTS = [
   {
@@ -70,32 +67,9 @@ const DESIGN_IMPROVEMENTS = [
   },
 ] as const;
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{
-        hidden: {},
-        visible: {},
-      }}
+    <header
       className="
         flex
         flex-col
@@ -108,11 +82,7 @@ function SectionHeader() {
         sm:justify-between
       "
     >
-      <motion.div
-        variants={REVEAL_VARIANTS}
-        transition={REVEAL_TRANSITION}
-        className="flex items-center gap-2"
-      >
+      <div className="flex items-center gap-2">
         <span
           className="
             font-[var(--cs-font-mono)]
@@ -136,14 +106,9 @@ function SectionHeader() {
         >
           Design Improvement
         </h2>
-      </motion.div>
+      </div>
 
-      <motion.p
-        variants={REVEAL_VARIANTS}
-        transition={{
-          ...REVEAL_TRANSITION,
-          delay: 0.1,
-        }}
+      <p
         className="
           font-[var(--cs-font-mono)]
           text-xs
@@ -152,8 +117,8 @@ function SectionHeader() {
         "
       >
         FROM STRUCTURE TO INTERFACE
-      </motion.p>
-    </motion.header>
+      </p>
+    </header>
   );
 }
 
@@ -210,12 +175,7 @@ function ImprovementCard({
   index: number;
 }) {
   return (
-    <motion.article
-      variants={REVEAL_VARIANTS}
-      transition={{
-        ...REVEAL_TRANSITION,
-        delay: index * 0.08,
-      }}
+    <article
       className="
         flex
         w-full
@@ -275,7 +235,7 @@ function ImprovementCard({
           />
         ))}
       </div>
-    </motion.article>
+    </article>
   );
 }
 
@@ -283,13 +243,8 @@ export default function SectionOutput() {
   return (
     <section
       id="output"
-      aria-labelledby="output-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="design improvement"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -303,14 +258,7 @@ export default function SectionOutput() {
       >
         <SectionHeader />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <div
           className="
             grid
             w-full
@@ -325,7 +273,7 @@ export default function SectionOutput() {
               index={index}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

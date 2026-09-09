@@ -23,32 +23,11 @@ const REFLECTIONS = [
   },
 ] as const;
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
+const lines = ["Experience design is not", "always an app"];
 
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
-      className="flex items-center gap-2 border-t border-[var(--cs-color-border)] py-4"
-    >
+    <header className="flex items-center gap-2 border-t border-[var(--cs-color-border)] py-4">
       <span
         className="
           font-[var(--cs-font-mono)]
@@ -72,7 +51,7 @@ function SectionHeader() {
       >
         Reflection &amp; Learning
       </h2>
-    </motion.header>
+    </header>
   );
 }
 
@@ -82,11 +61,7 @@ function ReflectionCard({
   description,
 }: (typeof REFLECTIONS)[number]) {
   return (
-    <motion.article
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
-      className="flex flex-col gap-4"
-    >
+    <article className="flex flex-col gap-4">
       <h3
         className="
           font-[var(--cs-font-mono)]
@@ -109,7 +84,7 @@ function ReflectionCard({
       >
         {description}
       </p>
-    </motion.article>
+    </article>
   );
 }
 
@@ -117,13 +92,8 @@ export default function SectionReflection() {
   return (
     <section
       id="reflection"
-      aria-labelledby="reflection-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="reflection & learning"
+      className="p-16 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -139,12 +109,7 @@ export default function SectionReflection() {
         <SectionHeader />
 
         <div className="flex flex-col gap-6">
-          <motion.span
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <span
             className="
               font-[var(--cs-font-mono)]
               text-xs
@@ -153,31 +118,48 @@ export default function SectionReflection() {
             "
           >
             EPILOGUE
-          </motion.span>
+          </span>
 
           <motion.h3
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {},
             }}
             className="
-              w-full
-              max-w-[1000px]
-              font-[var(--cs-font-serif)]
-              text-5xl
-              font-normal
-              leading-[1.05]
-              text-neutral-900
-              sm:text-6xl
-              lg:text-7xl
-              lg:leading-[76px]
+            font-display
+            text-[3rem]
+            leading-[0.95]
+            sm:text-[4.5rem]
+            lg:text-[6rem]
+            xl:text-[7rem]
             "
           >
-            &quot;EXPERIENCE DESIGN IS NOT ALWAYS AN APP.&quot;
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: {
+                      y: "110%",
+                    },
+                    visible: {
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
           </motion.h3>
         </div>
 

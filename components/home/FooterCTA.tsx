@@ -2,6 +2,8 @@
 
 import { motion } from "motion/react";
 
+const lines = ["The next transformation", "starts with one conversation."];
+
 export function FooterCTA() {
   return (
     <footer
@@ -12,33 +14,30 @@ export function FooterCTA() {
         Contact
       </div>
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 24,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-          margin: "-20% 0px",
-        }}
-        transition={{
-          duration: 1.1,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className="max-w-5xl"
-      >
-        <h2 className="font-display text-[2.75rem] leading-none sm:text-7xl lg:text-[6rem]">
-          The next transformation
-          <br />
-          starts with one conversation.
+      <div className="max-w-5xl">
+        <h2 className="font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]">
+          {lines.map((line, index) => (
+            <span key={line} className="block overflow-hidden">
+              <motion.span
+                className="block"
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{
+                  duration: 1.1,
+                  delay: 0.15 + index * 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
         </h2>
 
         <a
-          href="mailto:hello@studio.design"
+          href="https://wa.me/6285974785490?text=Hello%2C%20let%20us%20connect%21"
+          target="_blank"
+          rel="noopener noreferrer"
           className="group mt-14 inline-flex items-center gap-3 rounded-full border border-primary-foreground/30 px-8 py-4 text-sm transition-colors hover:bg-primary-foreground hover:text-primary"
         >
           Let&apos;s Build Together
@@ -46,19 +45,19 @@ export function FooterCTA() {
             →
           </span>
         </a>
-      </motion.div>
+      </div>
 
       <div className="flex flex-wrap items-center justify-between gap-6 text-sm opacity-70">
         <div className="flex gap-8">
           <a
-            href="mailto:hello@studio.design"
+            href="mailto:armansyahhakim263@gmail.com"
             className="transition-opacity hover:opacity-100"
           >
             Email
           </a>
 
           <a
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/in/armansyah-hakim-7422bab5/"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-opacity hover:opacity-100"

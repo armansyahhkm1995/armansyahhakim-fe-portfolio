@@ -31,14 +31,7 @@ const REVEAL_TRANSITION = {
 
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{
-        hidden: {},
-        visible: {},
-      }}
+    <header
       className="
         flex
         flex-col
@@ -51,11 +44,7 @@ function SectionHeader() {
         sm:justify-between
       "
     >
-      <motion.div
-        variants={REVEAL_VARIANTS}
-        transition={REVEAL_TRANSITION}
-        className="flex items-center gap-2"
-      >
+      <div className="flex items-center gap-2">
         <span
           className="
             font-[var(--cs-font-mono)]
@@ -79,14 +68,9 @@ function SectionHeader() {
         >
           Reintegration Ecosystem
         </h2>
-      </motion.div>
+      </div>
 
-      <motion.p
-        variants={REVEAL_VARIANTS}
-        transition={{
-          ...REVEAL_TRANSITION,
-          delay: 0.1,
-        }}
+      <p
         className="
           font-[var(--cs-font-mono)]
           text-xs
@@ -95,8 +79,8 @@ function SectionHeader() {
         "
       >
         THE MULTI-ORGANISATIONAL MAP
-      </motion.p>
-    </motion.header>
+      </p>
+    </header>
   );
 }
 
@@ -104,13 +88,8 @@ export default function SectionReintegration() {
   return (
     <section
       id="reintegration"
-      aria-labelledby="reintegration-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="reintegration ecosystem"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -125,14 +104,7 @@ export default function SectionReintegration() {
         <SectionHeader />
 
         {/* INTRO */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <div
           className="
             flex
             flex-col
@@ -141,9 +113,7 @@ export default function SectionReintegration() {
             text-center
           "
         >
-          <motion.h3
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <h3
             className="
               w-full
               text-left
@@ -157,14 +127,9 @@ export default function SectionReintegration() {
             "
           >
             ACTS does not operate in isolation.
-          </motion.h3>
+          </h3>
 
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <p
             className="
               w-full
               text-left
@@ -180,8 +145,8 @@ export default function SectionReintegration() {
             person is surrounded by family support, employment, education,
             community, activities, mental well-being, financial assistance,
             legal services, mentoring, helplines, NGOs, and government services.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* ECOSYSTEM MAP */}
         <motion.div
@@ -356,12 +321,7 @@ export default function SectionReintegration() {
 
         {/* FIGURE */}
         {/* VIDEO */}
-        <motion.figure
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <figure
           className="
           flex
           w-full
@@ -415,7 +375,7 @@ export default function SectionReintegration() {
             FIG. 06A — COMMUNITY SUPPORT LANDSCAPE · SINGAPORE REINTEGRATION
             SERVICES
           </figcaption>
-        </motion.figure>
+        </figure>
       </div>
     </section>
   );

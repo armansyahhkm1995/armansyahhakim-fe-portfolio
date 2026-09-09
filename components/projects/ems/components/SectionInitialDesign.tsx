@@ -85,13 +85,7 @@ export default function SectionInitialDesign() {
     <section
       id="initial-design"
       aria-labelledby="initial-design-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -110,12 +104,7 @@ export default function SectionInitialDesign() {
         />
 
         {/* Section meta */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -161,19 +150,11 @@ export default function SectionInitialDesign() {
           >
             HEURISTIC REFINEMENTS
           </span>
-        </motion.div>
+        </div>
 
         {/* Main heading */}
-        <motion.h2
+        <h2
           id="initial-design-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
           className="
             w-full
             max-w-[1120px]
@@ -188,18 +169,10 @@ export default function SectionInitialDesign() {
           "
         >
           The system interface evolved as technical constraints clarified.
-        </motion.h2>
+        </h2>
 
         {/* Design evolution stages */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             grid
             w-full
@@ -260,7 +233,7 @@ export default function SectionInitialDesign() {
               </p>
             </article>
           ))}
-        </motion.div>
+        </div>
 
         {/* Design exploration media */}
         <motion.div

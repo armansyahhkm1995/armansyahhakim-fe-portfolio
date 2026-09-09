@@ -131,13 +131,7 @@ export default function SectionRole() {
     <section
       id="role"
       aria-labelledby="user-roles-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -154,12 +148,7 @@ export default function SectionRole() {
           className="h-px w-full bg-[var(--cs-color-border)]"
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -205,18 +194,10 @@ export default function SectionRole() {
           >
             USER RESPONSIBILITY SEGMENTATION
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h2
+        <h2
           id="user-roles-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
           className="
             w-full
             max-w-[1120px]
@@ -231,17 +212,9 @@ export default function SectionRole() {
           "
         >
           Three distinct roles, three operational paradigms.
-        </motion.h2>
+        </h2>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             grid
             w-full
@@ -308,17 +281,9 @@ export default function SectionRole() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             flex
             w-full
@@ -361,17 +326,9 @@ export default function SectionRole() {
             protocol. Lower tier operators can monitor and request scheduler
             changes, while hardware control is restricted.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             flex
             w-full
@@ -592,7 +549,7 @@ export default function SectionRole() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         <div
           className="
@@ -607,15 +564,7 @@ export default function SectionRole() {
           architecture and action availability.
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             grid
             w-full
@@ -688,7 +637,7 @@ export default function SectionRole() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -111,13 +111,13 @@ export default function SectionHypothesis() {
         <div className="mb-12 flex flex-col gap-4">
           <span
             className="
-      font-[var(--cs-font-sans)]
-      text-sm
-      font-semibold
-      uppercase
-      tracking-[0.04em]
-      text-[var(--cs-color-text-primary)]
-    "
+            font-[var(--cs-font-sans)]
+            text-sm
+            font-semibold
+            uppercase
+            tracking-[0.04em]
+            text-[var(--cs-color-text-primary)]
+          "
           >
             PROPOSITION CONCEPT
           </span>
@@ -134,8 +134,8 @@ export default function SectionHypothesis() {
               visible: {},
             }}
             className="
-      font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]
-    "
+            font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]
+          "
           >
             {lines.map((line, index) => (
               <span key={line} className="block overflow-hidden">

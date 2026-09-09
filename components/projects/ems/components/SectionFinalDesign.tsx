@@ -1,23 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionFinalDesign() {
   return (
     <section
@@ -48,12 +28,7 @@ export default function SectionFinalDesign() {
         />
 
         {/* Section meta */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -99,18 +74,10 @@ export default function SectionFinalDesign() {
           >
             INTERFACE SPECIFICATION
           </span>
-        </motion.div>
+        </div>
 
         {/* Introduction */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             flex
             w-full
@@ -155,18 +122,10 @@ export default function SectionFinalDesign() {
             numerical density, and low-contrast details minimize operator
             stress.
           </p>
-        </motion.div>
+        </div>
 
         {/* Final interface */}
-        <motion.figure
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <figure
           className="
             w-full
             overflow-hidden
@@ -182,7 +141,7 @@ export default function SectionFinalDesign() {
             preload="metadata"
             className="h-auto w-full rounded-sm"
           />
-        </motion.figure>
+        </figure>
       </div>
     </section>
   );

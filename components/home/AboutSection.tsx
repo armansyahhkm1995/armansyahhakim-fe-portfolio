@@ -5,14 +5,14 @@ import { Reveal } from "@/components/primitives/Reveal";
 
 const timeline = [
   "Interior Design",
+  "Architecture",
   "UI/UX",
   "Product Design",
   "Systems Thinking",
-  "Design Leadership",
+  "Experience Design",
 ];
 
-const portraitImage =
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80";
+const portraitImage = "/Portrait of me.webp";
 
 export function AboutSection() {
   return (

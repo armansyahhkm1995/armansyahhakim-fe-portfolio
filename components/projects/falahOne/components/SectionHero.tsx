@@ -131,16 +131,13 @@ const REVEAL_TRANSITION = {
   ease: [0.16, 1, 0.3, 1],
 } as const;
 
+const lines = ["Falah One: Organizing", "cross-team design", "language"];
+
 export default function SectionHero() {
   return (
     <section
-      id="falah-one-hero"
-      aria-labelledby="falah-one-title"
       className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
+        pt-16 md:pt-24 lg:pt-28
       "
     >
       <div
@@ -154,40 +151,28 @@ export default function SectionHero() {
         "
       >
         {/* Hero introduction */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex w-full flex-col gap-4"
-        >
-          <p
-            className="
-              font-[var(--cs-font-sans)]
-              text-xs
-              font-semibold
-              text-[var(--cs-color-text-secondary)]
-            "
-          >
+        <header className="flex w-full flex-col gap-4">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--cs-color-accent)] md:text-xs">
             INTERNAL DESIGN SYSTEM · FALAH INOVASI TEKNOLOGI · Q1 2026
           </p>
 
-          <h1
-            id="falah-one-title"
-            className="
-              max-w-[1100px]
-              font-[var(--cs-font-sans)]
-              text-5xl
-              font-normal
-              leading-[1.02]
-              tracking-tight
-              text-[var(--cs-color-text-primary)]
-              sm:text-6xl
-              lg:text-8xl
-            "
-          >
-            FALAH ONE: ORGANIZING CROSS-TEAM DESIGN LANGUAGE
+          <h1 className="font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]">
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
           </h1>
 
           <p
@@ -206,18 +191,10 @@ export default function SectionHero() {
             simulations, and marketing content teams without flattening
             operational needs.
           </p>
-        </motion.div>
+        </header>
 
         {/* Project metadata */}
-        <motion.dl
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.05,
-          }}
+        <dl
           className="
             grid
             w-full
@@ -268,18 +245,10 @@ export default function SectionHero() {
               </dd>
             </div>
           ))}
-        </motion.dl>
+        </dl>
 
         {/* System board */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             flex
             w-full
@@ -913,7 +882,7 @@ export default function SectionHero() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

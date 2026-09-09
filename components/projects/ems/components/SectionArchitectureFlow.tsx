@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface ArchitectureRoute {
   content: string;
   level: "root" | "child";
@@ -78,34 +74,12 @@ const OPERATIONAL_LOOPS: OperationalLoop[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionArchitectureFlow() {
   return (
     <section
       id="architecture"
       aria-labelledby="architecture-flow-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -124,12 +98,7 @@ export default function SectionArchitectureFlow() {
         />
 
         {/* Section meta */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -175,19 +144,11 @@ export default function SectionArchitectureFlow() {
           >
             NAVIGATION STRUCTURE
           </span>
-        </motion.div>
+        </div>
 
         {/* Main heading */}
-        <motion.h2
+        <h2
           id="architecture-flow-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
           className="
             w-full
             max-w-[1120px]
@@ -202,18 +163,10 @@ export default function SectionArchitectureFlow() {
           "
         >
           The system architecture follows the building&apos;s operating model.
-        </motion.h2>
+        </h2>
 
         {/* Routing profile tree */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             flex
             w-full
@@ -268,18 +221,10 @@ export default function SectionArchitectureFlow() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Operational loops heading */}
-        <motion.h3
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <h3
           className="
             w-full
             max-w-[1120px]
@@ -294,20 +239,10 @@ export default function SectionArchitectureFlow() {
           "
         >
           Four loops cover the core operational activities.
-        </motion.h3>
+        </h3>
 
         {/* Operational loops */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
-          className="flex w-full flex-col"
-        >
+        <div className="flex w-full flex-col">
           {OPERATIONAL_LOOPS.map((loop) => (
             <div
               key={loop.number}
@@ -350,7 +285,7 @@ export default function SectionArchitectureFlow() {
               </p>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

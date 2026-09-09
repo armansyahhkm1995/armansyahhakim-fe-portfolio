@@ -29,34 +29,14 @@ const REFLECTION_LEARNINGS: ReflectionLearning[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
+const lines = ["The system precedes the", "screen"];
 
 export default function SectionReflection() {
   return (
     <section
       id="reflection"
       aria-labelledby="reflection-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -75,12 +55,7 @@ export default function SectionReflection() {
         />
 
         {/* Section meta */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -126,18 +101,10 @@ export default function SectionReflection() {
           >
             SYSTEM DESIGN INSIGHTS
           </span>
-        </motion.div>
+        </div>
 
         {/* Epilogue */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             flex
             w-full
@@ -146,37 +113,47 @@ export default function SectionReflection() {
             gap-6
           "
         >
-          <div
+          <motion.h3
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {},
+            }}
             className="
-              font-[var(--cs-font-sans)]
-              text-xs
-              font-semibold
-              text-[var(--cs-color-text-secondary)]
-            "
+                      font-display
+                      text-[3rem]
+                      leading-[0.95]
+                      sm:text-[4.5rem]
+                      lg:text-[6rem]
+                      xl:text-[7rem]
+                      "
           >
-            EPILOGUE
-          </div>
-
-          <blockquote
-            id="reflection-title"
-            className="
-              m-0
-              w-full
-              max-w-[1000px]
-              font-[var(--cs-font-sans)]
-              text-5xl
-              font-normal
-              leading-[1.05]
-              tracking-tight
-              text-[var(--cs-color-text-primary)]
-              sm:text-6xl
-              sm:leading-[1.05]
-              lg:text-7xl
-              lg:leading-[76px]
-            "
-          >
-            &quot;THE SYSTEM PRECEDES THE SCREEN.&quot;
-          </blockquote>
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: {
+                      y: "110%",
+                    },
+                    visible: {
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </motion.h3>
 
           <p
             className="
@@ -197,20 +174,10 @@ export default function SectionReflection() {
             useful dashboard until you map the electrical lines and understand
             how hardware networks communicate.
           </p>
-        </motion.div>
+        </div>
 
         {/* Learnings */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
-          className="flex w-full flex-col"
-        >
+        <div className="flex w-full flex-col">
           {REFLECTION_LEARNINGS.map((learning) => (
             <article
               key={learning.number}
@@ -262,7 +229,7 @@ export default function SectionReflection() {
               </p>
             </article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

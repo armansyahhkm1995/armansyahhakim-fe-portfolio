@@ -1,23 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
 
 const COMPARISON_ITEMS = [
   {
@@ -36,14 +17,7 @@ const COMPARISON_ITEMS = [
 
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{
-        hidden: {},
-        visible: {},
-      }}
+    <header
       className="
         flex
         flex-col
@@ -92,7 +66,7 @@ function SectionHeader() {
       >
         SYSTEM ARCHITECTURE COMPARISON
       </span>
-    </motion.header>
+    </header>
   );
 }
 
@@ -102,9 +76,7 @@ function ComparisonCard({
   featured,
 }: (typeof COMPARISON_ITEMS)[number]) {
   return (
-    <motion.article
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
+    <article
       className={`
         flex
         h-full
@@ -142,7 +114,7 @@ function ComparisonCard({
       >
         {description}
       </p>
-    </motion.article>
+    </article>
   );
 }
 
@@ -150,13 +122,8 @@ export default function SectionComparison() {
   return (
     <section
       id="comparison"
-      aria-labelledby="comparison-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="then vs now"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -171,12 +138,7 @@ export default function SectionComparison() {
       >
         <SectionHeader />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             w-full
             font-[var(--cs-font-serif)]
@@ -189,17 +151,9 @@ export default function SectionComparison() {
           "
         >
           From connection to navigation.
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <p
           className="
             w-full
             font-[var(--cs-font-serif)]
@@ -212,20 +166,9 @@ export default function SectionComparison() {
         >
           The redesign shifts ACTS from primarily connecting users with support
           providers toward helping users navigate the broader support ecosystem.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.12,
-              },
-            },
-          }}
+        <div
           className="
             grid
             w-full
@@ -237,19 +180,9 @@ export default function SectionComparison() {
           {COMPARISON_ITEMS.map((item) => (
             <ComparisonCard key={item.label} {...item} />
           ))}
-        </motion.div>
+        </div>
 
-        <motion.figure
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
-          className="flex w-full flex-col gap-3 overflow-hidden"
-        >
+        <figure className="flex w-full flex-col gap-3 overflow-hidden">
           <div
             className="
               relative
@@ -284,7 +217,7 @@ export default function SectionComparison() {
           >
             FIG. 02 — Inmate undergoing the Community Based Programme
           </figcaption>
-        </motion.figure>
+        </figure>
       </div>
     </section>
   );

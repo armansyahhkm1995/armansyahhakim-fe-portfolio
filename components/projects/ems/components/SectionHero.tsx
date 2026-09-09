@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 
 type ProjectMeta = {
   label: string;
@@ -178,18 +179,16 @@ const REVEAL_TRANSITION = {
   ease: [0.16, 1, 0.3, 1],
 } as const;
 
+const lines = [
+  "Energy management system:",
+  "Translating physical",
+  "electrical flows into",
+  "operational agency",
+];
+
 export default function SectionContext() {
   return (
-    <section
-      id="ems-context"
-      aria-labelledby="ems-context-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
-    >
+    <section className="pt-16 md:pt-24 lg:pt-28">
       <div
         className="
           mx-auto
@@ -204,77 +203,36 @@ export default function SectionContext() {
             CONTEXT INTRO
         ========================================================= */}
 
-        <motion.header
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4"
-        >
-          <p
-            className="
-              font-[var(--cs-font-sans)]
-              text-xs
-              font-semibold
-              uppercase
-              tracking-wide
-              text-stone-600
-            "
-          >
+        <header className="flex flex-col gap-4">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--cs-color-accent)] md:text-xs">
             Enterprise Industrial IoT · Decentralized Energy Management · 2026
           </p>
 
-          <h2
-            id="ems-context-title"
-            className="
-              max-w-5xl
-              font-[var(--cs-font-sans)]
-              text-4xl
-              font-normal
-              leading-[1.05]
-              tracking-tight
-              text-neutral-900
-              sm:text-5xl
-              lg:text-7xl
-            "
-          >
-            ENERGY MANAGEMENT SYSTEM:
-            <br />
-            TRANSLATING PHYSICAL ELECTRICAL FLOWS INTO OPERATIONAL AGENCY.
-          </h2>
-
-          <p
-            className="
-              max-w-3xl
-              font-[var(--cs-font-sans)]
-              text-base
-              font-normal
-              leading-7
-              text-neutral-600
-              sm:text-lg
-              sm:leading-8
-            "
-          >
-            Investigating how a digital system can turn distributed, chaotic
-            electrical readings from smart meters into actionable, centralized
-            context for facility operators managing modern buildings.
-          </p>
-        </motion.header>
+          <h1 className="font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]">
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </h1>
+        </header>
 
         {/* =========================================================
             PROJECT METADATA
         ========================================================= */}
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             grid
             w-full
@@ -316,21 +274,13 @@ export default function SectionContext() {
               </span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* =========================================================
             COGNITIVE → DATA PATHWAY
         ========================================================= */}
 
-        <motion.figure
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <figure
           className="
             flex
             w-full
@@ -433,12 +383,7 @@ export default function SectionContext() {
               </div>
             ))}
           </div>
-        </motion.figure>
-
-        {/* =========================================================
-            EMS DASHBOARD SHOWCASE
-        ========================================================= */}
-
+        </figure>
         <motion.figure
           initial="hidden"
           whileInView="visible"
@@ -448,827 +393,19 @@ export default function SectionContext() {
             ...REVEAL_TRANSITION,
             delay: 0.2,
           }}
-          className="
-            w-full
-            overflow-hidden
-            rounded-sm
-            border
-            border-stone-300
-            bg-white
-          "
+          className="mx-auto mt-8 w-full px-6 md:mt-12 lg:mt-16"
         >
-          {/* =======================================================
-              DASHBOARD SHELL
-          ======================================================= */}
-
-          <div className="flex min-h-[700px] w-full bg-slate-50">
-            {/* =====================================================
-                SIDEBAR
-            ===================================================== */}
-
-            <aside
-              className="
-                hidden
-                w-64
-                shrink-0
-                flex-col
-                justify-between
-                border-r
-                border-emerald-200
-                bg-white
-                p-2
-                lg:flex
-              "
-            >
-              <div className="flex flex-col gap-2">
-                {/* Brand */}
-
-                <div className="p-2">
-                  <div className="flex flex-col gap-2 p-2">
-                    <div
-                      className="
-                        flex
-                        size-8
-                        items-center
-                        justify-center
-                        rounded-[10px]
-                        bg-emerald-500
-                      "
-                      aria-hidden="true"
-                    >
-                      <span className="text-sm text-white">⚡</span>
-                    </div>
-
-                    <div className="flex flex-col">
-                      <span
-                        className="
-                          font-[var(--cs-font-sans)]
-                          text-2xl
-                          font-semibold
-                          leading-8
-                          text-emerald-500
-                        "
-                      >
-                        EMS
-                      </span>
-
-                      <span
-                        className="
-                          font-[var(--cs-font-sans)]
-                          text-xs
-                          leading-4
-                          text-slate-600
-                        "
-                      >
-                        Energy management system
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Platform management */}
-
-                <div className="flex flex-col gap-1 p-2">
-                  <span
-                    className="
-                      px-2
-                      py-2
-                      text-xs
-                      text-slate-600
-                    "
-                  >
-                    Platform management
-                  </span>
-
-                  <div className="flex flex-col gap-1">
-                    <div
-                      className="
-                        flex
-                        h-8
-                        items-center
-                        gap-2
-                        rounded-lg
-                        bg-emerald-500
-                        px-2
-                      "
-                    >
-                      <span className="text-white">▦</span>
-
-                      <span
-                        className="
-                          flex-1
-                          truncate
-                          text-sm
-                          font-semibold
-                          text-white
-                        "
-                      >
-                        Dashboard
-                      </span>
-
-                      <span className="text-xs text-white">⌄</span>
-                    </div>
-
-                    <div
-                      className="
-                        flex
-                        h-8
-                        items-center
-                        gap-2
-                        rounded-lg
-                        bg-emerald-100
-                        px-2
-                      "
-                    >
-                      <span>＋</span>
-
-                      <span className="flex-1 truncate text-sm text-slate-950">
-                        Schedule
-                      </span>
-
-                      <span className="text-xs text-slate-950">⌄</span>
-                    </div>
-
-                    <div
-                      className="
-                        flex
-                        h-8
-                        items-center
-                        gap-2
-                        rounded-lg
-                        px-2
-                      "
-                    >
-                      <span>⌖</span>
-
-                      <span className="flex-1 truncate text-sm text-slate-950">
-                        Rooms
-                      </span>
-
-                      <span className="text-xs text-slate-950">⌄</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Installation management */}
-
-                <div className="flex flex-col gap-1 p-2">
-                  <span className="px-2 py-2 text-xs text-slate-600">
-                    Installation management
-                  </span>
-
-                  <div className="flex flex-col gap-1">
-                    <div className="flex h-8 items-center gap-2 rounded-lg px-2">
-                      <span>⌁</span>
-
-                      <span className="flex-1 truncate text-sm text-slate-950">
-                        Gateway
-                      </span>
-
-                      <span className="text-xs text-slate-950">⌄</span>
-                    </div>
-
-                    <div className="flex h-8 items-center gap-2 rounded-lg px-2">
-                      <span>▣</span>
-
-                      <span className="flex-1 truncate text-sm text-slate-950">
-                        Device
-                      </span>
-
-                      <span className="text-xs text-slate-950">⌄</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* User management */}
-
-                <div className="flex flex-col gap-1 p-2">
-                  <span className="px-2 py-2 text-xs text-slate-600">
-                    User management
-                  </span>
-
-                  <div className="flex flex-col gap-1">
-                    <div className="flex h-8 items-center gap-2 rounded-lg px-2">
-                      <span>♙</span>
-
-                      <span className="flex-1 truncate text-sm text-slate-950">
-                        User
-                      </span>
-
-                      <span className="text-xs text-slate-950">⌄</span>
-                    </div>
-
-                    <div className="flex h-8 items-center gap-2 rounded-lg px-2">
-                      <span>♧</span>
-
-                      <span className="flex-1 truncate text-sm text-slate-950">
-                        Role
-                      </span>
-
-                      <span className="text-xs text-slate-950">⌄</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Report management */}
-
-                <div className="flex flex-col gap-1 p-2">
-                  <span className="px-2 py-2 text-xs text-slate-600">
-                    Report management
-                  </span>
-
-                  <div className="flex h-8 items-center gap-2 rounded-lg px-2">
-                    <span>▤</span>
-
-                    <span className="flex-1 truncate text-sm text-slate-950">
-                      Report
-                    </span>
-
-                    <span className="text-xs text-slate-950">⌄</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Logout */}
-
-              <div className="p-2">
-                <div className="flex h-8 items-center gap-2 rounded-lg px-2">
-                  <span className="text-red-700">↪</span>
-
-                  <span className="text-sm text-red-700">Log out</span>
-                </div>
-              </div>
-            </aside>
-
-            {/* =====================================================
-                MAIN DASHBOARD
-            ===================================================== */}
-
-            <div className="flex min-w-0 flex-1 flex-col">
-              {/* Top bar */}
-
-              <header
-                className="
-                  flex
-                  h-16
-                  shrink-0
-                  items-center
-                  justify-between
-                  border-b
-                  border-blue-100
-                  bg-white
-                  px-4
-                  sm:px-8
-                "
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-4 w-2 rounded-r-md bg-emerald-500" />
-
-                  <div className="hidden size-4 rounded-[5px] border border-emerald-500 sm:block" />
-
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs text-slate-500">EMS</span>
-
-                    <span className="text-slate-950">›</span>
-
-                    <span className="text-xs font-semibold text-emerald-500">
-                      Dashboard
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="relative text-lg">
-                    <span aria-hidden="true">♧</span>
-
-                    <span
-                      className="
-                        absolute
-                        -right-1
-                        -top-1
-                        size-2
-                        rounded-full
-                        bg-red-500
-                      "
-                    />
-                  </div>
-
-                  <div className="h-8 w-px bg-slate-300" />
-
-                  <div className="hidden items-center gap-2 sm:flex">
-                    <div className="size-10 rounded-lg bg-slate-200" />
-
-                    <div className="flex flex-col">
-                      <span className="text-sm text-emerald-500">
-                        Administrator
-                      </span>
-
-                      <span className="text-xs text-slate-600">
-                        administrator@gmail.com
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </header>
-
-              {/* Dashboard content */}
-
-              <main
-                className="
-                  flex
-                  min-w-0
-                  flex-1
-                  flex-col
-                  gap-6
-                  overflow-hidden
-                  p-4
-                  sm:p-6
-                  lg:p-8
-                "
-              >
-                {/* Dashboard heading */}
-
-                <div
-                  className="
-                    flex
-                    flex-col
-                    gap-4
-                    lg:flex-row
-                    lg:items-end
-                    lg:justify-between
-                  "
-                >
-                  <div className="flex flex-col gap-1">
-                    <h3
-                      className="
-                        font-[var(--cs-font-sans)]
-                        text-3xl
-                        font-bold
-                        leading-10
-                        text-emerald-500
-                      "
-                    >
-                      Dashboard
-                    </h3>
-
-                    <p className="text-sm text-slate-600">
-                      Monitor energy usage and system status across your
-                      facility.
-                    </p>
-                  </div>
-
-                  <div className="flex w-full gap-2 sm:w-auto">
-                    <div
-                      className="
-                        flex
-                        h-8
-                        min-w-0
-                        flex-1
-                        items-center
-                        gap-2
-                        rounded-lg
-                        border
-                        border-slate-400
-                        bg-white
-                        px-3
-                        sm:w-64
-                        sm:flex-none
-                      "
-                    >
-                      <span className="text-slate-500">⌕</span>
-
-                      <span className="flex-1 truncate text-sm text-slate-950">
-                        Ruang pimpinan
-                      </span>
-
-                      <span className="text-red-700">×</span>
-                    </div>
-
-                    <button
-                      type="button"
-                      aria-label="Filter by date"
-                      className="
-                        flex
-                        h-8
-                        size-8
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        border
-                        border-slate-400
-                        bg-white
-                        text-slate-950
-                      "
-                    >
-                      ◫
-                    </button>
-                  </div>
-                </div>
-
-                {/* Metrics */}
-
-                <div
-                  className="
-                    grid
-                    grid-cols-1
-                    gap-3
-                    sm:grid-cols-3
-                  "
-                >
-                  {METRICS.map((metric) => (
-                    <article
-                      key={metric.type}
-                      className="
-                        flex
-                        min-h-40
-                        flex-col
-                        justify-between
-                        rounded-xl
-                        border
-                        border-slate-300
-                        bg-white
-                        p-5
-                      "
-                    >
-                      <div className="flex items-center justify-between gap-4">
-                        <h4 className="text-lg font-semibold text-emerald-500">
-                          {metric.title}
-                        </h4>
-
-                        <span
-                          aria-hidden="true"
-                          className="
-                            flex
-                            size-8
-                            items-center
-                            justify-center
-                            rounded-lg
-                            border
-                            border-slate-300
-                            bg-slate-50
-                            text-sm
-                          "
-                        >
-                          {metric.type === "energy"
-                            ? "⚡"
-                            : metric.type === "gateway"
-                              ? "⌁"
-                              : "▣"}
-                        </span>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <div className="flex items-baseline gap-1">
-                          <span
-                            className="
-                              font-[var(--cs-font-sans)]
-                              text-3xl
-                              font-semibold
-                              text-emerald-500
-                            "
-                          >
-                            {metric.value}
-                          </span>
-
-                          <span className="text-lg text-gray-700">
-                            {metric.unit}
-                          </span>
-                        </div>
-
-                        {metric.change && (
-                          <span className="text-xs text-red-500">
-                            ↓ {metric.change}
-                          </span>
-                        )}
-
-                        {metric.status && (
-                          <div className="flex flex-wrap gap-3 text-xs text-gray-700">
-                            <span className="flex items-center gap-1.5">
-                              <span className="size-2 rounded-sm bg-emerald-500" />
-                              {metric.status.online}
-                            </span>
-
-                            <span className="flex items-center gap-1.5">
-                              <span className="size-2 rounded-sm bg-red-500" />
-                              {metric.status.offline}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-
-                {/* Dashboard tabs */}
-
-                <div
-                  className="
-                    flex
-                    min-w-max
-                    rounded-lg
-                    border
-                    border-slate-300
-                    bg-white
-                    p-1
-                  "
-                >
-                  {DASHBOARD_TABS.map((tab, index) => (
-                    <div
-                      key={tab}
-                      className={`
-                        flex
-                        min-w-44
-                        flex-1
-                        items-center
-                        justify-center
-                        rounded-md
-                        px-3
-                        py-2
-                        text-sm
-                        ${
-                          index === 0
-                            ? "bg-emerald-500 font-medium text-emerald-50"
-                            : "text-slate-400"
-                        }
-                      `}
-                    >
-                      {tab}
-                    </div>
-                  ))}
-                </div>
-
-                {/* =================================================
-                    ENERGY TIMELINE
-                ================================================= */}
-
-                <section
-                  aria-labelledby="energy-timeline-title"
-                  className="
-                    flex
-                    min-w-0
-                    flex-col
-                    gap-4
-                    rounded-xl
-                    border
-                    border-slate-300
-                    bg-white
-                    p-4
-                    sm:p-6
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      flex-col
-                      gap-4
-                      lg:flex-row
-                      lg:items-center
-                      lg:justify-between
-                    "
-                  >
-                    <h4
-                      id="energy-timeline-title"
-                      className="text-lg font-semibold text-emerald-500"
-                    >
-                      Energy usage timeline
-                    </h4>
-
-                    <div className="flex gap-2 overflow-x-auto">
-                      <div
-                        className="
-                          flex
-                          min-w-max
-                          rounded-lg
-                          border
-                          border-slate-300
-                          p-1
-                        "
-                      >
-                        {TIMELINE_RANGES.map((range) => (
-                          <div
-                            key={range.label}
-                            className={`
-                              rounded-md
-                              px-4
-                              py-1.5
-                              text-sm
-                              ${
-                                range.active
-                                  ? "bg-emerald-500 text-emerald-50"
-                                  : "text-slate-400"
-                              }
-                            `}
-                          >
-                            {range.label}
-                          </div>
-                        ))}
-                      </div>
-
-                      <button
-                        type="button"
-                        aria-label="Select timeline date"
-                        className="
-                          flex
-                          size-8
-                          shrink-0
-                          items-center
-                          justify-center
-                          rounded-lg
-                          border
-                          border-slate-300
-                          bg-slate-50
-                        "
-                      >
-                        ◫
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Timeline summary */}
-
-                  <div className="flex flex-wrap gap-2">
-                    <div className="flex items-center gap-2 rounded-md border border-slate-300 px-2 py-1">
-                      <span className="text-sm text-slate-950">Current</span>
-
-                      <span className="text-sm text-slate-950">42.5 kWh</span>
-                    </div>
-
-                    <div className="flex items-center gap-2 rounded-md border border-slate-300 px-2 py-1">
-                      <span className="text-sm text-red-500">Peak</span>
-
-                      <span className="text-sm text-red-500">58.2 kWh</span>
-                    </div>
-
-                    <div className="flex items-center gap-2 rounded-md border border-slate-300 px-2 py-1">
-                      <span className="text-sm text-slate-950">Avg</span>
-
-                      <span className="text-sm text-slate-950">36.8 kWh</span>
-                    </div>
-                  </div>
-
-                  {/* Chart */}
-
-                  <div
-                    className="
-                      overflow-x-auto
-                      pb-2
-                    "
-                  >
-                    <div
-                      className="
-                        grid
-                        min-w-[720px]
-                        grid-cols-[48px_1fr]
-                        gap-3
-                      "
-                    >
-                      {/* Y axis */}
-
-                      <div
-                        className="
-                          flex
-                          flex-col
-                          justify-between
-                          py-1
-                        "
-                      >
-                        {TIMELINE_SCALE.map((value) => (
-                          <span
-                            key={value}
-                            className="
-                              text-right
-                              text-xs
-                              text-slate-400
-                            "
-                          >
-                            {value} kWh
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Chart area */}
-
-                      <div className="relative min-h-72">
-                        {/* Horizontal grid */}
-
-                        <div
-                          aria-hidden="true"
-                          className="
-                            pointer-events-none
-                            absolute
-                            inset-0
-                            flex
-                            flex-col
-                            justify-between
-                          "
-                        >
-                          {TIMELINE_SCALE.map((value) => (
-                            <div
-                              key={value}
-                              className="h-px w-full bg-slate-200"
-                            />
-                          ))}
-                        </div>
-
-                        {/* Data points */}
-
-                        <div
-                          className="
-                            relative
-                            flex
-                            h-72
-                            items-end
-                            justify-between
-                            gap-3
-                          "
-                        >
-                          {TIMELINE_POINTS.map((point) => {
-                            const height = `${(point.value / 25) * 100}%`;
-
-                            return (
-                              <div
-                                key={point.time}
-                                className="
-                                  flex
-                                  h-full
-                                  min-w-8
-                                  flex-1
-                                  flex-col
-                                  items-center
-                                  justify-end
-                                "
-                              >
-                                <div
-                                  className="
-                                    flex
-                                    w-full
-                                    flex-1
-                                    flex-col
-                                    items-center
-                                    justify-end
-                                  "
-                                >
-                                  <span className="mb-1 text-xs text-emerald-500">
-                                    {point.value} kWh
-                                  </span>
-
-                                  <div
-                                    className="
-                                      w-px
-                                      bg-emerald-300
-                                    "
-                                    style={{
-                                      height,
-                                    }}
-                                  />
-
-                                  <span
-                                    className="
-                                      size-2.5
-                                      shrink-0
-                                      rounded-full
-                                      bg-emerald-600
-                                    "
-                                  />
-                                </div>
-
-                                <span
-                                  className="
-                                    mt-2
-                                    text-xs
-                                    text-slate-400
-                                  "
-                                >
-                                  {point.time}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </main>
-            </div>
+          <div className="relative w-full overflow-hidden">
+            <Image
+              src="/images/ems/Dashboard - Energy Usage Timeline.webp"
+              alt="Corteva team and farmer during the agricultural field experience in Karawang"
+              width={1440}
+              height={820}
+              priority
+              sizes="(max-width: 768px) 100vw, 1440px"
+              className="h-auto w-full"
+            />
           </div>
-
-          <figcaption
-            className="
-              border-t
-              border-stone-300
-              px-4
-              py-3
-              font-[var(--cs-font-sans)]
-              text-[10px]
-              text-stone-500
-              sm:px-6
-            "
-          >
-            EMS monitoring interface — centralized operational view across
-            distributed electrical infrastructure.
-          </figcaption>
         </motion.figure>
       </div>
     </section>

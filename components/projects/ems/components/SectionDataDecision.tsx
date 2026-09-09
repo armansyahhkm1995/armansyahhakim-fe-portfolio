@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface DecisionStage {
   number: string;
   title: string;
@@ -31,34 +27,12 @@ const DECISION_STAGES: DecisionStage[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionDataDecision() {
   return (
     <section
       id="decision"
       aria-labelledby="data-decision-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -75,12 +49,7 @@ export default function SectionDataDecision() {
           className="h-px w-full bg-[var(--cs-color-border)]"
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -126,17 +95,9 @@ export default function SectionDataDecision() {
           >
             OPERATIONAL SIGNAL PIPELINE
           </span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <div
           className="
             flex
             w-full
@@ -180,17 +141,9 @@ export default function SectionDataDecision() {
             information layers that facilities operators can immediately verify
             and act upon.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             w-full
             rounded-sm
@@ -283,7 +236,7 @@ export default function SectionDataDecision() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -76,13 +76,8 @@ export default function SectionContext() {
   return (
     <section
       id="context"
-      aria-labelledby="context-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="amase-context"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -95,16 +90,7 @@ export default function SectionContext() {
             INTRO
         ────────────────────────────────────────────── */}
         <header className="flex flex-col gap-4">
-          <p
-            className="
-              font-[var(--cs-font-mono)]
-              text-[10px]
-              font-semibold
-              uppercase
-              tracking-[0.04em]
-              text-[var(--cs-color-text-secondary)]
-            "
-          >
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--cs-color-accent)] md:text-xs">
             AMASE · REDESIGNING SOCIAL SUPPORT PLATFORMS · 2026 REVISIT
           </p>
 
@@ -314,7 +300,9 @@ export default function SectionContext() {
               "
             >
               <a
-                href="#"
+                href="https://play.google.com/store/apps/details?id=com.amaseapp"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   text-[var(--cs-color-accent)]
                   underline
@@ -327,7 +315,9 @@ export default function SectionContext() {
               </a>
 
               <a
-                href="#"
+                href="https://apps.apple.com/us/app/acts-social-support-app/id1615936401"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   text-[var(--cs-color-accent)]
                   underline
@@ -348,14 +338,9 @@ export default function SectionContext() {
               mt-8
               flex
               flex-col
-              snap-x
-              snap-mandatory
               gap-6
               overflow-x-auto
               pb-4
-              [-ms-overflow-style:none]
-              [scrollbar-width:none]
-              [&::-webkit-scrollbar]:hidden
               sm:grid
               sm:grid-cols-2
               sm:overflow-visible

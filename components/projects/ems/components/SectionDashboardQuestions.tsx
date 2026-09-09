@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface DashboardLevel {
   level: string;
   title: string;
@@ -35,34 +31,12 @@ const DASHBOARD_LEVELS: DashboardLevel[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionDashboardQuestions() {
   return (
     <section
       id="dashboard"
       aria-labelledby="dashboard-design-question-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="pt-16 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -79,12 +53,7 @@ export default function SectionDashboardQuestions() {
           className="h-px w-full bg-[var(--cs-color-border)]"
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -130,18 +99,9 @@ export default function SectionDashboardQuestions() {
           >
             INFORMATION STRUCTURE SPEC
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h2
-          id="dashboard-design-question-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
+        <h2
           className="
             w-full
             max-w-[1120px]
@@ -157,17 +117,9 @@ export default function SectionDashboardQuestions() {
         >
           The dashboard had to answer more than &quot;how much energy are we
           using?&quot;
-        </motion.h2>
+        </h2>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.15,
-          }}
+        <div
           className="
             flex
             w-full
@@ -227,7 +179,7 @@ export default function SectionDashboardQuestions() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

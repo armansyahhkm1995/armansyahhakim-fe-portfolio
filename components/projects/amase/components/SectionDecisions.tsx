@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const DESIGN_DECISIONS = [
   {
     number: "01",
@@ -33,32 +29,9 @@ const DESIGN_DECISIONS = [
   },
 ] as const;
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 function SectionHeader() {
   return (
-    <motion.header
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{
-        hidden: {},
-        visible: {},
-      }}
+    <header
       className="
         flex
         flex-col
@@ -71,11 +44,7 @@ function SectionHeader() {
         sm:justify-between
       "
     >
-      <motion.div
-        variants={REVEAL_VARIANTS}
-        transition={REVEAL_TRANSITION}
-        className="flex items-center gap-2"
-      >
+      <div className="flex items-center gap-2">
         <span
           className="
             font-[var(--cs-font-mono)]
@@ -99,14 +68,9 @@ function SectionHeader() {
         >
           Key Design Decisions
         </h2>
-      </motion.div>
+      </div>
 
-      <motion.p
-        variants={REVEAL_VARIANTS}
-        transition={{
-          ...REVEAL_TRANSITION,
-          delay: 0.1,
-        }}
+      <p
         className="
           font-[var(--cs-font-mono)]
           text-xs
@@ -115,8 +79,8 @@ function SectionHeader() {
         "
       >
         EVIDENCE-BASED STRUCTURAL SHIFTS
-      </motion.p>
-    </motion.header>
+      </p>
+    </header>
   );
 }
 
@@ -124,13 +88,8 @@ export default function SectionDecisions() {
   return (
     <section
       id="decisions"
-      aria-labelledby="decisions-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="key design decision"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -145,24 +104,10 @@ export default function SectionDecisions() {
         <SectionHeader />
 
         {/* DESIGN DECISIONS */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
-          className="flex w-full flex-col"
-        >
+        <div className="flex w-full flex-col">
           {DESIGN_DECISIONS.map((decision, index) => (
-            <motion.article
+            <article
               key={decision.number}
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: index * 0.08,
-              }}
               className="
                 flex
                 flex-col
@@ -237,15 +182,15 @@ export default function SectionDecisions() {
                     text-sm
                     font-semibold
                     leading-5
-                    text-blue-600
+                    text-[var(--cs-color-text-secondary)]
                   "
                 >
                   {decision.response}
                 </p>
               </div>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface ControlStep {
   number: string;
   label: string;
@@ -36,28 +32,12 @@ const CONTROL_STEPS: ControlStep[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionDeviceControl() {
   return (
     <section
       id="device control"
       aria-labelledby="device-control-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        pt-[var(--cs-section-padding)]
-        pb-6
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -76,12 +56,7 @@ export default function SectionDeviceControl() {
         />
 
         {/* Section header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -127,15 +102,10 @@ export default function SectionDeviceControl() {
           >
             ASYNCHRONOUS TRANSACTION FLOW
           </span>
-        </motion.div>
+        </div>
 
         {/* Intro */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
+        <div
           className="
             flex
             w-full
@@ -181,15 +151,10 @@ export default function SectionDeviceControl() {
             interface was intentionally designed to make this latency
             transparent, preventing redundant clicks.
           </p>
-        </motion.div>
+        </div>
 
         {/* Asynchronous transaction flow */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
+        <div
           className="
             flex
             w-full
@@ -320,7 +285,7 @@ export default function SectionDeviceControl() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

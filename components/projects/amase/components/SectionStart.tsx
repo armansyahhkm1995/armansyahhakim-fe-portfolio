@@ -1,6 +1,5 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { motion } from "motion/react";
 
 const TIMELINE_ITEMS = [
@@ -48,6 +47,7 @@ function TimelineConnector() {
         items-center
         justify-center
         text-stone-400
+        rotate-270
       "
     >
       <span className="block rotate-90 text-lg leading-none">⌄</span>
@@ -93,13 +93,8 @@ export default function SectionStart() {
   return (
     <section
       id="start"
-      aria-labelledby="start-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      aria-labelledby="my starting point"
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -112,14 +107,7 @@ export default function SectionStart() {
         "
       >
         {/* SECTION HEADER */}
-        <motion.header
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <header
           className="
             flex
             flex-col
@@ -132,11 +120,7 @@ export default function SectionStart() {
             sm:justify-between
           "
         >
-          <motion.div
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
-            className="flex items-center gap-2"
-          >
+          <div className="flex items-center gap-2">
             <span
               className="
                 font-[var(--cs-font-mono)]
@@ -160,14 +144,9 @@ export default function SectionStart() {
             >
               My Starting Point
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.p
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <p
             className="
               font-[var(--cs-font-mono)]
               text-xs
@@ -176,8 +155,8 @@ export default function SectionStart() {
             "
           >
             ORIGINAL ENGAGEMENT VS CURRENT CASE STUDY
-          </motion.p>
-        </motion.header>
+          </p>
+        </header>
 
         {/* STARTING POINT + TIMELINE */}
         <div
@@ -189,24 +168,14 @@ export default function SectionStart() {
           "
         >
           {/* INTRODUCTION */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={{
-              hidden: {},
-              visible: {},
-            }}
+          <div
             className="
               flex
               flex-col
               gap-6
             "
           >
-            <motion.h3
-              id="start-heading"
-              variants={REVEAL_VARIANTS}
-              transition={REVEAL_TRANSITION}
+            <h3
               className="
                 max-w-[520px]
                 font-[var(--cs-font-serif)]
@@ -220,14 +189,9 @@ export default function SectionStart() {
               "
             >
               Revisiting the work after years of professional distance.
-            </motion.h3>
+            </h3>
 
-            <motion.p
-              variants={REVEAL_VARIANTS}
-              transition={{
-                ...REVEAL_TRANSITION,
-                delay: 0.1,
-              }}
+            <p
               className="
                 max-w-[520px]
                 font-[var(--cs-font-sans)]
@@ -242,18 +206,11 @@ export default function SectionStart() {
               product design, I returned to this platform independently.
               Professional maturity allowed me to ask the deeper questions that
               short agency timelines often restrict.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* REVISIT TIMELINE */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: {},
-            }}
+          <div
             className="
               flex
               min-w-0
@@ -268,9 +225,7 @@ export default function SectionStart() {
               p-6
             "
           >
-            <motion.p
-              variants={REVEAL_VARIANTS}
-              transition={REVEAL_TRANSITION}
+            <p
               className="
                 font-[var(--cs-font-mono)]
                 text-xs
@@ -279,7 +234,7 @@ export default function SectionStart() {
               "
             >
               REVISIT TIMELINE
-            </motion.p>
+            </p>
 
             <div className="flex w-full flex-col items-center">
               {TIMELINE_ITEMS.map((item, index) => (
@@ -305,18 +260,11 @@ export default function SectionStart() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* KEY QUESTION */}
-        <motion.aside
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {},
-          }}
+        <aside
           className="
             flex
             flex-col
@@ -329,9 +277,7 @@ export default function SectionStart() {
             sm:p-6
           "
         >
-          <motion.div
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <div
             className="
               border-l-[3px]
               border-stone-600
@@ -354,8 +300,8 @@ export default function SectionStart() {
               remained: how effectively does the product help someone navigate
               the support ecosystem?
             </h3>
-          </motion.div>
-        </motion.aside>
+          </div>
+        </aside>
       </div>
     </section>
   );

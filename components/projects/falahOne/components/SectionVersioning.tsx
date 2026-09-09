@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const VERSION_HISTORY = [
   {
     version: "V0.1",
@@ -43,14 +29,7 @@ export default function SectionVersioning() {
     >
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 md:flex-row md:items-center md:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xs font-medium text-[var(--cs-color-text-secondary)]">
               09
@@ -64,36 +43,16 @@ export default function SectionVersioning() {
           <span className="text-xs font-normal text-[var(--cs-color-text-muted)]">
             REPLACE WITH ACTUAL VERSION HISTORY
           </span>
-        </motion.div>
+        </div>
 
         {/* Content */}
         <div className="flex flex-col gap-6">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="max-w-[700px] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] md:text-5xl md:leading-[1.01]"
-          >
+          <h2 className="max-w-[700px] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] md:text-5xl md:leading-[1.01]">
             Iteration required versioning
-          </motion.h2>
+          </h2>
 
           {/* Version History */}
-          <motion.ol
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
-          >
+          <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             {VERSION_HISTORY.map((item) => (
               <li
                 key={item.version}
@@ -112,7 +71,7 @@ export default function SectionVersioning() {
                 </span>
               </li>
             ))}
-          </motion.ol>
+          </ol>
         </div>
       </div>
     </section>

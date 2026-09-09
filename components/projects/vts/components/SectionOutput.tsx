@@ -77,14 +77,7 @@ const WORKFLOW_STAGES: readonly Stage[] = [
 
 function SectionHeader() {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
-      className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-    >
+    <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-2">
         <span className="font-[var(--cs-font-mono)] text-xs font-medium text-stone-600">
           11
@@ -98,24 +91,13 @@ function SectionHeader() {
       <span className="font-[var(--cs-font-mono)] text-xs font-normal text-neutral-500">
         END-TO-END WORKFLOW JOURNEY
       </span>
-    </motion.div>
+    </div>
   );
 }
 
 function WorkflowNavigation() {
   return (
-    <motion.nav
-      aria-label="VTS end-to-end workflow"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-      variants={REVEAL_VARIANTS}
-      transition={{
-        ...REVEAL_TRANSITION,
-        delay: 0.3,
-      }}
-      className="rounded-md border border-stone-300 bg-stone-50 p-4 sm:p-5"
-    >
+    <nav className="rounded-md border border-stone-300 bg-stone-50 p-4 sm:p-5">
       <ol className="flex flex-wrap items-center gap-x-4 gap-y-3">
         {WORKFLOW_STEPS.map((step, index) => (
           <li key={step} className="flex items-center gap-2">
@@ -138,7 +120,7 @@ function WorkflowNavigation() {
           </li>
         ))}
       </ol>
-    </motion.nav>
+    </nav>
   );
 }
 
@@ -208,34 +190,14 @@ export default function SectionOutput() {
 
         {/* Intro */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,760px)_minmax(0,1fr)] lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]">
             From raw FBX to interactive training content.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600">
             The finalized pipeline collapses traditional multi-day developer
             packaging routines down to a rapid, single-path sequence.
-          </motion.p>
+          </p>
         </div>
 
         {/* Workflow navigation */}

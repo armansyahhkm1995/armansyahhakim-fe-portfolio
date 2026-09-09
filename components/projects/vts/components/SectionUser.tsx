@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const USER_PROFILES = [
   {
     category: "AUTHORING",
@@ -44,14 +30,7 @@ export default function SectionUser() {
     >
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
             <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-secondary)]">
               04
@@ -65,54 +44,24 @@ export default function SectionUser() {
           <span className="font-[var(--cs-font-mono)] text-xs font-normal text-[var(--cs-color-text-muted)]">
             VTS SYSTEM PROFILE SEGMENTATION
           </span>
-        </motion.div>
+        </div>
 
         {/* User Context */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             The system serves two distinct moments of the training workflow.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]">
             Rather than designing standard user personas, we mapped out explicit
             workflow boundaries. The workspace translates structured decisions
             by the Level Designer into digestible step validation runs operated
             by Trainers and trainees.
-          </motion.p>
+          </p>
         </div>
 
         {/* User Profiles */}
-        <motion.ol
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.3,
-          }}
-          className="flex w-full flex-col"
-        >
+        <ol className="flex w-full flex-col">
           {USER_PROFILES.map((user) => (
             <li
               key={user.name}
@@ -143,7 +92,7 @@ export default function SectionUser() {
               </p>
             </li>
           ))}
-        </motion.ol>
+        </ol>
       </div>
     </section>
   );

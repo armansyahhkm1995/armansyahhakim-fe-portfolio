@@ -1,23 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const CONFIG_CODE = `// falah-one.config.js
 module.exports = {
   theme: {
@@ -39,12 +19,7 @@ export default function SectionTechnical() {
     <section
       id="technical"
       aria-labelledby="technical-foundation-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -57,12 +32,7 @@ export default function SectionTechnical() {
         "
       >
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -111,7 +81,7 @@ export default function SectionTechnical() {
           >
             WHY SHADCN + TAILWIND SHAPED THE WORK
           </span>
-        </motion.div>
+        </div>
 
         {/* Content */}
         <div
@@ -126,12 +96,7 @@ export default function SectionTechnical() {
           "
         >
           {/* Copy */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
+          <div
             className="
               flex
               w-full
@@ -172,15 +137,10 @@ export default function SectionTechnical() {
               which would create friction, I chose to adopt this combination as
               Falah One&apos;s initial layout foundation.
             </p>
-          </motion.div>
+          </div>
 
           {/* Code Block */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
+          <div
             className="
               w-full
               flex-1
@@ -211,7 +171,7 @@ export default function SectionTechnical() {
             >
               <code>{CONFIG_CODE}</code>
             </pre>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

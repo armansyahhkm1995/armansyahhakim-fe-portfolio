@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const PRODUCT_NODES = [
   {
     title: "VTS WORKBENCH (AUTHORING)",
@@ -144,14 +130,7 @@ export default function SectionProduct() {
         {/* =========================================================
             SECTION HEADER
         ========================================================= */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
             <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-secondary)]">
               05
@@ -165,58 +144,28 @@ export default function SectionProduct() {
           <span className="font-[var(--cs-font-mono)] text-xs font-normal text-[var(--cs-color-text-muted)]">
             ARCHITECTURE SPECS
           </span>
-        </motion.div>
+        </div>
 
         {/* =========================================================
             PRODUCT CONTEXT
         ========================================================= */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             Two applications, two transfer methods.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]">
             The systemic architecture handles content generation in Workbench
             while delivering configured packages to the training runtime. Two
             distinct transfer mechanisms connect the systems based on network
             availability.
-          </motion.p>
+          </p>
         </div>
 
         {/* =========================================================
             PRODUCT TOPOLOGY
         ========================================================= */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.3,
-          }}
-          className="flex flex-col gap-8 rounded-lg border border-[var(--cs-color-border)] bg-stone-50 p-5 sm:p-8 lg:p-10"
-        >
+        <div className="flex flex-col gap-8 rounded-lg border border-[var(--cs-color-border)] bg-stone-50 p-5 sm:p-8 lg:p-10">
           {/* Diagram Label */}
           <h3 className="font-[var(--cs-font-mono)] text-xs font-semibold text-stone-600">
             VTS PRODUCT TOPOLOGY SYSTEM MAP
@@ -238,7 +187,7 @@ export default function SectionProduct() {
               variant={PRODUCT_NODES[1].variant}
             />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

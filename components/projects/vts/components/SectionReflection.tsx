@@ -39,16 +39,11 @@ const REFLECTIONS: readonly Reflection[] = [
   },
 ] as const;
 
+const lines = ["What changed in my", "understanding"];
+
 function SectionHeader() {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
-      className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-    >
+    <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-2">
         <span className="font-[var(--cs-font-mono)] text-xs font-medium text-stone-600">
           13
@@ -62,7 +57,7 @@ function SectionHeader() {
       <span className="font-[var(--cs-font-mono)] text-xs font-normal text-neutral-500">
         PERSONAL EXPERIENCE REFLECTIONS
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -74,17 +69,7 @@ function ReflectionItem({
   index: number;
 }) {
   return (
-    <motion.article
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={REVEAL_VARIANTS}
-      transition={{
-        ...REVEAL_TRANSITION,
-        delay: index * 0.1,
-      }}
-      className="flex w-full flex-col gap-4"
-    >
+    <article className="flex w-full flex-col gap-4">
       <span className="font-[var(--cs-font-mono)] text-lg font-bold text-stone-600">
         {reflection.number}
       </span>
@@ -96,7 +81,7 @@ function ReflectionItem({
       <p className="font-[var(--cs-font-sans)] text-sm font-normal leading-6 text-neutral-600">
         {reflection.description}
       </p>
-    </motion.article>
+    </article>
   );
 }
 
@@ -111,49 +96,58 @@ export default function SectionReflection() {
 
         {/* Epilogue */}
         <div className="flex w-full flex-col items-start gap-6">
-          <motion.span
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-mono)] text-xs font-semibold text-stone-600"
-          >
-            EPILOGUE
-          </motion.span>
-
           <motion.h2
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.15,
+            viewport={{
+              once: true,
+              amount: 0.3,
             }}
-            className="max-w-[1000px] font-[var(--cs-font-serif)] text-5xl font-normal leading-tight text-neutral-900 sm:text-6xl lg:text-7xl lg:leading-[1.1]"
+            variants={{
+              hidden: {},
+              visible: {},
+            }}
+            className="
+                      font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]
+                    "
           >
-            &quot;WHAT CHANGED IN MY UNDERSTANDING.&quot;
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: {
+                      y: "110%",
+                    },
+                    visible: {
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
           </motion.h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="max-w-[1080px] font-[var(--cs-font-serif)] text-2xl font-normal leading-tight text-neutral-600 sm:text-3xl lg:text-4xl lg:leading-[1.3]"
+          <p
+            className="
+              max-w-[1100px]
+              font-serif
+              text-[clamp(1.5rem,3vw,2.5rem)]
+              font-normal
+              leading-[1.35]
+              text-[var(--cs-color-text-primary)]"
           >
             Experience design for 3D platforms is not about giving users
             unlimited power. It is about understanding the boundaries of their
             task and building the simplest logical path to let them complete it.
-          </motion.p>
+          </p>
         </div>
 
         {/* Key learnings */}

@@ -107,50 +107,20 @@ export default function SectionVTSMaintenance() {
 
         {/* Intro */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,760px)_minmax(0,1fr)] lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]">
             The complexity disappears once the content reaches the training
             application.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600">
             By isolating authoring tasks from operational learning tasks, we
             ensure the trainees interact with a focused, low-cognitive-load
             simulator.
-          </motion.p>
+          </p>
         </div>
 
         {/* Complexity comparison */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.3,
-          }}
-          className="grid grid-cols-1 gap-6 lg:grid-cols-2"
-        >
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {COMPLEXITY_COMPARISON.map((item) => (
             <ComplexityCard
               key={item.label}
@@ -159,7 +129,7 @@ export default function SectionVTSMaintenance() {
               highlighted={item.highlighted}
             />
           ))}
-        </motion.div>
+        </div>
 
         {/* Training showcase */}
         <motion.figure

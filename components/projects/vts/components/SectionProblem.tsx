@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const WORKFLOWS = [
   {
     label: "EXISTING WORKFLOW",
@@ -35,14 +21,7 @@ export default function SectionProblem() {
     >
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
             <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-secondary)]">
               02
@@ -56,22 +35,12 @@ export default function SectionProblem() {
           <span className="font-[var(--cs-font-mono)] text-xs font-normal text-[var(--cs-color-text-muted)]">
             VTS WORKBENCH / BOTTLENECK ANALYSIS
           </span>
-        </motion.div>
+        </div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] lg:gap-20">
           {/* Problem Statement */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="flex flex-col gap-6"
-          >
+          <div className="flex flex-col gap-6">
             <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
               The bottleneck was not importing a 3D model. It was configuring
               what the model could do.
@@ -83,20 +52,10 @@ export default function SectionProblem() {
               designers and non-programmers, we needed to separate geometry
               ingestion from operational logic definition.
             </p>
-          </motion.div>
+          </div>
 
           {/* Workflow Evolution */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="flex flex-col gap-6"
-          >
+          <div className="flex flex-col gap-6">
             {/* Workflow Header */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-primary)]">
@@ -148,7 +107,7 @@ export default function SectionProblem() {
                 );
               })}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface ProblemStep {
   step: string;
   title: string;
@@ -64,12 +60,7 @@ export default function SectionProblem() {
     <section
       id="problem"
       aria-labelledby="problem-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -82,12 +73,7 @@ export default function SectionProblem() {
         "
       >
         {/* Section header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -134,16 +120,11 @@ export default function SectionProblem() {
           >
             CROSS-TEAM LANGUAGE ANALYSIS
           </span>
-        </motion.div>
+        </div>
 
         {/* Problem statement */}
         <div className="flex w-full flex-col gap-8">
-          <motion.h3
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <h3
             className="
               max-w-5xl
               text-4xl
@@ -157,18 +138,10 @@ export default function SectionProblem() {
           >
             The problem was not a lack of components. It was a lack of shared
             language.
-          </motion.h3>
+          </h3>
 
           {/* Problem chain */}
-          <motion.figure
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <figure
             className="
               w-full
               rounded-md
@@ -245,18 +218,10 @@ export default function SectionProblem() {
                 </div>
               ))}
             </div>
-          </motion.figure>
+          </figure>
 
           {/* Core question */}
-          <motion.blockquote
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.15,
-            }}
+          <blockquote
             className="
               border-l-4
               border-stone-600
@@ -281,7 +246,7 @@ export default function SectionProblem() {
               forcing every team and technology into exactly the same
               implementation?&quot;
             </p>
-          </motion.blockquote>
+          </blockquote>
         </div>
 
         {/* Multiple technologies */}
@@ -295,14 +260,7 @@ export default function SectionProblem() {
           "
         >
           {/* Explanation */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
-            className="flex flex-col gap-6"
-          >
+          <div className="flex flex-col gap-6">
             <h3
               className="
                 text-4xl
@@ -331,18 +289,10 @@ export default function SectionProblem() {
               (Unity/VBS), and external marketing materials. We needed an
               adaptable core.
             </p>
-          </motion.div>
+          </div>
 
           {/* System dynamics map */}
-          <motion.figure
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <figure
             className="
               flex
               w-full
@@ -429,7 +379,7 @@ export default function SectionProblem() {
                 </div>
               ))}
             </div>
-          </motion.figure>
+          </figure>
         </div>
       </div>
     </section>

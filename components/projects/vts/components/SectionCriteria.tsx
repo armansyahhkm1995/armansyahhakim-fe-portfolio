@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 type SuccessCriterion = {
   value: string;
   title: string;
@@ -47,14 +33,7 @@ const SUCCESS_CRITERIA: readonly SuccessCriterion[] = [
 
 function SectionHeader() {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
-      className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-    >
+    <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-2">
         <span className="font-[var(--cs-font-mono)] text-xs font-medium text-stone-600">
           12
@@ -68,7 +47,7 @@ function SectionHeader() {
       <span className="font-[var(--cs-font-mono)] text-xs font-normal text-neutral-500">
         TARGET OPERATIONS PERFORMANCE
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -88,17 +67,7 @@ function CriterionCard({
   index: number;
 }) {
   return (
-    <motion.article
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-      variants={REVEAL_VARIANTS}
-      transition={{
-        ...REVEAL_TRANSITION,
-        delay: index * 0.08,
-      }}
-      className="flex w-full flex-col gap-4 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8"
-    >
+    <article className="flex w-full flex-col gap-4 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
       <div className="flex items-start justify-between gap-6">
         <span className="font-[var(--cs-font-serif)] text-5xl font-normal leading-none text-neutral-900 sm:text-6xl sm:leading-[64px]">
           {criterion.value}
@@ -116,7 +85,7 @@ function CriterionCard({
           {criterion.description}
         </p>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
@@ -131,34 +100,14 @@ export default function SectionCriteria() {
 
         {/* Intro */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,760px)_minmax(0,1fr)] lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]">
             The product was designed against measurable operational targets.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600">
             Success was assessed using strict operational baseline bounds
             established in the initial requirements specification phase.
-          </motion.p>
+          </p>
         </div>
 
         {/* Success criteria */}

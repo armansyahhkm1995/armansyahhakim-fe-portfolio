@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface TechnologyLayer {
   label: string;
   implementation: string;
@@ -42,33 +38,12 @@ const SYSTEM_EXPANSIONS: SystemExpansion[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionAdaptation() {
   return (
     <section
       id="adaptation"
       aria-labelledby="cross-technology-adaptation-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -81,12 +56,7 @@ export default function SectionAdaptation() {
         "
       >
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -135,7 +105,7 @@ export default function SectionAdaptation() {
           >
             ADAPTABLE PATTERNS ACROSS ENGINE RUNTIMES
           </span>
-        </motion.div>
+        </div>
 
         {/* Technology Adaptation */}
         <div
@@ -150,12 +120,7 @@ export default function SectionAdaptation() {
           "
         >
           {/* Copy */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
+          <div
             className="
               flex
               w-full
@@ -196,15 +161,10 @@ export default function SectionAdaptation() {
               styles, VR/AR engines utilize nested canvas components with
               physically configured scaling.
             </p>
-          </motion.div>
+          </div>
 
           {/* Infrastructure Tree */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
+          <div
             className="
               flex
               w-full
@@ -279,17 +239,12 @@ export default function SectionAdaptation() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* System Expansion */}
         <div className="flex w-full flex-col gap-6">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
+          <h2
             className="
               w-full
               max-w-[1120px]
@@ -304,14 +259,9 @@ export default function SectionAdaptation() {
             "
           >
             The system eventually moved beyond product interfaces
-          </motion.h2>
+          </h2>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
+          <div
             className="
               grid
               w-full
@@ -384,7 +334,7 @@ export default function SectionAdaptation() {
                 )}
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

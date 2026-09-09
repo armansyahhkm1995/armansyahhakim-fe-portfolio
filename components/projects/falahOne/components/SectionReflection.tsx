@@ -12,6 +12,8 @@ const REVEAL_TRANSITION = {
   ease: [0.16, 1, 0.3, 1],
 } as const;
 
+const lines = ["A design system is", "an doption", "journey"];
+
 const REFLECTIONS = [
   {
     number: "01",
@@ -47,14 +49,7 @@ export default function SectionReflection() {
     >
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12 md:gap-16">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 md:flex-row md:items-center md:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xs font-medium text-[var(--cs-color-text-secondary)]">
               13
@@ -68,47 +63,58 @@ export default function SectionReflection() {
           <span className="text-xs font-normal text-[var(--cs-color-text-muted)]">
             PERSONAL SYSTEM DESIGN PERSPECTIVES
           </span>
-        </motion.div>
+        </div>
 
         {/* Epilogue */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.05,
-          }}
-          className="flex flex-col items-start gap-6"
-        >
-          <span className="text-sm font-bold text-[var(--cs-color-text-secondary)]">
-            EPILOGUE
-          </span>
-
-          <h2 className="max-w-[1000px] text-5xl font-normal leading-[0.95] tracking-[-0.03em] text-[var(--cs-color-text-primary)] sm:text-6xl md:text-7xl lg:text-8xl">
-            &quot;A DESIGN SYSTEM IS AN ADOPTION JOURNEY.&quot;
-          </h2>
-        </motion.div>
+        <div className="flex flex-col items-start gap-6">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            variants={{
+              hidden: {},
+              visible: {},
+            }}
+            className="
+                      font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]
+                    "
+          >
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: {
+                      y: "110%",
+                    },
+                    visible: {
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </motion.h2>
+        </div>
 
         {/* Reflection List */}
-        <motion.ol
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
-          className="flex w-full flex-col"
-        >
+        <ol className="flex w-full flex-col">
           {REFLECTIONS.map((reflection) => (
             <li
               key={reflection.number}
               className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-8 first:border-t-0 first:pt-0 md:py-10"
             >
-              <span className="text-lg font-bold text-blue-600">
+              <span className="text-lg font-bold text-[var(--cs-color-text-primary)">
                 {reflection.number}
               </span>
 
@@ -121,7 +127,7 @@ export default function SectionReflection() {
               </p>
             </li>
           ))}
-        </motion.ol>
+        </ol>
       </div>
     </section>
   );

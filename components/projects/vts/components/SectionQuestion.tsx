@@ -12,6 +12,12 @@ const REVEAL_TRANSITION = {
   ease: [0.16, 1, 0.3, 1],
 } as const;
 
+const lines = [
+  "How might we move 3D",
+  "configuration closer to the end",
+  "user?",
+];
+
 const DESIGN_REQUIREMENTS = [
   {
     number: "01",
@@ -44,14 +50,7 @@ export default function SectionQuestion() {
     >
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12 lg:gap-16">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
             <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-secondary)]">
               03
@@ -65,28 +64,53 @@ export default function SectionQuestion() {
           <span className="font-[var(--cs-font-mono)] text-xs font-normal text-[var(--cs-color-text-muted)]">
             SYSTEM STRATEGY COMPASS
           </span>
-        </motion.div>
+        </div>
 
         {/* Proposition */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.1,
-          }}
-          className="flex flex-col gap-6 lg:gap-8"
-        >
+        <div className="flex flex-col gap-6 lg:gap-8">
           <span className="font-[var(--cs-font-mono)] text-sm font-semibold uppercase text-stone-600">
             PROPOSITION CONCEPT
           </span>
 
-          <h2 className="max-w-[1100px] font-[var(--cs-font-serif)] text-5xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-6xl lg:text-7xl lg:leading-[1.1]">
-            How might we move 3D configuration closer to the end user?
-          </h2>
-        </motion.div>
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            variants={{
+              hidden: {},
+              visible: {},
+            }}
+            className="
+                      font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]
+                    "
+          >
+            {lines.map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: {
+                      y: "110%",
+                    },
+                    visible: {
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 1.1,
+                    delay: 0.15 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </motion.h2>
+        </div>
 
         {/* Core Proposition */}
         <motion.blockquote
@@ -108,17 +132,7 @@ export default function SectionQuestion() {
         </motion.blockquote>
 
         {/* Design Requirements */}
-        <motion.ol
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.3,
-          }}
-          className="flex w-full flex-col"
-        >
+        <ol className="flex w-full flex-col">
           {DESIGN_REQUIREMENTS.map((requirement) => (
             <li
               key={requirement.number}
@@ -146,7 +160,7 @@ export default function SectionQuestion() {
               </span>
             </li>
           ))}
-        </motion.ol>
+        </ol>
       </div>
     </section>
   );

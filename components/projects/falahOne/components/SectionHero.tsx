@@ -115,22 +115,6 @@ const CALENDAR_DAYS = [
   ["29", "30", "1", "2", "3", "4", "5"],
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    opacity: 0,
-    y: 32,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const lines = ["Falah One: Organizing", "cross-team design", "language"];
 
 export default function SectionHero() {

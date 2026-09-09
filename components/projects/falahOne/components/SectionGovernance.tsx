@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const FEEDBACK_CYCLE = [
   "Team uses component in production",
   "Usability friction or technical constraint identified",
@@ -9,33 +5,12 @@ const FEEDBACK_CYCLE = [
   "Component modified & versioned globally",
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionGovernance() {
   return (
     <section
       id="governance"
       aria-labelledby="governance-model-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -48,12 +23,7 @@ export default function SectionGovernance() {
         "
       >
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -102,7 +72,7 @@ export default function SectionGovernance() {
           >
             LIVING SYSTEM CYCLIC FEEDBACK LOOP
           </span>
-        </motion.div>
+        </div>
 
         {/* Main Content */}
         <div
@@ -117,12 +87,7 @@ export default function SectionGovernance() {
           "
         >
           {/* Thesis */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
+          <div
             className="
               flex
               w-full
@@ -163,15 +128,10 @@ export default function SectionGovernance() {
               implementation evidence, developer discussions, and real-world
               usage data.
             </p>
-          </motion.div>
+          </div>
 
           {/* Feedback Cycle */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
+          <div
             className="
               flex
               w-full
@@ -220,7 +180,7 @@ export default function SectionGovernance() {
                 </li>
               ))}
             </ol>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

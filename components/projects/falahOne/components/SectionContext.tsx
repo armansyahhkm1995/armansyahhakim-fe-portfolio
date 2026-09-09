@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface FragmentedWorkflow {
   project: string;
   description: string;
@@ -22,33 +18,12 @@ const FRAGMENTED_WORKFLOWS: FragmentedWorkflow[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    opacity: 0,
-    y: 32,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionContext() {
   return (
     <section
       id="context"
       aria-labelledby="falah-one-context-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -61,12 +36,7 @@ export default function SectionContext() {
         "
       >
         {/* Section heading */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -115,7 +85,7 @@ export default function SectionContext() {
           >
             FALAH INOVASI TEKNOLOGI / CASE STUDY
           </span>
-        </motion.div>
+        </div>
 
         {/* Context introduction + fragmented workflows */}
         <div
@@ -129,17 +99,7 @@ export default function SectionContext() {
           "
         >
           {/* Context statement */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.05,
-            }}
-            className="flex flex-col gap-6"
-          >
+          <div className="flex flex-col gap-6">
             <h2
               id="falah-one-context-title"
               className="
@@ -172,18 +132,10 @@ export default function SectionContext() {
               requirements but made cross-project consistency, shared
               maintenance, and brand unified scaling nearly impossible.
             </p>
-          </motion.div>
+          </div>
 
           {/* Fragmented workflow board */}
-          <motion.figure
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <figure
             className="
               flex
               w-full
@@ -269,7 +221,7 @@ export default function SectionContext() {
               This approach could work at project level, but it made
               consistency, reuse, and cross-project maintenance difficult.
             </p>
-          </motion.figure>
+          </figure>
         </div>
       </div>
     </section>

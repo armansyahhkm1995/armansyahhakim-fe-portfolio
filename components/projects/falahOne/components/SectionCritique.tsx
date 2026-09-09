@@ -25,12 +25,7 @@ export default function SectionCritique() {
     <section
       id="critique"
       aria-labelledby="methodology-critique-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -43,12 +38,7 @@ export default function SectionCritique() {
         "
       >
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -97,7 +87,7 @@ export default function SectionCritique() {
           >
             ATOMIC SYSTEM TESTED VS CONTEXTUAL REALITY
           </span>
-        </motion.div>
+        </div>
 
         {/* Methodology Critique */}
         <div
@@ -112,12 +102,7 @@ export default function SectionCritique() {
           "
         >
           {/* Copy */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
+          <div
             className="
               flex
               w-full
@@ -160,15 +145,10 @@ export default function SectionCritique() {
               looking for components by their natural functional names much
               faster than navigating abstract taxonomies.
             </p>
-          </motion.div>
+          </div>
 
           {/* Atomic Disconnect */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
+          <div
             className="
               flex
               w-full
@@ -246,7 +226,7 @@ export default function SectionCritique() {
               their actual names (e.g. Button, Dialog, Card) than by abstract
               categories.
             </p>
-          </motion.div>
+          </div>
         </div>
 
         {/* Core UX Paradigm */}

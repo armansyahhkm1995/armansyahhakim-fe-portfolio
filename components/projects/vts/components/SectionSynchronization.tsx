@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const SYNCHRONIZATION_PATH = [
   {
     step: "STEP 01",
@@ -68,14 +54,7 @@ const SYNCHRONIZATION_METRICS = [
 
 function SectionHeader() {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
-      className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-    >
+    <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-2">
         <span className="font-[var(--cs-font-mono)] text-xs font-medium text-stone-600">
           08
@@ -89,7 +68,7 @@ function SectionHeader() {
       <span className="font-[var(--cs-font-mono)] text-xs font-normal text-neutral-500">
         VTS WORKBENCH / DUAL-PATH DELIVERY
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -217,53 +196,23 @@ export default function SectionSynchronization() {
             INTRO
         ========================================================= */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,760px)_minmax(0,1fr)] lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl sm:leading-[1.1]">
             Two paths connect authoring to training.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-neutral-600">
             Content delivery adapts to infrastructure conditions. When VTS
             Workbench and Maintenance Training share the same local network,
             synchronization enables runtime updates. When the applications
             operate on separate networks, configured content is transferred
             through an exported asset bundle.
-          </motion.p>
+          </p>
         </div>
 
         {/* =========================================================
             CONTENT DELIVERY PROTOCOL MAP
         ========================================================= */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.3,
-          }}
-          className="flex flex-col gap-7 rounded-lg border border-stone-300 bg-stone-50 p-5 sm:p-8"
-        >
+        <div className="flex flex-col gap-7 rounded-lg border border-stone-300 bg-stone-50 p-5 sm:p-8">
           {/* Card Header */}
           <div className="flex items-center justify-between">
             <h3 className="font-[var(--cs-font-mono)] text-xs font-semibold text-stone-600">
@@ -324,7 +273,7 @@ export default function SectionSynchronization() {
               TARGETS FROM PRODUCT REQUIREMENTS
             </span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

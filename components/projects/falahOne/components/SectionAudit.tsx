@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface ComponentInventory {
   name: string;
   description: string;
@@ -67,33 +63,12 @@ const AUDIT_ROWS: AuditRow[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionAudit() {
   return (
     <section
       id="audit"
       aria-labelledby="component-audit-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -106,12 +81,7 @@ export default function SectionAudit() {
         "
       >
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -160,17 +130,12 @@ export default function SectionAudit() {
           >
             INVENTORY OF EXISTING ASSETS
           </span>
-        </motion.div>
+        </div>
 
         {/* Existing Component Inventory */}
         <div className="flex w-full flex-col gap-6">
-          <motion.h2
+          <h2
             id="component-audit-title"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
             className="
               w-full
               max-w-[1120px]
@@ -185,16 +150,9 @@ export default function SectionAudit() {
             "
           >
             I started by looking at what teams were already using
-          </motion.h2>
+          </h2>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
-            className="flex w-full flex-col"
-          >
+          <div className="flex w-full flex-col">
             {COMPONENT_INVENTORY.map((item, index) => (
               <article
                 key={item.name}
@@ -239,17 +197,12 @@ export default function SectionAudit() {
                 </p>
               </article>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Audit Comparison */}
         <div className="flex w-full flex-col gap-8">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.1 }}
+          <h2
             className="
               w-full
               max-w-[1200px]
@@ -265,14 +218,9 @@ export default function SectionAudit() {
           >
             The first task was not creating new components. It was reducing
             unnecessary variation.
-          </motion.h2>
+          </h2>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={REVEAL_VARIANTS}
-            transition={{ ...REVEAL_TRANSITION, delay: 0.15 }}
+          <div
             className="
               w-full
               overflow-hidden
@@ -395,7 +343,7 @@ export default function SectionAudit() {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -96,14 +96,7 @@ function SectionHeader({
   meta: string;
 }) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={REVEAL_VARIANTS}
-      transition={REVEAL_TRANSITION}
-      className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-    >
+    <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-2">
         <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-secondary)]">
           {number}
@@ -117,7 +110,7 @@ function SectionHeader({
       <span className="font-[var(--cs-font-mono)] text-xs font-normal text-[var(--cs-color-text-muted)]">
         {meta}
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -350,36 +343,16 @@ export default function SectionVTSWorkbench() {
         />
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             Users needed a clear distinction between source assets and
             configured projects.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]">
             To prevent irreversible alteration of raw 3D engineering geometries,
             we built a sandboxed environment where imported FBX assets remain
             immutable, while configuration state lives in projects.
-          </motion.p>
+          </p>
         </div>
 
         <motion.div
@@ -424,35 +397,15 @@ export default function SectionVTSWorkbench() {
         />
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             The Workbench was structured around a familiar 3D authoring
             workflow.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]">
             The primary authoring tool maps spatial structure left, coordinates
             properties right, and places 3D geometric execution in the center.
-          </motion.p>
+          </p>
         </div>
 
         <motion.div
@@ -513,35 +466,15 @@ export default function SectionVTSWorkbench() {
         />
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             Object behavior became configuration instead of scripting.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]">
             Rather than forcing designers to declare C# event listeners, we
             packaged interaction patterns directly into serialized runtime
             attributes that compile inside VTS.
-          </motion.p>
+          </p>
         </div>
 
         <div className="flex flex-col gap-10">
@@ -611,50 +544,20 @@ export default function SectionVTSWorkbench() {
         />
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,760px)_minmax(0,1fr)] lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             The interaction model was intentionally constrained to predefined
             functions.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]">
             The system exposes the interaction patterns required by the training
             workflow rather than arbitrary scripting capabilities. By locking
             interactions to standardized mechanical behaviors, we ensure
             reliable, crash-free execution at runtime.
-          </motion.p>
+          </p>
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.3,
-          }}
-          className="flex flex-col"
-        >
+        <div className="flex flex-col">
           {INTERACTION_PATTERNS.map((interaction) => (
             <InteractionCard
               key={interaction.name}
@@ -662,7 +565,7 @@ export default function SectionVTSWorkbench() {
               description={interaction.description}
             />
           ))}
-        </motion.div>
+        </div>
 
         {/* =========================================================
             07D — STATUS FEEDBACK
@@ -675,35 +578,15 @@ export default function SectionVTSWorkbench() {
         />
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,760px)_minmax(0,1fr)] lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             Editing 3D content also introduced a state-management problem.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base leading-6 text-[var(--cs-color-text-secondary)]">
             Users need to know whether their current configuration is saved and
             whether the runtime application reflects the latest configuration.
             VTS surfaces synchronization states with zero ambient ambiguity.
-          </motion.p>
+          </p>
         </div>
 
         <motion.div

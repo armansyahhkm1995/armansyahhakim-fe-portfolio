@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const CURRENT_STATES = [
   {
     label: "ESTABLISHED",
@@ -49,14 +35,7 @@ export default function SectionCurrent() {
     >
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 md:flex-row md:items-center md:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xs font-medium text-[var(--cs-color-text-secondary)]">
               10
@@ -70,36 +49,16 @@ export default function SectionCurrent() {
           <span className="text-xs font-normal text-[var(--cs-color-text-muted)]">
             REALISTIC RECOGNITION OF PROGRESS
           </span>
-        </motion.div>
+        </div>
 
         {/* Content */}
         <div className="flex flex-col gap-6">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="max-w-[700px] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] md:text-5xl md:leading-[1.01]"
-          >
+          <h2 className="max-w-[700px] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] md:text-5xl md:leading-[1.01]">
             Where Falah One is today
-          </motion.h2>
+          </h2>
 
           {/* Current State Cards */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="grid grid-cols-1 gap-4 md:grid-cols-3"
-          >
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {CURRENT_STATES.map((state) => {
               const isEstablished = state.variant === "established";
               const isFuture = state.variant === "future";
@@ -142,7 +101,7 @@ export default function SectionCurrent() {
                 </article>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

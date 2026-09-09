@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 interface AdoptionPhase {
   phase: string;
   title: string;
@@ -33,33 +29,12 @@ const ADOPTION_PHASES: AdoptionPhase[] = [
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: {
-    y: 32,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 export default function SectionAdoption() {
   return (
     <section
       id="adoption"
       aria-labelledby="adoption-title"
-      className="
-        w-full
-        bg-[var(--cs-color-bg)]
-        px-[var(--cs-content-padding)]
-        py-[var(--cs-section-padding)]
-      "
+      className="p-8 md:pt-24 lg:pt-28"
     >
       <div
         className="
@@ -72,12 +47,7 @@ export default function SectionAdoption() {
         "
       >
         {/* Section header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
+        <div
           className="
             flex
             w-full
@@ -124,16 +94,11 @@ export default function SectionAdoption() {
           >
             STAGED DEPLOYMENT TIMELINE
           </span>
-        </motion.div>
+        </div>
 
         {/* Strategy */}
         <div className="flex w-full flex-col gap-6">
-          <motion.h3
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={REVEAL_TRANSITION}
+          <h3
             className="
               max-w-4xl
               text-4xl
@@ -146,18 +111,10 @@ export default function SectionAdoption() {
             "
           >
             I started where adoption was most likely
-          </motion.h3>
+          </h3>
 
           {/* Adoption timeline */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
+          <div
             className="
               grid
               w-full
@@ -238,7 +195,7 @@ export default function SectionAdoption() {
                 </p>
               </article>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

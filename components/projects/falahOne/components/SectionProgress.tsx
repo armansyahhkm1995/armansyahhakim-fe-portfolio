@@ -12,6 +12,8 @@ const REVEAL_TRANSITION = {
   ease: [0.16, 1, 0.3, 1],
 } as const;
 
+const lines = ["From shared", "components to", "shared language"];
+
 export default function SectionProgress() {
   return (
     <section
@@ -23,47 +25,55 @@ export default function SectionProgress() {
         <motion.h2
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="max-w-[1000px] text-center text-5xl font-normal leading-[0.95] tracking-[-0.03em] text-[var(--cs-color-text-primary)] sm:text-6xl md:text-7xl lg:text-8xl"
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
+          variants={{
+            hidden: {},
+            visible: {},
+          }}
+          className="
+                    font-display text-[3rem] leading-[0.95] sm:text-[4.5rem] lg:text-[6rem] xl:text-[7rem]
+                  "
         >
-          FROM SHARED COMPONENTS TO SHARED LANGUAGE
+          {lines.map((line, index) => (
+            <span key={line} className="block text-center overflow-hidden">
+              <motion.span
+                className="block"
+                variants={{
+                  hidden: {
+                    y: "110%",
+                  },
+                  visible: {
+                    y: 0,
+                  },
+                }}
+                transition={{
+                  duration: 1.1,
+                  delay: 0.15 + index * 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
         </motion.h2>
 
         {/* Closing Description */}
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.08,
-          }}
-          className="max-w-[680px] text-center text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]"
-        >
+        <p className="max-w-[680px] text-center text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]">
           Falah One is still evolving. Its direction is not to make every Falah
           product identical, but to make different products, technologies, and
           communication channels feel like they belong to the same organization.
-        </motion.p>
+        </p>
 
         {/* Case Study Footer */}
-        <motion.footer
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.16,
-          }}
-          className="mt-6 flex w-full max-w-[1140px] justify-center border-t border-[var(--cs-color-border)] pt-12"
-        >
+        <footer className="mt-6 flex w-full max-w-[1140px] justify-center border-t border-[var(--cs-color-border)] pt-12">
           <p className="text-center text-xs font-normal text-[var(--cs-color-text-muted)]">
             FALAH ONE | DESIGN SYSTEM CASE STUDY | 2026 — ONGOING
           </p>
-        </motion.footer>
+        </footer>
       </div>
     </section>
   );

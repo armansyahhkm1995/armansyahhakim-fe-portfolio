@@ -66,7 +66,7 @@ export function FooterCTA() {
           </a>
 
           <a
-            href="https://read.cv"
+            href="https://drive.google.com/file/d/1ta5En5luBRhmiVAf0zeGCIJxGY9VGrSr/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-opacity hover:opacity-100"

@@ -53,10 +53,7 @@ function FlowNode({
 
 export default function SectionContext() {
   return (
-    <section
-      id="context"
-      className="w-full bg-[var(--cs-color-bg)] px-[var(--cs-content-padding)] py-[var(--cs-section-padding)]"
-    >
+    <section id="context" className="w-full bg-[var(--cs-color-bg)] p-8">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
         {/* Section Header */}
         <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">

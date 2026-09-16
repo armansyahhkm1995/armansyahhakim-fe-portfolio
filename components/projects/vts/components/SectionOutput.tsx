@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 
 const REVEAL_VARIANTS = {
@@ -139,10 +140,12 @@ function StageMedia({
             key={`${src}-${index}`}
             className="relative aspect-[167/378] overflow-hidden border border-stone-300 bg-white"
           >
-            <img
+            <Image
               src={src}
               alt={`${stageTitle} preview ${index + 1}`}
-              className="h-full w-full object-cover"
+              fill
+              sizes="(max-width: 640px) 100vw, 33vw"
+              className="object-cover"
             />
           </div>
         ))}
@@ -152,10 +155,12 @@ function StageMedia({
 
   return (
     <div className="relative aspect-[580/387] w-full overflow-hidden border border-stone-300 bg-white">
-      <img
+      <Image
         src={images[0]}
         alt={`${stageTitle} preview`}
-        className="h-full w-full object-cover"
+        fill
+        sizes="100vw"
+        className="object-cover"
       />
     </div>
   );

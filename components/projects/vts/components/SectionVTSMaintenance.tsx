@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 
 const REVEAL_VARIANTS = {
@@ -144,10 +145,12 @@ export default function SectionVTSMaintenance() {
           className="flex w-full flex-col"
         >
           <div className="relative aspect-[1280/845] w-full overflow-hidden border border-stone-300 bg-stone-50">
-            <img
+            <Image
               src={TRAINING_SHOWCASE_IMAGE}
               alt="VTS Maintenance Training application showcase"
-              className="h-full w-full object-cover"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
           </div>
         </motion.figure>

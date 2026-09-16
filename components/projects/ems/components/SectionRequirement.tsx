@@ -34,7 +34,7 @@ export default function SectionRequirement() {
   return (
     <section
       id="requirement"
-      aria-labelledby="from requirement to system question"
+      aria-labelledby="system-requirement-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

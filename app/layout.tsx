@@ -11,6 +11,9 @@ import {
 import "./globals.css";
 import "@/components/home/styles/home.css";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://armansyahhakim.com";
+
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
@@ -33,6 +36,7 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Armansyah Hakim — Product Designer",
   description: "Product Designer portfolio",
 };

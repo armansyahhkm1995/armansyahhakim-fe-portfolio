@@ -59,13 +59,7 @@ function TargetBadge() {
   );
 }
 
-function CriterionCard({
-  criterion,
-  index,
-}: {
-  criterion: SuccessCriterion;
-  index: number;
-}) {
+function CriterionCard({ criterion }: { criterion: SuccessCriterion }) {
   return (
     <article className="flex w-full flex-col gap-4 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
       <div className="flex items-start justify-between gap-6">
@@ -112,12 +106,8 @@ export default function SectionCriteria() {
 
         {/* Success criteria */}
         <div className="grid w-full grid-cols-1 gap-4">
-          {SUCCESS_CRITERIA.map((criterion, index) => (
-            <CriterionCard
-              key={criterion.title}
-              criterion={criterion}
-              index={index}
-            />
+          {SUCCESS_CRITERIA.map((criterion) => (
+            <CriterionCard key={criterion.title} criterion={criterion} />
           ))}
         </div>
       </div>

@@ -25,7 +25,7 @@ export default function SectionReframe() {
   return (
     <section
       id="reframe"
-      aria-labelledby="reframing the problem"
+      aria-labelledby="reframe-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div
@@ -178,7 +178,7 @@ export default function SectionReframe() {
                 lg:gap-6
               "
             >
-              {PROBLEM_PATHWAY.map((item, index) => (
+              {PROBLEM_PATHWAY.map((item) => (
                 <article
                   key={item.number}
                   className={[

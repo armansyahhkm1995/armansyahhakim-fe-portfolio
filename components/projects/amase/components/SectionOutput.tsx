@@ -169,10 +169,8 @@ function ComparisonImage({ label, image }: { label: string; image: string }) {
 
 function ImprovementCard({
   improvement,
-  index,
 }: {
   improvement: (typeof DESIGN_IMPROVEMENTS)[number];
-  index: number;
 }) {
   return (
     <article
@@ -243,7 +241,7 @@ export default function SectionOutput() {
   return (
     <section
       id="output"
-      aria-labelledby="design improvement"
+      aria-labelledby="output-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div
@@ -266,11 +264,10 @@ export default function SectionOutput() {
             lg:grid-cols-2
           "
         >
-          {DESIGN_IMPROVEMENTS.map((improvement, index) => (
+          {DESIGN_IMPROVEMENTS.map((improvement) => (
             <ImprovementCard
               key={improvement.number}
               improvement={improvement}
-              index={index}
             />
           ))}
         </div>

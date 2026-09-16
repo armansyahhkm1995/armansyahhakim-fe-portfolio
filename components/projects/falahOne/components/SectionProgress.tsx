@@ -2,16 +2,6 @@
 
 import { motion } from "motion/react";
 
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const lines = ["From shared", "components to", "shared language"];
 
 export default function SectionProgress() {

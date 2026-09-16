@@ -88,7 +88,7 @@ export default function SectionDecisions() {
   return (
     <section
       id="decisions"
-      aria-labelledby="key design decision"
+      aria-labelledby="decisions-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div
@@ -105,7 +105,7 @@ export default function SectionDecisions() {
 
         {/* DESIGN DECISIONS */}
         <div className="flex w-full flex-col">
-          {DESIGN_DECISIONS.map((decision, index) => (
+          {DESIGN_DECISIONS.map((decision) => (
             <article
               key={decision.number}
               className="

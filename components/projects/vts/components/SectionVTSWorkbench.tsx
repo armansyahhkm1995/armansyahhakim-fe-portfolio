@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 
 const REVEAL_VARIANTS = {
@@ -154,7 +155,7 @@ function AssetList() {
 function WorkflowImage({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative aspect-[1216/811] w-full overflow-hidden rounded-sm border border-stone-300 bg-white">
-      <img src={src} alt={alt} className="h-full w-full object-cover" />
+      <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" />
     </div>
   );
 }
@@ -416,10 +417,12 @@ export default function SectionVTSWorkbench() {
           transition={REVEAL_TRANSITION}
           className="relative aspect-[1280/845] w-full overflow-hidden border border-stone-300 bg-stone-50"
         >
-          <img
+          <Image
             src={CANVAS_PLACEHOLDER}
             alt="VTS Workbench 3D authoring canvas preview"
-            className="h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
         </motion.div>
 
@@ -491,10 +494,12 @@ export default function SectionVTSWorkbench() {
                 key={`${src}-${index}`}
                 className="relative aspect-[400/907] overflow-hidden border border-stone-300 bg-stone-50"
               >
-                <img
+                <Image
                   src={src}
                   alt={`VTS object configuration preview ${index + 1}`}
-                  className="h-full w-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
                 />
               </div>
             ))}
@@ -622,10 +627,12 @@ export default function SectionVTSWorkbench() {
               key={`${src}-${index}`}
               className="relative h-6 w-full overflow-hidden"
             >
-              <img
+              <Image
                 src={src}
                 alt={`VTS status feedback visualization ${index + 1}`}
-                className="h-full w-full object-cover"
+                fill
+                sizes="100vw"
+                className="object-cover"
               />
             </div>
           ))}

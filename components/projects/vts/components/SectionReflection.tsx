@@ -2,16 +2,6 @@
 
 import { motion } from "motion/react";
 
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 type Reflection = {
   number: string;
   title: string;
@@ -61,13 +51,7 @@ function SectionHeader() {
   );
 }
 
-function ReflectionItem({
-  reflection,
-  index,
-}: {
-  reflection: Reflection;
-  index: number;
-}) {
+function ReflectionItem({ reflection }: { reflection: Reflection }) {
   return (
     <article className="flex w-full flex-col gap-4">
       <span className="font-[var(--cs-font-mono)] text-lg font-bold text-stone-600">
@@ -152,12 +136,8 @@ export default function SectionReflection() {
 
         {/* Key learnings */}
         <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-12">
-          {REFLECTIONS.map((reflection, index) => (
-            <ReflectionItem
-              key={reflection.number}
-              reflection={reflection}
-              index={index}
-            />
+          {REFLECTIONS.map((reflection) => (
+            <ReflectionItem key={reflection.number} reflection={reflection} />
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
@@ -165,7 +166,7 @@ export default function StickyNavigation() {
       >
         {/* Logo */}
 
-        <a
+        <Link
           href="/"
           aria-label="Back to home"
           className="
@@ -202,7 +203,7 @@ export default function StickyNavigation() {
           >
             CORTEVA
           </span>
-        </a>
+        </Link>
 
         {/* Desktop navigation */}
 

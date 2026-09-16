@@ -122,7 +122,7 @@ export default function SectionComparison() {
   return (
     <section
       id="comparison"
-      aria-labelledby="then vs now"
+      aria-labelledby="comparison-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

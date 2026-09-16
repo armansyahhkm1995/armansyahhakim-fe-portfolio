@@ -35,7 +35,7 @@ export default function SectionContext() {
   return (
     <section
       id="context"
-      aria-labelledby="project context"
+      aria-labelledby="project-context-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

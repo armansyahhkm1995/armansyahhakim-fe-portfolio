@@ -15,28 +15,6 @@ type DataPathwayItem = {
   highlighted?: boolean;
 };
 
-type MetricCard = {
-  type: "energy" | "gateway" | "device";
-  title: string;
-  value: string;
-  unit: string;
-  status?: {
-    online: string;
-    offline: string;
-  };
-  change?: string;
-};
-
-type TimelinePoint = {
-  time: string;
-  value: number;
-};
-
-type TimelineRange = {
-  label: string;
-  active?: boolean;
-};
-
 const PROJECT_META: ProjectMeta[] = [
   {
     label: "Role",
@@ -92,76 +70,6 @@ const DATA_PATHWAY: DataPathwayItem[] = [
     highlighted: true,
   },
 ];
-
-const METRICS: MetricCard[] = [
-  {
-    type: "energy",
-    title: "Energy usage",
-    value: "1,284.6",
-    unit: "kWh",
-    change: "+4.2% from yesterday",
-  },
-  {
-    type: "gateway",
-    title: "Gateway(s)",
-    value: "6",
-    unit: "Total",
-    status: {
-      online: "5 Online",
-      offline: "1 Offline",
-    },
-  },
-  {
-    type: "device",
-    title: "Device(s)",
-    value: "48",
-    unit: "Total",
-    status: {
-      online: "46 Online",
-      offline: "2 Offline",
-    },
-  },
-];
-
-const DASHBOARD_TABS = [
-  "Energy Usage Timeline",
-  "Top 5 Risky Rooms",
-  "Active Schedules",
-] as const;
-
-const TIMELINE_RANGES: TimelineRange[] = [
-  {
-    label: "Today",
-    active: true,
-  },
-  {
-    label: "Last week",
-  },
-  {
-    label: "Last month",
-  },
-  {
-    label: "Last year",
-  },
-];
-
-const TIMELINE_POINTS: TimelinePoint[] = [
-  { time: "00.00", value: 13 },
-  { time: "01.00", value: 14 },
-  { time: "02.00", value: 15 },
-  { time: "03.00", value: 16 },
-  { time: "04.00", value: 14 },
-  { time: "05.00", value: 12 },
-  { time: "06.00", value: 8 },
-  { time: "07.00", value: 4 },
-  { time: "08.00", value: 5 },
-  { time: "09.00", value: 9 },
-  { time: "10.00", value: 12 },
-  { time: "11.00", value: 13 },
-  { time: "12.00", value: 12 },
-];
-
-const TIMELINE_SCALE = [25, 20, 15, 10, 5, 1];
 
 const REVEAL_VARIANTS = {
   hidden: {

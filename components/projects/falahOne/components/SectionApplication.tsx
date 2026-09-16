@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 
 const REVEAL_VARIANTS = {
@@ -85,13 +86,15 @@ export default function SectionApplication() {
               className="flex w-full flex-col gap-6"
             >
               <div
-                className="w-full overflow-hidden rounded-sm"
+                className="relative w-full overflow-hidden rounded-sm"
                 style={{ aspectRatio: application.aspectRatio }}
               >
-                <img
+                <Image
                   src={application.src}
                   alt={application.alt}
-                  className="block h-full w-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                  className="object-cover"
                 />
               </div>
 

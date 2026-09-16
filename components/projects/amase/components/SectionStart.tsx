@@ -93,7 +93,7 @@ export default function SectionStart() {
   return (
     <section
       id="start"
-      aria-labelledby="my starting point"
+      aria-labelledby="start-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

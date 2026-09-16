@@ -92,7 +92,7 @@ export default function SectionReflection() {
   return (
     <section
       id="reflection"
-      aria-labelledby="reflection & learning"
+      aria-labelledby="reflection-title"
       className="p-16 md:pt-24 lg:pt-28"
     >
       <div

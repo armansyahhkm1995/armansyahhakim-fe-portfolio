@@ -52,7 +52,7 @@ export default function SectionExist() {
   return (
     <section
       id="exist"
-      aria-labelledby="the existing-product"
+      aria-labelledby="exist-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

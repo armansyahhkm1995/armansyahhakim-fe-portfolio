@@ -102,6 +102,7 @@ export default function SectionDashboardQuestions() {
         </div>
 
         <h2
+          id="dashboard-design-question-title"
           className="
             w-full
             max-w-[1120px]

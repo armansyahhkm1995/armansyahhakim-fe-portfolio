@@ -1,17 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 32, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
-
-const REVEAL_TRANSITION = {
-  duration: 0.8,
-  ease: [0.16, 1, 0.3, 1],
-} as const;
-
 const STRATEGIES = [
   {
     title: "FAMILIAR 3D CONVENTIONS",
@@ -71,14 +57,7 @@ export default function SectionStrategy() {
     >
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={REVEAL_VARIANTS}
-          transition={REVEAL_TRANSITION}
-          className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between"
-        >
+        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
             <span className="font-[var(--cs-font-mono)] text-xs font-semibold text-[var(--cs-color-text-secondary)]">
               06
@@ -92,54 +71,24 @@ export default function SectionStrategy() {
           <span className="font-[var(--cs-font-mono)] text-xs font-normal text-[var(--cs-color-text-muted)]">
             HEURISTIC STRATEGY VALUE
           </span>
-        </motion.div>
+        </div>
 
         {/* Strategy Statement */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.1,
-            }}
-            className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]"
-          >
+          <h2 className="font-[var(--cs-font-serif)] text-4xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-5xl sm:leading-[1.1]">
             I kept the mental model familiar and removed unnecessary complexity.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={REVEAL_VARIANTS}
-            transition={{
-              ...REVEAL_TRANSITION,
-              delay: 0.2,
-            }}
-            className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]"
-          >
+          <p className="font-[var(--cs-font-sans)] text-base font-normal leading-6 text-[var(--cs-color-text-secondary)]">
             By anchoring the user experience in standard 3D application
             paradigms, we drastically shortened the learning curve for CAD
             engineers and instructional designers while introducing extreme
             efficiency gains.
-          </motion.p>
+          </p>
         </div>
 
         {/* Strategy Principles */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={REVEAL_VARIANTS}
-          transition={{
-            ...REVEAL_TRANSITION,
-            delay: 0.3,
-          }}
-          className="flex flex-col gap-4 md:flex-row md:gap-6"
-        >
+        <div className="flex flex-col gap-4 md:flex-row md:gap-6">
           {STRATEGIES.map((strategy) => (
             <StrategyCard
               key={strategy.title}
@@ -148,7 +97,7 @@ export default function SectionStrategy() {
               variant={strategy.variant}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

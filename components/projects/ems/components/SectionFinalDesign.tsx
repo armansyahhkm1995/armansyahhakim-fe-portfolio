@@ -2,7 +2,7 @@ export default function SectionFinalDesign() {
   return (
     <section
       id="final design"
-      aria-labelledby="final-design-title"
+      aria-labelledby="final-experience-title"
       className="
         w-full
         bg-[var(--cs-color-bg)]

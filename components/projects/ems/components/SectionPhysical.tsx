@@ -87,7 +87,7 @@ export default function SectionPhysical() {
   return (
     <section
       id="physical"
-      aria-labelledby="understanding the physical system"
+      aria-labelledby="physical-system-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

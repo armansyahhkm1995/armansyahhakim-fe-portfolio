@@ -93,7 +93,7 @@ export default function SectionPrinciples() {
   return (
     <section
       id="principles"
-      aria-labelledby="design principles"
+      aria-labelledby="principles-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div
@@ -110,7 +110,7 @@ export default function SectionPrinciples() {
 
         {/* DESIGN PRINCIPLES */}
         <div className="flex w-full flex-col gap-4">
-          {DESIGN_PRINCIPLES.map((principle, index) => (
+          {DESIGN_PRINCIPLES.map((principle) => (
             <article
               key={principle.number}
               className="

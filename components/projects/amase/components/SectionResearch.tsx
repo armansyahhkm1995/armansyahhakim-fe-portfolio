@@ -105,7 +105,7 @@ export default function SectionResearch() {
   return (
     <section
       id="research"
-      aria-labelledby="research scope"
+      aria-labelledby="research-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div
@@ -174,7 +174,7 @@ export default function SectionResearch() {
             bg-stone-50
           "
         >
-          {RESEARCH_AREAS.map((area, index) => (
+          {RESEARCH_AREAS.map((area) => (
             <article
               key={area.number}
               className="
@@ -321,7 +321,7 @@ export default function SectionResearch() {
               </div>
 
               {/* TABLE ROWS */}
-              {COMPARATIVE_ROWS.map((row, id) => (
+              {COMPARATIVE_ROWS.map((row) => (
                 <div
                   key={row.id}
                   className="

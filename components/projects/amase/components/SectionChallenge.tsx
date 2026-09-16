@@ -100,7 +100,7 @@ export default function SectionChallenge() {
   return (
     <section
       id="challenge"
-      aria-labelledby="support exist the challenge is navigating it"
+      aria-labelledby="challenge-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

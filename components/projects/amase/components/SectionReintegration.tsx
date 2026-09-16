@@ -88,7 +88,7 @@ export default function SectionReintegration() {
   return (
     <section
       id="reintegration"
-      aria-labelledby="reintegration ecosystem"
+      aria-labelledby="reintegration-title"
       className="p-8 md:pt-24 lg:pt-28"
     >
       <div

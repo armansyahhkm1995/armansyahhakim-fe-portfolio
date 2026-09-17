@@ -121,7 +121,7 @@ export default function SectionHero() {
   return (
     <section
       className="
-        pt-16 md:pt-24 lg:pt-28
+        p-8 md:pt-24 lg:pt-28
       "
     >
       <div

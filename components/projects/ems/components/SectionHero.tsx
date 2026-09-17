@@ -96,7 +96,7 @@ const lines = [
 
 export default function SectionContext() {
   return (
-    <section className="pt-16 md:pt-24 lg:pt-28">
+    <section className="p-8 md:pt-24 lg:pt-28">
       <div
         className="
           mx-auto

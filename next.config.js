@@ -2,12 +2,14 @@
 const nextConfig = {
   // Security headers (SEC-001, SEC-002 fix)
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+
     // Next.js injects inline scripts for hydration in BOTH dev and production
-    // Allow 'unsafe-inline' for script-src (common for Next.js static sites)
+    // Dev: also needs 'unsafe-eval' for React debugging (callstack reconstruction)
     // Other directives remain strict
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://www.clarity.ms",
+      `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://www.clarity.ms`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self' data:",
@@ -15,7 +17,9 @@ const nextConfig = {
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
-    ].join('; ');
+    ]
+      .filter(Boolean)
+      .join('; ');
 
     const securityHeaders = [
       {

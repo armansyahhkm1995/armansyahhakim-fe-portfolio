@@ -64,10 +64,11 @@ export default function RootLayout({
         </main>
 
         {/* SEC-001: Load Microsoft Clarity via external file (no inline script) */}
+        {/* strategy="lazyOnload" - loads after page load, avoids preload warning */}
         <Script
           id="microsoft-clarity"
           src="/clarity.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>

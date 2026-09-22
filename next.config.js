@@ -2,9 +2,13 @@
 const nextConfig = {
   // Security headers (SEC-001, SEC-002 fix)
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+
+    // Development: allow inline scripts for HMR/TurboPack
+    // Production: strict CSP
     const csp = [
       "default-src 'self'",
-      "script-src 'self' https://www.clarity.ms",
+      `script-src 'self' ${isDev ? "'unsafe-inline' 'unsafe-eval'" : ""} https://www.clarity.ms`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self' data:",
@@ -12,7 +16,9 @@ const nextConfig = {
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
-    ].join('; ');
+    ]
+      .filter(Boolean)
+      .join('; ');
 
     const securityHeaders = [
       {

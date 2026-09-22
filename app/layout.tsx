@@ -51,18 +51,25 @@ export default function RootLayout({
       <body
         className={`${instrumentSerif.variable} ${interTight.variable} ${jetBrainsMono.variable} ${workSans.variable}`}
       >
-        <SmoothScroll>{children}</SmoothScroll>
-      </body>
+        {/* A11Y-002: Skip to main content link for keyboard users */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary text-primary-foreground rounded"
+        >
+          Skip to main content
+        </a>
 
-      <Script id="microsoft-clarity" strategy="afterInteractive">
-        {`
-          (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "yffsfx3ncz");
-        `}
-      </Script>
+        <main id="main">
+          <SmoothScroll>{children}</SmoothScroll>
+        </main>
+
+        {/* SEC-001: Load Microsoft Clarity via external file (no inline script) */}
+        <Script
+          id="microsoft-clarity"
+          src="/clarity.js"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }

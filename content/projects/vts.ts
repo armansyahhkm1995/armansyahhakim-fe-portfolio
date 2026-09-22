@@ -8,4 +8,5 @@ export const vtsProject = {
   year: "2026",
   role: "Product Designer",
   discipline: "Product Design",
+  ogImage: "/images/vts/Hero.webp",
 };

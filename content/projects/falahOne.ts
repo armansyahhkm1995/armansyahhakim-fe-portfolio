@@ -8,4 +8,5 @@ export const falahOneProject = {
   year: "2026",
   role: "Product Designer",
   discipline: "Product Design",
+  ogImage: "/images/falahOne/falah_hero.webp",
 };

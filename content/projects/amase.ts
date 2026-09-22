@@ -8,4 +8,5 @@ export const amaseProject = {
   year: "2025",
   role: "Product Designer",
   discipline: "Product Design",
+  ogImage: "/images/amase/Redesigned home dashboard.webp",
 };

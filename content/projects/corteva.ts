@@ -8,4 +8,5 @@ export const cortevaProject = {
   year: "2025",
   role: "Product Designer",
   discipline: "Product Design",
+  ogImage: "/images/corteva/SectionContext - Rice field.webp",
 };

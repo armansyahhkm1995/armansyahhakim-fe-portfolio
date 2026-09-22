@@ -34,10 +34,8 @@ export async function generateMetadata({
   const title = `${project.title} — Armansyah Hakim`;
   const description = project.seoDescription ?? project.description;
 
-  const ogImage =
-    project.slug === "corteva"
-      ? "/images/corteva/SectionContext - Rice field.webp"
-      : undefined;
+  // Use project.ogImage from content config (SEO-001 fix)
+  const ogImage = project.ogImage;
 
   return {
     title,

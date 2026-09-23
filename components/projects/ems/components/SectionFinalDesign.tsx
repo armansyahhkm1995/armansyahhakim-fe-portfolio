@@ -1,4 +1,12 @@
 export default function SectionFinalDesign() {
+  // PERF-003: Support streaming CDN (Mux/Cloudflare Stream) via env var
+  // Falls back to local video if env var not set
+  const streamingUrl = process.env.NEXT_PUBLIC_EMS_VIDEO_URL;
+  const localVideo = "/videos/ems/SD-DUX-Flow_Application-Energy_management_System-1-FIT245-20260830.mp4";
+  const posterImage = "/images/ems/EMS - Dashboard.webp"; // Fallback poster
+
+  const videoSrc = streamingUrl ?? localVideo;
+
   return (
     <section
       id="final design"
@@ -133,7 +141,8 @@ export default function SectionFinalDesign() {
           "
         >
           <video
-            src="/videos/ems/SD-DUX-Flow_Application-Energy_management_System-1-FIT245-20260830.mp4"
+            src={videoSrc}
+            poster={posterImage}
             autoPlay
             muted
             loop

@@ -55,6 +55,7 @@ const nextConfig = {
     ];
   },
 
+  // Build-time env validation (SEC-003 fix)
   env: {
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
   },

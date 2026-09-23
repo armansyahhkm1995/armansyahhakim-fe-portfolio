@@ -6,17 +6,17 @@ const nextConfig = {
 
     // Next.js injects inline scripts for hydration in BOTH dev and production
     // Dev: also needs 'unsafe-eval' for React debugging + WebSocket for HMR
-    // Clarity: needs www.clarity.ms (script), scripts.clarity.ms (script), b.clarity.ms (collect endpoint)
+    // Clarity: allow all clarity.ms subdomains (scripts, www, b, p, etc.)
     // Other directives remain strict
     const csp = [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://www.clarity.ms https://scripts.clarity.ms`,
+      `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://*.clarity.ms`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self' data:",
       // Dev: allow WebSocket for HMR (ws://localhost:3000)
-      // Clarity: allow b.clarity.ms for data collection
-      `connect-src 'self' ${isDev ? "ws://localhost:3000" : ""} https://www.clarity.ms https://scripts.clarity.ms https://b.clarity.ms`,
+      // Clarity: allow all clarity.ms subdomains for connect
+      `connect-src 'self' ${isDev ? "ws://localhost:3000" : ""} https://*.clarity.ms`,
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

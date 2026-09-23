@@ -445,7 +445,7 @@ export default function SectionHero() {
                 {/* Default URL field */}
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center justify-between gap-4">
-                    <label
+                    <div
                       className="
                         font-[var(--cs-font-sans)]
                         text-sm
@@ -454,7 +454,7 @@ export default function SectionHero() {
                       "
                     >
                       URL <span aria-hidden="true">*</span>
-                    </label>
+                    </div>
 
                     <span
                       className="
@@ -533,7 +533,7 @@ export default function SectionHero() {
                 {/* Error URL field */}
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center justify-between gap-4">
-                    <label
+                    <div
                       className="
                         font-[var(--cs-font-sans)]
                         text-sm
@@ -542,7 +542,7 @@ export default function SectionHero() {
                       "
                     >
                       URL <span aria-hidden="true">*</span>
-                    </label>
+                    </div>
 
                     <span
                       className="

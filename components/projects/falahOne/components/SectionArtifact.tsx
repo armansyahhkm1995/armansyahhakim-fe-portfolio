@@ -925,11 +925,11 @@ export default function SectionArtifact() {
                     Checkbox-Error
                   </div>
 
-                  <div className="flex flex-col gap-1">
-                    <label className="flex items-center gap-2 text-sm text-neutral-950">
-                      <Checkbox error />
-                      <span>I agree to the terms</span>
-                    </label>
+<div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2 text-sm text-neutral-950">
+                        <Checkbox error />
+                        <span>I agree to the terms</span>
+                      </div>
 
                     <span className="text-xs text-red-500">
                       You must agree to continue.

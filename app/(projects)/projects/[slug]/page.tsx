@@ -8,6 +8,18 @@ import EMSCaseStudy from "@/components/projects/ems/components/EMSCaseStudy";
 import FalahOneCaseStudy from "@/components/projects/falahOne/components/FalahOneCaseStudy";
 import VTSCaseStudy from "@/components/projects/vts/components/VTSCaseStudy";
 
+// CODE-002: Registry pattern for case study selection
+// Maps slug to case study component — adding new projects only requires updating this object
+const caseStudyRegistry = {
+  corteva: CortevaCaseStudy,
+  amase: AmaseCaseStudy,
+  ems: EMSCaseStudy,
+  falahOne: FalahOneCaseStudy,
+  vts: VTSCaseStudy,
+} as const;
+
+type CaseStudySlug = keyof typeof caseStudyRegistry;
+
 export async function generateStaticParams() {
   return getProjects().map((project) => ({
     slug: project.slug,
@@ -75,25 +87,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  if (project.slug === "corteva") {
-    return <CortevaCaseStudy />;
+  // CODE-002: Use registry instead of if/else chain
+  const CaseStudy = caseStudyRegistry[slug as CaseStudySlug];
+
+  if (!CaseStudy) {
+    notFound();
   }
 
-  if (project.slug === "amase") {
-    return <AmaseCaseStudy />;
-  }
-
-  if (project.slug === "ems") {
-    return <EMSCaseStudy />;
-  }
-
-  if (project.slug === "falahOne") {
-    return <FalahOneCaseStudy />;
-  }
-
-  if (project.slug === "vts") {
-    return <VTSCaseStudy />;
-  }
-
-  notFound();
+  return <CaseStudy />;
 }

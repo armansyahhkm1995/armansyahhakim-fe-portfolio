@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
-import Lenis from "lenis";
 
 type SmoothScrollProps = {
   children: ReactNode;
 };
 
+// PERF-004: Native smooth scroll (no Lenis dependency)
+// Motion handles scroll animations natively
 export function SmoothScroll({ children }: SmoothScrollProps) {
   useEffect(() => {
     const reduceMotion = window.matchMedia(
@@ -14,28 +15,14 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     ).matches;
 
     if (reduceMotion) {
+      document.documentElement.style.scrollBehavior = "auto";
       return;
     }
 
-    const lenis = new Lenis({
-      duration: 1.4,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1,
-    });
-
-    let animationFrameId = 0;
-
-    const update = (time: number) => {
-      lenis.raf(time);
-      animationFrameId = requestAnimationFrame(update);
-    };
-
-    animationFrameId = requestAnimationFrame(update);
+    document.documentElement.style.scrollBehavior = "smooth";
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      lenis.destroy();
+      document.documentElement.style.scrollBehavior = "auto";
     };
   }, []);
 

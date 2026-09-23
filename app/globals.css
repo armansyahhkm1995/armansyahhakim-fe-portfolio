@@ -30,36 +30,12 @@
   }
 }
 
-/* --------------------------------
-   Shared motion primitive
---------------------------------- */
-
-@utility reveal-motion {
-  opacity: 0;
-  transform: translateY(18px);
-
-  transition:
-    opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
-
-  will-change: opacity, transform;
-
-  &[data-visible="true"] {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .reveal-motion {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
+  /* Motion handles reduced motion automatically */
 }
 
 /* --------------------------------

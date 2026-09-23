@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { SmoothScroll } from "@/components/primitives/SmoothScroll";
-import {
-  Instrument_Serif,
-  Inter_Tight,
-  JetBrains_Mono,
-  Work_Sans,
-} from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
 import "@/components/home/styles/home.css";
@@ -14,25 +9,49 @@ import "@/components/home/styles/home.css";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://armansyahhakim.com";
 
-const instrumentSerif = Instrument_Serif({
+// PERF-002: Self-hosted fonts via next/font/local
+// Font files in fonts/ at project root (copied from @fontsource packages)
+const instrumentSerif = localFont({
+  src: [{ path: "../fonts/instrument-serif-400.woff2", weight: "400", style: "normal" }],
   variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
+  display: "swap",
+  preload: true,
 });
 
-const interTight = Inter_Tight({
+const interTight = localFont({
+  src: [
+    { path: "../fonts/inter-tight-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/inter-tight-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/inter-tight-600.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/inter-tight-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-inter-tight",
-  subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
-const jetBrainsMono = JetBrains_Mono({
+const jetBrainsMono = localFont({
+  src: [
+    { path: "../fonts/jetbrains-mono-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/jetbrains-mono-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/jetbrains-mono-600.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/jetbrains-mono-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
-const workSans = Work_Sans({
+const workSans = localFont({
+  src: [
+    { path: "../fonts/work-sans-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/work-sans-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/work-sans-600.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/work-sans-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-work-sans",
-  subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

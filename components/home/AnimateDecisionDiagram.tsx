@@ -38,7 +38,7 @@ export function AnimatedDecisionDiagram() {
                 animate={{
                   backgroundColor: [
                     "rgba(0,0,0,0)",
-                    "var(--moss)",
+                    "oklch(0.47 0.055 148)",
                     "rgba(0,0,0,0)",
                   ],
                 }}

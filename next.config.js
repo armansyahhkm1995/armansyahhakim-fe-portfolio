@@ -7,6 +7,7 @@ const nextConfig = {
     // Next.js injects inline scripts for hydration in BOTH dev and production
     // Dev: also needs 'unsafe-eval' for React debugging + WebSocket for HMR
     // Clarity: allow all clarity.ms subdomains (scripts, www, b, p, etc.)
+    // YouTube: allow embedding videos
     // Other directives remain strict
     const csp = [
       "default-src 'self'",
@@ -17,6 +18,8 @@ const nextConfig = {
       // Dev: allow WebSocket for HMR (ws://localhost:3000)
       // Clarity: allow all clarity.ms subdomains for connect
       `connect-src 'self' ${isDev ? "ws://localhost:3000" : ""} https://*.clarity.ms`,
+      // Allow YouTube embeds
+      "frame-src 'self' https://www.youtube.com https://youtube.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

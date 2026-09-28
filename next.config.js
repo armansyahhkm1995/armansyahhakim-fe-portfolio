@@ -8,11 +8,12 @@ const nextConfig = {
     // Dev: also needs 'unsafe-eval' for React debugging + WebSocket for HMR
     // Clarity: allow all clarity.ms subdomains (scripts, www, b, p, etc.)
     // YouTube: allow embedding videos
-    // Plerdy: allow plerdy.com for analytics
+    // Plerdy: allow plerdy.com for analytics (requires unsafe-eval)
     // Other directives remain strict
     const csp = [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://*.clarity.ms https://a.plerdy.com`,
+      // Plerdy requires unsafe-eval for eval() usage
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clarity.ms https://a.plerdy.com`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self' data:",

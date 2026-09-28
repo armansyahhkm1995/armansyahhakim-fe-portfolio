@@ -89,6 +89,14 @@ export default function RootLayout({
           src="/clarity.js"
           strategy="lazyOnload"
         />
+
+        {/* Plerdy Analytics - separate file for separation of concerns */}
+        {/* strategy="lazyOnload" - loads after page load */}
+        <Script
+          id="plerdy-analytics"
+          src="/plerdy.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcpServers": {
+    "Figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${FIGMA_TOKEN}"
+      }
+    }
+  }
+}

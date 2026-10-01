@@ -56,8 +56,63 @@ const workSans = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Armansyah Hakim — Product Designer",
-  description: "Product Designer portfolio",
+  title: {
+    default: "Armansyah Hakim — Product Designer",
+    template: "%s — Armansyah Hakim",
+  },
+  description:
+    "Product Designer specializing in systems thinking, UX research, and complex problem transformation. Explore complete design case studies with measurable behavioral impact.",
+  keywords: [
+    "Armansyah Hakim",
+    "Product Designer",
+    "Systems Thinking",
+    "UX Research",
+    "Experience Design",
+    "Design Systems",
+    "Product Strategy",
+    "Interaction Design",
+  ],
+  authors: [{ name: "Armansyah Hakim", url: siteUrl }],
+  creator: "Armansyah Hakim",
+  publisher: "Armansyah Hakim",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Armansyah Hakim — Product Designer",
+    title: "Armansyah Hakim — Product Designer",
+    description:
+      "Product Designer specializing in systems thinking, UX research, and complex problem transformation. Explore complete design case studies with measurable behavioral impact.",
+    images: [
+      {
+        url: "/images/corteva/SectionHero - Corteva and farmer photo session.webp",
+        width: 1200,
+        height: 630,
+        alt: "Armansyah Hakim — Product Designer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Armansyah Hakim — Product Designer",
+    description:
+      "Product Designer specializing in systems thinking, UX research, and complex problem transformation. Explore complete design case studies with measurable behavioral impact.",
+    images: ["/images/corteva/SectionHero - Corteva and farmer photo session.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

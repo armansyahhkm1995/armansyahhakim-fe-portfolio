@@ -4,19 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
-  { id: "context", label: "01 Context" },
-  { id: "exist", label: "02 Exist" },
-  { id: "start", label: "03 Start" },
-  { id: "reframe", label: "04 Reframe" },
-  { id: "research", label: "05 Research" },
-  { id: "reintegration", label: "06 Reintegration" },
-  { id: "challenge", label: "07 Challenge" },
-  { id: "decisions", label: "08 Decisions" },
-  { id: "principles", label: "09 Principles" },
-  { id: "ia & flow", label: "10 IA & Flow" },
-  { id: "output", label: "11 Output" },
-  { id: "comparison", label: "12 Comparison" },
-  { id: "reflection", label: "13 Reflection" },
+  { id: "overview", label: "01 Overview" },
+  { id: "bottleneck", label: "02 The Bottleneck" },
+  { id: "mechanism", label: "03 The Mechanism" },
+  { id: "interface", label: "04 Redesign" },
+  { id: "impact", label: "05 Impact" },
 ] as const;
 
 type NavSectionId = (typeof NAV_ITEMS)[number]["id"];

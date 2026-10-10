@@ -3,7 +3,7 @@ export default function SectionFinalDesign() {
   // Falls back to local video if env var not set
   const streamingUrl = process.env.NEXT_PUBLIC_EMS_VIDEO_URL;
   const localVideo = "/videos/ems/SD-DUX-Flow_Application-Energy_management_System-1-FIT245-20260830.mp4";
-  const posterImage = "/images/ems/EMS - Dashboard.webp"; // Fallback poster
+  const posterImage = "/images/ems/Dashboard - Energy Usage Timeline.webp"; // Fallback poster
 
   const videoSrc = streamingUrl ?? localVideo;
 

@@ -120,8 +120,9 @@ const lines = ["Falah One: Organizing", "cross-team design", "language"];
 export default function SectionHero() {
   return (
     <section
+      id="overview"
       className="
-        p-8 md:pt-24 lg:pt-28
+        p-4 sm:p-8 md:pt-24 lg:pt-28
       "
     >
       <div
@@ -176,6 +177,47 @@ export default function SectionHero() {
             operational needs.
           </p>
         </header>
+
+        {/* Executive Summary Card */}
+        <div className="rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
+          <div className="mb-4 flex items-center justify-between border-b border-stone-200 pb-3">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+              Executive Summary · At a Glance
+            </span>
+            <span className="font-mono text-[11px] text-stone-500">
+              Cross-Platform Architecture
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-[11px] font-bold uppercase text-stone-500">
+                01 / The Friction
+              </span>
+              <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-800">
+                Cross-squad front-end delivery was completely fragmented. Web squads, Unity 3D developers, and VR simulation engineers built disjointed UI components with zero token governance or accessibility standards.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-[11px] font-bold uppercase text-stone-500">
+                02 / The Mechanism
+              </span>
+              <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-800">
+                Architected a multi-tier design token pipeline (Primitive → Semantic → Component) compiling to both Tailwind CSS for web apps and Unity C# ScriptableObjects for immersive 3D/VR environments.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-[11px] font-bold uppercase text-stone-500">
+                03 / The Impact
+              </span>
+              <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-800">
+                Unified 4 core technical divisions under a single design language, slashed new module UI implementation time by 65%, and enforced 100% WCAG AA contrast compliance across all high-density cockpits.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Project metadata */}
         <dl

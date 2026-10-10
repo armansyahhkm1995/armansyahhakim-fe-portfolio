@@ -21,7 +21,7 @@ export function AboutSection() {
         <Reveal>
           <Image
             src={portraitImage}
-            alt="Portrait of the designer"
+            alt="Portrait of Armansyah Hakim, Product Designer"
             width={1200}
             height={1500}
             className="w-full max-w-md object-cover grayscale"

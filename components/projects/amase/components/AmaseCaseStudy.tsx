@@ -1,18 +1,10 @@
 import {
   StickyNavigation,
-  SectionContext,
-  SectionExist,
-  SectionStart,
-  SectionReframe,
-  SectionResearch,
-  SectionReintegration,
-  SectionChallenge,
-  SectionDecisions,
-  SectionPrinciples,
-  SectionIaFlow,
+  SectionHero,
+  SectionProblem,
+  SectionMechanism,
   SectionOutput,
-  SectionComparison,
-  SectionReflection,
+  SectionImpact,
 } from ".";
 
 import { CaseStudyLayout, DEFAULT_CASE_STUDY_VARIABLES } from "@/components/projects/CaseStudyLayout";
@@ -23,19 +15,12 @@ export default function AmaseCaseStudyPage() {
       variables={DEFAULT_CASE_STUDY_VARIABLES}
       navigation={<StickyNavigation />}
     >
-      <SectionContext />
-      <SectionExist />
-      <SectionStart />
-      <SectionReframe />
-      <SectionResearch />
-      <SectionReintegration />
-      <SectionChallenge />
-      <SectionDecisions />
-      <SectionPrinciples />
-      <SectionIaFlow />
+      <SectionHero />
+      <SectionProblem />
+      <SectionMechanism />
       <SectionOutput />
-      <SectionComparison />
-      <SectionReflection />
+      <SectionImpact />
     </CaseStudyLayout>
   );
 }
+

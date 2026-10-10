@@ -1,14 +1,10 @@
 import {
   StickyNavigation,
   SectionHero,
-  SectionContext,
-  SectionEcosystem,
-  SectionBefore,
-  SectionHypothesis,
-  SectionBehavior,
-  SectionSystem,
+  SectionFriction,
+  SectionMechanism,
   SectionValidation,
-  SectionReflection,
+  SectionImpact,
 } from ".";
 
 import { CaseStudyLayout, DEFAULT_CASE_STUDY_VARIABLES } from "@/components/projects/CaseStudyLayout";
@@ -20,14 +16,10 @@ export default function CortevaCaseStudyPage() {
       navigation={<StickyNavigation />}
     >
       <SectionHero />
-      <SectionContext />
-      <SectionEcosystem />
-      <SectionBefore />
-      <SectionHypothesis />
-      <SectionBehavior />
-      <SectionSystem />
+      <SectionFriction />
+      <SectionMechanism />
       <SectionValidation />
-      <SectionReflection />
+      <SectionImpact />
     </CaseStudyLayout>
   );
 }

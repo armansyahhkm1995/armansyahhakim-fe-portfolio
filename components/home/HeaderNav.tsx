@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "#transformations", label: "Case Studies" },
   { href: "#specializations", label: "Specializations" },
+  { href: "#transformations", label: "Case Studies" },
   { href: "#thinking", label: "Framework" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },

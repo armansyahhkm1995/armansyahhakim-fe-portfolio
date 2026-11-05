@@ -90,11 +90,11 @@ export default function SectionMechanism() {
               03
             </span>
             <span className="font-[var(--cs-font-sans)] text-sm font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
-              The Architecture & Mechanism
+              The Architecture &amp; Mechanism
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
-            Data-to-Decision Pipeline & Spatial Hierarchy
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
+            Data-to-Decision Pipeline &amp; Spatial Hierarchy
           </span>
         </div>
 
@@ -103,7 +103,7 @@ export default function SectionMechanism() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             Structuring the invisible: From raw electrical registers to intuitive spatial control.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Raw electrical telemetry is meaningless without structural context. We replaced flat device inventories with a spatial room hierarchy and a deterministic 4-stage decision funnel.
           </p>
         </div>
@@ -117,7 +117,7 @@ export default function SectionMechanism() {
           transition={{ duration: 0.7 }}
           className="flex w-full flex-col gap-4"
         >
-          <div className="relative w-full overflow-hidden rounded-sm border border-stone-300 bg-stone-100 p-2 sm:p-4">
+          <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-2 sm:p-4">
             <Image
               src="/images/ems/Rancangan skema EMS.webp"
               alt="Physical sensing ecosystem schematic showing rooms, meters, edge gateways, and cloud EMS"
@@ -127,18 +127,18 @@ export default function SectionMechanism() {
               className="h-auto w-full object-contain"
             />
           </div>
-          <figcaption className="font-[var(--cs-font-sans)] text-xs text-stone-500">
+          <figcaption className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-muted)]">
             Fig 03. — System Architecture Schematic: Mapping physical circuits and Modbus RS485 loops to Edge Concentrators and the Cloud EMS application layer.
           </figcaption>
         </motion.figure>
 
         {/* 4-Stage Decision Transformation */}
-        <div className="flex flex-col gap-5 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
+        <div className="flex flex-col gap-5 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               The 4-Stage Decision Transformation Funnel
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               How EMS converts noisy electrical telemetry into safe, accountable operator actions.
             </p>
           </div>
@@ -147,29 +147,29 @@ export default function SectionMechanism() {
             {DECISION_STAGES.map((stage) => (
               <div
                 key={stage.number}
-                className="flex flex-col justify-between gap-4 rounded-sm border border-stone-200 bg-white p-5"
+                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5 sm:p-6"
               >
                 <div className="flex flex-col gap-2">
-                  <span className="font-mono text-xs font-bold text-stone-400">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     STAGE {stage.number}
                   </span>
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                     {stage.title}
                   </h4>
                   <ul className="flex flex-col gap-1 pt-2">
                     {stage.items.map((item) => (
-                      <li key={item} className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+                      <li key={item} className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
                         • {item}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="border-t border-stone-100 pt-3">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-stone-500">
+                <div className="border-t border-[var(--cs-color-border)] pt-3">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
                     System State
                   </span>
-                  <p className="mt-1 font-[var(--cs-font-sans)] text-xs font-medium text-stone-800">
+                  <p className="mt-1 font-[var(--cs-font-sans)] text-xs font-medium text-[var(--cs-color-text-primary)]">
                     {stage.output}
                   </p>
                 </div>
@@ -179,12 +179,12 @@ export default function SectionMechanism() {
         </div>
 
         {/* Spatial Hierarchy Architecture */}
-        <div className="flex flex-col gap-5 rounded-sm border border-stone-300 bg-white p-6 sm:p-8">
+        <div className="flex flex-col gap-5 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               Spatial Information Architecture: Eliminating Mental Translation
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Technicians think in physical rooms (&ldquo;Server Room 2&rdquo;, &ldquo;Executive Boardroom&rdquo;), not Modbus hex IDs.
             </p>
           </div>
@@ -193,20 +193,20 @@ export default function SectionMechanism() {
             {HIERARCHY_ENTITIES.map((entity) => (
               <div
                 key={entity.level}
-                className="flex flex-col gap-2 rounded-sm border border-stone-200 bg-stone-50 p-4"
+                className="flex flex-col gap-2 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 sm:p-5"
               >
                 <span className="font-mono text-[11px] font-bold text-[var(--cs-color-accent)]">
                   {entity.level}
                 </span>
-                <h4 className="font-[var(--cs-font-sans)] text-xs font-bold text-stone-900">
+                <h4 className="font-[var(--cs-font-sans)] text-xs font-bold text-[var(--cs-color-text-primary)]">
                   {entity.title}
                 </h4>
-                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                   {entity.description}
                 </p>
-                <div className="mt-2 border-t border-stone-200 pt-2">
-                  <span className="font-mono text-[9px] uppercase text-stone-400">Key Schema</span>
-                  <p className="font-mono text-[10px] text-stone-700">{entity.attributes}</p>
+                <div className="mt-2 border-t border-[var(--cs-color-border)] pt-2">
+                  <span className="font-mono text-[9px] uppercase text-[var(--cs-color-text-muted)]">Key Schema</span>
+                  <p className="font-mono text-[10px] text-[var(--cs-color-text-secondary)]">{entity.attributes}</p>
                 </div>
               </div>
             ))}

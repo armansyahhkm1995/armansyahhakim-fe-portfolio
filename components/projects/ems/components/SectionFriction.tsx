@@ -92,8 +92,8 @@ export default function SectionFriction() {
               The Industrial Friction
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
-            Physical Constraints & Operational Risk
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
+            Physical Constraints &amp; Operational Risk
           </span>
         </div>
 
@@ -102,7 +102,7 @@ export default function SectionFriction() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             Managing megawatts is not like managing SaaS. Every screen action commands physical high-voltage relays.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Before digital intervention, energy operations relied on manual meter logs and physical site walkthroughs. A modern industrial EMS must bridge physical electrical hardware and human cognitive limitations without introducing operational risk.
           </p>
         </div>
@@ -117,25 +117,25 @@ export default function SectionFriction() {
               viewport={{ once: true, amount: 0.15 }}
               variants={REVEAL_VARIANTS}
               transition={{ duration: 0.6 }}
-              className="flex flex-col justify-between gap-4 rounded-sm border border-stone-300 bg-white p-6"
+              className="flex flex-col justify-between gap-4 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8"
             >
               <div className="flex flex-col gap-2">
-                <span className="font-mono text-xs font-bold text-stone-400">
+                <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                   {item.index} / SYSTEM FRICTION
                 </span>
-                <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-stone-900">
+                <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-[var(--cs-color-text-primary)]">
                   {item.condition}
                 </h3>
-                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                   {item.consequence}
                 </p>
               </div>
 
-              <div className="border-t border-stone-100 pt-3">
+              <div className="border-t border-[var(--cs-color-border)] pt-3">
                 <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-accent)]">
                   Architectural Response:
                 </span>
-                <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-stone-800">
+                <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-primary)] font-medium">
                   {item.mitigation}
                 </p>
               </div>
@@ -144,12 +144,12 @@ export default function SectionFriction() {
         </div>
 
         {/* 4 Stakeholder Contexts Table */}
-        <div className="flex flex-col gap-5 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
+        <div className="flex flex-col gap-5 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               Operational Mental Models Across the Grid
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Designing a single interface for four distinct operational roles required strict permission tiering and tailored density views.
             </p>
           </div>
@@ -158,23 +158,23 @@ export default function SectionFriction() {
             {STAKEHOLDER_ROLES.map((role) => (
               <div
                 key={role.role}
-                className="flex flex-col justify-between gap-4 rounded-sm border border-stone-200 bg-white p-5"
+                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5 sm:p-6"
               >
                 <div className="flex flex-col gap-2">
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                     {role.role}
                   </h4>
-                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {role.context}
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-2 border-t border-stone-100 pt-3">
+                <div className="flex flex-col gap-2 border-t border-[var(--cs-color-border)] pt-3">
                   <div>
-                    <span className="font-mono text-[10px] font-semibold uppercase text-stone-500">
+                    <span className="font-mono text-[10px] font-semibold uppercase text-[var(--cs-color-text-muted)]">
                       Primary Need
                     </span>
-                    <p className="font-[var(--cs-font-sans)] text-xs text-stone-800">
+                    <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
                       {role.priority}
                     </p>
                   </div>
@@ -182,7 +182,7 @@ export default function SectionFriction() {
                     <span className="font-mono text-[10px] font-semibold uppercase text-red-600">
                       Operational Risk
                     </span>
-                    <p className="font-[var(--cs-font-sans)] text-xs text-red-950">
+                    <p className="font-[var(--cs-font-sans)] text-xs text-red-600/90 font-medium">
                       {role.failureRisk}
                     </p>
                   </div>

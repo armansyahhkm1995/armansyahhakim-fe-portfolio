@@ -128,56 +128,56 @@ const PRODUCTION_INTERFACES: InterfaceCard[] = [
       {
         id: "rule-builder",
         name: "Recurrence Rule Builder Modal",
-        badge: "Configuration Flow",
+        badge: "Rule Configuration",
         src: "/images/ems/Schedule - Edit Modal.webp",
-        alt: "EMS Schedule edit modal interface for configuring recurring days and device target relays",
+        alt: "EMS Schedule edit modal interface for configuring recurring device rules",
         width: 1280,
-        height: 1018,
-        caption: "Recurrence configuration modal supporting multi-day selection, repeat rules, and circuit-level assignments.",
+        height: 810,
+        caption: "Detailed modal configuration for daily and weekly scheduled device power automation.",
       },
       {
-        id: "execution-audit",
-        name: "Schedule Execution & Device Log",
-        badge: "Operational Audit",
+        id: "execution-logs",
+        name: "Execution Log & Audit Trail",
+        badge: "Compliance Trail",
         src: "/images/ems/Schedule - Detail Log.webp",
-        alt: "EMS Schedule detail interface displaying attached devices, schedule parameters, and operational audit trail",
-        width: 2667,
-        height: 1688,
-        caption: "Detailed inspection drawer for specific schedules verifying target circuits, time boundaries, and audit history.",
+        alt: "EMS Schedule detail log interface showing historical rule execution records",
+        width: 1280,
+        height: 810,
+        caption: "Historical audit log tracking scheduled relay executions, failed handshakes, and manual overrides.",
       },
     ],
   },
   {
     number: "04",
-    title: "Edge Gateway Topology & Hardware Health Matrix",
-    subtitle: "Infrastructure Diagnostics",
+    title: "Hardware Commissioning & Network Topology",
+    subtitle: "Infrastructure Administration",
     description:
-      "Gives IoT engineers and network administrators a transparent view into physical hardware health. Tracks gateway heartbeat intervals, Modbus polling latency, packet drop rates, and EUI provisioning.",
+      "A specialized configuration workspace for field engineers deploying physical Modbus sensors and edge gateways. Features visual baud rate matching, EUI registration, and loop diagnostics to catch hardware wiring errors before commissioning.",
     uxHighlights: [
-      "Physical device pairing wizard connecting meter EUIs to specific hardware gateways in under 2 minutes.",
-      "RS485 loop diagnostics distinguishing between cloud disconnects and physical wiring faults.",
-      "Diagnostic log exports for field technicians conducting on-site switchboard maintenance.",
+      "Step-by-step device onboarding wizard verifying electrical phase wiring before adding to production monitoring.",
+      "Live packet telemetry counters exposing dropped frames or electrical noise on physical RS485 twisted-pair runs.",
+      "Single-click gateway firmware update controls with progress bar and automated reconnection fallback.",
     ],
     views: [
       {
-        id: "gateway-topology",
-        name: "Gateway Topology & Status",
-        badge: "Gateway Diagnostics",
+        id: "gateway-config",
+        name: "Edge Gateway Concentrator Setup",
+        badge: "Hardware Configuration",
         src: "/images/ems/Installation - Gateway.webp",
-        alt: "EMS Gateway installation interface displaying hardware topology, network status, and operational health",
+        alt: "EMS Gateway installation interface showing IP network parameters and RS485 bus telemetry",
         width: 1280,
         height: 810,
-        caption: "Centralized gateway diagnostics monitoring IP addresses, serial ports, connection states, and telemetry heartbeats.",
+        caption: "Edge gateway network configuration screen with Modbus port assignments, IP mapping, and signal quality metrics.",
       },
       {
-        id: "device-provisioning",
-        name: "Device Provisioning Matrix",
-        badge: "Hardware Provisioning",
+        id: "device-pairing",
+        name: "Meter & Relay Hardware Pairing",
+        badge: "Device Onboarding",
         src: "/images/ems/Installation - Device.webp",
-        alt: "EMS Device installation interface displaying hardware EUIs, room links, and communication status",
+        alt: "EMS Device installation interface for registering physical power sensors and actuators",
         width: 1280,
         height: 810,
-        caption: "End-node meter provisioning list mapping hardware identifiers, spatial assignments, and live communication status.",
+        caption: "Field sensor registration wizard matching physical Modbus register maps to software room entities.",
       },
     ],
   },
@@ -199,22 +199,22 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
       viewport={{ once: true, amount: 0.1 }}
       variants={REVEAL_VARIANTS}
       transition={{ duration: 0.7 }}
-      className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-stone-50 p-4 sm:p-6 lg:p-8"
+      className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-4 sm:p-6 lg:p-8"
     >
       {/* Header */}
-      <div className="flex flex-col gap-2 border-b border-stone-200 pb-4">
+      <div className="flex flex-col gap-2 border-b border-[var(--cs-color-border)] pb-4">
         <div className="flex items-center justify-between">
-          <span className="font-mono text-xs font-bold text-stone-500">
+          <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
             MODULE {ui.number} / {ui.subtitle.toUpperCase()}
           </span>
           <span className="font-mono text-[11px] text-[var(--cs-color-accent)]">
             Production v1.0
           </span>
         </div>
-        <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-stone-900 sm:text-2xl">
+        <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-[var(--cs-color-text-primary)] sm:text-2xl">
           {ui.title}
         </h3>
-        <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600 sm:text-sm">
+        <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-sm">
           {ui.description}
         </p>
       </div>
@@ -222,7 +222,7 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
       {/* View Switcher Tabs (if multiple views) */}
       {ui.views.length > 1 && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-stone-500 mr-1">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)] mr-1">
             Views ({ui.views.length}):
           </span>
           {ui.views.map((v, idx) => {
@@ -232,22 +232,22 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
                 key={v.id}
                 type="button"
                 onClick={() => setActiveViewIndex(idx)}
-                className={`inline-flex items-center gap-1.5 rounded-sm border px-3 py-1.5 font-[var(--cs-font-sans)] text-xs font-medium transition-all duration-150 ${
+                className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 font-[var(--cs-font-sans)] text-xs font-medium transition-all duration-150 ${
                   isActive
-                    ? "border-stone-900 bg-stone-900 text-white shadow-xs"
-                    : "border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100"
+                    ? "border-[var(--cs-color-accent)] bg-[var(--cs-color-accent)] text-white shadow-xs"
+                    : "border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] text-[var(--cs-color-text-secondary)] hover:border-[var(--cs-color-text-muted)] hover:bg-[var(--cs-color-bg-secondary)]"
                 }`}
               >
                 <span
                   className={`inline-block h-1.5 w-1.5 rounded-full ${
-                    isActive ? "bg-emerald-400" : "bg-stone-400"
+                    isActive ? "bg-white" : "bg-[var(--cs-color-text-muted)]"
                   }`}
                   aria-hidden="true"
                 />
                 <span>{v.name}</span>
                 <span
                   className={`font-mono text-[10px] ${
-                    isActive ? "text-stone-300" : "text-stone-400"
+                    isActive ? "text-white/80" : "text-[var(--cs-color-text-muted)]"
                   }`}
                 >
                   [{v.badge}]
@@ -260,7 +260,7 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
 
       {/* Active Screenshot Display */}
       <div className="flex flex-col gap-2">
-        <div className="relative w-full overflow-hidden rounded-sm border border-stone-300 bg-white shadow-sm">
+        <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] shadow-sm">
           <Image
             key={activeView.src}
             src={activeView.src}
@@ -272,11 +272,11 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
             priority={ui.number === "01"}
           />
         </div>
-        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between px-1 text-xs text-stone-500">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between px-1 text-xs text-[var(--cs-color-text-secondary)]">
           <span className="font-[var(--cs-font-sans)] italic">
             {activeView.caption}
           </span>
-          <span className="shrink-0 font-mono text-[11px] text-stone-400">
+          <span className="shrink-0 font-mono text-[11px] text-[var(--cs-color-text-muted)]">
             {activeView.width} × {activeView.height}px
           </span>
         </div>
@@ -296,13 +296,13 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
                 key={v.id}
                 type="button"
                 onClick={() => setActiveViewIndex(idx)}
-                className={`flex flex-col text-left gap-2 rounded-sm border p-2.5 transition-all duration-150 ${
+                className={`flex flex-col text-left gap-2 rounded-xl border p-2.5 transition-all duration-150 ${
                   isActive
-                    ? "border-stone-900 bg-white shadow-xs ring-1 ring-stone-900"
-                    : "border-stone-200 bg-stone-100/60 hover:border-stone-300 hover:bg-white"
+                    ? "border-[var(--cs-color-accent)] bg-[var(--cs-color-bg)] shadow-xs ring-1 ring-[var(--cs-color-accent)]"
+                    : "border-[var(--cs-color-border)] bg-[var(--cs-color-bg)]/60 hover:border-[var(--cs-color-text-muted)] hover:bg-[var(--cs-color-bg)]"
                 }`}
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xs border border-stone-200 bg-stone-100">
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)]">
                   <Image
                     src={v.src}
                     alt={v.alt}
@@ -311,21 +311,21 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
                     className="object-cover"
                   />
                   {isActive && (
-                    <span className="absolute top-1.5 left-1.5 rounded-xs bg-stone-900/90 px-1.5 py-0.5 font-mono text-[9px] font-semibold text-white uppercase tracking-wider">
+                    <span className="absolute top-1.5 left-1.5 rounded-sm bg-[var(--cs-color-accent)] px-1.5 py-0.5 font-mono text-[9px] font-semibold text-white uppercase tracking-wider">
                       Active View
                     </span>
                   )}
                 </div>
                 <div className="flex flex-col gap-0.5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-[var(--cs-font-sans)] text-xs font-semibold text-stone-800">
+                    <span className="font-[var(--cs-font-sans)] text-xs font-semibold text-[var(--cs-color-text-primary)]">
                       {v.name}
                     </span>
-                    <span className="font-mono text-[9px] text-stone-500 uppercase">
+                    <span className="font-mono text-[9px] text-[var(--cs-color-text-muted)] uppercase">
                       {v.badge}
                     </span>
                   </div>
-                  <p className="line-clamp-2 font-[var(--cs-font-sans)] text-[11px] text-stone-500 leading-snug">
+                  <p className="line-clamp-2 font-[var(--cs-font-sans)] text-[11px] text-[var(--cs-color-text-secondary)] leading-snug">
                     {v.caption}
                   </p>
                 </div>
@@ -336,17 +336,17 @@ function InterfaceModuleCard({ ui }: { ui: InterfaceCard }) {
       )}
 
       {/* UX Decision Annotations */}
-      <div className="flex flex-col gap-3 rounded-sm border border-stone-200 bg-white p-4 sm:p-5">
-        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-stone-700">
+      <div className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 sm:p-5">
+        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
           Critical Interaction Design Decisions:
         </span>
         <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
           {ui.uxHighlights.map((highlight, idx) => (
             <li
               key={idx}
-              className="rounded-sm bg-stone-50 p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-700"
+              className="rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]"
             >
-              <strong className="block font-mono text-[10px] text-stone-500">
+              <strong className="block font-mono text-[10px] text-[var(--cs-color-text-muted)]">
                 CRITICAL SPEC 0{idx + 1}
               </strong>
               {highlight}
@@ -375,8 +375,8 @@ export default function SectionOutput() {
               The Production Interface Suite
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
-            Engineered for Precision & Operational Safety
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
+            Engineered for Precision &amp; Operational Safety
           </span>
         </div>
 
@@ -385,7 +385,7 @@ export default function SectionOutput() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             From industrial telemetry to operational clarity: Four purpose-built interfaces.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Every interface in the EMS was engineered with rigorous consideration for physical hardware realities, high information density, and fail-safe interaction design.
           </p>
         </div>

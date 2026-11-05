@@ -124,8 +124,8 @@ export default function SectionMechanism() {
               Multi-Platform Token Architecture
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
-            Token Compilation & Governance
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
+            Token Compilation &amp; Governance
           </span>
         </div>
 
@@ -134,18 +134,18 @@ export default function SectionMechanism() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             A single mathematical source of truth compiling to both HTML DOM and Unity 3D World Space.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Instead of maintaining separate style guides that drifted apart immediately, we structured tokens into a three-tier hierarchy that compiles automatically into platform-native code for both web and game engines.
           </p>
         </div>
 
         {/* 3-Tier Token Hierarchy */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               The 3-Tier Design Token Hierarchy
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Decoupling visual attributes into distinct abstraction layers enabled multi-theme support and multi-platform compilation without cascading breaking changes.
             </p>
           </div>
@@ -159,30 +159,30 @@ export default function SectionMechanism() {
                 viewport={{ once: true, amount: 0.15 }}
                 variants={REVEAL_VARIANTS}
                 transition={{ duration: 0.6 }}
-                className="flex flex-col justify-between gap-4 rounded-sm border border-stone-200 bg-white p-5"
+                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5 sm:p-6"
               >
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs font-bold text-[var(--cs-color-accent)]">
                       {tier.tier}
                     </span>
-                    <span className="font-mono text-[10px] text-stone-400">
+                    <span className="font-mono text-[10px] text-[var(--cs-color-text-muted)]">
                       {tier.scope}
                     </span>
                   </div>
-                  <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-stone-900">
+                  <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-[var(--cs-color-text-primary)]">
                     {tier.name}
                   </h3>
-                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {tier.role}
                   </p>
                 </div>
 
-                <div className="border-t border-stone-100 pt-3">
-                  <span className="font-mono text-[10px] font-bold uppercase text-stone-500">
+                <div className="border-t border-[var(--cs-color-border)] pt-3">
+                  <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-text-muted)]">
                     Token Pattern:
                   </span>
-                  <p className="mt-1 font-mono text-[11px] text-stone-800">
+                  <p className="mt-1 font-mono text-[11px] text-[var(--cs-color-text-secondary)]">
                     {tier.example}
                   </p>
                 </div>
@@ -192,12 +192,12 @@ export default function SectionMechanism() {
         </div>
 
         {/* Multi-Platform Compilation Pipeline */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-white p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               Cross-Platform Compilation Matrix
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               How the single token pipeline feeds distinct engineering runtimes without manual translation.
             </p>
           </div>
@@ -206,25 +206,25 @@ export default function SectionMechanism() {
             {COMPILER_TARGETS.map((target) => (
               <div
                 key={target.platform}
-                className="flex flex-col justify-between gap-3 rounded-sm border border-stone-200 bg-stone-50 p-5"
+                className="flex flex-col justify-between gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
               >
                 <div className="flex flex-col gap-1">
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                     {target.platform}
                   </h4>
                   <p className="font-mono text-[10px] text-[var(--cs-color-accent)]">
                     {target.compiler}
                   </p>
-                  <p className="mt-2 font-mono text-[11px] font-semibold text-stone-700">
+                  <p className="mt-2 font-mono text-[11px] font-semibold text-[var(--cs-color-text-secondary)]">
                     Output: {target.outputFormat}
                   </p>
                 </div>
 
-                <div className="border-t border-stone-200 pt-3">
-                  <span className="font-mono text-[10px] font-bold uppercase text-stone-500">
+                <div className="border-t border-[var(--cs-color-border)] pt-3">
+                  <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-text-muted)]">
                     Runtime Advantage
                   </span>
-                  <p className="font-[var(--cs-font-sans)] text-xs text-stone-800">
+                  <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
                     {target.runtimeBenefit}
                   </p>
                 </div>
@@ -234,12 +234,12 @@ export default function SectionMechanism() {
         </div>
 
         {/* Governance & Contribution Cycle */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
-              Lightweight Governance & Contribution Lifecycle
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
+              Lightweight Governance &amp; Contribution Lifecycle
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Empowering federated team contributions without risking brand drift or breaking changes.
             </p>
           </div>
@@ -248,19 +248,19 @@ export default function SectionMechanism() {
             {GOVERNANCE_STEPS.map((gov) => (
               <div
                 key={gov.step}
-                className="flex flex-col justify-between gap-3 rounded-sm border border-stone-200 bg-white p-5"
+                className="flex flex-col justify-between gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
               >
                 <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs font-bold text-stone-400">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     PHASE {gov.step}
                   </span>
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                     {gov.title}
                   </h4>
                   <p className="font-mono text-[10px] text-[var(--cs-color-accent)]">
                     Owner: {gov.owner}
                   </p>
-                  <p className="mt-2 font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                  <p className="mt-2 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {gov.description}
                   </p>
                 </div>

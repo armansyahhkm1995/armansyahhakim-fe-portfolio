@@ -92,7 +92,7 @@ export default function SectionFriction() {
               Cross-Platform Fragmentation
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
             Multi-Runtime Technical Debt
           </span>
         </div>
@@ -102,7 +102,7 @@ export default function SectionFriction() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             Four engineering squads, four different tech stacks, zero shared source of truth.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             When teams scale independently across web applications, Unity 3D simulators, and VR head-mounted displays, UI patterns fragment rapidly. Each team solved the same layout, color, and interaction problems in complete isolation.
           </p>
         </div>
@@ -117,25 +117,25 @@ export default function SectionFriction() {
               viewport={{ once: true, amount: 0.15 }}
               variants={REVEAL_VARIANTS}
               transition={{ duration: 0.6 }}
-              className="flex flex-col justify-between gap-4 rounded-sm border border-stone-300 bg-stone-50 p-6"
+              className="flex flex-col justify-between gap-4 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8"
             >
               <div className="flex flex-col gap-2">
                 <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-accent)]">
                   {item.division}
                 </span>
-                <h3 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                <h3 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                   {item.primaryOutput}
                 </h3>
-                <p className="font-mono text-[11px] text-stone-600">
+                <p className="font-mono text-[11px] text-[var(--cs-color-text-secondary)]">
                   Stack: {item.technologies}
                 </p>
               </div>
 
-              <div className="border-t border-stone-200 pt-3">
-                <span className="font-mono text-[10px] font-bold uppercase text-stone-500">
+              <div className="border-t border-[var(--cs-color-border)] pt-3">
+                <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-text-muted)]">
                   Divergence Factor:
                 </span>
-                <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-stone-800">
+                <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-primary)] font-medium">
                   {item.divergencePattern}
                 </p>
               </div>
@@ -144,12 +144,12 @@ export default function SectionFriction() {
         </div>
 
         {/* 4 Symptoms of Fragmentation */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-white p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               The Four Costly Symptoms of Systemic Fragmentation
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Audit findings across 12 internal repositories revealed massive duplicate engineering hours and customer-facing inconsistency.
             </p>
           </div>
@@ -158,25 +158,25 @@ export default function SectionFriction() {
             {FRAGMENTATION_SYMPTOMS.map((symptom) => (
               <div
                 key={symptom.index}
-                className="flex flex-col justify-between gap-3 rounded-sm border border-stone-200 bg-stone-50 p-5"
+                className="flex flex-col justify-between gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5 sm:p-6"
               >
                 <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs font-bold text-stone-400">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     {symptom.index} / AUDIT FINDING
                   </span>
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                     {symptom.title}
                   </h4>
-                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {symptom.symptom}
                   </p>
                 </div>
 
-                <div className="border-t border-stone-200 pt-3">
+                <div className="border-t border-[var(--cs-color-border)] pt-3">
                   <span className="font-mono text-[10px] font-semibold uppercase text-red-600">
                     Business Cost
                   </span>
-                  <p className="font-[var(--cs-font-sans)] text-xs text-stone-900">
+                  <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-primary)] font-medium">
                     {symptom.impact}
                   </p>
                 </div>

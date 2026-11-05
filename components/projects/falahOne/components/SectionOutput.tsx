@@ -133,7 +133,7 @@ export default function SectionOutput() {
               Cross-Platform Application Showcase
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
             Production Implementations in the Wild
           </span>
         </div>
@@ -143,7 +143,7 @@ export default function SectionOutput() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             One design language powering mission-critical web cockpits, VR simulators, and 3D defense suites.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Falah One was validated by deploying its compiled tokens and component architecture across four flagship products operating on completely distinct runtime environments.
           </p>
         </div>
@@ -158,27 +158,27 @@ export default function SectionOutput() {
               viewport={{ once: true, amount: 0.1 }}
               variants={REVEAL_VARIANTS}
               transition={{ duration: 0.7 }}
-              className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-stone-50 p-4 sm:p-6 lg:p-8"
+              className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-4 sm:p-6 lg:p-8"
             >
-              <div className="flex flex-col gap-2 border-b border-stone-200 pb-4">
+              <div className="flex flex-col gap-2 border-b border-[var(--cs-color-border)] pb-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-stone-500">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     APPLICATION {app.number} / {app.runtime.toUpperCase()}
                   </span>
                   <span className="font-mono text-[11px] text-[var(--cs-color-accent)]">
                     Shipped Production
                   </span>
                 </div>
-                <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-stone-900 sm:text-2xl">
+                <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-[var(--cs-color-text-primary)] sm:text-2xl">
                   {app.title}
                 </h3>
-                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600 sm:text-sm">
+                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-sm">
                   {app.description}
                 </p>
               </div>
 
               {/* Application Screenshot */}
-              <div className="relative w-full overflow-hidden rounded-sm border border-stone-300 bg-white shadow-sm">
+              <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] shadow-sm">
                 <Image
                   src={app.src}
                   alt={app.alt}
@@ -190,17 +190,17 @@ export default function SectionOutput() {
               </div>
 
               {/* Design Token Integration Highlights */}
-              <div className="flex flex-col gap-3 rounded-sm border border-stone-200 bg-white p-4 sm:p-5">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-stone-700">
+              <div className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 sm:p-5">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
                   Falah One Token Integration in Production:
                 </span>
                 <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
                   {app.designTokenIntegration.map((spec, idx) => (
                     <li
                       key={idx}
-                      className="rounded-sm bg-stone-50 p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-700"
+                      className="rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]"
                     >
-                      <strong className="block font-mono text-[10px] text-stone-500">
+                      <strong className="block font-mono text-[10px] text-[var(--cs-color-text-muted)]">
                         INTEGRATION PRINCIPLE 0{idx + 1}
                       </strong>
                       {spec}
@@ -213,12 +213,12 @@ export default function SectionOutput() {
         </div>
 
         {/* VR Spatial Controller Standardization */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-white p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               Hardware Peripheral Standardization: Spatial VR Controllers
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Mapping button triggers, raycast laser anchors, and grip thresholds across varying VR hardware headsets into consistent interaction tokens.
             </p>
           </div>
@@ -227,9 +227,9 @@ export default function SectionOutput() {
             {VR_CONTROLLERS.map((ctrl) => (
               <div
                 key={ctrl.label}
-                className="flex flex-col justify-between gap-3 rounded-sm border border-stone-200 bg-stone-50 p-4"
+                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4"
               >
-                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-sm bg-stone-100 p-2">
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] p-2">
                   <Image
                     src={ctrl.src}
                     alt={ctrl.alt}
@@ -238,8 +238,8 @@ export default function SectionOutput() {
                     className="h-auto max-h-full w-auto object-contain"
                   />
                 </div>
-                <div className="border-t border-stone-200 pt-2">
-                  <p className="font-mono text-[11px] font-medium text-stone-800">
+                <div className="border-t border-[var(--cs-color-border)] pt-2">
+                  <p className="font-mono text-[11px] font-medium text-[var(--cs-color-text-secondary)]">
                     {ctrl.label}
                   </p>
                 </div>

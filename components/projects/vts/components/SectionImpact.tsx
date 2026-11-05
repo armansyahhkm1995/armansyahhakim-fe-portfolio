@@ -76,7 +76,7 @@ export default function SectionImpact() {
               Impact &amp; Systems Retrospective
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
             Production Velocity &amp; Tool Architecture
           </span>
         </div>
@@ -86,7 +86,7 @@ export default function SectionImpact() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             VTS moved 3D simulation content from engineering tickets into the hands of domain experts.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             By shifting from manual C# game development to an intuitive declarative authoring desktop suite, Falah Inovasi Teknologi unlocked massive throughput for defense and aviation simulation training programs.
           </p>
         </div>
@@ -101,15 +101,15 @@ export default function SectionImpact() {
               viewport={{ once: true, amount: 0.2 }}
               variants={REVEAL_VARIANTS}
               transition={{ duration: 0.6 }}
-              className="flex flex-col gap-2 rounded-sm border border-stone-300 bg-stone-50 p-6"
+              className="flex flex-col gap-2 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8"
             >
-              <span className="font-mono text-3xl font-bold text-stone-900 sm:text-4xl">
+              <span className="font-mono text-3xl font-bold text-[var(--cs-color-text-primary)] sm:text-4xl">
                 {metric.value}
               </span>
-              <span className="font-mono text-xs font-semibold uppercase text-stone-700">
+              <span className="font-mono text-xs font-semibold uppercase text-[var(--cs-color-text-secondary)]">
                 {metric.label}
               </span>
-              <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+              <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-muted)]">
                 {metric.detail}
               </p>
             </motion.div>
@@ -117,21 +117,24 @@ export default function SectionImpact() {
         </div>
 
         {/* Core Systems Reflections */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-white p-6 sm:p-8">
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
             Three Core Systems Learnings
           </span>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {REFLECTIONS.map((item) => (
-              <div key={item.number} className="flex flex-col gap-2">
+              <div
+                key={item.number}
+                className="flex flex-col gap-2 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
+              >
                 <span className="font-mono text-xs font-bold text-[var(--cs-color-accent)]">
                   {item.number}
                 </span>
-                <h3 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                <h3 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                   {item.title}
                 </h3>
-                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                   {item.description}
                 </p>
               </div>

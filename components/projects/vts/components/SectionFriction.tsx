@@ -78,8 +78,8 @@ export default function SectionFriction() {
               The Engineering Bottleneck
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
-            Workflow Transformation & Technical Constraints
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
+            Workflow Transformation &amp; Technical Constraints
           </span>
         </div>
 
@@ -88,7 +88,7 @@ export default function SectionFriction() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             The bottleneck was never importing a 3D model. It was configuring what the model could do.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Traditional 3D authoring trapped domain instructors in an engineering dependency loop. To empower instructors to build interactive simulations themselves, we decoupled 3D geometry ingestion from runtime procedural logic.
           </p>
         </div>
@@ -96,23 +96,23 @@ export default function SectionFriction() {
         {/* Side-by-Side Workflow Evolution */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* Legacy Workflow */}
-          <div className="flex flex-col gap-4 rounded-sm border border-stone-300 bg-stone-100 p-6 opacity-75">
-            <div className="flex items-center justify-between border-b border-stone-200 pb-3">
-              <span className="font-mono text-xs font-bold uppercase text-stone-500">
+          <div className="flex flex-col gap-4 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 opacity-85">
+            <div className="flex items-center justify-between border-b border-[var(--cs-color-border)] pb-3">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
                 Legacy Unity Pipeline (6+ Weeks)
               </span>
-              <span className="font-mono text-[10px] text-red-600 uppercase font-semibold">
+              <span className="font-mono text-[10px] text-red-500 uppercase font-semibold">
                 High Engineering Cost
               </span>
             </div>
 
             <div className="flex flex-col gap-3">
               {LEGACY_WORKFLOW.map((item) => (
-                <div key={item.step} className="flex items-start gap-3 rounded-sm bg-white p-3 border border-stone-200">
-                  <span className="font-mono text-xs font-bold text-stone-400">{item.step}</span>
+                <div key={item.step} className="flex items-start gap-3 rounded-xl bg-[var(--cs-color-bg)] p-3.5 border border-[var(--cs-color-border)]">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">{item.step}</span>
                   <div>
-                    <h4 className="font-[var(--cs-font-sans)] text-xs font-bold text-stone-800">{item.action}</h4>
-                    <p className="font-[var(--cs-font-sans)] text-xs text-stone-500">{item.detail}</p>
+                    <h4 className="font-[var(--cs-font-sans)] text-xs font-bold text-[var(--cs-color-text-primary)]">{item.action}</h4>
+                    <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)] mt-0.5">{item.detail}</p>
                   </div>
                 </div>
               ))}
@@ -120,23 +120,23 @@ export default function SectionFriction() {
           </div>
 
           {/* VTS Workflow */}
-          <div className="flex flex-col gap-4 rounded-sm border-2 border-stone-800 bg-white p-6 shadow-sm">
-            <div className="flex items-center justify-between border-b border-stone-200 pb-3">
-              <span className="font-mono text-xs font-bold uppercase text-stone-900">
+          <div className="flex flex-col gap-4 rounded-2xl border-2 border-[var(--cs-color-accent)] bg-[var(--cs-color-bg-secondary)] p-6 shadow-sm">
+            <div className="flex items-center justify-between border-b border-[var(--cs-color-border)] pb-3">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
                 VTS Authoring Pipeline (&lt; 4 Hours)
               </span>
-              <span className="font-mono text-[10px] text-emerald-600 uppercase font-bold">
+              <span className="font-mono text-[10px] text-emerald-500 uppercase font-bold">
                 Zero Code · 10x Velocity
               </span>
             </div>
 
             <div className="flex flex-col gap-3">
               {VTS_WORKFLOW.map((item) => (
-                <div key={item.step} className="flex items-start gap-3 rounded-sm bg-stone-50 p-3 border border-stone-200">
+                <div key={item.step} className="flex items-start gap-3 rounded-xl bg-[var(--cs-color-bg)] p-3.5 border border-[var(--cs-color-border)]">
                   <span className="font-mono text-xs font-bold text-[var(--cs-color-accent)]">{item.step}</span>
                   <div>
-                    <h4 className="font-[var(--cs-font-sans)] text-xs font-bold text-stone-900">{item.action}</h4>
-                    <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">{item.detail}</p>
+                    <h4 className="font-[var(--cs-font-sans)] text-xs font-bold text-[var(--cs-color-text-primary)]">{item.action}</h4>
+                    <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)] mt-0.5">{item.detail}</p>
                   </div>
                 </div>
               ))}
@@ -145,12 +145,12 @@ export default function SectionFriction() {
         </div>
 
         {/* 4 Architectural Constraints */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               Four Core Architectural Challenges in Desktop 3D Authoring
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Designing desktop tools for high-precision military maintenance simulations required solving deep graphics and procedural constraints.
             </p>
           </div>
@@ -164,25 +164,25 @@ export default function SectionFriction() {
                 viewport={{ once: true, amount: 0.15 }}
                 variants={REVEAL_VARIANTS}
                 transition={{ duration: 0.6 }}
-                className="flex flex-col justify-between gap-3 rounded-sm border border-stone-200 bg-white p-5"
+                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
               >
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs font-bold text-stone-400">
+                <div className="flex flex-col gap-1.5">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     {item.index} / ARCHITECTURAL CONSTRAINT
                   </span>
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                     {item.title}
                   </h4>
-                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {item.challenge}
                   </p>
                 </div>
 
-                <div className="border-t border-stone-100 pt-3">
+                <div className="border-t border-[var(--cs-color-border)] pt-3">
                   <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-accent)]">
                     VTS Solution:
                   </span>
-                  <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-stone-800">
+                  <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-primary)]">
                     {item.architecturalSolution}
                   </p>
                 </div>

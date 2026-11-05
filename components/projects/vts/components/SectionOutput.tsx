@@ -142,7 +142,7 @@ export default function SectionOutput() {
               Production Product Suite
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
             VTS Workbench &amp; Maintenance Player
           </span>
         </div>
@@ -152,7 +152,7 @@ export default function SectionOutput() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             From raw CAD geometry to validated military training: Four production interfaces.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Every screen in the VTS suite was engineered for high ergonomic comfort, keyboard shortcut density, and distraction-free procedural operation.
           </p>
         </div>
@@ -167,21 +167,21 @@ export default function SectionOutput() {
               viewport={{ once: true, amount: 0.1 }}
               variants={REVEAL_VARIANTS}
               transition={{ duration: 0.7 }}
-              className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-stone-50 p-4 sm:p-6 lg:p-8"
+              className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-4 sm:p-6 lg:p-8"
             >
-              <div className="flex flex-col gap-2 border-b border-stone-200 pb-4">
+              <div className="flex flex-col gap-2 border-b border-[var(--cs-color-border)] pb-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-stone-500">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     MODULE {module.number} / {module.system}
                   </span>
                   <span className="font-mono text-[11px] text-[var(--cs-color-accent)]">
                     Production v1.0
                   </span>
                 </div>
-                <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-stone-900 sm:text-2xl">
+                <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-[var(--cs-color-text-primary)] sm:text-2xl">
                   {module.title}
                 </h3>
-                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600 sm:text-sm">
+                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-sm">
                   {module.description}
                 </p>
               </div>
@@ -192,9 +192,9 @@ export default function SectionOutput() {
                   {module.twoColumnImages.map((col, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col gap-3 rounded-sm border border-stone-200 bg-white p-3 sm:p-4 shadow-sm"
+                      className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-3 sm:p-4 shadow-sm"
                     >
-                      <div className="relative aspect-[1440/960] w-full overflow-hidden rounded-sm bg-stone-100 border border-stone-200">
+                      <div className="relative aspect-[1440/960] w-full overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)]">
                         <Image
                           src={col.src}
                           alt={col.alt}
@@ -203,11 +203,11 @@ export default function SectionOutput() {
                           className="object-cover"
                         />
                       </div>
-                      <div className="border-t border-stone-100 pt-2">
+                      <div className="border-t border-[var(--cs-color-border)] pt-2">
                         <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-accent)] block">
                           {col.label}
                         </span>
-                        <p className="font-[var(--cs-font-sans)] text-[11px] text-stone-600 mt-1 leading-relaxed">
+                        <p className="font-[var(--cs-font-sans)] text-[11px] text-[var(--cs-color-text-secondary)] mt-1 leading-relaxed">
                           {col.caption}
                         </p>
                       </div>
@@ -220,9 +220,9 @@ export default function SectionOutput() {
                   {module.threeColumnImages.map((col, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col gap-3 rounded-sm border border-stone-200 bg-white p-3 sm:p-4 shadow-sm"
+                      className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-3 sm:p-4 shadow-sm"
                     >
-                      <div className="relative aspect-[380/862] w-full max-w-[260px] sm:max-w-none mx-auto overflow-hidden rounded-sm bg-stone-100 border border-stone-200">
+                      <div className="relative aspect-[380/862] w-full max-w-[260px] sm:max-w-none mx-auto overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)]">
                         <Image
                           src={col.src}
                           alt={col.alt}
@@ -231,11 +231,11 @@ export default function SectionOutput() {
                           className="object-contain"
                         />
                       </div>
-                      <div className="border-t border-stone-100 pt-2 text-center sm:text-left">
+                      <div className="border-t border-[var(--cs-color-border)] pt-2 text-center sm:text-left">
                         <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-accent)] block">
                           {col.label}
                         </span>
-                        <p className="font-[var(--cs-font-sans)] text-[11px] text-stone-600 mt-1 leading-relaxed">
+                        <p className="font-[var(--cs-font-sans)] text-[11px] text-[var(--cs-color-text-secondary)] mt-1 leading-relaxed">
                           {col.caption}
                         </p>
                       </div>
@@ -244,7 +244,7 @@ export default function SectionOutput() {
                 </div>
               ) : (
                 module.primaryImage && (
-                  <div className="relative w-full overflow-hidden rounded-sm border border-stone-300 bg-white shadow-sm">
+                  <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] shadow-sm">
                     <Image
                       src={module.primaryImage}
                       alt={module.primaryAlt || ""}
@@ -261,8 +261,8 @@ export default function SectionOutput() {
               {module.secondaryImages && module.secondaryImages.length > 0 && (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {module.secondaryImages.map((sec, idx) => (
-                    <div key={idx} className="flex flex-col gap-2 rounded-sm border border-stone-200 bg-white p-3">
-                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-sm bg-stone-100">
+                    <div key={idx} className="flex flex-col gap-2 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-3">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)]">
                         <Image
                           src={sec.src}
                           alt={sec.alt}
@@ -271,7 +271,7 @@ export default function SectionOutput() {
                           className="object-cover"
                         />
                       </div>
-                      <span className="font-[var(--cs-font-sans)] text-[11px] text-stone-600">
+                      <span className="font-[var(--cs-font-sans)] text-[11px] text-[var(--cs-color-text-secondary)]">
                         {sec.caption}
                       </span>
                     </div>
@@ -280,17 +280,17 @@ export default function SectionOutput() {
               )}
 
               {/* UX Feature Bulletins */}
-              <div className="flex flex-col gap-3 rounded-sm border border-stone-200 bg-white p-4 sm:p-5">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-stone-700">
+              <div className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 sm:p-5">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
                   Critical Interaction Design Highlights:
                 </span>
                 <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
                   {module.uxFeatures.map((spec, idx) => (
                     <li
                       key={idx}
-                      className="rounded-sm bg-stone-50 p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-700"
+                      className="rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]"
                     >
-                      <strong className="block font-mono text-[10px] text-stone-500">
+                      <strong className="block font-mono text-[10px] text-[var(--cs-color-text-muted)]">
                         FEATURE SPEC 0{idx + 1}
                       </strong>
                       {spec}

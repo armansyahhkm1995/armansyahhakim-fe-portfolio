@@ -98,7 +98,7 @@ export default function SectionMechanism() {
               Interaction Engine &amp; Synchronization
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-stone-500 sm:block">
+          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
             Standardized Primitives &amp; Data Pipeline
           </span>
         </div>
@@ -108,18 +108,18 @@ export default function SectionMechanism() {
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
             Simplification over emulation: Five interaction primitives that drive 80% of procedural training.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-stone-600 sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Rather than building a full-blown game engine or CAD editor, VTS isolated the exact mathematical behaviors needed for military maintenance and procedural mechanics.
           </p>
         </div>
 
         {/* 5 Standardized Primitives Grid */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-stone-50 p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               The 5 Declarative Interaction Primitives
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               Assigned via simple UI toggles in Workbench without writing a single line of script.
             </p>
           </div>
@@ -133,30 +133,30 @@ export default function SectionMechanism() {
                 viewport={{ once: true, amount: 0.15 }}
                 variants={REVEAL_VARIANTS}
                 transition={{ duration: 0.6 }}
-                className="flex flex-col justify-between gap-3 rounded-sm border border-stone-200 bg-white p-5"
+                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
               >
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs font-bold text-[var(--cs-color-accent)]">
                       PRIMITIVE
                     </span>
-                    <span className="font-mono text-[10px] text-stone-400">
+                    <span className="font-mono text-[10px] text-[var(--cs-color-text-muted)]">
                       Standard Spec
                     </span>
                   </div>
-                  <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-stone-900">
+                  <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-[var(--cs-color-text-primary)]">
                     {primitive.name}
                   </h3>
-                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {primitive.mechanicalPurpose}
                   </p>
                 </div>
 
-                <div className="border-t border-stone-100 pt-3">
-                  <span className="font-mono text-[10px] font-bold uppercase text-stone-500">
+                <div className="border-t border-[var(--cs-color-border)] pt-3">
+                  <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-text-muted)]">
                     Example Mechanical Action:
                   </span>
-                  <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-stone-800">
+                  <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-primary)]">
                     {primitive.exampleUse}
                   </p>
                 </div>
@@ -166,12 +166,12 @@ export default function SectionMechanism() {
         </div>
 
         {/* Synchronization Pipeline */}
-        <div className="flex flex-col gap-6 rounded-sm border border-stone-300 bg-white p-6 sm:p-8">
+        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-stone-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               The Atomic Synchronization Pipeline
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-stone-600">
+            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
               How the twin systems synchronize authored scenario data with the runtime simulation engine in under 2 seconds.
             </p>
           </div>
@@ -180,19 +180,19 @@ export default function SectionMechanism() {
             {SYNC_PHASES.map((phase) => (
               <div
                 key={phase.phase}
-                className="flex flex-col justify-between gap-3 rounded-sm border border-stone-200 bg-stone-50 p-5"
+                className="flex flex-col justify-between gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
               >
                 <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs font-bold text-stone-400">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     PHASE {phase.phase}
                   </span>
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-stone-900">
+                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
                     {phase.title}
                   </h4>
                   <p className="font-mono text-[10px] text-[var(--cs-color-accent)]">
                     Actor: {phase.actor}
                   </p>
-                  <p className="mt-2 font-[var(--cs-font-sans)] text-xs leading-relaxed text-stone-600">
+                  <p className="mt-2 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {phase.mechanism}
                   </p>
                 </div>

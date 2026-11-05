@@ -24,29 +24,6 @@ const CONVENTIONAL_VS_FIELD = [
   },
 ];
 
-const STAKEHOLDERS = [
-  {
-    role: "Local Rice Farmers",
-    friction: "Sole livelihood at stake; skeptical of seed promises from corporate outsiders.",
-    need: "Tangible proof of grain count and pest resilience.",
-  },
-  {
-    role: "Agricultural Seed Kiosks",
-    friction: "Risk of unsold inventory if new seed varieties fail in the field.",
-    need: "Confidence in organic farmer demand before placing wholesale orders.",
-  },
-  {
-    role: "Corteva Agronomists",
-    friction: "Struggled to convey complex crop chemistry through verbal presentations.",
-    need: "A living laboratory to demonstrate soil and pest defense pairings.",
-  },
-  {
-    role: "Agricultural Extension Officers (PPL)",
-    friction: "Must uphold public responsibility; cannot endorse unverified products.",
-    need: "Objective comparative data between traditional and hybrid yields.",
-  },
-];
-
 export default function SectionFriction() {
   return (
     <section id="friction" className="py-[var(--cs-section-padding)]">
@@ -106,47 +83,6 @@ export default function SectionFriction() {
                   </span>
                   <p className="font-sans text-xs font-medium text-[var(--cs-color-text-primary)]">
                     {item.field}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Stakeholder Ecosystem */}
-        <div className="mb-16">
-          <div className="mb-6 flex items-center justify-between">
-            <h3 className="font-serif text-2xl text-[var(--cs-color-text-primary)]">
-              Multi-Stakeholder Dependencies
-            </h3>
-            <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">
-              4 Critical Roles
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {STAKEHOLDERS.map((s) => (
-              <div
-                key={s.role}
-                className="flex flex-col justify-between rounded-xl border border-[var(--cs-color-border)] p-6"
-              >
-                <div>
-                  <h4 className="font-sans text-sm font-semibold text-[var(--cs-color-text-primary)]">
-                    {s.role}
-                  </h4>
-                  <p className="mt-3 font-sans text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                    <strong className="text-[var(--cs-color-text-muted)] font-mono text-[10px] uppercase block mb-1">
-                      Friction:
-                    </strong>
-                    {s.friction}
-                  </p>
-                </div>
-                <div className="mt-4 border-t border-[var(--cs-color-border)] pt-3">
-                  <span className="font-mono text-[10px] text-[var(--cs-color-accent)] uppercase block mb-0.5">
-                    Required Validation:
-                  </span>
-                  <p className="font-sans text-xs font-medium text-[var(--cs-color-text-primary)]">
-                    {s.need}
                   </p>
                 </div>
               </div>

@@ -10,15 +10,6 @@ const METADATA = [
   ["Timeline", "Field Study & Implementation (2019)"],
 ] as const;
 
-const STATS = [
-  { value: "13.7M ha", label: "National rice harvested area" },
-  { value: "<1%", label: "Hybrid rice seed adoption rate" },
-  {
-    value: "$52M",
-    label: "Estimated economic opportunity at 5% hybridization",
-  },
-];
-
 const lines = ["What if the field", "became the experience?"];
 
 export default function SectionHero() {
@@ -153,20 +144,6 @@ export default function SectionHero() {
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Macro Statistics Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-8 border-y border-[var(--cs-color-border)] py-8 md:grid-cols-3">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-1.5">
-              <span className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-normal leading-none text-[var(--cs-color-text-primary)]">
-                {stat.value}
-              </span>
-              <span className="font-sans text-xs font-semibold text-[var(--cs-color-text-secondary)]">
-                {stat.label}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
     </section>

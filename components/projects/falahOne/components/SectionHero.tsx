@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
 
 const METADATA = [
@@ -65,24 +64,6 @@ export default function SectionHero() {
             </dl>
           </div>
         </div>
-
-        {/* Hero image */}
-        <figure className="mt-8 md:mt-12 lg:mt-14">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)]">
-            <Image
-              src="/images/falahOne/falah_hero.webp"
-              alt="Falah One Design System multi-platform architecture overview"
-              width={1440}
-              height={810}
-              priority
-              sizes="(max-width: 768px) 100vw, 1440px"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-            Falah One System Spec: Unified token architecture across Web, Unity 3D, and stereoscopic VR runtimes.
-          </figcaption>
-        </figure>
 
         {/* Executive Summary Card (At-a-Glance) */}
         <div className="mt-12 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">

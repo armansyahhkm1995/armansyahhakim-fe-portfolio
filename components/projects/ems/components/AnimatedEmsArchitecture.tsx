@@ -1,156 +1,84 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 
-interface DeviceNode {
+interface DeviceFunctionInfo {
   id: string;
-  name: string;
-  codeName: string;
-  category: "power" | "master" | "gateway" | "child" | "load";
+  title: string;
   functionSummary: string;
-  electricalRole: string;
-  specifications: string[];
+  tooltipPos: { x: number; y: number; width: number };
 }
 
-const DEVICES: Record<string, DeviceNode> = {
+const DEVICE_FUNCTIONS: Record<string, DeviceFunctionInfo> = {
   lvmdp: {
     id: "lvmdp",
-    name: "LVMDP (Low Voltage Main Distribution Panel)",
-    codeName: "LVMDP 400 KW / 500 KVA",
-    category: "power",
+    title: "LVMDP 400KW / 500KVA",
     functionSummary:
-      "Receives main incoming power from the high-voltage utility grid (PLN) and standby diesel generator backup. Functions as the primary substation low-voltage distribution hub (380V/220V), stabilizing incoming power, energizing the primary copper busbars, and providing master circuit protection via Air Circuit Breakers (ACB) and MCCB.",
-    electricalRole:
-      "3-Phase AC power from grid/generator enters the LVMDP busbar assembly, where it is conditioned and channeled safely into the metering arrays of the Parent Smart kWh and downstream Child Smart kWh units.",
-    specifications: [
-      "Capacity: 400 kW / 500 kVA",
-      "Operating Voltage: 380V AC 3-Phase / 220V 1-Phase 50Hz",
-      "Protection: Air Circuit Breaker (ACB) & Molded Case Circuit Breaker (MCCB)",
-    ],
+      "Receives & stabilizes 380V/220V grid and genset power, routing main copper busbar energy with master ACB & MCCB protection.",
+    tooltipPos: { x: 180, y: 220, width: 225 },
   },
   ct: {
     id: "ct",
-    name: "Current Transformer (CT)",
-    codeName: "3x CT Toroidal Coils",
-    category: "power",
+    title: "Current Transformer (CT)",
     functionSummary:
-      "Current transformer induction sensors installed on each active phase conductor (R, S, T). Steps down high busbar amperage to a precise secondary measurement ratio (e.g., 400A:5A), enabling the 3-Phase Smart kWh meter to safely and accurately sample heavy loads without instrument damage.",
-    electricalRole:
-      "Detects alternating electromagnetic fields across LVMDP feeder conductors and delivers secondary proportional current signals directly to the 3-Phase Parent Smart kWh meter.",
-    specifications: [
-      "Configuration: 3 Units (Phases R, S, T)",
-      "Induction Ratio: 400A / 5A (Accuracy Class 0.5S)",
-      "Insulation: Cast Resin 600V Dry-Type",
-    ],
+      "Inductively steps down heavy busbar current (400A:5A) so the master 3-Phase meter can sample campus load safely.",
+    tooltipPos: { x: 270, y: 380, width: 230 },
   },
   parentKwh: {
     id: "parentKwh",
-    name: "Smart kWh 3P (Parent / Master Meter)",
-    codeName: "CLOU CL730D22H (3P 400 A)",
-    category: "master",
+    title: "Smart kWh 3P (Parent)",
     functionSummary:
-      "High-precision 3-phase master digital energy meter monitoring the entire campus intake. Aggregates primary CT current feeds, computes voltage, current, active/reactive power factor, and indexes telemetry from all subordinate Child Smart kWh submeters across all building zones.",
-    electricalRole:
-      "Measures total incoming active energy (kWh), peak demand (kW), and phase balance. Interfaces through serial RS485 Modbus RTU loops to the IoT Gateway and cloud EMS server.",
-    specifications: [
-      "Rating: 3-Phase 4-Wire, 400 A",
-      "Accuracy: Active Energy Class 0.5S / Reactive Class 2.0",
-      "Communication: RS485 Modbus RTU / DLMS-COSEM Protocol",
-    ],
+      "Master digital meter measuring total campus power (kW/kWh), power factor, and indexing all subordinate room submeters.",
+    tooltipPos: { x: 440, y: 55, width: 220 },
   },
   gateway: {
     id: "gateway",
-    name: "IoT Gateway Concentrator",
-    codeName: "Kerlink Industrial Gateway",
-    category: "gateway",
+    title: "IoT Gateway",
     functionSummary:
-      "The field communications hub of the substation. Automatically discovers hardware MAC addresses of all meters on the RS485 bus, maps Parent vs. Child roles, securely packages telemetry into MQTT payloads over cellular 4G/LTE, and routes remote relay control commands from the EMS software.",
-    electricalRole:
-      "Polls Modbus register maps from both Parent and Child meters, buffers data during network outages, and dispatches remote actuation signals to trip or close individual room submeter relays.",
-    specifications: [
-      "Interfaces: RS485 Bus + Dual 4G/LTE External Antennas",
-      "Protocol: Modbus-to-MQTT Telemetry Bridge",
-      "Features: Auto Hardware MAC Discovery, Non-volatile Flash Buffer",
-    ],
+      "Scans meter MAC addresses on RS485 bus, packages MQTT telemetry to the cloud, and relays remote control commands.",
+    tooltipPos: { x: 735, y: 135, width: 220 },
   },
   childKwh1: {
     id: "childKwh1",
-    name: "Smart kWh 1P (Child 1 - Server Room & Precision AC)",
-    codeName: "CLOU CL710K24 (1P 100 A)",
-    category: "child",
+    title: "Child 1 (Server Room)",
     functionSummary:
-      "Single-phase smart submeter monitoring critical server rack power and precision cooling. Equipped with a heavy-duty internal latching relay for remote cut-off and automated overload tripping.",
-    electricalRole:
-      "Samples high-density IT loads and precision inverter AC circuits. Streams energy telemetry to the Parent meter and Gateway, supporting instant remote emergency shutdown via the EMS dashboard.",
-    specifications: [
-      "Rating: 1-Phase 2-Wire, 100 A",
-      "Internal Relay: 100A Latching Remote Cut-Off Relay",
-      "Connected Load: Inverter Precision AC (1,850 W) & Server Rack PDU",
-    ],
-  },
-  childKwh2: {
-    id: "childKwh2",
-    name: "Smart kWh 1P (Child 2 - Office & Workstations)",
-    codeName: "CLOU CL710K24 (1P 100 A)",
-    category: "child",
-    functionSummary:
-      "Single-phase smart submeter tracking office desk outlets and workstation computers. Prevents off-hours energy waste through scheduled automated cut-offs.",
-    electricalRole:
-      "Measures continuous draw from desktop PCs, displays, and peripheral clusters. Detects phantom loads and off-hours energy spikes when rooms are unoccupied.",
-    specifications: [
-      "Rating: 1-Phase 2-Wire, 100 A",
-      "Connected Load: 12x Workstation PCs (Total 1,450 W)",
-      "Feature: Anomaly Detection (Off-hours surge monitoring)",
-    ],
-  },
-  childKwh3: {
-    id: "childKwh3",
-    name: "Smart kWh 1P (Child 3 - Lab & Lighting)",
-    codeName: "CLOU CL710K24 (1P 100 A)",
-    category: "child",
-    functionSummary:
-      "Single-phase smart submeter dedicated to building lighting loops and high-flow ventilation blower fans.",
-    electricalRole:
-      "Monitors zonal illumination and exhaust air circulation. Syncs with facility schedule timers to enforce building operating hours.",
-    specifications: [
-      "Rating: 1-Phase 2-Wire, 100 A",
-      "Connected Load: Exhaust Blower & LED Bay Lighting (680 W)",
-      "Feature: Facility Operating Schedule Synchronization",
-    ],
+      "Monitors server rack & precision AC power; equipped with a 100A latching relay for instant remote emergency shut-off.",
+    tooltipPos: { x: 500, y: 225, width: 215 },
   },
   load1: {
     id: "load1",
-    name: "Load Group 1 (Server Room Distribution)",
-    codeName: "Modular Distribution Terminal Block 1",
-    category: "load",
+    title: "Load Group 1",
     functionSummary:
-      "Sub-distribution circuit breaker block (MCBs) routing dedicated feeds to server racks and precision cooling.",
-    electricalRole:
-      "Receives 100A metered and relay-protected power from Child Meter 1, channeling it to critical server infrastructure.",
-    specifications: ["Terminal: 8-Pole Screw Clamp Bus", "MCB Feed: 16A Server + 20A AC Inverter"],
+      "Terminal distribution block routing metered power to critical server rack PDUs and inverter precision air conditioning.",
+    tooltipPos: { x: 970, y: 245, width: 180 },
+  },
+  childKwh2: {
+    id: "childKwh2",
+    title: "Child 2 (Office)",
+    functionSummary:
+      "Tracks workstation computer power and prevents off-hours phantom energy waste through automated scheduling.",
+    tooltipPos: { x: 500, y: 360, width: 215 },
   },
   load2: {
     id: "load2",
-    name: "Load Group 2 (Office Workstation Distribution)",
-    codeName: "Modular Distribution Terminal Block 2",
-    category: "load",
+    title: "Load Group 2",
     functionSummary:
-      "Branch distribution block supplying power across office desk clusters, computing terminals, and monitors.",
-    electricalRole:
-      "Receives metered power from Child Meter 2 to energize workstation outlets and desktop equipment.",
-    specifications: ["Terminal: 8-Pole Screw Clamp Bus", "MCB Feed: 10A Per Desk Cluster"],
+      "Sub-distribution block supplying desktop PC terminals, computing workstations, and office monitors.",
+    tooltipPos: { x: 970, y: 380, width: 180 },
+  },
+  childKwh3: {
+    id: "childKwh3",
+    title: "Child 3 (Lab)",
+    functionSummary:
+      "Monitors high-efficiency laboratory bay lighting arrays and continuous exhaust ventilation blower fans.",
+    tooltipPos: { x: 500, y: 495, width: 215 },
   },
   load3: {
     id: "load3",
-    name: "Load Group 3 (Lab & Lighting Distribution)",
-    codeName: "Modular Distribution Terminal Block 3",
-    category: "load",
+    title: "Load Group 3",
     functionSummary:
-      "Distribution terminal block routing power to laboratory test benches, ventilation blowers, and overhead LED arrays.",
-    electricalRole:
-      "Receives metered power from Child Meter 3, feeding high-efficiency lighting arrays and motor blowers.",
-    specifications: ["Terminal: 8-Pole Screw Clamp Bus", "MCB Feed: 10A Lighting + 16A Motor Fans"],
+      "Distribution terminal powering laboratory test benches, exhaust ventilation blowers, and overhead LED arrays.",
+    tooltipPos: { x: 970, y: 515, width: 180 },
   },
 };
 
@@ -202,41 +130,34 @@ const STAGES = [
 export default function AnimatedEmsArchitecture() {
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [selectedDeviceId, setSelectedDeviceId] = useState<string>("lvmdp");
   const [hoveredDeviceId, setHoveredDeviceId] = useState<string | null>(null);
-  const [isRelay1Active, setIsRelay1Active] = useState(true);
-  const [showPopover, setShowPopover] = useState(true);
+  const [pinnedDeviceId, setPinnedDeviceId] = useState<string | null>(null);
 
-  // Auto progression
+  // Auto progression across stages
   useEffect(() => {
     if (!isAutoPlaying) return;
     const timer = setInterval(() => {
-      setCurrentStageIndex((prev) => {
-        const next = (prev + 1) % STAGES.length;
-        setSelectedDeviceId(STAGES[next].focusDeviceId);
-        return next;
-      });
+      setCurrentStageIndex((prev) => (prev + 1) % STAGES.length);
     }, 5000);
     return () => clearInterval(timer);
   }, [isAutoPlaying]);
 
   const activeStage = STAGES[currentStageIndex];
-  const activeDeviceId = hoveredDeviceId || selectedDeviceId;
-  const activeDevice = DEVICES[activeDeviceId] || DEVICES.lvmdp;
+
+  // Which device tooltip to show beside the device: hovered takes precedence, then pinned device
+  const activeTooltipId = hoveredDeviceId || pinnedDeviceId;
+  const activeTooltipDevice = activeTooltipId ? DEVICE_FUNCTIONS[activeTooltipId] : null;
+
+  // Active highlighted device in schematic: hovered, or pinned, or the current stage focus
+  const activeHighlightedId = hoveredDeviceId || pinnedDeviceId || activeStage.focusDeviceId;
 
   const handleDeviceClick = (deviceId: string) => {
-    setSelectedDeviceId(deviceId);
-    setShowPopover(true);
-    setIsAutoPlaying(false);
-  };
-
-  const handleDeviceMouseEnter = (deviceId: string) => {
-    setHoveredDeviceId(deviceId);
-    setShowPopover(true);
-  };
-
-  const handleDeviceMouseLeave = () => {
-    setHoveredDeviceId(null);
+    if (pinnedDeviceId === deviceId) {
+      setPinnedDeviceId(null);
+    } else {
+      setPinnedDeviceId(deviceId);
+      setIsAutoPlaying(false);
+    }
   };
 
   return (
@@ -251,7 +172,7 @@ export default function AnimatedEmsArchitecture() {
             </span>
           </div>
           <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-            Hover or click any device in the schematic below to inspect its operational role, electrical current flow, and hardware specifications.
+            Hover or click any device to see its primary function right beside it. Watch the automated electrical and telemetry flow below.
           </p>
         </div>
 
@@ -259,7 +180,10 @@ export default function AnimatedEmsArchitecture() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+            onClick={() => {
+              setIsAutoPlaying(!isAutoPlaying);
+              if (isAutoPlaying) setPinnedDeviceId(null);
+            }}
             className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] px-3 py-1.5 font-mono text-xs font-semibold text-[var(--cs-color-text-primary)] transition-colors hover:border-[var(--cs-color-accent)]"
           >
             <span>{isAutoPlaying ? "❚❚ Pause Auto Flow" : "▶ Resume Auto Flow"}</span>
@@ -280,8 +204,7 @@ export default function AnimatedEmsArchitecture() {
               type="button"
               onClick={() => {
                 setCurrentStageIndex(idx);
-                setSelectedDeviceId(s.focusDeviceId);
-                setShowPopover(true);
+                setPinnedDeviceId(null);
                 setIsAutoPlaying(false);
               }}
               className={`flex flex-col gap-1 rounded-xl border p-2 text-left transition-all ${
@@ -756,9 +679,9 @@ export default function AnimatedEmsArchitecture() {
             {/* 1. LVMDP Cabinet (Left) */}
             <g
               onClick={() => handleDeviceClick("lvmdp")}
-              onMouseEnter={() => handleDeviceMouseEnter("lvmdp")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("lvmdp")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               <rect
                 x="90"
@@ -766,8 +689,8 @@ export default function AnimatedEmsArchitecture() {
                 width="80"
                 height="270"
                 fill="#1c1917"
-                stroke={activeDeviceId === "lvmdp" ? "#f59e0b" : "#57534e"}
-                strokeWidth={activeDeviceId === "lvmdp" ? 3.5 : 1.5}
+                stroke={activeHighlightedId === "lvmdp" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeHighlightedId === "lvmdp" ? 3.5 : 1.5}
                 rx="4"
               />
               {/* Cabinet legs */}
@@ -794,9 +717,9 @@ export default function AnimatedEmsArchitecture() {
             {/* 2. CURRENT TRANSFORMER (CT) (Center) */}
             <g
               onClick={() => handleDeviceClick("ct")}
-              onMouseEnter={() => handleDeviceMouseEnter("ct")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("ct")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               {/* Outer pill frame */}
               <rect
@@ -805,8 +728,8 @@ export default function AnimatedEmsArchitecture() {
                 width="80"
                 height="48"
                 fill="#1c1917"
-                stroke={activeDeviceId === "ct" ? "#f59e0b" : "#57534e"}
-                strokeWidth={activeDeviceId === "ct" ? 3 : 1.5}
+                stroke={activeHighlightedId === "ct" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeHighlightedId === "ct" ? 3 : 1.5}
                 rx="6"
                 strokeDasharray="4 2"
               />
@@ -823,9 +746,9 @@ export default function AnimatedEmsArchitecture() {
             {/* 3. SMART KWH 3P (Parent / Master Meter) */}
             <g
               onClick={() => handleDeviceClick("parentKwh")}
-              onMouseEnter={() => handleDeviceMouseEnter("parentKwh")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("parentKwh")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               <rect
                 x="360"
@@ -833,8 +756,8 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="135"
                 fill="#1c1917"
-                stroke={activeDeviceId === "parentKwh" ? "#f59e0b" : "#a8a29e"}
-                strokeWidth={activeDeviceId === "parentKwh" ? 3.5 : 1.5}
+                stroke={activeHighlightedId === "parentKwh" ? "#f59e0b" : "#a8a29e"}
+                strokeWidth={activeHighlightedId === "parentKwh" ? 3.5 : 1.5}
                 rx="5"
               />
               {/* Meter LCD display */}
@@ -865,9 +788,9 @@ export default function AnimatedEmsArchitecture() {
             {/* 4. GATEWAY (Top Right) */}
             <g
               onClick={() => handleDeviceClick("gateway")}
-              onMouseEnter={() => handleDeviceMouseEnter("gateway")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("gateway")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               {/* Antennas */}
               <line x1="675" y1="70" x2="675" y2="105" stroke="#38bdf8" strokeWidth="2.5" />
@@ -881,11 +804,11 @@ export default function AnimatedEmsArchitecture() {
                 width="60"
                 height="32"
                 fill="#1c1917"
-                stroke={activeDeviceId === "gateway" ? "#38bdf8" : "#78716c"}
-                strokeWidth={activeDeviceId === "gateway" ? 3 : 1.5}
+                stroke={activeHighlightedId === "gateway" ? "#38bdf8" : "#78716c"}
+                strokeWidth={activeHighlightedId === "gateway" ? 3 : 1.5}
                 rx="4"
               />
-              {/* Static Status LEDs (No stray ping circle) */}
+              {/* Static Status LEDs */}
               <circle cx="678" cy="120" r="2.5" fill="#22c55e" />
               <circle cx="686" cy="120" r="2.5" fill="#22c55e" />
               <circle cx="694" cy="120" r="2.5" fill="#38bdf8" />
@@ -902,9 +825,9 @@ export default function AnimatedEmsArchitecture() {
             {/* 5. CHILD SMART KWH 1P - METER 1 & LOAD GROUP 1 */}
             <g
               onClick={() => handleDeviceClick("childKwh1")}
-              onMouseEnter={() => handleDeviceMouseEnter("childKwh1")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("childKwh1")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               {/* Meter 1 */}
               <rect
@@ -913,13 +836,13 @@ export default function AnimatedEmsArchitecture() {
                 width="48"
                 height="95"
                 fill="#1c1917"
-                stroke={activeDeviceId === "childKwh1" ? "#f59e0b" : "#78716c"}
-                strokeWidth={activeDeviceId === "childKwh1" ? 3 : 1.5}
+                stroke={activeHighlightedId === "childKwh1" ? "#f59e0b" : "#78716c"}
+                strokeWidth={activeHighlightedId === "childKwh1" ? 3 : 1.5}
                 rx="4"
               />
               <rect x="731" y="235" width="36" height="22" fill="#292524" stroke="#57534e" strokeWidth="0.8" rx="2" />
-              <text x="734" y="250" fill={isRelay1Active ? "#22c55e" : "#ef4444"} fontSize="10" fontFamily="monospace" fontWeight="bold">
-                {isRelay1Active ? "1.85kW" : "0.0kW"}
+              <text x="734" y="250" fill="#22c55e" fontSize="10" fontFamily="monospace" fontWeight="bold">
+                1.85kW
               </text>
               <circle cx="738" cy="270" r="3.5" fill="#44403c" />
               <circle cx="740" cy="310" r="2" fill="#ef4444" />
@@ -933,9 +856,9 @@ export default function AnimatedEmsArchitecture() {
             {/* LOAD GROUP 1 */}
             <g
               onClick={() => handleDeviceClick("load1")}
-              onMouseEnter={() => handleDeviceMouseEnter("load1")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("load1")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               <rect
                 x="890"
@@ -943,8 +866,8 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="65"
                 fill="#1c1917"
-                stroke={activeDeviceId === "load1" ? "#f59e0b" : "#57534e"}
-                strokeWidth={activeDeviceId === "load1" ? 3 : 1.2}
+                stroke={activeHighlightedId === "load1" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeHighlightedId === "load1" ? 3 : 1.2}
                 rx="3"
               />
               {/* Terminal screw rows */}
@@ -965,9 +888,9 @@ export default function AnimatedEmsArchitecture() {
             {/* 6. CHILD SMART KWH 1P - METER 2 & LOAD GROUP 2 */}
             <g
               onClick={() => handleDeviceClick("childKwh2")}
-              onMouseEnter={() => handleDeviceMouseEnter("childKwh2")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("childKwh2")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               {/* Meter 2 */}
               <rect
@@ -976,8 +899,8 @@ export default function AnimatedEmsArchitecture() {
                 width="48"
                 height="95"
                 fill="#1c1917"
-                stroke={activeDeviceId === "childKwh2" ? "#f59e0b" : "#78716c"}
-                strokeWidth={activeDeviceId === "childKwh2" ? 3 : 1.5}
+                stroke={activeHighlightedId === "childKwh2" ? "#f59e0b" : "#78716c"}
+                strokeWidth={activeHighlightedId === "childKwh2" ? 3 : 1.5}
                 rx="4"
               />
               <rect x="731" y="370" width="36" height="22" fill="#292524" stroke="#57534e" strokeWidth="0.8" rx="2" />
@@ -996,9 +919,9 @@ export default function AnimatedEmsArchitecture() {
             {/* LOAD GROUP 2 */}
             <g
               onClick={() => handleDeviceClick("load2")}
-              onMouseEnter={() => handleDeviceMouseEnter("load2")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("load2")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               <rect
                 x="890"
@@ -1006,8 +929,8 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="65"
                 fill="#1c1917"
-                stroke={activeDeviceId === "load2" ? "#f59e0b" : "#57534e"}
-                strokeWidth={activeDeviceId === "load2" ? 3 : 1.2}
+                stroke={activeHighlightedId === "load2" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeHighlightedId === "load2" ? 3 : 1.2}
                 rx="3"
               />
               <circle cx="905" cy="395" r="3" fill="#a8a29e" />
@@ -1027,9 +950,9 @@ export default function AnimatedEmsArchitecture() {
             {/* 7. CHILD SMART KWH 1P - METER 3 & LOAD GROUP 3 */}
             <g
               onClick={() => handleDeviceClick("childKwh3")}
-              onMouseEnter={() => handleDeviceMouseEnter("childKwh3")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("childKwh3")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               {/* Meter 3 */}
               <rect
@@ -1038,8 +961,8 @@ export default function AnimatedEmsArchitecture() {
                 width="48"
                 height="95"
                 fill="#1c1917"
-                stroke={activeDeviceId === "childKwh3" ? "#f59e0b" : "#78716c"}
-                strokeWidth={activeDeviceId === "childKwh3" ? 3 : 1.5}
+                stroke={activeHighlightedId === "childKwh3" ? "#f59e0b" : "#78716c"}
+                strokeWidth={activeHighlightedId === "childKwh3" ? 3 : 1.5}
                 rx="4"
               />
               <rect x="731" y="505" width="36" height="22" fill="#292524" stroke="#57534e" strokeWidth="0.8" rx="2" />
@@ -1058,9 +981,9 @@ export default function AnimatedEmsArchitecture() {
             {/* LOAD GROUP 3 */}
             <g
               onClick={() => handleDeviceClick("load3")}
-              onMouseEnter={() => handleDeviceMouseEnter("load3")}
-              onMouseLeave={handleDeviceMouseLeave}
-              className="cursor-pointer transition-transform hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredDeviceId("load3")}
+              onMouseLeave={() => setHoveredDeviceId(null)}
+              className="cursor-pointer transition-transform hover:scale-[1.01]"
             >
               <rect
                 x="890"
@@ -1068,8 +991,8 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="65"
                 fill="#1c1917"
-                stroke={activeDeviceId === "load3" ? "#f59e0b" : "#57534e"}
-                strokeWidth={activeDeviceId === "load3" ? 3 : 1.2}
+                stroke={activeHighlightedId === "load3" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeHighlightedId === "load3" ? 3 : 1.2}
                 rx="3"
               />
               <circle cx="905" cy="530" r="3" fill="#a8a29e" />
@@ -1085,105 +1008,44 @@ export default function AnimatedEmsArchitecture() {
                 Lab &amp; LED Lighting
               </text>
             </g>
+
+            {/* ================= 7. CONCISE FUNCTION TOOLTIP RIGHT BESIDE EACH DEVICE ================= */}
+            {activeTooltipDevice && (
+              <foreignObject
+                x={activeTooltipDevice.tooltipPos.x}
+                y={activeTooltipDevice.tooltipPos.y}
+                width={activeTooltipDevice.tooltipPos.width}
+                height="95"
+                className="pointer-events-none transition-all duration-150"
+              >
+                <div className="rounded-lg border border-amber-500/90 bg-stone-900/95 p-2.5 shadow-2xl backdrop-blur-md">
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-amber-400 uppercase tracking-wider">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    <span>{activeTooltipDevice.title} · Function</span>
+                  </div>
+                  <p className="mt-1 font-[var(--cs-font-sans)] text-[11px] leading-snug text-stone-200">
+                    {activeTooltipDevice.functionSummary}
+                  </p>
+                </div>
+              </foreignObject>
+            )}
           </svg>
         </div>
 
-        {/* ================= INTERACTIVE FLOATING DEVICE DETAIL POPOVER ================= */}
-        <AnimatePresence>
-          {showPopover && activeDevice && (
-            <motion.div
-              key={activeDevice.id}
-              initial={{ opacity: 0, y: 14, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 14, scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-              className="pointer-events-auto mt-2 rounded-xl border border-stone-700/80 bg-stone-900/95 p-4 sm:p-5 shadow-2xl backdrop-blur-md"
-            >
-              {/* Header */}
-              <div className="flex flex-col gap-2 border-b border-stone-800 pb-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-0.5 font-mono text-xs font-bold uppercase tracking-wider">
-                    {activeDevice.category.toUpperCase()} COMPONENT
-                  </span>
-                  <div>
-                    <h4 className="font-serif text-base sm:text-lg font-bold text-white tracking-tight">
-                      {activeDevice.name}
-                    </h4>
-                    <span className="font-mono text-xs sm:text-sm font-semibold text-amber-400">
-                      Model / Hardware Tag: {activeDevice.codeName}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  {/* If Child 1 is selected, provide live toggle control demo */}
-                  {activeDevice.id === "childKwh1" && (
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs text-stone-300">Live Relay Simulation:</span>
-                      <button
-                        type="button"
-                        onClick={() => setIsRelay1Active(!isRelay1Active)}
-                        className={`rounded px-3 py-1 font-mono text-xs font-bold uppercase transition-all shadow-sm ${
-                          isRelay1Active
-                            ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                            : "bg-red-600 text-white hover:bg-red-700"
-                        }`}
-                      >
-                        {isRelay1Active ? "Relay Closed (ON)" : "Relay Tripped (OFF)"}
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Close Popover Button */}
-                  <button
-                    type="button"
-                    onClick={() => setShowPopover(false)}
-                    aria-label="Dismiss device info"
-                    className="rounded-lg border border-stone-700 bg-stone-800/80 px-2.5 py-1 font-mono text-xs text-stone-300 transition-colors hover:bg-stone-700 hover:text-white"
-                  >
-                    ✕ Close
-                  </button>
-                </div>
-              </div>
-
-              {/* Function & Electrical Flow */}
-              <div className="mt-3.5 grid grid-cols-1 gap-4 lg:grid-cols-2">
-                <div className="flex flex-col gap-1.5">
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
-                    Primary Operational Function:
-                  </span>
-                  <p className="font-[var(--cs-font-sans)] text-xs sm:text-sm leading-relaxed text-stone-200">
-                    {activeDevice.functionSummary}
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
-                    Electrical Flow &amp; Telemetry Role:
-                  </span>
-                  <p className="font-[var(--cs-font-sans)] text-xs sm:text-sm leading-relaxed text-stone-200">
-                    {activeDevice.electricalRole}
-                  </p>
-                </div>
-              </div>
-
-              {/* Technical Specifications */}
-              <div className="mt-3.5 rounded-lg border border-stone-800 bg-black/50 p-3">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-stone-400">
-                  Engineering Specifications:
-                </span>
-                <ul className="mt-1.5 grid grid-cols-1 gap-2 text-xs text-stone-300 sm:grid-cols-3 font-mono">
-                  {activeDevice.specifications.map((spec, i) => (
-                    <li key={i} className="flex items-start gap-1.5 text-xs">
-                      <span className="text-amber-400 font-bold">&bull;</span>
-                      <span>{spec}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* ================= REAL-TIME AUTOMATIC MAIN FLOW EXPLANATION BANNER ================= */}
+        <div className="flex flex-col gap-1.5 rounded-lg border border-stone-800 bg-stone-900/80 p-3 sm:p-4">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-bold text-amber-400">
+              {activeStage.title}
+            </span>
+            <span className="font-mono text-[10px] text-stone-400">
+              Active Flow Stage · {currentStageIndex + 1} of {STAGES.length}
+            </span>
+          </div>
+          <p className="font-[var(--cs-font-sans)] text-xs text-stone-300 leading-relaxed">
+            {activeStage.description}
+          </p>
+        </div>
       </div>
     </div>
   );

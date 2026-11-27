@@ -127,7 +127,11 @@ const STAGES = [
   },
 ];
 
-export default function AnimatedEmsArchitecture() {
+interface AnimatedEmsArchitectureProps {
+  onOpenTerm?: (termId: string) => void;
+}
+
+export default function AnimatedEmsArchitecture({ onOpenTerm }: AnimatedEmsArchitectureProps = {}) {
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [hoveredDeviceId, setHoveredDeviceId] = useState<string | null>(null);
@@ -168,7 +172,7 @@ export default function AnimatedEmsArchitecture() {
           <div className="flex items-center gap-2">
             <span className="inline-block h-2 w-2 rounded-full bg-[var(--cs-color-accent)] animate-ping" />
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              IF-Rancangan_Skema_EMS_VVT-FIT192-20230710 (1) · System Architecture Flow
+              System Architecture &amp; Hardware Topology Flow
             </span>
           </div>
           <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
@@ -177,7 +181,16 @@ export default function AnimatedEmsArchitecture() {
         </div>
 
         {/* Play/Pause & Stage Selector */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
+          {onOpenTerm && (
+            <button
+              type="button"
+              onClick={() => onOpenTerm("lvmdp")}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1.5 font-mono text-xs font-semibold text-amber-300 transition-colors hover:bg-amber-500/20"
+            >
+              <span>💡 Terms &amp; Analogies</span>
+            </button>
+          )}
           <button
             type="button"
             onClick={() => {
@@ -238,18 +251,33 @@ export default function AnimatedEmsArchitecture() {
           </div>
           {/* Legend */}
           <div className="flex flex-wrap items-center gap-4 text-[11px] font-mono">
-            <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => onOpenTerm?.("lvmdp")}
+              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+              title="Click to view analogy for Power Flow"
+            >
               <span className="h-2 w-4 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]" />
               <span className="text-stone-300">Power Flow (380V / 220V AC) ⚡</span>
-            </div>
-            <div className="flex items-center gap-1.5">
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenTerm?.("modbus")}
+              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+              title="Click to view analogy for RS485 Modbus"
+            >
               <span className="h-2 w-4 rounded-full bg-indigo-400 border border-dashed border-indigo-300" />
               <span className="text-stone-300">RS485 Modbus RTU Bus</span>
-            </div>
-            <div className="flex items-center gap-1.5">
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenTerm?.("relay")}
+              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+              title="Click to view analogy for Relay Control"
+            >
               <span className="h-2 w-4 rounded-full bg-sky-400 border border-dashed border-sky-400" />
               <span className="text-stone-300">Relay Control Line</span>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -1017,7 +1045,7 @@ export default function AnimatedEmsArchitecture() {
                 width={activeTooltipDevice.tooltipPos.width}
                 height={activeTooltipDevice.tooltipPos.height || 140}
                 style={{ overflow: "visible" }}
-                className="pointer-events-none transition-all duration-150"
+                className="transition-all duration-150"
               >
                 <div className="h-auto w-full rounded-lg border border-amber-500/90 bg-stone-900/95 p-2.5 shadow-2xl backdrop-blur-md">
                   <div className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-amber-400 uppercase tracking-wider">
@@ -1027,6 +1055,15 @@ export default function AnimatedEmsArchitecture() {
                   <p className="mt-1 font-[var(--cs-font-sans)] text-[11px] leading-[1.4] text-stone-200">
                     {activeTooltipDevice.functionSummary}
                   </p>
+                  {onOpenTerm && (
+                    <button
+                      type="button"
+                      onClick={() => onOpenTerm(activeTooltipDevice.id === "childKwh1" || activeTooltipDevice.id === "childKwh2" || activeTooltipDevice.id === "childKwh3" ? "childKwh" : activeTooltipDevice.id.startsWith("load") ? "loadGroup" : activeTooltipDevice.id)}
+                      className="mt-1.5 inline-flex items-center gap-1 font-mono text-[10px] text-amber-300 hover:text-white underline underline-offset-2 cursor-pointer transition-colors"
+                    >
+                      <span>💡 View Real-World Analogy &rarr;</span>
+                    </button>
+                  )}
                 </div>
               </foreignObject>
             )}

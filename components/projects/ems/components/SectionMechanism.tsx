@@ -1,15 +1,12 @@
 "use client";
 
-import { motion } from "motion/react";
-import Image from "next/image";
+import { useState } from "react";
 import AnimatedEmsArchitecture from "./AnimatedEmsArchitecture";
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 24, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
+import EmsTermModal, { TECHNICAL_TERMS } from "./EmsTermModal";
 
 export default function SectionMechanism() {
+  const [activeTermId, setActiveTermId] = useState<string | null>(null);
+
   return (
     <section id="mechanism" className="py-[var(--cs-section-padding)]">
       <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
@@ -25,42 +22,84 @@ export default function SectionMechanism() {
           </div>
         </div>
 
-        {/* Section Headline */}
-        <div className="mb-14 flex flex-col gap-4">
+        {/* Section Headline & Description */}
+        <div className="mb-10 flex flex-col gap-4">
           <h2 className="max-w-[680px] font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] font-normal leading-[1.2] tracking-[-0.02em] text-[var(--cs-color-text-primary)]">
             Structuring the invisible: From raw electrical registers to intuitive spatial control.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(0.875rem,1.1vw,1rem)] leading-[1.7] text-[var(--cs-color-text-secondary)]">
-            Every electrical asset is organized into a clear parent-child hierarchy. High-voltage electricity from the grid (PLN) and backup generators passes through the main distribution panel (LVMDP) into a master Smart kWh meter. From there, power branches out to child Smart kWh meters in each room, where they continuously track individual devices—such as workstations, AC units, fans, and lighting. An IoT Gateway automatically logs each meter&apos;s unique hardware address (MAC address) per room and securely relays real-time power consumption to the central EMS dashboard.
+          <p className="max-w-[860px] font-[var(--cs-font-sans)] text-[clamp(0.875rem,1.1vw,1rem)] leading-[1.8] text-[var(--cs-color-text-secondary)]">
+            Every electrical asset is organized into a clear parent-child hierarchy. High-voltage electricity from the grid (PLN) and backup generators enters through the main distribution panel (
+            <button
+              type="button"
+              onClick={() => setActiveTermId("lvmdp")}
+              className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
+            >
+              LVMDP 💡
+            </button>
+            ) into a master{" "}
+            <button
+              type="button"
+              onClick={() => setActiveTermId("parentKwh")}
+              className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
+            >
+              Smart kWh meter 💡
+            </button>
+            . From there, power branches out to subordinate{" "}
+            <button
+              type="button"
+              onClick={() => setActiveTermId("childKwh")}
+              className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
+            >
+              child Smart kWh submeters 💡
+            </button>{" "}
+            in each room, continuously tracking individual equipment—such as server racks, workstation clusters, and lighting loops. An{" "}
+            <button
+              type="button"
+              onClick={() => setActiveTermId("gateway")}
+              className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
+            >
+              IoT Gateway 💡
+            </button>{" "}
+            automatically indexes each meter&apos;s unique hardware identifier (
+            <button
+              type="button"
+              onClick={() => setActiveTermId("macAddress")}
+              className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
+            >
+              MAC address 💡
+            </button>
+            ) per room and securely relays live telemetry to the central EMS dashboard.
           </p>
+
+          {/* Interactive Terminology Explorer Bar */}
+          <div className="mt-2 flex flex-col gap-2.5 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3.5 sm:p-4">
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
+                💡 Electrical Engineering Terms Explained via Real-World Analogies (Click to Explore):
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {Object.values(TECHNICAL_TERMS).map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveTermId(item.id)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] px-2.5 py-1 text-left font-mono text-xs text-[var(--cs-color-text-secondary)] transition-all hover:border-amber-500 hover:text-amber-400 hover:shadow-xs cursor-pointer"
+                >
+                  <span>{item.icon}</span>
+                  <span className="font-semibold">{item.term.split("(")[0].trim()}</span>
+                  <span className="text-[10px] text-[var(--cs-color-text-muted)]">&rarr;</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Physical System Diagram */}
-        <motion.figure
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={REVEAL_VARIANTS}
-          transition={{ duration: 0.7 }}
-          className="flex w-full flex-col gap-4"
-        >
-          <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-2 sm:p-4">
-            <Image
-              src="/images/ems/Rancangan skema EMS.webp"
-              alt="Physical sensing ecosystem schematic showing rooms, meters, edge gateways, and cloud EMS"
-              width={1280}
-              height={654}
-              sizes="(max-width: 768px) 100vw, 1280px"
-              className="h-auto w-full object-contain"
-            />
-          </div>
-          <figcaption className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-muted)]">
-            Fig 03. — System Architecture Schematic: Mapping physical circuits and Modbus RS485 loops to Edge Concentrators and the Cloud EMS application layer.
-          </figcaption>
-        </motion.figure>
-
         {/* Animated Interactive Architecture Flow */}
-        <AnimatedEmsArchitecture />
+        <AnimatedEmsArchitecture onOpenTerm={(termId) => setActiveTermId(termId)} />
+
+        {/* Global Term Popover Modal */}
+        <EmsTermModal termId={activeTermId} onClose={() => setActiveTermId(null)} />
       </div>
     </section>
   );

@@ -34,7 +34,7 @@ export default function SectionMechanism() {
               onClick={() => setActiveTermId("lvmdp")}
               className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
             >
-              LVMDP 💡
+              LVMDP
             </button>
             ) into a master{" "}
             <button
@@ -42,7 +42,7 @@ export default function SectionMechanism() {
               onClick={() => setActiveTermId("parentKwh")}
               className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
             >
-              Smart kWh meter 💡
+              Smart kWh meter
             </button>
             . From there, power branches out to subordinate{" "}
             <button
@@ -50,7 +50,7 @@ export default function SectionMechanism() {
               onClick={() => setActiveTermId("childKwh")}
               className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
             >
-              child Smart kWh submeters 💡
+              child Smart kWh submeters
             </button>{" "}
             in each room, continuously tracking individual equipment—such as server racks, workstation clusters, and lighting loops. An{" "}
             <button
@@ -58,7 +58,7 @@ export default function SectionMechanism() {
               onClick={() => setActiveTermId("gateway")}
               className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
             >
-              IoT Gateway 💡
+              IoT Gateway
             </button>{" "}
             automatically indexes each meter&apos;s unique hardware identifier (
             <button
@@ -66,7 +66,7 @@ export default function SectionMechanism() {
               onClick={() => setActiveTermId("macAddress")}
               className="inline-flex items-center font-semibold text-[var(--cs-color-text-primary)] underline decoration-amber-500/70 decoration-dashed underline-offset-4 transition-colors hover:text-amber-400 cursor-pointer"
             >
-              MAC address 💡
+              MAC address
             </button>
             ) per room and securely relays live telemetry to the central EMS dashboard.
           </p>
@@ -75,7 +75,7 @@ export default function SectionMechanism() {
           <div className="mt-2 flex flex-col gap-2.5 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3.5 sm:p-4">
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-                💡 Electrical Engineering Terms Explained via Real-World Analogies (Click to Explore):
+                Electrical Engineering Terms Explained via Real-World Analogies (Click to Explore):
               </span>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -86,7 +86,6 @@ export default function SectionMechanism() {
                   onClick={() => setActiveTermId(item.id)}
                   className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] px-2.5 py-1 text-left font-mono text-xs text-[var(--cs-color-text-secondary)] transition-all hover:border-amber-500 hover:text-amber-400 hover:shadow-xs cursor-pointer"
                 >
-                  <span>{item.icon}</span>
                   <span className="font-semibold">{item.term.split("(")[0].trim()}</span>
                   <span className="text-[10px] text-[var(--cs-color-text-muted)]">&rarr;</span>
                 </button>

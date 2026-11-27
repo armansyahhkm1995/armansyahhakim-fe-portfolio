@@ -168,18 +168,13 @@ export default function EmsTermModal({ termId, onClose }: EmsTermModalProps) {
         >
           {/* Header */}
           <div className="flex items-start justify-between gap-3 border-b border-stone-800 pb-4">
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/20 text-xl border border-amber-500/30">
-                {term.icon}
+            <div>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-amber-400">
+                {term.badge}
               </span>
-              <div>
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-amber-400">
-                  {term.badge}
-                </span>
-                <h3 id="ems-term-title" className="font-serif text-lg font-bold text-white">
-                  {term.term}
-                </h3>
-              </div>
+              <h3 id="ems-term-title" className="font-serif text-lg font-bold text-white">
+                {term.term}
+              </h3>
             </div>
             <button
               type="button"

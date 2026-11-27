@@ -181,16 +181,7 @@ export default function AnimatedEmsArchitecture({ onOpenTerm }: AnimatedEmsArchi
         </div>
 
         {/* Play/Pause & Stage Selector */}
-        <div className="flex flex-wrap items-center gap-2.5">
-          {onOpenTerm && (
-            <button
-              type="button"
-              onClick={() => onOpenTerm("lvmdp")}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1.5 font-mono text-xs font-semibold text-amber-300 transition-colors hover:bg-amber-500/20"
-            >
-              <span>💡 Terms &amp; Analogies</span>
-            </button>
-          )}
+        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => {
@@ -1061,7 +1052,7 @@ export default function AnimatedEmsArchitecture({ onOpenTerm }: AnimatedEmsArchi
                       onClick={() => onOpenTerm(activeTooltipDevice.id === "childKwh1" || activeTooltipDevice.id === "childKwh2" || activeTooltipDevice.id === "childKwh3" ? "childKwh" : activeTooltipDevice.id.startsWith("load") ? "loadGroup" : activeTooltipDevice.id)}
                       className="mt-1.5 inline-flex items-center gap-1 font-mono text-[10px] text-amber-300 hover:text-white underline underline-offset-2 cursor-pointer transition-colors"
                     >
-                      <span>💡 View Real-World Analogy &rarr;</span>
+                      <span>View Real-World Analogy &rarr;</span>
                     </button>
                   )}
                 </div>

@@ -53,15 +53,15 @@ export default function SectionHero() {
           </header>
 
           {/* Description + metadata */}
-          <div className="flex flex-col gap-8 md:gap-10 lg:flex-row lg:items-start lg:gap-16">
-            <p className="max-w-[760px] flex-1 font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
+          <div className="flex flex-col gap-8">
+            <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
               Corteva came to Karawang to introduce high-yield hybrid rice variants and crop
               protection to local farmers. What began as a standard event-design brief evolved into a
               strategic experiential system: turning the active rice field into an evidence-based
               learning and verification environment.
             </p>
 
-            <dl className="flex shrink-0 flex-col gap-5 sm:max-w-[280px]">
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4 sm:gap-8 lg:gap-12">
               {METADATA.map(([label, value]) => (
                 <div key={label} className="flex flex-col gap-1.5">
                   <dt className="font-mono text-[10px] uppercase tracking-wide text-[var(--cs-color-text-muted)]">

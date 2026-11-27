@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
 
 const METADATA = [
@@ -28,9 +27,9 @@ export default function SectionHero() {
               Industrial IoT · Decentralized Energy Telemetry · Mission-Critical Operations
             </p>
 
-            <h1 className="font-display text-[2.75rem] leading-[0.95] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]">
+            <h1 className="font-display text-[2.75rem] leading-[1.04] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]">
               {lines.map((line, index) => (
-                <span key={line} className="block overflow-hidden">
+                <span key={line} className="block overflow-hidden pb-[0.15em] -mb-[0.15em]">
                   <motion.span
                     className="block"
                     initial={{ y: "110%" }}
@@ -49,8 +48,8 @@ export default function SectionHero() {
           </header>
 
           {/* Description + metadata */}
-          <div className="flex flex-col gap-8 md:gap-10 lg:flex-row lg:items-start lg:gap-16">
-            <p className="max-w-[760px] flex-1 font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
+          <div className="flex flex-col gap-8">
+            <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
               In industrial facilities and high-voltage campuses, engineering teams historically
               relied on forensic utility bills and manual switchgear patrols. This case study details
               how we architected a real-time IoT energy management system—translating raw Modbus
@@ -58,9 +57,9 @@ export default function SectionHero() {
               agency.
             </p>
 
-            <dl className="grid shrink-0 grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:flex lg:gap-8">
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3 sm:gap-8 lg:gap-12">
               {METADATA.map(([label, value]) => (
-                <div key={label} className="flex flex-col gap-1.5 max-w-[240px]">
+                <div key={label} className="flex flex-col gap-1.5">
                   <dt className="font-mono text-[10px] uppercase tracking-wide text-[var(--cs-color-text-muted)]">
                     {label}
                   </dt>
@@ -73,16 +72,15 @@ export default function SectionHero() {
           </div>
         </div>
 
-        {/* Hero image */}
+        {/* Hero video */}
         <figure className="mt-8 md:mt-12 lg:mt-14">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)]">
-            <Image
-              src="/images/ems/Dashboard - Energy Usage Timeline.webp"
-              alt="EMS production dashboard showing real-time energy usage timeline, peak power metrics, and room consumption analytics"
-              width={1440}
-              height={810}
-              priority
-              sizes="(max-width: 768px) 100vw, 1440px"
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-black">
+            <video
+              src="/videos/ems/ems_workflow_hero.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
               className="h-full w-full object-cover"
             />
           </div>
@@ -93,15 +91,9 @@ export default function SectionHero() {
 
         {/* Executive Summary Card (At-a-Glance) */}
         <div className="mt-12 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
-                EXECUTIVE SUMMARY
-              </span>
-              <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">· AT A GLANCE</span>
-            </div>
-            <span className="font-mono text-[11px] text-[var(--cs-color-text-muted)] hidden sm:inline">
-              Mission-Critical Grid UI
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
+              EXECUTIVE SUMMARY
             </span>
           </div>
 

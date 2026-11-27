@@ -61,32 +61,26 @@ const REVEAL_VARIANTS = {
 
 export default function SectionImpact() {
   return (
-    <section id="impact" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
-      <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
-        {/* Section label */}
-        <div className="flex w-full items-center justify-between gap-6">
+    <section id="impact" className="py-[var(--cs-section-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
+        {/* Section divider & label */}
+        <div className="mb-12 flex flex-col items-start gap-2 border-b border-[var(--cs-color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
           <div className="flex items-center gap-3">
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold text-[var(--cs-color-text-secondary)]">
+            <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               05
             </span>
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
+            <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
               Impact &amp; Retrospective
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Production Outcomes &amp; Systems Engineering
-          </span>
         </div>
 
         {/* Section Headline */}
-        <div className="flex flex-col gap-4">
-          <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
+        <div className="mb-14 flex flex-col gap-4">
+          <h2 className="max-w-[680px] font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] font-normal leading-[1.2] tracking-[-0.02em] text-[var(--cs-color-text-primary)]">
             The system precedes the screen. Industrial design is disciplined engineering.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(0.875rem,1.1vw,1rem)] leading-[1.7] text-[var(--cs-color-text-secondary)]">
             Designing enterprise industrial software requires checking pure aesthetic hubris at the door. You cannot build a dependable monitoring cockpit without mapping physical wiring diagrams and respecting the laws of electrical networks.
           </p>
         </div>

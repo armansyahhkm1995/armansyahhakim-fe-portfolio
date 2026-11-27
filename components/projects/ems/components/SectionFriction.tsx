@@ -9,13 +9,6 @@ interface FrictionPoint {
   mitigation: string;
 }
 
-interface StakeholderRole {
-  role: string;
-  context: string;
-  priority: string;
-  failureRisk: string;
-}
-
 const FRICTION_POINTS: FrictionPoint[] = [
   {
     index: "01",
@@ -43,33 +36,6 @@ const FRICTION_POINTS: FrictionPoint[] = [
   },
 ];
 
-const STAKEHOLDER_ROLES: StakeholderRole[] = [
-  {
-    role: "Facility Lead Engineer",
-    context: "Manages overall power stability, phase loads, and transformer health across campuses.",
-    priority: "Granular telemetry: Voltage, Current, Active Power (kW), Power Factor, and anomaly triggers.",
-    failureRisk: "Catastrophic transformer overload or costly peak-demand utility surcharges.",
-  },
-  {
-    role: "On-Duty Facility Guard",
-    context: "Conducts evening lock-downs and off-hour inspections across multi-building campuses.",
-    priority: "Simple, foolproof zone controls: 'Turn off Level 2 Lighting' without wading through electrical jargon.",
-    failureRisk: "Accidentally cutting power to critical servers or emergency life-safety systems.",
-  },
-  {
-    role: "Energy & Finance Auditor",
-    context: "Evaluates ESG compliance, monthly tariff costs, and department energy allocation.",
-    priority: "Comparative charts, diurnal benchmarks, and clean PDF exports for regulatory reporting.",
-    failureRisk: "Budget overruns without audit-trail accountability for departmental waste.",
-  },
-  {
-    role: "IoT Infrastructure Admin",
-    context: "Maintains hardware telemetry pipes, Modbus RS485 loops, and gateway concentrators.",
-    priority: "Gateway heartbeat telemetry, dropped packet counters, and EUI device registration tools.",
-    failureRisk: "Silent sensor disconnections causing undetected data blackouts.",
-  },
-];
-
 const REVEAL_VARIANTS = {
   hidden: { y: 24, opacity: 0 },
   visible: { y: 0, opacity: 1 },
@@ -77,32 +43,26 @@ const REVEAL_VARIANTS = {
 
 export default function SectionFriction() {
   return (
-    <section id="friction" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
-      <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
-        {/* Section label */}
-        <div className="flex w-full items-center justify-between gap-6">
+    <section id="friction" className="py-[var(--cs-section-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
+        {/* Section divider & label */}
+        <div className="mb-12 flex flex-col items-start gap-2 border-b border-[var(--cs-color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
           <div className="flex items-center gap-3">
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold text-[var(--cs-color-text-secondary)]">
+            <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               02
             </span>
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
+            <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
               The Industrial Friction
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Physical Constraints &amp; Operational Risk
-          </span>
         </div>
 
         {/* Section Headline */}
-        <div className="flex flex-col gap-4">
-          <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
+        <div className="mb-14 flex flex-col gap-4">
+          <h2 className="max-w-[680px] font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] font-normal leading-[1.2] tracking-[-0.02em] text-[var(--cs-color-text-primary)]">
             Managing megawatts is not like managing SaaS. Every screen action commands physical high-voltage relays.
           </h2>
-          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
+          <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(0.875rem,1.1vw,1rem)] leading-[1.7] text-[var(--cs-color-text-secondary)]">
             Before digital intervention, energy operations relied on manual meter logs and physical site walkthroughs. A modern industrial EMS must bridge physical electrical hardware and human cognitive limitations without introducing operational risk.
           </p>
         </div>
@@ -120,9 +80,6 @@ export default function SectionFriction() {
               className="flex flex-col justify-between gap-4 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8"
             >
               <div className="flex flex-col gap-2">
-                <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
-                  {item.index} / SYSTEM FRICTION
-                </span>
                 <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-[var(--cs-color-text-primary)]">
                   {item.condition}
                 </h3>
@@ -141,55 +98,6 @@ export default function SectionFriction() {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* 4 Stakeholder Contexts Table */}
-        <div className="flex flex-col gap-5 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
-          <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              Operational Mental Models Across the Grid
-            </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              Designing a single interface for four distinct operational roles required strict permission tiering and tailored density views.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-            {STAKEHOLDER_ROLES.map((role) => (
-              <div
-                key={role.role}
-                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5 sm:p-6"
-              >
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
-                    {role.role}
-                  </h4>
-                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                    {role.context}
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-2 border-t border-[var(--cs-color-border)] pt-3">
-                  <div>
-                    <span className="font-mono text-[10px] font-semibold uppercase text-[var(--cs-color-text-muted)]">
-                      Primary Need
-                    </span>
-                    <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-                      {role.priority}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="font-mono text-[10px] font-semibold uppercase text-red-600">
-                      Operational Risk
-                    </span>
-                    <p className="font-[var(--cs-font-sans)] text-xs text-red-600/90 font-medium">
-                      {role.failureRisk}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

@@ -62,11 +62,10 @@ const SIGNAGE_SYSTEM = [
 export default function SectionValidation() {
   return (
     <section id="evidence" className="py-[var(--cs-section-padding)]">
-      <div className="mx-auto max-w-[var(--cs-content-max-width)] px-[var(--cs-content-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
         <SectionDivider
           number="04"
           title="Visual Proof & Field Artifacts"
-          subtitle="CORTEVA AGRISCIENCE / EVIDENCE & ARTIFACTS"
         />
 
         {/* Narrative Headline */}
@@ -114,27 +113,24 @@ export default function SectionValidation() {
           ))}
         </div>
 
-        {/* Environmental Wayfinding & Signage Artifacts */}
+        {/* Environmental Wayfinding & Signage Artifacts (2x2 Grid) */}
         <div>
           <div className="mb-6 flex items-center justify-between">
             <h3 className="font-serif text-2xl text-[var(--cs-color-text-primary)]">
               Field System Artifacts &amp; Wayfinding
             </h3>
-            <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">
-              Physical Touchpoints
-            </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {SIGNAGE_SYSTEM.map((sign) => (
               <figure key={sign.label} className="flex flex-col gap-3">
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)]">
                   <Image
                     src={sign.src}
                     alt={sign.alt}
-                    width={480}
-                    height={360}
-                    className="h-full w-full object-cover"
+                    width={720}
+                    height={540}
+                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                 </div>
                 <figcaption>

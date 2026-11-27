@@ -60,11 +60,10 @@ const SKETCHES = [
 export default function SectionMechanism() {
   return (
     <section id="mechanism" className="py-[var(--cs-section-padding)]">
-      <div className="mx-auto max-w-[var(--cs-content-max-width)] px-[var(--cs-content-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
         <SectionDivider
           number="03"
           title="The Strategic Mechanism"
-          subtitle="CORTEVA AGRISCIENCE / SPATIAL HYPOTHESIS & ROUTE ARCHITECTURE"
         />
 
         {/* Narrative Headline */}
@@ -118,20 +117,17 @@ export default function SectionMechanism() {
             <h3 className="font-serif text-2xl text-[var(--cs-color-text-primary)]">
               Spatial Route &amp; Prototype Sketches
             </h3>
-            <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">
-              Iterative Ideation
-            </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {SKETCHES.map((item) => (
               <figure key={item.label} className="flex flex-col gap-2.5">
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)]">
                   <Image
                     src={item.src}
                     alt={item.alt}
-                    width={480}
-                    height={360}
+                    width={720}
+                    height={540}
                     className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                 </div>

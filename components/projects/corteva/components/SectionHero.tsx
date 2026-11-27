@@ -61,7 +61,7 @@ export default function SectionHero() {
               learning and verification environment.
             </p>
 
-            <dl className="grid shrink-0 grid-cols-2 gap-x-8 gap-y-6 lg:flex lg:gap-8">
+            <dl className="flex shrink-0 flex-col gap-5 sm:max-w-[280px]">
               {METADATA.map(([label, value]) => (
                 <div key={label} className="flex flex-col gap-1.5">
                   <dt className="font-mono text-[10px] uppercase tracking-wide text-[var(--cs-color-text-muted)]">
@@ -94,13 +94,12 @@ export default function SectionHero() {
           </figcaption>
         </figure>
 
-        {/* Executive Summary Card (At-a-Glance) */}
+        {/* Executive Summary Card */}
         <div className="mt-12 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               EXECUTIVE SUMMARY
             </span>
-            <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">/ AT A GLANCE</span>
           </div>
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -139,8 +138,8 @@ export default function SectionHero() {
                 Verified Outcome
               </span>
               <p className="font-sans text-xs leading-relaxed font-medium text-[var(--cs-color-text-primary)]">
-                Transformed promotional marketing into tactile proof, securing high-confidence
-                adoption and dealer commitments.
+                Direct commercial seed commitments placed on-site with regional kiosks; model adopted as
+                Corteva regional benchmark.
               </p>
             </div>
           </div>

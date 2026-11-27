@@ -41,11 +41,10 @@ const PRINCIPLES = [
 export default function SectionImpact() {
   return (
     <section id="impact" className="py-[var(--cs-section-padding)]">
-      <div className="mx-auto max-w-[var(--cs-content-max-width)] px-[var(--cs-content-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
         <SectionDivider
           number="05"
           title="Impact & Retrospective"
-          subtitle="CORTEVA AGRISCIENCE / BEHAVIORAL TRANSFORMATION"
         />
 
         {/* Narrative Headline */}

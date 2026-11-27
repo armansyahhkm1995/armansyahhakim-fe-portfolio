@@ -1,37 +1,13 @@
 import Image from "next/image";
 import SectionDivider from "./SectionDivider";
 
-const CONVENTIONAL_VS_FIELD = [
-  {
-    stage: "01. Environment",
-    conventional: "Hotel banquet hall or community center with passive seating.",
-    field: "Active rice paddy dikes under direct sunlight.",
-  },
-  {
-    stage: "02. Evidence Delivery",
-    conventional: "Slide decks, glossy brochures, and abstract yield percentages.",
-    field: "Side-by-side live crop plots showing height, panicle density, and root health.",
-  },
-  {
-    stage: "03. Stakeholder Trust",
-    conventional: "Speculative Q&A filtered through sales representatives.",
-    field: "Hands-on grain counting, disease inspection, and open agronomist clinics.",
-  },
-  {
-    stage: "04. Decision Trigger",
-    conventional: "Hesitant compliance followed by immediate post-event skepticism.",
-    field: "Direct yield threshing calculation proving economic profit on the spot.",
-  },
-];
-
 export default function SectionFriction() {
   return (
     <section id="friction" className="py-[var(--cs-section-padding)]">
-      <div className="mx-auto max-w-[var(--cs-content-max-width)] px-[var(--cs-content-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
         <SectionDivider
           number="02"
           title="The Core Friction"
-          subtitle="CORTEVA AGRISCIENCE / PROBLEM & ECOSYSTEM"
         />
 
         {/* Narrative Headline */}
@@ -51,42 +27,6 @@ export default function SectionFriction() {
               To drive adoption of high-performing hybrid seeds, we needed to deconstruct the
               conventional seminar model and bring the validation process directly into the mud.
             </p>
-          </div>
-        </div>
-
-        {/* Conventional vs Field Model Comparison */}
-        <div className="mb-16 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
-          <h3 className="font-mono text-xs font-semibold tracking-wider text-[var(--cs-color-text-muted)] uppercase">
-            Model Comparison: Abstract Sales Pitch vs. Grounded Verification
-          </h3>
-
-          <div className="mt-6 divide-y divide-[var(--cs-color-border)]">
-            {CONVENTIONAL_VS_FIELD.map((item) => (
-              <div
-                key={item.stage}
-                className="grid grid-cols-1 gap-4 py-5 md:grid-cols-[180px_1fr_1fr] md:gap-8"
-              >
-                <span className="font-mono text-xs font-semibold text-[var(--cs-color-text-primary)]">
-                  {item.stage}
-                </span>
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-[10px] text-red-500/80 uppercase">
-                    Conventional Seminar
-                  </span>
-                  <p className="font-sans text-xs text-[var(--cs-color-text-secondary)]">
-                    {item.conventional}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-[10px] text-[var(--cs-color-accent)] uppercase">
-                    The Field Experience
-                  </span>
-                  <p className="font-sans text-xs font-medium text-[var(--cs-color-text-primary)]">
-                    {item.field}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 

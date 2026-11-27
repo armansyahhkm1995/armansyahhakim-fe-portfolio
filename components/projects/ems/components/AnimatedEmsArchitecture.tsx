@@ -203,7 +203,9 @@ export default function AnimatedEmsArchitecture() {
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>("lvmdp");
+  const [hoveredDeviceId, setHoveredDeviceId] = useState<string | null>(null);
   const [isRelay1Active, setIsRelay1Active] = useState(true);
+  const [showPopover, setShowPopover] = useState(true);
 
   // Auto progression
   useEffect(() => {
@@ -219,7 +221,23 @@ export default function AnimatedEmsArchitecture() {
   }, [isAutoPlaying]);
 
   const activeStage = STAGES[currentStageIndex];
-  const activeDevice = DEVICES[selectedDeviceId] || DEVICES.lvmdp;
+  const activeDeviceId = hoveredDeviceId || selectedDeviceId;
+  const activeDevice = DEVICES[activeDeviceId] || DEVICES.lvmdp;
+
+  const handleDeviceClick = (deviceId: string) => {
+    setSelectedDeviceId(deviceId);
+    setShowPopover(true);
+    setIsAutoPlaying(false);
+  };
+
+  const handleDeviceMouseEnter = (deviceId: string) => {
+    setHoveredDeviceId(deviceId);
+    setShowPopover(true);
+  };
+
+  const handleDeviceMouseLeave = () => {
+    setHoveredDeviceId(null);
+  };
 
   return (
     <div className="mt-8 flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-4 sm:p-6 lg:p-8">
@@ -233,7 +251,7 @@ export default function AnimatedEmsArchitecture() {
             </span>
           </div>
           <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-            Visual simulation of real electrical distribution &amp; data hierarchy: Grid (PLN) &rarr; LVMDP &rarr; CT/Parent 3P &rarr; Gateway MAC &rarr; Child 1P &rarr; Load Groups &rarr; EMS Control
+            Hover or click any device in the schematic below to inspect its operational role, electrical current flow, and hardware specifications.
           </p>
         </div>
 
@@ -244,7 +262,7 @@ export default function AnimatedEmsArchitecture() {
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
             className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] px-3 py-1.5 font-mono text-xs font-semibold text-[var(--cs-color-text-primary)] transition-colors hover:border-[var(--cs-color-accent)]"
           >
-            <span>{isAutoPlaying ? "❚❚ Pause Flow" : "▶ Resume Auto Flow"}</span>
+            <span>{isAutoPlaying ? "❚❚ Pause Auto Flow" : "▶ Resume Auto Flow"}</span>
           </button>
           <span className="font-mono text-xs font-bold text-[var(--cs-color-accent)]">
             Stage 0{activeStage.stage} / 0{STAGES.length}
@@ -263,6 +281,7 @@ export default function AnimatedEmsArchitecture() {
               onClick={() => {
                 setCurrentStageIndex(idx);
                 setSelectedDeviceId(s.focusDeviceId);
+                setShowPopover(true);
                 setIsAutoPlaying(false);
               }}
               className={`flex flex-col gap-1 rounded-xl border p-2 text-left transition-all ${
@@ -285,34 +304,34 @@ export default function AnimatedEmsArchitecture() {
         })}
       </div>
 
-      {/* Main SVG Vector Schematic Canvas */}
+      {/* Main SVG Vector Schematic Canvas Container */}
       <div className="relative overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-black/95 p-2 sm:p-4 shadow-inner">
-        {/* Schematic Canvas Header */}
-        <div className="flex items-center justify-between border-b border-stone-800 px-2 pb-2">
+        {/* Schematic Canvas Header with Legend */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-800 px-2 pb-2.5">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-[11px] font-bold tracking-wider text-stone-300">
+            <span className="font-mono text-xs font-bold tracking-wider text-stone-200">
               ELECTRICAL TOPOLOGY &amp; MODBUS BUS SCHEMATIC
             </span>
           </div>
           {/* Legend */}
-          <div className="flex items-center gap-4 text-[10px] font-mono">
+          <div className="flex flex-wrap items-center gap-4 text-[11px] font-mono">
             <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-4 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
-              <span className="text-stone-300">Power (380V/220V)</span>
+              <span className="h-2 w-4 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]" />
+              <span className="text-stone-300">Power Flow (380V / 220V AC) ⚡</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-4 rounded-full bg-sky-400 border border-dashed border-sky-400" />
-              <span className="text-stone-300">Control Line</span>
+              <span className="h-2 w-4 rounded-full bg-indigo-400 border border-dashed border-indigo-300" />
+              <span className="text-stone-300">RS485 Modbus RTU Bus</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-4 rounded-full bg-indigo-400" />
-              <span className="text-stone-300">RS485 Modbus</span>
+              <span className="h-2 w-4 rounded-full bg-sky-400 border border-dashed border-sky-400" />
+              <span className="text-stone-300">Relay Control Line</span>
             </div>
           </div>
         </div>
 
         {/* Responsive Vector Diagram */}
-        <div className="relative w-full overflow-x-auto py-4">
+        <div className="relative w-full overflow-x-auto py-3">
           <svg
             viewBox="0 0 1160 620"
             className="w-full min-w-[900px] h-auto select-none"
@@ -320,7 +339,7 @@ export default function AnimatedEmsArchitecture() {
           >
             <defs>
               {/* Electric Pulse Glow */}
-              <filter id="electric-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <filter id="electric-glow" x="-30%" y="-30%" width="160%" height="160%">
                 <feGaussianBlur stdDeviation="3" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
@@ -328,122 +347,123 @@ export default function AnimatedEmsArchitecture() {
                 <feGaussianBlur stdDeviation="2.5" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
+
+              {/* Electricity Lightning Bolt Icon Symbol */}
+              <g id="electric-bolt">
+                <path
+                  d="M 0 -8 L 5 -1 L 1 0 L 4 8 L -4 1 L 0 0 Z"
+                  fill="#facc15"
+                  stroke="#ca8a04"
+                  strokeWidth="0.8"
+                  filter="url(#electric-glow)"
+                />
+              </g>
             </defs>
 
-            {/* ================= 1. RS485 MODBUS COMMUNICATION BUS ================= */}
-            {/* Trunk from Parent Smart KWH (x=430, y=145) to Gateway (x=665, y=145) */}
+            {/* ================= 1. RS485 MODBUS COMMUNICATION BUS (CLEAN & NON-OVERLAPPING) ================= */}
+            {/* Direct RS485 communication link between Parent Smart KWH (x=430, y=115) and Gateway (x=665, y=115) */}
             <path
-              d="M 430 145 L 665 145"
+              d="M 430 115 L 665 115"
               stroke="#818cf8"
-              strokeWidth="2"
-              strokeDasharray="5 3"
+              strokeWidth="2.5"
+              strokeDasharray="6 3"
             />
             {/* Connection Port Dot on Parent KWH */}
-            <circle cx="430" cy="145" r="3.5" fill="#818cf8" />
+            <circle cx="430" cy="115" r="4" fill="#818cf8" />
             {/* Connection Port Dot on Gateway */}
-            <circle cx="665" cy="145" r="3.5" fill="#818cf8" />
+            <circle cx="665" cy="115" r="4" fill="#818cf8" />
 
-            {/* Vertical RS485 Trunk Dropping Down at x=615 */}
+            {/* Vertical RS485 Trunk Dropping Down at x=630 */}
             <path
-              d="M 615 145 L 615 575"
+              d="M 630 115 L 630 575"
               stroke="#818cf8"
-              strokeWidth="2"
-              strokeDasharray="5 3"
+              strokeWidth="2.5"
+              strokeDasharray="6 3"
             />
-            <circle cx="615" cy="145" r="3" fill="#818cf8" />
+            <circle cx="630" cy="115" r="3.5" fill="#818cf8" />
 
             {/* Fully connected branches from RS485 trunk directly into each Child Meter */}
             {/* Branch into Child 1 (Server Room) */}
             <path
-              d="M 615 305 L 725 305"
+              d="M 630 305 L 725 305"
               stroke="#818cf8"
-              strokeWidth="2"
-              strokeDasharray="5 3"
+              strokeWidth="2.5"
+              strokeDasharray="6 3"
             />
-            <circle cx="615" cy="305" r="2.5" fill="#818cf8" />
-            <circle cx="725" cy="305" r="3" fill="#818cf8" />
+            <circle cx="630" cy="305" r="3" fill="#818cf8" />
+            <circle cx="725" cy="305" r="3.5" fill="#818cf8" />
 
             {/* Branch into Child 2 (Office) */}
             <path
-              d="M 615 440 L 725 440"
+              d="M 630 440 L 725 440"
               stroke="#818cf8"
-              strokeWidth="2"
-              strokeDasharray="5 3"
+              strokeWidth="2.5"
+              strokeDasharray="6 3"
             />
-            <circle cx="615" cy="440" r="2.5" fill="#818cf8" />
-            <circle cx="725" cy="440" r="3" fill="#818cf8" />
+            <circle cx="630" cy="440" r="3" fill="#818cf8" />
+            <circle cx="725" cy="440" r="3.5" fill="#818cf8" />
 
             {/* Branch into Child 3 (Lab) */}
             <path
-              d="M 615 575 L 725 575"
+              d="M 630 575 L 725 575"
               stroke="#818cf8"
-              strokeWidth="2"
-              strokeDasharray="5 3"
+              strokeWidth="2.5"
+              strokeDasharray="6 3"
             />
-            <circle cx="615" cy="575" r="2.5" fill="#818cf8" />
-            <circle cx="725" cy="575" r="3" fill="#818cf8" />
+            <circle cx="630" cy="575" r="3" fill="#818cf8" />
+            <circle cx="725" cy="575" r="3.5" fill="#818cf8" />
 
-            <text x="510" y="137" fill="#818cf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
+            <text x="475" y="103" fill="#818cf8" fontSize="10" fontFamily="monospace" fontWeight="bold">
               RS485 MODBUS RTU
             </text>
 
-            {/* ================= 2. DASHED SKY-BLUE CONTROL LINES (GATEWAY TO CHILD METERS) ================= */}
-            {/* Seamless, fully connected control line dropping from Gateway port at (695, 137) */}
-            <circle cx="695" cy="137" r="3.5" fill="#38bdf8" />
+            {/* ================= 2. DASHED SKY-BLUE CONTROL LINES (DIRECT DAISY-CHAIN FROM GATEWAY) ================= */}
+            {/* Control line drops cleanly from bottom of Gateway at (700, 137) straight down the meter array */}
+            <circle cx="700" cy="137" r="3.5" fill="#38bdf8" />
             
-            {/* Vertical Control Trunk at x=650 */}
+            {/* Control Feeder from Gateway directly into top of Child 1 */}
             <path
-              d="M 695 137 L 650 137 L 650 510"
+              d="M 700 137 L 700 200 L 745 200 L 745 225"
               stroke="#38bdf8"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
+            <circle cx="745" cy="225" r="3" fill="#38bdf8" />
 
-            {/* Continuous Branch into Child 1 */}
+            {/* Control Feeder from bottom of Child 1 into top of Child 2 */}
             <path
-              d="M 650 240 L 725 240"
+              d="M 745 320 L 745 360"
               stroke="#38bdf8"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
-            <circle cx="650" cy="240" r="2.5" fill="#38bdf8" />
-            <circle cx="725" cy="240" r="3" fill="#38bdf8" />
+            <circle cx="745" cy="320" r="2.5" fill="#38bdf8" />
+            <circle cx="745" cy="360" r="3" fill="#38bdf8" />
 
-            {/* Continuous Branch into Child 2 */}
+            {/* Control Feeder from bottom of Child 2 into top of Child 3 */}
             <path
-              d="M 650 375 L 725 375"
+              d="M 745 455 L 745 495"
               stroke="#38bdf8"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
-            <circle cx="650" cy="375" r="2.5" fill="#38bdf8" />
-            <circle cx="725" cy="375" r="3" fill="#38bdf8" />
+            <circle cx="745" cy="455" r="2.5" fill="#38bdf8" />
+            <circle cx="745" cy="495" r="3" fill="#38bdf8" />
 
-            {/* Continuous Branch into Child 3 */}
-            <path
-              d="M 650 510 L 725 510"
-              stroke="#38bdf8"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-            />
-            <circle cx="650" cy="510" r="2.5" fill="#38bdf8" />
-            <circle cx="725" cy="510" r="3" fill="#38bdf8" />
-
-            <text x="656" y="180" fill="#38bdf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
+            <text x="708" y="180" fill="#38bdf8" fontSize="10" fontFamily="monospace" fontWeight="bold">
               CONTROL LINE
             </text>
 
-            {/* ================= 3. RED SOLID POWER BUS (SOLID, CONTINUOUS, UNBROKEN FROM LVMDP TO CHILD METERS) ================= */}
+            {/* ================= 3. RED SOLID POWER BUS (UNBROKEN FROM LVMDP TO METERS & LOADS) ================= */}
             {/* PLN Input into LVMDP */}
             <path
               d="M 10 350 L 90 350"
               stroke="#ef4444"
               strokeWidth="3.5"
-              strokeDasharray={currentStageIndex >= 0 ? "8 4" : "none"}
-              className={currentStageIndex >= 0 ? "animate-pulse" : ""}
+              className="animate-pulse"
             />
-            <text x="18" y="340" fill="#f87171" fontSize="9" fontFamily="monospace" fontWeight="bold">
-              PLN 380V AC &rarr;
+            <text x="12" y="338" fill="#f87171" fontSize="12" fontFamily="monospace" fontWeight="bold">
+              PLN 380V AC ⚡ &rarr;
             </text>
 
             {/* 3-Phase Bus from LVMDP passing directly into Current Transformer (CT) */}
@@ -509,11 +529,147 @@ export default function AnimatedEmsArchitecture() {
             <circle cx="773" cy="545" r="3" fill="#ef4444" />
             <circle cx="890" cy="545" r="3" fill="#ef4444" />
 
-            {/* ================= 4. ANIMATED TELEMETRY PACKET DOTS (INTERCONNECTING PARENT & CHILD METERS) ================= */}
+            {/* ================= 4. ANIMATED ELECTRICITY LIGHTNING ICONS TRAVELING ALONG POWER LINES ================= */}
+            {/* Bolt 1 & 2: PLN Grid feed flowing into LVMDP */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 10 350 L 90 350"
+                dur="1.2s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 10 350 L 90 350"
+                dur="1.2s"
+                begin="0.6s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 3 & 4: LVMDP to Current Transformer (CT) */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 170 345 L 355 345"
+                dur="1.5s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 170 345 L 355 345"
+                dur="1.5s"
+                begin="0.75s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 5: CT secondary feed up into Parent Smart KWH */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 395 315 L 395 190"
+                dur="1.4s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 6: Main Bus entering Child 1 (Server Room) */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 435 335 L 680 335 L 680 275 L 725 275"
+                dur="2.4s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 435 335 L 680 335 L 680 275 L 725 275"
+                dur="2.4s"
+                begin="1.2s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 7: Out of Child 1 into Load Group 1 */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 773 275 L 890 275"
+                dur="1.3s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 8: Main Bus entering Child 2 (Office) */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 435 345 L 680 345 L 680 410 L 725 410"
+                dur="2.5s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 435 345 L 680 345 L 680 410 L 725 410"
+                dur="2.5s"
+                begin="1.25s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 9: Out of Child 2 into Load Group 2 */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 773 410 L 890 410"
+                dur="1.3s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 10: Main Bus entering Child 3 (Lab) */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 435 355 L 680 355 L 680 545 L 725 545"
+                dur="2.6s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 435 355 L 680 355 L 680 545 L 725 545"
+                dur="2.6s"
+                begin="1.3s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* Bolt 11: Out of Child 3 into Load Group 3 */}
+            <use href="#electric-bolt">
+              <animateMotion
+                path="M 773 545 L 890 545"
+                dur="1.3s"
+                repeatCount="indefinite"
+                rotate="auto"
+              />
+            </use>
+
+            {/* ================= 5. ANIMATED TELEMETRY PACKET DOTS (RS485 BUS) ================= */}
             {/* Packet 1: Telemetry flowing from Child 1 directly into Parent Smart KWH */}
             <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
               <animateMotion
-                path="M 725 305 L 615 305 L 615 145 L 430 145"
+                path="M 725 305 L 630 305 L 630 115 L 430 115"
                 dur="2.5s"
                 repeatCount="indefinite"
               />
@@ -521,7 +677,7 @@ export default function AnimatedEmsArchitecture() {
             {/* Reverse Sync Packet from Parent KWH to Child 1 */}
             <circle r="3" fill="#818cf8" filter="url(#packet-glow)">
               <animateMotion
-                path="M 430 145 L 615 145 L 615 305 L 725 305"
+                path="M 430 115 L 630 115 L 630 305 L 725 305"
                 dur="2.5s"
                 begin="1.2s"
                 repeatCount="indefinite"
@@ -531,18 +687,9 @@ export default function AnimatedEmsArchitecture() {
             {/* Packet 2: Telemetry flowing from Child 2 into Parent Smart KWH */}
             <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
               <animateMotion
-                path="M 725 440 L 615 440 L 615 145 L 430 145"
+                path="M 725 440 L 630 440 L 630 115 L 430 115"
                 dur="3.0s"
                 begin="0.4s"
-                repeatCount="indefinite"
-              />
-            </circle>
-            {/* Reverse Sync Packet from Parent KWH to Child 2 */}
-            <circle r="3" fill="#818cf8" filter="url(#packet-glow)">
-              <animateMotion
-                path="M 430 145 L 615 145 L 615 440 L 725 440"
-                dur="3.0s"
-                begin="1.8s"
                 repeatCount="indefinite"
               />
             </circle>
@@ -550,33 +697,24 @@ export default function AnimatedEmsArchitecture() {
             {/* Packet 3: Telemetry flowing from Child 3 into Parent Smart KWH */}
             <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
               <animateMotion
-                path="M 725 575 L 615 575 L 615 145 L 430 145"
+                path="M 725 575 L 630 575 L 630 115 L 430 115"
                 dur="3.5s"
                 begin="0.8s"
                 repeatCount="indefinite"
               />
             </circle>
-            {/* Reverse Sync Packet from Parent KWH to Child 3 */}
-            <circle r="3" fill="#818cf8" filter="url(#packet-glow)">
-              <animateMotion
-                path="M 430 145 L 615 145 L 615 575 L 725 575"
-                dur="3.5s"
-                begin="2.2s"
-                repeatCount="indefinite"
-              />
-            </circle>
 
-            {/* Packet 4: Gateway MAC Discovery Query between Gateway and Parent Smart KWH */}
-            <circle r="3.8" fill="#38bdf8" filter="url(#packet-glow)">
+            {/* Packet 4: Gateway MAC Discovery query between Gateway and Parent Smart KWH */}
+            <circle r="3.8" fill="#818cf8" filter="url(#packet-glow)">
               <animateMotion
-                path="M 665 145 L 430 145"
+                path="M 665 115 L 430 115"
                 dur="1.8s"
                 repeatCount="indefinite"
               />
             </circle>
-            <circle r="3.8" fill="#38bdf8" filter="url(#packet-glow)">
+            <circle r="3.8" fill="#a5b4fc" filter="url(#packet-glow)">
               <animateMotion
-                path="M 430 145 L 665 145"
+                path="M 430 115 L 665 115"
                 dur="1.8s"
                 begin="0.9s"
                 repeatCount="indefinite"
@@ -586,41 +724,40 @@ export default function AnimatedEmsArchitecture() {
             {/* Packet 5: Gateway Remote Control Command Pulse flowing down directly to Child 1 */}
             <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
               <animateMotion
-                path="M 695 137 L 650 137 L 650 240 L 725 240"
-                dur="2.0s"
+                path="M 700 137 L 700 200 L 745 200 L 745 225"
+                dur="1.8s"
                 begin="0.2s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* Packet 6: Gateway Remote Control Command Pulse flowing down directly to Child 2 */}
+            {/* Packet 6: Gateway Remote Control Command Pulse flowing down through Child 2 */}
             <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
               <animateMotion
-                path="M 695 137 L 650 137 L 650 375 L 725 375"
-                dur="2.4s"
+                path="M 745 320 L 745 360"
+                dur="1.5s"
                 begin="0.7s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* Packet 7: Gateway Remote Control Command Pulse flowing down directly to Child 3 */}
+            {/* Packet 7: Gateway Remote Control Command Pulse flowing down through Child 3 */}
             <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
               <animateMotion
-                path="M 695 137 L 650 137 L 650 510 L 725 510"
-                dur="2.8s"
-                begin="1.3s"
+                path="M 745 455 L 745 495"
+                dur="1.5s"
+                begin="1.2s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* ================= 5. HARDWARE PHYSICAL COMPONENTS ================= */}
+            {/* ================= 6. HARDWARE PHYSICAL COMPONENTS WITH ENLARGED LABELS ================= */}
 
             {/* 1. LVMDP Cabinet (Left) */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("lvmdp");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("lvmdp")}
+              onMouseEnter={() => handleDeviceMouseEnter("lvmdp")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               <rect
@@ -629,8 +766,8 @@ export default function AnimatedEmsArchitecture() {
                 width="80"
                 height="270"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "lvmdp" ? "#f59e0b" : "#57534e"}
-                strokeWidth={selectedDeviceId === "lvmdp" ? 3 : 1.5}
+                stroke={activeDeviceId === "lvmdp" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeDeviceId === "lvmdp" ? 3.5 : 1.5}
                 rx="4"
               />
               {/* Cabinet legs */}
@@ -644,22 +781,21 @@ export default function AnimatedEmsArchitecture() {
               <circle cx="165" cy="335" r="3" fill="#ef4444" />
               <circle cx="165" cy="345" r="3" fill="#ef4444" />
               <circle cx="165" cy="355" r="3" fill="#ef4444" />
-              {/* Labels & Leader Lines */}
-              <text x="85" y="185" fill="#e7e5e4" fontSize="10" fontFamily="monospace" fontWeight="bold">
+              {/* Labels with larger font */}
+              <text x="80" y="180" fill="#f59e0b" fontSize="13" fontFamily="monospace" fontWeight="bold">
                 LVMDP 400 KW
               </text>
-              <text x="85" y="198" fill="#a8a29e" fontSize="9" fontFamily="monospace">
-                LVMDP 500 KVA
+              <text x="80" y="196" fill="#e7e5e4" fontSize="11" fontFamily="monospace">
+                500 KVA Main Panel
               </text>
               <line x1="130" y1="202" x2="130" y2="210" stroke="#a8a29e" strokeWidth="1" strokeDasharray="2 2" />
             </g>
 
             {/* 2. CURRENT TRANSFORMER (CT) (Center) */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("ct");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("ct")}
+              onMouseEnter={() => handleDeviceMouseEnter("ct")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               {/* Outer pill frame */}
@@ -669,8 +805,8 @@ export default function AnimatedEmsArchitecture() {
                 width="80"
                 height="48"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "ct" ? "#f59e0b" : "#57534e"}
-                strokeWidth={selectedDeviceId === "ct" ? 2.5 : 1.2}
+                stroke={activeDeviceId === "ct" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeDeviceId === "ct" ? 3 : 1.5}
                 rx="6"
                 strokeDasharray="4 2"
               />
@@ -679,17 +815,16 @@ export default function AnimatedEmsArchitecture() {
               <rect x="387" y="325" width="16" height="26" fill="#292524" stroke="#ef4444" strokeWidth="1.5" rx="2" />
               <rect x="409" y="325" width="16" height="26" fill="#292524" stroke="#ef4444" strokeWidth="1.5" rx="2" />
               {/* Label */}
-              <text x="330" y="380" fill="#e7e5e4" fontSize="9" fontFamily="monospace" fontWeight="bold">
-                CURRENT TRANSFORMER
+              <text x="325" y="382" fill="#e7e5e4" fontSize="12" fontFamily="monospace" fontWeight="bold">
+                CURRENT TRANSFORMER (CT)
               </text>
             </g>
 
             {/* 3. SMART KWH 3P (Parent / Master Meter) */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("parentKwh");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("parentKwh")}
+              onMouseEnter={() => handleDeviceMouseEnter("parentKwh")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               <rect
@@ -698,16 +833,16 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="135"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "parentKwh" ? "#f59e0b" : "#a8a29e"}
-                strokeWidth={selectedDeviceId === "parentKwh" ? 3 : 1.5}
+                stroke={activeDeviceId === "parentKwh" ? "#f59e0b" : "#a8a29e"}
+                strokeWidth={activeDeviceId === "parentKwh" ? 3.5 : 1.5}
                 rx="5"
               />
               {/* Meter LCD display */}
               <rect x="368" y="70" width="54" height="35" fill="#292524" stroke="#57534e" strokeWidth="1" rx="2" />
-              <text x="372" y="86" fill="#22c55e" fontSize="8" fontFamily="monospace">
+              <text x="372" y="87" fill="#22c55e" fontSize="11" fontFamily="monospace" fontWeight="bold">
                 4.28 kW
               </text>
-              <text x="372" y="98" fill="#a8a29e" fontSize="7" fontFamily="monospace">
+              <text x="372" y="100" fill="#a8a29e" fontSize="8" fontFamily="monospace">
                 3P 400A
               </text>
               {/* Optical port & button */}
@@ -719,20 +854,19 @@ export default function AnimatedEmsArchitecture() {
               <circle cx="402" cy="180" r="2.5" fill="#ef4444" />
               <circle cx="415" cy="180" r="2.5" fill="#38bdf8" />
               {/* Labels */}
-              <text x="290" y="40" fill="#e7e5e4" fontSize="10" fontFamily="monospace" fontWeight="bold">
-                SMART KWH 3P
+              <text x="270" y="38" fill="#f59e0b" fontSize="13" fontFamily="monospace" fontWeight="bold">
+                SMART KWH 3P (PARENT)
               </text>
-              <text x="290" y="52" fill="#a8a29e" fontSize="8" fontFamily="monospace">
+              <text x="270" y="52" fill="#a8a29e" fontSize="11" fontFamily="monospace">
                 CLOU CL730D22H · 3P 400 A
               </text>
             </g>
 
             {/* 4. GATEWAY (Top Right) */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("gateway");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("gateway")}
+              onMouseEnter={() => handleDeviceMouseEnter("gateway")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               {/* Antennas */}
@@ -747,30 +881,29 @@ export default function AnimatedEmsArchitecture() {
                 width="60"
                 height="32"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "gateway" ? "#38bdf8" : "#78716c"}
-                strokeWidth={selectedDeviceId === "gateway" ? 2.5 : 1.2}
+                stroke={activeDeviceId === "gateway" ? "#38bdf8" : "#78716c"}
+                strokeWidth={activeDeviceId === "gateway" ? 3 : 1.5}
                 rx="4"
               />
-              {/* Status LEDs */}
-              <circle cx="678" cy="120" r="2" fill="#22c55e" className="animate-ping" />
-              <circle cx="686" cy="120" r="2" fill="#22c55e" />
-              <circle cx="694" cy="120" r="2" fill="#38bdf8" />
-              <circle cx="702" cy="120" r="2" fill="#f59e0b" />
+              {/* Static Status LEDs (No stray ping circle) */}
+              <circle cx="678" cy="120" r="2.5" fill="#22c55e" />
+              <circle cx="686" cy="120" r="2.5" fill="#22c55e" />
+              <circle cx="694" cy="120" r="2.5" fill="#38bdf8" />
+              <circle cx="702" cy="120" r="2.5" fill="#f59e0b" />
               {/* Label */}
-              <text x="735" y="110" fill="#38bdf8" fontSize="10" fontFamily="monospace" fontWeight="bold">
-                GATEWAY
+              <text x="735" y="112" fill="#38bdf8" fontSize="13" fontFamily="monospace" fontWeight="bold">
+                IOT GATEWAY
               </text>
-              <text x="735" y="122" fill="#a8a29e" fontSize="8" fontFamily="monospace">
+              <text x="735" y="126" fill="#a8a29e" fontSize="11" fontFamily="monospace">
                 Kerlink IoT Concentrator
               </text>
             </g>
 
             {/* 5. CHILD SMART KWH 1P - METER 1 & LOAD GROUP 1 */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("childKwh1");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("childKwh1")}
+              onMouseEnter={() => handleDeviceMouseEnter("childKwh1")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               {/* Meter 1 */}
@@ -780,29 +913,28 @@ export default function AnimatedEmsArchitecture() {
                 width="48"
                 height="95"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "childKwh1" ? "#f59e0b" : "#78716c"}
-                strokeWidth={selectedDeviceId === "childKwh1" ? 2.5 : 1.2}
+                stroke={activeDeviceId === "childKwh1" ? "#f59e0b" : "#78716c"}
+                strokeWidth={activeDeviceId === "childKwh1" ? 3 : 1.5}
                 rx="4"
               />
               <rect x="731" y="235" width="36" height="22" fill="#292524" stroke="#57534e" strokeWidth="0.8" rx="2" />
-              <text x="735" y="249" fill={isRelay1Active ? "#22c55e" : "#ef4444"} fontSize="7" fontFamily="monospace">
-                {isRelay1Active ? "1.85 kW" : "0.0 kW"}
+              <text x="734" y="250" fill={isRelay1Active ? "#22c55e" : "#ef4444"} fontSize="10" fontFamily="monospace" fontWeight="bold">
+                {isRelay1Active ? "1.85kW" : "0.0kW"}
               </text>
               <circle cx="738" cy="270" r="3.5" fill="#44403c" />
               <circle cx="740" cy="310" r="2" fill="#ef4444" />
               <circle cx="755" cy="310" r="2" fill="#ef4444" />
               {/* Label */}
-              <text x="725" y="215" fill="#e7e5e4" fontSize="8" fontFamily="monospace" fontWeight="bold">
-                SMART KWH 1P · 100A
+              <text x="725" y="215" fill="#e7e5e4" fontSize="11" fontFamily="monospace" fontWeight="bold">
+                CHILD 1 (1P · 100A)
               </text>
             </g>
 
             {/* LOAD GROUP 1 */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("load1");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("load1")}
+              onMouseEnter={() => handleDeviceMouseEnter("load1")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               <rect
@@ -811,8 +943,8 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="65"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "load1" ? "#f59e0b" : "#57534e"}
-                strokeWidth={selectedDeviceId === "load1" ? 2.5 : 1}
+                stroke={activeDeviceId === "load1" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeDeviceId === "load1" ? 3 : 1.2}
                 rx="3"
               />
               {/* Terminal screw rows */}
@@ -822,20 +954,19 @@ export default function AnimatedEmsArchitecture() {
               <circle cx="905" cy="285" r="3" fill="#ef4444" />
               <circle cx="925" cy="285" r="3" fill="#ef4444" />
               <circle cx="945" cy="285" r="3" fill="#ef4444" />
-              <text x="970" y="280" fill="#e7e5e4" fontSize="9" fontFamily="monospace" fontWeight="bold">
+              <text x="970" y="278" fill="#e7e5e4" fontSize="12" fontFamily="monospace" fontWeight="bold">
                 LOAD GROUP 1
               </text>
-              <text x="970" y="292" fill="#a8a29e" fontSize="7" fontFamily="monospace">
+              <text x="970" y="294" fill="#a8a29e" fontSize="10" fontFamily="monospace">
                 Server &amp; Inverter AC
               </text>
             </g>
 
             {/* 6. CHILD SMART KWH 1P - METER 2 & LOAD GROUP 2 */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("childKwh2");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("childKwh2")}
+              onMouseEnter={() => handleDeviceMouseEnter("childKwh2")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               {/* Meter 2 */}
@@ -845,29 +976,28 @@ export default function AnimatedEmsArchitecture() {
                 width="48"
                 height="95"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "childKwh2" ? "#f59e0b" : "#78716c"}
-                strokeWidth={selectedDeviceId === "childKwh2" ? 2.5 : 1.2}
+                stroke={activeDeviceId === "childKwh2" ? "#f59e0b" : "#78716c"}
+                strokeWidth={activeDeviceId === "childKwh2" ? 3 : 1.5}
                 rx="4"
               />
               <rect x="731" y="370" width="36" height="22" fill="#292524" stroke="#57534e" strokeWidth="0.8" rx="2" />
-              <text x="735" y="384" fill="#22c55e" fontSize="7" fontFamily="monospace">
-                1.45 kW
+              <text x="734" y="385" fill="#22c55e" fontSize="10" fontFamily="monospace" fontWeight="bold">
+                1.45kW
               </text>
               <circle cx="738" cy="405" r="3.5" fill="#44403c" />
               <circle cx="740" cy="445" r="2" fill="#ef4444" />
               <circle cx="755" cy="445" r="2" fill="#ef4444" />
               {/* Label */}
-              <text x="725" y="350" fill="#e7e5e4" fontSize="8" fontFamily="monospace" fontWeight="bold">
-                SMART KWH 1P · 100A
+              <text x="725" y="350" fill="#e7e5e4" fontSize="11" fontFamily="monospace" fontWeight="bold">
+                CHILD 2 (1P · 100A)
               </text>
             </g>
 
             {/* LOAD GROUP 2 */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("load2");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("load2")}
+              onMouseEnter={() => handleDeviceMouseEnter("load2")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               <rect
@@ -876,8 +1006,8 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="65"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "load2" ? "#f59e0b" : "#57534e"}
-                strokeWidth={selectedDeviceId === "load2" ? 2.5 : 1}
+                stroke={activeDeviceId === "load2" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeDeviceId === "load2" ? 3 : 1.2}
                 rx="3"
               />
               <circle cx="905" cy="395" r="3" fill="#a8a29e" />
@@ -886,20 +1016,19 @@ export default function AnimatedEmsArchitecture() {
               <circle cx="905" cy="420" r="3" fill="#ef4444" />
               <circle cx="925" cy="420" r="3" fill="#ef4444" />
               <circle cx="945" cy="420" r="3" fill="#ef4444" />
-              <text x="970" y="415" fill="#e7e5e4" fontSize="9" fontFamily="monospace" fontWeight="bold">
+              <text x="970" y="413" fill="#e7e5e4" fontSize="12" fontFamily="monospace" fontWeight="bold">
                 LOAD GROUP 2
               </text>
-              <text x="970" y="427" fill="#a8a29e" fontSize="7" fontFamily="monospace">
+              <text x="970" y="429" fill="#a8a29e" fontSize="10" fontFamily="monospace">
                 Office Workstations
               </text>
             </g>
 
             {/* 7. CHILD SMART KWH 1P - METER 3 & LOAD GROUP 3 */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("childKwh3");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("childKwh3")}
+              onMouseEnter={() => handleDeviceMouseEnter("childKwh3")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               {/* Meter 3 */}
@@ -909,29 +1038,28 @@ export default function AnimatedEmsArchitecture() {
                 width="48"
                 height="95"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "childKwh3" ? "#f59e0b" : "#78716c"}
-                strokeWidth={selectedDeviceId === "childKwh3" ? 2.5 : 1.2}
+                stroke={activeDeviceId === "childKwh3" ? "#f59e0b" : "#78716c"}
+                strokeWidth={activeDeviceId === "childKwh3" ? 3 : 1.5}
                 rx="4"
               />
               <rect x="731" y="505" width="36" height="22" fill="#292524" stroke="#57534e" strokeWidth="0.8" rx="2" />
-              <text x="735" y="519" fill="#22c55e" fontSize="7" fontFamily="monospace">
-                0.68 kW
+              <text x="734" y="520" fill="#22c55e" fontSize="10" fontFamily="monospace" fontWeight="bold">
+                0.68kW
               </text>
               <circle cx="738" cy="540" r="3.5" fill="#44403c" />
               <circle cx="740" cy="580" r="2" fill="#ef4444" />
               <circle cx="755" cy="580" r="2" fill="#ef4444" />
               {/* Label */}
-              <text x="725" y="485" fill="#e7e5e4" fontSize="8" fontFamily="monospace" fontWeight="bold">
-                SMART KWH 1P · 100A
+              <text x="725" y="485" fill="#e7e5e4" fontSize="11" fontFamily="monospace" fontWeight="bold">
+                CHILD 3 (1P · 100A)
               </text>
             </g>
 
             {/* LOAD GROUP 3 */}
             <g
-              onClick={() => {
-                setSelectedDeviceId("load3");
-                setIsAutoPlaying(false);
-              }}
+              onClick={() => handleDeviceClick("load3")}
+              onMouseEnter={() => handleDeviceMouseEnter("load3")}
+              onMouseLeave={handleDeviceMouseLeave}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               <rect
@@ -940,8 +1068,8 @@ export default function AnimatedEmsArchitecture() {
                 width="70"
                 height="65"
                 fill="#1c1917"
-                stroke={selectedDeviceId === "load3" ? "#f59e0b" : "#57534e"}
-                strokeWidth={selectedDeviceId === "load3" ? 2.5 : 1}
+                stroke={activeDeviceId === "load3" ? "#f59e0b" : "#57534e"}
+                strokeWidth={activeDeviceId === "load3" ? 3 : 1.2}
                 rx="3"
               />
               <circle cx="905" cy="530" r="3" fill="#a8a29e" />
@@ -950,114 +1078,113 @@ export default function AnimatedEmsArchitecture() {
               <circle cx="905" cy="555" r="3" fill="#ef4444" />
               <circle cx="925" cy="555" r="3" fill="#ef4444" />
               <circle cx="945" cy="555" r="3" fill="#ef4444" />
-              <text x="970" y="550" fill="#e7e5e4" fontSize="9" fontFamily="monospace" fontWeight="bold">
+              <text x="970" y="548" fill="#e7e5e4" fontSize="12" fontFamily="monospace" fontWeight="bold">
                 LOAD GROUP 3
               </text>
-              <text x="970" y="562" fill="#a8a29e" fontSize="7" fontFamily="monospace">
+              <text x="970" y="564" fill="#a8a29e" fontSize="10" fontFamily="monospace">
                 Lab &amp; LED Lighting
               </text>
             </g>
           </svg>
         </div>
 
-        {/* Real-time Flow Phase Banner */}
-        <div className="flex flex-col gap-1.5 rounded-lg border border-stone-800 bg-stone-900/80 p-3">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-xs font-bold text-amber-400">
-              {activeStage.title}
-            </span>
-            <span className="font-mono text-[10px] text-stone-400">
-              Active Focus: <strong className="text-stone-200">{DEVICES[activeStage.focusDeviceId]?.codeName}</strong>
-            </span>
-          </div>
-          <p className="font-[var(--cs-font-sans)] text-xs text-stone-300">
-            {activeStage.description}
-          </p>
-        </div>
-      </div>
+        {/* ================= INTERACTIVE FLOATING DEVICE DETAIL POPOVER ================= */}
+        <AnimatePresence>
+          {showPopover && activeDevice && (
+            <motion.div
+              key={activeDevice.id}
+              initial={{ opacity: 0, y: 14, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 14, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              className="pointer-events-auto mt-2 rounded-xl border border-stone-700/80 bg-stone-900/95 p-4 sm:p-5 shadow-2xl backdrop-blur-md"
+            >
+              {/* Header */}
+              <div className="flex flex-col gap-2 border-b border-stone-800 pb-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-0.5 font-mono text-xs font-bold uppercase tracking-wider">
+                    {activeDevice.category.toUpperCase()} COMPONENT
+                  </span>
+                  <div>
+                    <h4 className="font-serif text-base sm:text-lg font-bold text-white tracking-tight">
+                      {activeDevice.name}
+                    </h4>
+                    <span className="font-mono text-xs sm:text-sm font-semibold text-amber-400">
+                      Model / Hardware Tag: {activeDevice.codeName}
+                    </span>
+                  </div>
+                </div>
 
-      {/* Device Inspector & Function Explanation Card */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeDevice.id}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.25 }}
-          className="flex flex-col gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5 sm:p-6"
-        >
-          {/* Header */}
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-[var(--cs-color-border)] pb-3">
-            <div className="flex items-center gap-3">
-              <span className="rounded bg-[var(--cs-color-accent)] px-2.5 py-0.5 font-mono text-xs font-bold text-white uppercase">
-                {activeDevice.category.toUpperCase()} COMPONENT
-              </span>
-              <div>
-                <h4 className="font-mono text-sm font-bold text-[var(--cs-color-text-primary)]">
-                  {activeDevice.name}
-                </h4>
-                <span className="font-mono text-[11px] text-[var(--cs-color-text-muted)]">
-                  Model / Hardware Identifier: {activeDevice.codeName}
+                <div className="flex items-center gap-3">
+                  {/* If Child 1 is selected, provide live toggle control demo */}
+                  {activeDevice.id === "childKwh1" && (
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs text-stone-300">Live Relay Simulation:</span>
+                      <button
+                        type="button"
+                        onClick={() => setIsRelay1Active(!isRelay1Active)}
+                        className={`rounded px-3 py-1 font-mono text-xs font-bold uppercase transition-all shadow-sm ${
+                          isRelay1Active
+                            ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                            : "bg-red-600 text-white hover:bg-red-700"
+                        }`}
+                      >
+                        {isRelay1Active ? "Relay Closed (ON)" : "Relay Tripped (OFF)"}
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Close Popover Button */}
+                  <button
+                    type="button"
+                    onClick={() => setShowPopover(false)}
+                    aria-label="Dismiss device info"
+                    className="rounded-lg border border-stone-700 bg-stone-800/80 px-2.5 py-1 font-mono text-xs text-stone-300 transition-colors hover:bg-stone-700 hover:text-white"
+                  >
+                    ✕ Close
+                  </button>
+                </div>
+              </div>
+
+              {/* Function & Electrical Flow */}
+              <div className="mt-3.5 grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <div className="flex flex-col gap-1.5">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
+                    Primary Operational Function:
+                  </span>
+                  <p className="font-[var(--cs-font-sans)] text-xs sm:text-sm leading-relaxed text-stone-200">
+                    {activeDevice.functionSummary}
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
+                    Electrical Flow &amp; Telemetry Role:
+                  </span>
+                  <p className="font-[var(--cs-font-sans)] text-xs sm:text-sm leading-relaxed text-stone-200">
+                    {activeDevice.electricalRole}
+                  </p>
+                </div>
+              </div>
+
+              {/* Technical Specifications */}
+              <div className="mt-3.5 rounded-lg border border-stone-800 bg-black/50 p-3">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-stone-400">
+                  Engineering Specifications:
                 </span>
+                <ul className="mt-1.5 grid grid-cols-1 gap-2 text-xs text-stone-300 sm:grid-cols-3 font-mono">
+                  {activeDevice.specifications.map((spec, i) => (
+                    <li key={i} className="flex items-start gap-1.5 text-xs">
+                      <span className="text-amber-400 font-bold">&bull;</span>
+                      <span>{spec}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-
-            {/* If Child 1 is selected, provide live toggle control demo */}
-            {activeDevice.id === "childKwh1" && (
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-[var(--cs-color-text-secondary)]">Live AC Relay Simulation:</span>
-                <button
-                  type="button"
-                  onClick={() => setIsRelay1Active(!isRelay1Active)}
-                  className={`rounded px-3 py-1 font-mono text-xs font-bold uppercase transition-all ${
-                    isRelay1Active
-                      ? "bg-emerald-600 text-white hover:bg-emerald-700 shadow-xs"
-                      : "bg-red-600 text-white hover:bg-red-700 shadow-xs"
-                  }`}
-                >
-                  {isRelay1Active ? "Relay Closed (ON)" : "Relay Tripped (OFF)"}
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Description & Function */}
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <div className="flex flex-col gap-1.5">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-                Device Function &amp; Purpose:
-              </span>
-              <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                {activeDevice.functionSummary}
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-                Electrical Current &amp; Telemetry Flow:
-              </span>
-              <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                {activeDevice.electricalRole}
-              </p>
-            </div>
-          </div>
-
-          {/* Technical Specifications */}
-          <div className="rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-              Technical Specifications in Schematic:
-            </span>
-            <ul className="mt-1.5 grid grid-cols-1 gap-2 text-xs text-[var(--cs-color-text-secondary)] sm:grid-cols-3">
-              {activeDevice.specifications.map((spec, i) => (
-                <li key={i} className="flex items-start gap-1.5 font-mono text-[11px]">
-                  <span className="text-[var(--cs-color-accent)] font-bold">&bull;</span>
-                  <span>{spec}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }

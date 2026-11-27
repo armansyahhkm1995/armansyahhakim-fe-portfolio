@@ -6,7 +6,7 @@ interface DeviceFunctionInfo {
   id: string;
   title: string;
   functionSummary: string;
-  tooltipPos: { x: number; y: number; width: number };
+  tooltipPos: { x: number; y: number; width: number; height?: number };
 }
 
 const DEVICE_FUNCTIONS: Record<string, DeviceFunctionInfo> = {
@@ -14,71 +14,71 @@ const DEVICE_FUNCTIONS: Record<string, DeviceFunctionInfo> = {
     id: "lvmdp",
     title: "LVMDP 400KW / 500KVA",
     functionSummary:
-      "Receives & stabilizes 380V/220V grid and genset power, routing main copper busbar energy with master ACB & MCCB protection.",
-    tooltipPos: { x: 180, y: 220, width: 225 },
+      "Stabilizes 380V/220V grid/genset feeds and routes master busbar power via ACB & MCCB.",
+    tooltipPos: { x: 180, y: 210, width: 250, height: 140 },
   },
   ct: {
     id: "ct",
     title: "Current Transformer (CT)",
     functionSummary:
-      "Inductively steps down heavy busbar current (400A:5A) so the master 3-Phase meter can sample campus load safely.",
-    tooltipPos: { x: 270, y: 380, width: 230 },
+      "Steps down busbar current (400A:5A) so the 3-Phase master meter samples campus load safely.",
+    tooltipPos: { x: 270, y: 375, width: 250, height: 140 },
   },
   parentKwh: {
     id: "parentKwh",
     title: "Smart kWh 3P (Parent)",
     functionSummary:
-      "Master digital meter measuring total campus power (kW/kWh), power factor, and indexing all subordinate room submeters.",
-    tooltipPos: { x: 440, y: 55, width: 220 },
+      "Master 3-Phase digital meter measuring campus load (kW/kWh) and indexing room submeters.",
+    tooltipPos: { x: 440, y: 55, width: 250, height: 140 },
   },
   gateway: {
     id: "gateway",
     title: "IoT Gateway",
     functionSummary:
-      "Scans meter MAC addresses on RS485 bus, packages MQTT telemetry to the cloud, and relays remote control commands.",
-    tooltipPos: { x: 735, y: 135, width: 220 },
+      "Maps meter MAC addresses, bridges MQTT telemetry to cloud, and relays remote trip commands.",
+    tooltipPos: { x: 735, y: 125, width: 250, height: 140 },
   },
   childKwh1: {
     id: "childKwh1",
     title: "Child 1 (Server Room)",
     functionSummary:
-      "Monitors server rack & precision AC power; equipped with a 100A latching relay for instant remote emergency shut-off.",
-    tooltipPos: { x: 500, y: 225, width: 215 },
+      "Monitors server rack & precision AC loads with an internal relay for instant emergency cut-off.",
+    tooltipPos: { x: 450, y: 215, width: 255, height: 140 },
   },
   load1: {
     id: "load1",
     title: "Load Group 1",
     functionSummary:
-      "Terminal distribution block routing metered power to critical server rack PDUs and inverter precision air conditioning.",
-    tooltipPos: { x: 970, y: 245, width: 180 },
+      "Feeds mission-critical server rack PDUs and inverter precision air conditioning.",
+    tooltipPos: { x: 955, y: 215, width: 200, height: 140 },
   },
   childKwh2: {
     id: "childKwh2",
     title: "Child 2 (Office)",
     functionSummary:
-      "Tracks workstation computer power and prevents off-hours phantom energy waste through automated scheduling.",
-    tooltipPos: { x: 500, y: 360, width: 215 },
+      "Tracks office workstation PC consumption and cuts phantom energy during off-hours.",
+    tooltipPos: { x: 450, y: 340, width: 255, height: 140 },
   },
   load2: {
     id: "load2",
     title: "Load Group 2",
     functionSummary:
-      "Sub-distribution block supplying desktop PC terminals, computing workstations, and office monitors.",
-    tooltipPos: { x: 970, y: 380, width: 180 },
+      "Distributes metered power across desktop computer terminals and office monitors.",
+    tooltipPos: { x: 955, y: 350, width: 200, height: 140 },
   },
   childKwh3: {
     id: "childKwh3",
     title: "Child 3 (Lab)",
     functionSummary:
-      "Monitors high-efficiency laboratory bay lighting arrays and continuous exhaust ventilation blower fans.",
-    tooltipPos: { x: 500, y: 495, width: 215 },
+      "Monitors high-efficiency laboratory bay lighting arrays and exhaust ventilation fans.",
+    tooltipPos: { x: 450, y: 445, width: 255, height: 140 },
   },
   load3: {
     id: "load3",
     title: "Load Group 3",
     functionSummary:
-      "Distribution terminal powering laboratory test benches, exhaust ventilation blowers, and overhead LED arrays.",
-    tooltipPos: { x: 970, y: 515, width: 180 },
+      "Powers laboratory test benches, exhaust ventilation blowers, and bay lighting.",
+    tooltipPos: { x: 955, y: 445, width: 200, height: 140 },
   },
 };
 
@@ -1015,15 +1015,16 @@ export default function AnimatedEmsArchitecture() {
                 x={activeTooltipDevice.tooltipPos.x}
                 y={activeTooltipDevice.tooltipPos.y}
                 width={activeTooltipDevice.tooltipPos.width}
-                height="95"
+                height={activeTooltipDevice.tooltipPos.height || 140}
+                style={{ overflow: "visible" }}
                 className="pointer-events-none transition-all duration-150"
               >
-                <div className="rounded-lg border border-amber-500/90 bg-stone-900/95 p-2.5 shadow-2xl backdrop-blur-md">
+                <div className="h-auto w-full rounded-lg border border-amber-500/90 bg-stone-900/95 p-2.5 shadow-2xl backdrop-blur-md">
                   <div className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-amber-400 uppercase tracking-wider">
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
                     <span>{activeTooltipDevice.title} · Function</span>
                   </div>
-                  <p className="mt-1 font-[var(--cs-font-sans)] text-[11px] leading-snug text-stone-200">
+                  <p className="mt-1 font-[var(--cs-font-sans)] text-[11px] leading-[1.4] text-stone-200">
                     {activeTooltipDevice.functionSummary}
                   </p>
                 </div>

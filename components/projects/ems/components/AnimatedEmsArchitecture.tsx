@@ -20,13 +20,13 @@ const DEVICES: Record<string, DeviceNode> = {
     codeName: "LVMDP 400 KW / 500 KVA",
     category: "power",
     functionSummary:
-      "Menerima pasokan daya utama dari jaringan tegangan menengah PLN dan generator cadangan. Berfungsi sebagai gardu induk distribusi tegangan rendah (380V/220V) yang membagi jalur tenaga, menstabilkan arus listrik, serta menyediakan proteksi pemutus beban utama (MCCB).",
+      "Receives primary medium-voltage power feed from the utility grid (PLN) and backup diesel generators. Operates as the central low-voltage distribution hub (380V/220V), stabilizing current, routing electrical busbars, and providing master circuit protection via Air Circuit Breakers (ACB) and MCCB.",
     electricalRole:
-      "Arus AC 3-fase dari PLN/Genset masuk ke LVMDP, disalurkan ke busbar tembaga utama, dan dikondisikan agar aman masuk ke rangkaian pengukuran Parent Smart kWh dan Child Smart kWh.",
+      "3-Phase AC power from grid/generator enters the LVMDP busbar assembly, where it is conditioned and channeled safely into the metering arrays of the Parent Smart kWh and downstream Child Smart kWh units.",
     specifications: [
-      "Kapasitas: 400 kW / 500 kVA",
-      "Tegangan Operasional: 380V AC 3-Phase / 220V 1-Phase 50Hz",
-      "Proteksi: Air Circuit Breaker (ACB) & Molded Case Circuit Breaker (MCCB)",
+      "Capacity: 400 kW / 500 kVA",
+      "Operating Voltage: 380V AC 3-Phase / 220V 1-Phase 50Hz",
+      "Protection: Air Circuit Breaker (ACB) & Molded Case Circuit Breaker (MCCB)",
     ],
   },
   ct: {
@@ -35,28 +35,28 @@ const DEVICES: Record<string, DeviceNode> = {
     codeName: "3x CT Toroidal Coils",
     category: "power",
     functionSummary:
-      "Sensor transformator arus yang dipasang pada tiap fasa kabel daya (R, S, T). Berfungsi menurunkan arus listrik tinggi dari busbar ke rasio aman (misal 400A:5A) sehingga dapat diukur secara presisi oleh Smart KWH 3-Phase tanpa merusak instrumen.",
+      "Current transformer induction sensors installed on each active phase conductor (R, S, T). Steps down high busbar amperage to a precise secondary measurement ratio (e.g., 400A:5A), enabling the 3-Phase Smart kWh meter to safely and accurately sample heavy loads without instrument damage.",
     electricalRole:
-      "Mendeteksi medan magnet induksi arus bolak-balik yang melintas dari LVMDP dan mengirimkan sinyal arus pengukuran sekunder ke Smart KWH 3P.",
+      "Detects alternating electromagnetic fields across LVMDP feeder conductors and delivers secondary proportional current signals directly to the 3-Phase Parent Smart kWh meter.",
     specifications: [
-      "Konfigurasi: 3 Unit (Fasa R, S, T)",
-      "Rasio Induksi: 400A / 5A Precision Class 0.5S",
-      "Tipe Isolasi: Cast Resin 600V Dry-Type",
+      "Configuration: 3 Units (Phases R, S, T)",
+      "Induction Ratio: 400A / 5A (Accuracy Class 0.5S)",
+      "Insulation: Cast Resin 600V Dry-Type",
     ],
   },
   parentKwh: {
     id: "parentKwh",
-    name: "Smart KWH 3P (Parent / Master Meter)",
+    name: "Smart kWh 3P (Parent / Master Meter)",
     codeName: "CLOU CL730D22H (3P 400 A)",
     category: "master",
     functionSummary:
-      "KWH meter cerdas 3-fase induk yang bertindak sebagai master pengukur seluruh konsumsi energi kampus. Mengagregasi data dari CT, mengukur voltase, arus, faktor daya, serta mendata seluruh Smart KWH Child di tiap ruangan.",
+      "High-precision 3-phase master digital energy meter monitoring the entire campus intake. Aggregates primary CT current feeds, computes voltage, current, active/reactive power factor, and indexes telemetry from all subordinate Child Smart kWh submeters across all building zones.",
     electricalRole:
-      "Menghitung total energi masuk (kWh), lonjakan daya puncak (kW), dan keseimbangan fasa. Terhubung melalui jalur komunikasi serial RS485 Modbus ke Gateway dan software EMS pusat.",
+      "Measures total incoming active energy (kWh), peak demand (kW), and phase balance. Interfaces through serial RS485 Modbus RTU loops to the IoT Gateway and cloud EMS server.",
     specifications: [
       "Rating: 3-Phase 4-Wire, 400 A",
-      "Akurasi: Active Energy Class 0.5S / Reactive Class 2.0",
-      "Komunikasi: RS485 Modbus RTU / DLMS-COSEM Protocol",
+      "Accuracy: Active Energy Class 0.5S / Reactive Class 2.0",
+      "Communication: RS485 Modbus RTU / DLMS-COSEM Protocol",
     ],
   },
   gateway: {
@@ -65,58 +65,58 @@ const DEVICES: Record<string, DeviceNode> = {
     codeName: "Kerlink Industrial Gateway",
     category: "gateway",
     functionSummary:
-      "Otak telekomunikasi sistem IoT di gardu. Mendata identitas unik hardware (MAC Address) semua Smart KWH meter di jaringan kabel maupun nirkabel, memetakan mana yang berperan sebagai Parent dan mana Child, serta menjadi jembatan dua arah ke Software EMS.",
+      "The field communications hub of the substation. Automatically discovers hardware MAC addresses of all meters on the RS485 bus, maps Parent vs. Child roles, securely packages telemetry into MQTT payloads over cellular 4G/LTE, and routes remote relay control commands from the EMS software.",
     electricalRole:
-      "Melakukan polling data register Modbus dari Smart KWH, membungkusnya menjadi paket data terenkripsi (MQTT/HTTPS), dan menerima sinyal kontrol relai (Control Line) dari software EMS untuk mematikan/menyalakan sirkuit.",
+      "Polls Modbus register maps from both Parent and Child meters, buffers data during network outages, and dispatches remote actuation signals to trip or close individual room submeter relays.",
     specifications: [
-      "Antarmuka: RS485 Bus + Dual External 4G/LTE Antennas",
-      "Protokol: Modbus-to-MQTT Telemetry Bridge",
-      "Fitur: Auto MAC Address Discovery, On-Board Buffer Flash Storage",
+      "Interfaces: RS485 Bus + Dual 4G/LTE External Antennas",
+      "Protocol: Modbus-to-MQTT Telemetry Bridge",
+      "Features: Auto Hardware MAC Discovery, Non-volatile Flash Buffer",
     ],
   },
   childKwh1: {
     id: "childKwh1",
-    name: "Smart KWH 1P (Child 1 - Ruang Server & AC)",
+    name: "Smart kWh 1P (Child 1 - Server Room & Precision AC)",
     codeName: "CLOU CL710K24 (1P 100 A)",
     category: "child",
     functionSummary:
-      "KWH meter cerdas 1-fase anak yang mengawasi konsumsi listrik di Ruang Server. Dilengkapi relai mekanikal internal berkapasitas tinggi untuk proteksi overload dan kendali jarak jauh.",
+      "Single-phase smart submeter monitoring critical server rack power and precision cooling. Equipped with a heavy-duty internal latching relay for remote cut-off and automated overload tripping.",
     electricalRole:
-      "Mencatat pemakaian beban server rack dan sistem pendingin presisi. Meneruskan data telemetri ke Parent Smart kWh dan Gateway, serta dapat diputus langsung melalui perintah software EMS.",
+      "Samples high-density IT loads and precision inverter AC circuits. Streams energy telemetry to the Parent meter and Gateway, supporting instant remote emergency shutdown via the EMS dashboard.",
     specifications: [
       "Rating: 1-Phase 2-Wire, 100 A",
-      "Relai Internal: 100A Latching Remote Cut-Off Relay",
-      "Beban Terpasang: Inverter Precision AC (1,850 W) & Rack PDU",
+      "Internal Relay: 100A Latching Remote Cut-Off Relay",
+      "Connected Load: Inverter Precision AC (1,850 W) & Server Rack PDU",
     ],
   },
   childKwh2: {
     id: "childKwh2",
-    name: "Smart KWH 1P (Child 2 - Ruang Kantor & Workstation)",
+    name: "Smart kWh 1P (Child 2 - Office & Workstations)",
     codeName: "CLOU CL710K24 (1P 100 A)",
     category: "child",
     functionSummary:
-      "KWH meter cerdas 1-fase anak yang mengawasi beban sirkuit stopkontak dan komputer staf kerja. Mencegah pemborosan listrik di luar jam kantor via jadwal otomatis.",
+      "Single-phase smart submeter tracking office desk outlets and workstation computers. Prevents off-hours energy waste through scheduled automated cut-offs.",
     electricalRole:
-      "Mencatat tarikan daya komputer PC, monitor, dan printer. Mendeteksi arus bocor dan standby power saat ruangan kosong.",
+      "Measures continuous draw from desktop PCs, displays, and peripheral clusters. Detects phantom loads and off-hours energy spikes when rooms are unoccupied.",
     specifications: [
       "Rating: 1-Phase 2-Wire, 100 A",
-      "Beban Terpasang: 12x Workstation PC (Total 1,450 W)",
-      "Fitur: Deteksi anomali konsumsi malam hari (Off-hours surge)",
+      "Connected Load: 12x Workstation PCs (Total 1,450 W)",
+      "Feature: Anomaly Detection (Off-hours surge monitoring)",
     ],
   },
   childKwh3: {
     id: "childKwh3",
-    name: "Smart KWH 1P (Child 3 - Ruang Lab & Workshop)",
+    name: "Smart kWh 1P (Child 3 - Lab & Lighting)",
     codeName: "CLOU CL710K24 (1P 100 A)",
     category: "child",
     functionSummary:
-      "KWH meter cerdas 1-fase anak untuk sirkuit pencahayaan LED dan kipas ventilasi/exhaust gedung.",
+      "Single-phase smart submeter dedicated to building lighting loops and high-flow ventilation blower fans.",
     electricalRole:
-      "Menghitung konsumsi energi penerangan zonasi. Terhubung ke sistem otomatisasi timer dan sensor manual.",
+      "Monitors zonal illumination and exhaust air circulation. Syncs with facility schedule timers to enforce building operating hours.",
     specifications: [
       "Rating: 1-Phase 2-Wire, 100 A",
-      "Beban Terpasang: Exhaust Blower & LED Bay Lighting (680 W)",
-      "Fitur: Sinkronisasi waktu operasional gedung",
+      "Connected Load: Exhaust Blower & LED Bay Lighting (680 W)",
+      "Feature: Facility Operating Schedule Synchronization",
     ],
   },
   load1: {
@@ -125,9 +125,9 @@ const DEVICES: Record<string, DeviceNode> = {
     codeName: "Modular Distribution Terminal Block 1",
     category: "load",
     functionSummary:
-      "Blok terminal distribusi pemutus daya miniatur (MCB) yang membagi pasokan listrik langsung ke stopkontak server dan pendingin ruangan.",
+      "Sub-distribution circuit breaker block (MCBs) routing dedicated feeds to server racks and precision cooling.",
     electricalRole:
-      "Menerima listrik 100A yang telah diukur dan diproteksi oleh Child Meter 1, lalu menyalurkannya ke perangkat akhir.",
+      "Receives 100A metered and relay-protected power from Child Meter 1, channeling it to critical server infrastructure.",
     specifications: ["Terminal: 8-Pole Screw Clamp Bus", "MCB Feed: 16A Server + 20A AC Inverter"],
   },
   load2: {
@@ -136,9 +136,9 @@ const DEVICES: Record<string, DeviceNode> = {
     codeName: "Modular Distribution Terminal Block 2",
     category: "load",
     functionSummary:
-      "Blok terminal distribusi pemutus daya untuk deretan meja kerja, stopkontak meja komputer, dan monitor staf.",
+      "Branch distribution block supplying power across office desk clusters, computing terminals, and monitors.",
     electricalRole:
-      "Menerima listrik dari Child Meter 2 untuk menyuplai peralatan komputer di lantai kantor.",
+      "Receives metered power from Child Meter 2 to energize workstation outlets and desktop equipment.",
     specifications: ["Terminal: 8-Pole Screw Clamp Bus", "MCB Feed: 10A Per Desk Cluster"],
   },
   load3: {
@@ -147,9 +147,9 @@ const DEVICES: Record<string, DeviceNode> = {
     codeName: "Modular Distribution Terminal Block 3",
     category: "load",
     functionSummary:
-      "Blok terminal distribusi untuk kipas exhaust, penerangan umum, dan peralatan lab.",
+      "Distribution terminal block routing power to laboratory test benches, ventilation blowers, and overhead LED arrays.",
     electricalRole:
-      "Menerima listrik dari Child Meter 3 dan membaginya ke sirkuit lampu dan motor ventilasi.",
+      "Receives metered power from Child Meter 3, feeding high-efficiency lighting arrays and motor blowers.",
     specifications: ["Terminal: 8-Pole Screw Clamp Bus", "MCB Feed: 10A Lighting + 16A Motor Fans"],
   },
 };
@@ -157,45 +157,45 @@ const DEVICES: Record<string, DeviceNode> = {
 const STAGES = [
   {
     stage: 1,
-    title: "1. Pasokan Listrik Utama: PLN / Genset ke LVMDP",
+    title: "1. Main Power Supply: Utility Grid (PLN) / Genset to LVMDP",
     focusDeviceId: "lvmdp",
     description:
-      "Tegangan AC dari penyedia listrik PLN masuk ke panel induk LVMDP (Low Voltage Main Distribution Panel 400 kW / 500 kVA). Panel ini menstabilkan daya dan membagi bus listrik utama.",
+      "3-Phase AC voltage from the utility grid enters the LVMDP (Low Voltage Main Distribution Panel 400 kW / 500 kVA), where it is stabilized and routed through the main busbar assembly.",
   },
   {
     stage: 2,
-    title: "2. Pengukuran Daya Induk: LVMDP ke CT & Parent Smart KWH 3P",
+    title: "2. Master Energy Metering: LVMDP via CT into Parent Smart kWh 3P",
     focusDeviceId: "parentKwh",
     description:
-      "Arus besar melewati Current Transformer (CT) yang menurunkan rasio arus ke level aman agar dapat dibaca oleh Smart KWH 3P CLOU CL730D22H (400A) sebagai meter induk kampus.",
+      "Heavy current passes through Current Transformers (CT), stepping down current to safe levels for the master CLOU CL730D22H 3-Phase Smart kWh meter to measure total facility intake.",
   },
   {
     stage: 3,
-    title: "3. Identifikasi Hardware: Gateway Mendata MAC Address",
+    title: "3. Hardware Discovery: IoT Gateway Maps MAC Addresses",
     focusDeviceId: "gateway",
     description:
-      "IoT Gateway (Kerlink) memindai seluruh meter di jaringan kabel RS485. Berdasarkan MAC Address, Gateway menetapkan identitas Parent Smart KWH dan seluruh Child Smart KWH.",
+      "The Kerlink IoT Gateway scans all meters along the serial RS485 communication bus. By reading hardware MAC addresses, it establishes the Parent master meter and registers all Child submeters.",
   },
   {
     stage: 4,
-    title: "4. Distribusi Daya ke Ruangan: Parent KWH ke Child KWH 1P",
+    title: "4. Sub-distribution to Rooms: Parent kWh to Child kWh 1P Units",
     focusDeviceId: "childKwh1",
     description:
-      "Listrik didistribusikan dari bus utama ke 3 Smart KWH 1P (CLOU CL710K24 100A) di masing-masing ruangan. Parent Smart KWH mengindeks data child-child meter ini secara berkala.",
+      "Power branches from the main busbar to individual 1-Phase Smart kWh meters (CLOU CL710K24 100A) in each room, while telemetry loops continuously sync with the master Parent meter.",
   },
   {
     stage: 5,
-    title: "5. Submetering Beban Alat: Child KWH ke Load Group 1, 2, 3",
+    title: "5. Granular End-Device Submetering: Child kWh to Load Groups",
     focusDeviceId: "load1",
     description:
-      "Masing-masing Child Smart KWH mendata pemakaian nyata alat-alat di tiap ruangan (AC, PC komputer, kipas, lampu) melalui Load Group 1, 2, dan 3.",
+      "Each Child Smart kWh meter monitors real-time equipment consumption (precision AC, workstations, lighting, exhaust fans) routed through Load Groups 1, 2, and 3.",
   },
   {
     stage: 6,
-    title: "6. Telemetri Cloud & Kontrol Relay Dua Arah via Software EMS",
+    title: "6. Cloud Telemetry & Bidirectional Relay Control via EMS Software",
     focusDeviceId: "gateway",
     description:
-      "Seluruh data telemetri mengalir balik melalui jalur komunikasi ke Gateway, lalu diteruskan ke Software EMS. Operator dapat memantau data secara live dan mematikan/menyalakan relay jarak jauh.",
+      "Telemetry flows through the IoT Gateway to the cloud EMS dashboard. Facility managers monitor real-time curves and can dispatch remote relay shutoff commands instantly.",
   },
 ];
 
@@ -229,11 +229,11 @@ export default function AnimatedEmsArchitecture() {
           <div className="flex items-center gap-2">
             <span className="inline-block h-2 w-2 rounded-full bg-[var(--cs-color-accent)] animate-ping" />
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              IF-Rancangan_Skema_EMS_VVT-FIT192-20230710 (1) · Animated Vector Flow
+              IF-Rancangan_Skema_EMS_VVT-FIT192-20230710 (1) · System Architecture Flow
             </span>
           </div>
           <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-            Simulasi visual perjalanan listrik riil &amp; hierarki data perangkat: PLN &rarr; LVMDP &rarr; CT/Parent 3P &rarr; Gateway MAC &rarr; Child 1P &rarr; Load Groups &rarr; EMS Control
+            Visual simulation of real electrical distribution &amp; data hierarchy: Grid (PLN) &rarr; LVMDP &rarr; CT/Parent 3P &rarr; Gateway MAC &rarr; Child 1P &rarr; Load Groups &rarr; EMS Control
           </p>
         </div>
 
@@ -273,7 +273,7 @@ export default function AnimatedEmsArchitecture() {
             >
               <div className="flex items-center justify-between">
                 <span className={`font-mono text-[9px] font-bold ${isActive ? "text-[var(--cs-color-accent)]" : "text-[var(--cs-color-text-muted)]"}`}>
-                  TAHAP 0{s.stage}
+                  STAGE 0{s.stage}
                 </span>
                 {isActive && <span className="h-1.5 w-1.5 rounded-full bg-[var(--cs-color-accent)] animate-pulse" />}
               </div>
@@ -292,9 +292,6 @@ export default function AnimatedEmsArchitecture() {
           <div className="flex items-center gap-3">
             <span className="font-mono text-[11px] font-bold tracking-wider text-stone-300">
               ELECTRICAL TOPOLOGY &amp; MODBUS BUS SCHEMATIC
-            </span>
-            <span className="hidden rounded bg-stone-900 px-2 py-0.5 font-mono text-[9px] text-stone-400 sm:inline">
-              Vector Precision Layout
             </span>
           </div>
           {/* Legend */}
@@ -327,10 +324,117 @@ export default function AnimatedEmsArchitecture() {
                 <feGaussianBlur stdDeviation="3" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
+              <filter id="packet-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
             </defs>
 
-            {/* ---------------- WIRING & BUS LINES ---------------- */}
-            {/* 1. PLN Input into LVMDP */}
+            {/* ================= 1. RS485 MODBUS COMMUNICATION BUS (DRAWN UNDER POWER) ================= */}
+            {/* Trunk from Parent Smart KWH (x=430, y=145) to Gateway (x=665, y=145) */}
+            <path
+              d="M 430 145 L 665 145"
+              stroke="#818cf8"
+              strokeWidth="2"
+              strokeDasharray="5 3"
+            />
+            {/* Connection Port Dot on Parent KWH */}
+            <circle cx="430" cy="145" r="3.5" fill="#818cf8" />
+            {/* Connection Port Dot on Gateway */}
+            <circle cx="665" cy="145" r="3.5" fill="#818cf8" />
+
+            {/* Vertical RS485 Trunk Dropping Down to Child Meters */}
+            <path
+              d="M 640 145 L 640 575"
+              stroke="#818cf8"
+              strokeWidth="2"
+              strokeDasharray="5 3"
+            />
+            <circle cx="640" cy="145" r="3" fill="#818cf8" />
+
+            {/* RS485 Branches into Child Meters */}
+            {/* Branch to Child 1 (Server Room) */}
+            <path
+              d="M 640 310 L 725 310"
+              stroke="#818cf8"
+              strokeWidth="2"
+              strokeDasharray="5 3"
+            />
+            <circle cx="640" cy="310" r="2.5" fill="#818cf8" />
+            <circle cx="725" cy="310" r="3" fill="#818cf8" />
+
+            {/* Branch to Child 2 (Office) */}
+            <path
+              d="M 640 445 L 725 445"
+              stroke="#818cf8"
+              strokeWidth="2"
+              strokeDasharray="5 3"
+            />
+            <circle cx="640" cy="445" r="2.5" fill="#818cf8" />
+            <circle cx="725" cy="445" r="3" fill="#818cf8" />
+
+            {/* Branch to Child 3 (Lab) */}
+            <path
+              d="M 640 575 L 725 575"
+              stroke="#818cf8"
+              strokeWidth="2"
+              strokeDasharray="5 3"
+            />
+            <circle cx="640" cy="575" r="2.5" fill="#818cf8" />
+            <circle cx="725" cy="575" r="3" fill="#818cf8" />
+
+            <text x="510" y="137" fill="#818cf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
+              RS485 MODBUS RTU
+            </text>
+
+            {/* ================= 2. DASHED SKY-BLUE CONTROL LINES (GATEWAY TO CHILD METERS) ================= */}
+            {/* Direct seamless connection starting from bottom port of Gateway at (695, 137) */}
+            <circle cx="695" cy="137" r="3.5" fill="#38bdf8" />
+            
+            {/* Vertical Control Trunk */}
+            <path
+              d="M 695 137 L 695 510"
+              stroke="#38bdf8"
+              strokeWidth="2"
+              strokeDasharray="4 4"
+            />
+
+            {/* Horizontal Branch to Child 1 */}
+            <path
+              d="M 695 240 L 725 240"
+              stroke="#38bdf8"
+              strokeWidth="2"
+              strokeDasharray="4 4"
+            />
+            <circle cx="695" cy="240" r="2.5" fill="#38bdf8" />
+            <circle cx="725" cy="240" r="3" fill="#38bdf8" />
+
+            {/* Horizontal Branch to Child 2 */}
+            <path
+              d="M 695 375 L 725 375"
+              stroke="#38bdf8"
+              strokeWidth="2"
+              strokeDasharray="4 4"
+            />
+            <circle cx="695" cy="375" r="2.5" fill="#38bdf8" />
+            <circle cx="725" cy="375" r="3" fill="#38bdf8" />
+
+            {/* Horizontal Branch to Child 3 */}
+            <path
+              d="M 695 510 L 725 510"
+              stroke="#38bdf8"
+              strokeWidth="2"
+              strokeDasharray="4 4"
+            />
+            <circle cx="695" cy="510" r="2.5" fill="#38bdf8" />
+            <circle cx="725" cy="510" r="3" fill="#38bdf8" />
+
+            <text x="702" y="180" fill="#38bdf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
+              CONTROL LINE
+            </text>
+
+            {/* ================= 3. RED SOLID POWER BUS (DRAWN OVER COMM LINES TO PREVENT SEVERING) ================= */}
+            {/* PLN Input into LVMDP */}
             <path
               d="M 10 350 L 90 350"
               stroke="#ef4444"
@@ -342,73 +446,139 @@ export default function AnimatedEmsArchitecture() {
               PLN 380V AC &rarr;
             </text>
 
-            {/* 2. Red Solid Lines from LVMDP into CT & Smart KWH 3P */}
-            <path d="M 170 335 L 360 335" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 170 345 L 380 345" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 170 355 L 400 355" stroke="#ef4444" strokeWidth="2.5" />
+            {/* 3-Phase Bus from LVMDP into Current Transformer (CT) */}
+            <path d="M 170 335 L 355 335" stroke="#ef4444" strokeWidth="2.5" />
+            <path d="M 170 345 L 355 345" stroke="#ef4444" strokeWidth="2.5" />
+            <path d="M 170 355 L 355 355" stroke="#ef4444" strokeWidth="2.5" />
 
-            {/* CT Vertical Feeds into Smart KWH 3P */}
-            <path d="M 375 355 L 375 195" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 395 345 L 395 195" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 415 335 L 415 195" stroke="#ef4444" strokeWidth="2.5" />
+            {/* CT Secondary Measurement Feeds UP into Parent Smart KWH 3P */}
+            <path d="M 375 315 L 375 190" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="4 2" />
+            <path d="M 395 315 L 395 190" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="4 2" />
+            <path d="M 415 315 L 415 190" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="4 2" />
+            {/* CT to Parent Terminal Dots */}
+            <circle cx="375" cy="190" r="2.5" fill="#ef4444" />
+            <circle cx="395" cy="190" r="2.5" fill="#ef4444" />
+            <circle cx="415" cy="190" r="2.5" fill="#ef4444" />
 
-            {/* 3. Horizontal Main Distribution Bus to the Right */}
-            <path d="M 400 355 L 580 355" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 380 345 L 590 345" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 360 335 L 600 335" stroke="#ef4444" strokeWidth="2.5" />
+            {/* Unbroken Main Distribution Bus Exiting CT towards Child Meters */}
+            <path d="M 435 335 L 610 335" stroke="#ef4444" strokeWidth="2.5" />
+            <path d="M 435 345 L 610 345" stroke="#ef4444" strokeWidth="2.5" />
+            <path d="M 435 355 L 610 355" stroke="#ef4444" strokeWidth="2.5" />
 
-            {/* Bus feeds branching down to Child 1, Child 2, Child 3 */}
-            {/* Feeder to Child 1 */}
-            <path d="M 600 335 L 650 335 L 650 280 L 730 280" stroke="#ef4444" strokeWidth="2" />
+            {/* Continuous, Uncut Red Feeder Lines to Child Smart kWh Meters */}
+            {/* Feeder to Child 1: Overpasses comm lines cleanly with terminal connection */}
+            <path
+              d="M 610 335 L 650 335 L 650 280 L 725 280"
+              stroke="#ef4444"
+              strokeWidth="2.5"
+              fill="none"
+            />
+            <circle cx="610" cy="335" r="3" fill="#ef4444" />
+            <circle cx="725" cy="280" r="3.5" fill="#ef4444" />
+
             {/* Feeder to Child 2 */}
-            <path d="M 590 345 L 635 345 L 635 415 L 730 415" stroke="#ef4444" strokeWidth="2" />
+            <path
+              d="M 610 345 L 635 345 L 635 415 L 725 415"
+              stroke="#ef4444"
+              strokeWidth="2.5"
+              fill="none"
+            />
+            <circle cx="610" cy="345" r="3" fill="#ef4444" />
+            <circle cx="725" cy="415" r="3.5" fill="#ef4444" />
+
             {/* Feeder to Child 3 */}
-            <path d="M 580 355 L 580 550 L 730 550" stroke="#ef4444" strokeWidth="2" />
+            <path
+              d="M 610 355 L 580 355 L 580 550 L 725 550"
+              stroke="#ef4444"
+              strokeWidth="2.5"
+              fill="none"
+            />
+            <circle cx="610" cy="355" r="3" fill="#ef4444" />
+            <circle cx="725" cy="550" r="3.5" fill="#ef4444" />
 
-            {/* Power out from Child Meters to Load Groups */}
-            <path d="M 770 280 L 890 280" stroke="#ef4444" strokeWidth="2" />
-            <path d="M 770 415 L 890 415" stroke="#ef4444" strokeWidth="2" />
-            <path d="M 770 550 L 890 550" stroke="#ef4444" strokeWidth="2" />
+            {/* Power Out from Child Meters to Load Groups */}
+            <path d="M 773 280 L 890 280" stroke="#ef4444" strokeWidth="2.5" />
+            <circle cx="773" cy="280" r="3" fill="#ef4444" />
+            <circle cx="890" cy="280" r="3" fill="#ef4444" />
 
-            {/* 4. Dashed Sky-Blue CONTROL LINES from Gateway to Child Meters */}
-            <path
-              d="M 690 145 L 690 240 L 730 240"
-              stroke="#38bdf8"
-              strokeWidth="1.8"
-              strokeDasharray="4 4"
-            />
-            <path
-              d="M 675 145 L 675 375 L 730 375"
-              stroke="#38bdf8"
-              strokeWidth="1.8"
-              strokeDasharray="4 4"
-            />
-            <path
-              d="M 660 145 L 660 510 L 730 510"
-              stroke="#38bdf8"
-              strokeWidth="1.8"
-              strokeDasharray="4 4"
-            />
-            <text x="680" y="180" fill="#38bdf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
-              CONTROL LINE
-            </text>
+            <path d="M 773 415 L 890 415" stroke="#ef4444" strokeWidth="2.5" />
+            <circle cx="773" cy="415" r="3" fill="#ef4444" />
+            <circle cx="890" cy="415" r="3" fill="#ef4444" />
 
-            {/* 5. Dashed Indigo Communication Lines between Smart KWH 3P and Gateway */}
-            <path
-              d="M 430 145 L 650 145"
-              stroke="#818cf8"
-              strokeWidth="1.8"
-              strokeDasharray="5 3"
-            />
-            {/* Comm drops to child meters */}
-            <path
-              d="M 640 145 L 640 580 L 750 580"
-              stroke="#818cf8"
-              strokeWidth="1.8"
-              strokeDasharray="5 3"
-            />
+            <path d="M 773 550 L 890 550" stroke="#ef4444" strokeWidth="2.5" />
+            <circle cx="773" cy="550" r="3" fill="#ef4444" />
+            <circle cx="890" cy="550" r="3" fill="#ef4444" />
 
-            {/* ---------------- HARDWARE COMPONENTS ---------------- */}
+            {/* ================= 4. ANIMATED TELEMETRY PACKET DOTS (CONNECTING PARENT & CHILD METERS) ================= */}
+            {/* Packet 1: Telemetry flowing from Child 1 up through RS485 bus into Parent Smart KWH */}
+            <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 725 310 L 640 310 L 640 145 L 430 145"
+                dur="2.8s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 2: Telemetry flowing from Child 2 into Parent Smart KWH */}
+            <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 725 445 L 640 445 L 640 145 L 430 145"
+                dur="3.4s"
+                begin="0.6s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 3: Telemetry flowing from Child 3 into Parent Smart KWH */}
+            <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 725 575 L 640 575 L 640 145 L 430 145"
+                dur="4.0s"
+                begin="1.2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 4: Telemetry Aggregation flowing from Parent Smart KWH to Gateway */}
+            <circle r="3.8" fill="#38bdf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 430 145 L 665 145"
+                dur="2.0s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 5: Gateway Remote Control Command Pulse flowing down to Child 1 */}
+            <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 695 137 L 695 240 L 725 240"
+                dur="2.2s"
+                begin="0.3s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 6: Gateway Remote Control Command Pulse flowing down to Child 2 */}
+            <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 695 137 L 695 375 L 725 375"
+                dur="2.6s"
+                begin="0.9s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 7: Gateway Remote Control Command Pulse flowing down to Child 3 */}
+            <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 695 137 L 695 510 L 725 510"
+                dur="3.0s"
+                begin="1.5s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* ================= 5. HARDWARE PHYSICAL COMPONENTS ================= */}
 
             {/* 1. LVMDP Cabinet (Left) */}
             <g
@@ -800,7 +970,7 @@ export default function AnimatedEmsArchitecture() {
             {/* If Child 1 is selected, provide live toggle control demo */}
             {activeDevice.id === "childKwh1" && (
               <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-[var(--cs-color-text-secondary)]">Simulasi Relay AC:</span>
+                <span className="font-mono text-xs text-[var(--cs-color-text-secondary)]">AC Relay Simulation:</span>
                 <button
                   type="button"
                   onClick={() => setIsRelay1Active(!isRelay1Active)}
@@ -820,7 +990,7 @@ export default function AnimatedEmsArchitecture() {
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <div className="flex flex-col gap-1.5">
               <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-                Fungsi &amp; Kegunaan Perangkat:
+                Device Function &amp; Purpose:
               </span>
               <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                 {activeDevice.functionSummary}
@@ -829,7 +999,7 @@ export default function AnimatedEmsArchitecture() {
 
             <div className="flex flex-col gap-1.5">
               <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-                Perjalanan Arus Listrik &amp; Telemetri:
+                Electrical Flow &amp; Telemetry:
               </span>
               <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                 {activeDevice.electricalRole}
@@ -840,7 +1010,7 @@ export default function AnimatedEmsArchitecture() {
           {/* Technical Specifications */}
           <div className="rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3">
             <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-              Spesifikasi Teknis pada Skema:
+              Technical Specifications in Schematic:
             </span>
             <ul className="mt-1.5 grid grid-cols-1 gap-2 text-xs text-[var(--cs-color-text-secondary)] sm:grid-cols-3">
               {activeDevice.specifications.map((spec, i) => (

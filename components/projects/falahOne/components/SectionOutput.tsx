@@ -3,8 +3,9 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
-interface ApplicationCard {
+interface ComponentCard {
   number: string;
+  squad: string;
   title: string;
   runtime: string;
   description: string;
@@ -15,99 +16,91 @@ interface ApplicationCard {
   height: number;
 }
 
-interface ControllerMedia {
+interface SharedPrimitive {
   src: string;
   alt: string;
   label: string;
+  description: string;
 }
 
-const APPLICATIONS: ApplicationCard[] = [
+const SQUAD_COMPONENTS: ComponentCard[] = [
   {
     number: "01",
-    title: "Industrial Energy Management Dashboard",
-    runtime: "Next.js · React · Tailwind CSS · Enterprise Web",
+    squad: "WEB DEVELOPER SQUAD",
+    title: "Enterprise Data Table & Telemetry Cockpit Suite",
+    runtime: "Next.js · React · Tailwind CSS · Enterprise Web & SaaS",
     description:
-      "A high-density operational telemetry dashboard deployed across multi-campus facilities. Uses Falah One table tokens, diurnal curve color palettes, and real-time status badges.",
+      "A high-density operational telemetry and tabular management suite deployed across Falah's web applications and IoT cockpits. Features 10 standardized states (Sorting, Filtering, Selection, Pagination, Loading, Dense) adhering to strict spatial constraints.",
     designTokenIntegration: [
-      "Consistent 8px spatial grid enforcing strict vertical rhythm across telemetry charts.",
-      "Semantic status tokens (warning, danger, active) sharing exact hexes with physical field hardware.",
-      "Accessible dark/light surface tokens meeting WCAG AA 4.5:1 contrast across all data tables.",
+      "Strict 8px spatial grid enforcing vertical rhythm and consistent cell height across massive telemetry data tables.",
+      "Semantic status color tokens (active, warning, critical) meeting WCAG AA 4.5:1 contrast across dark and light themes.",
+      "Deterministic Tailwind CSS utility classes compiled directly from central design tokens for rapid web development velocity.",
     ],
-    src: "/images/falahOne/Energy management system dashboard - Next.webp",
-    alt: "Energy management system dashboard built with Falah One web tokens",
-    width: 1280,
-    height: 911,
+    src: "/images/falahOne/data-table.webp",
+    alt: "Falah One Data Table component in Figma with sorting and pagination",
+    width: 960,
+    height: 480,
   },
   {
     number: "02",
-    title: "Virtual Training Suite — Fighter Jet Maintenance",
-    runtime: "Unity 3D Engine · World Space Canvas · C#",
+    squad: "UNITY DEVELOPER SQUAD",
+    title: "XR Spatial Interaction & Volumetric Component Suite",
+    runtime: "Unity 3D Engine · C# ScriptableObjects · OpenXR Stereoscopic UI",
     description:
-      "A high-fidelity military maintenance simulator. Diagnostic HUDs, maintenance checklists, and interactive cockpit disassembly menus inherit typography and button primitives directly from compiled C# ScriptableObjects.",
+      "Volumetric user interface primitives built for stereoscopic VR headsets, defense simulation cockpits, and 3D equipment maintenance suites. Directly standardizes 32x32mm/48x48mm spatial buttons, world-space spline tooltips, and proximity touch interactions.",
     designTokenIntegration: [
-      "World-space canvas panels rendered at 1080p equivalent without texture blur.",
-      "High-contrast HUD palettes designed to remain legible against complex 3D aircraft geometry.",
-      "Standardized hover and focus states mapped to 3D laser-pointer raycasts.",
+      "Physical 32mm and 48mm touch targets mapped to laser-pointer raycasts and hand-tracking depth sensors.",
+      "Minimum 28 dmm angular typography sizing and high-contrast HUD palettes preventing pixel shimmer in VR Fresnel lenses.",
+      "Spatial depth elevation tokens defining layer separation in world-space volume without texture degradation.",
     ],
-    src: "/images/falahOne/Virtual training suite - Fighter jet maintenance training showcase - Unity.webp",
-    alt: "Virtual training suite fighter jet maintenance interface in Unity",
-    width: 1280,
-    height: 960,
+    src: "/images/falahOne/unity-xr-touch.webp",
+    alt: "Falah One XR Spatial Interaction Touch and Hand Tracking Component in Figma",
+    width: 1200,
+    height: 675,
   },
   {
     number: "03",
-    title: "Virtual Reality — Network Protocol Training",
-    runtime: "OpenXR · Unity 3D · Stereoscopic VR",
+    squad: "CONTENT DEVELOPER SQUAD",
+    title: "Multi-Variant Content Cards & Dynamic Presentation Suite",
+    runtime: "Next.js SSR · Marketing CMS · Social Graphic Templates",
     description:
-      "Immersive simulation teaching network infrastructure routing. Node inspection cards, data-packet visualization, and network topology tools use shared token scales for optimal readability inside VR headsets.",
+      "High-conversion editorial and brand components engineered for Falah corporate landing pages, company profiles (compro), and social media publication templates. Standardizes 5 content card variants (image headers, review cards, horizontal promo cards) and interactive carousels.",
     designTokenIntegration: [
-      "Minimum 28 dmm angular typography sizing preventing pixel shimmer in VR lenses.",
-      "Consistent color-coded network layers (OSI model) harmonized with enterprise web docs.",
-      "Spatial depth elevation tokens defining layer separation in 3D volume.",
+      "Responsive aspect ratio tokens (16:9, 4:3, 1:1) maintaining visual balance across desktop landing pages and mobile social feeds.",
+      "Centralized brand color palettes and typography scales preventing rogue shadow styles in marketing collateral.",
+      "Reusable card and carousel abstractions enabling rapid deployment of new company profiles and campaign pages.",
     ],
-    src: "/images/falahOne/Virtual reality - Internet protocol training - Unity.webp",
-    alt: "Virtual reality internet protocol training interface in Unity",
-    width: 1280,
-    height: 1080,
-  },
-  {
-    number: "04",
-    title: "Virtual Reality — Immersive Language Lab",
-    runtime: "OpenXR · Unity 3D · Interactive Dialog",
-    description:
-      "Conversational VR simulation environment. Real-time dialog transcripts, audio waveform indicators, and interactive vocabulary cards built using tokenized typography and elevation models.",
-    designTokenIntegration: [
-      "Curved floating UI surfaces minimizing peripheral optical distortion.",
-      "Accessible subtitle styling optimized for rapid reading without causing motion sickness.",
-      "Standardized audio state badges sharing semantic feedback tokens with web audio players.",
-    ],
-    src: "/images/falahOne/Virtual reality - Language training - Unity.webp",
-    alt: "Virtual reality language training interface in Unity",
-    width: 1280,
-    height: 1080,
+    src: "/images/falahOne/content-cards.webp",
+    alt: "Falah One Content Cards component library in Figma",
+    width: 1600,
+    height: 328,
   },
 ];
 
-const VR_CONTROLLERS: ControllerMedia[] = [
+const SHARED_PRIMITIVES: SharedPrimitive[] = [
   {
-    src: "/images/falahOne/Controller — Type 1 Left.webp",
-    alt: "Falah One VR Controller Type 1 Left mapping",
-    label: "Type 1 Controller — Primary Hand (Left)",
+    src: "/images/falahOne/web-meeting-control.webp",
+    alt: "Falah One Meeting Room Control component toolbar in Figma",
+    label: "Meeting Room Control Toolbar",
+    description: "Multi-state collaboration toolbar (mic, camera, screen share, raise hand) built on shadcn and Tailwind metrics.",
   },
   {
-    src: "/images/falahOne/Controller — Type 1 Right.webp",
-    alt: "Falah One VR Controller Type 1 Right mapping",
-    label: "Type 1 Controller — Primary Hand (Right)",
+    src: "/images/falahOne/shared-talking-indicator.webp",
+    alt: "Falah One Talking Indicator voice pulse component in Figma",
+    label: "Real-Time Voice Talking Indicator",
+    description: "Active speaking pulse and idle states synchronized across web dashboards and VR multiplayer sessions.",
   },
   {
-    src: "/images/falahOne/Controller — Type 2 Left.webp",
-    alt: "Falah One VR Controller Type 2 Left mapping",
-    label: "Type 2 Controller — Secondary Tool (Left)",
+    src: "/images/falahOne/web-chart.webp",
+    alt: "Falah One Interactive Area Chart component in Figma",
+    label: "Interactive Telemetry Area Chart",
+    description: "Diurnal curve data visualization with responsive tooltips and Lucide icon telemetry tokens.",
   },
   {
-    src: "/images/falahOne/Controller — Type 2 Right.webp",
-    alt: "Falah One VR Controller Type 2 Right mapping",
-    label: "Type 2 Controller — Secondary Tool (Right)",
+    src: "/images/falahOne/unity-xr-hand-tracking.webp",
+    alt: "Falah One XR Hand Tracking Target with Hands component in Figma",
+    label: "Spatial Hand-Tracking Target Anchor",
+    description: "Ergonomic target anchor and collision bounds designed for world-space XR hand tracking.",
   },
 ];
 
@@ -138,18 +131,18 @@ export default function SectionOutput() {
         {/* Section Headline */}
         <div className="flex flex-col gap-4">
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
-            One design language powering mission-critical web cockpits, VR simulators, and 3D defense suites.
+            One design language powering Web SaaS cockpits, Unity 3D/XR simulations, and marketing content.
           </h2>
           <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
-            Falah One was validated by deploying its compiled tokens and component architecture across four flagship products operating on completely distinct runtime environments.
+            Falah One was validated by deploying its compiled tokens and component architecture directly from the 2026-FIT-Design-System library across three specialized engineering squads operating on completely distinct runtime environments.
           </p>
         </div>
 
-        {/* 4 Flagship Applications Showcase */}
+        {/* 3 Squads Component Showcase */}
         <div className="flex flex-col gap-12 sm:gap-16">
-          {APPLICATIONS.map((app) => (
+          {SQUAD_COMPONENTS.map((comp) => (
             <motion.article
-              key={app.number}
+              key={comp.number}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
@@ -160,29 +153,32 @@ export default function SectionOutput() {
               <div className="flex flex-col gap-2 border-b border-[var(--cs-color-border)] pb-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
-                    APPLICATION {app.number} / {app.runtime.toUpperCase()}
+                    {comp.squad} · COMPONENT {comp.number}
                   </span>
                   <span className="font-mono text-[11px] text-[var(--cs-color-accent)]">
-                    Shipped Production
+                    Figma Validated
                   </span>
                 </div>
                 <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-[var(--cs-color-text-primary)] sm:text-2xl">
-                  {app.title}
+                  {comp.title}
                 </h3>
+                <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">
+                  {comp.runtime}
+                </span>
                 <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-sm">
-                  {app.description}
+                  {comp.description}
                 </p>
               </div>
 
-              {/* Application Screenshot */}
-              <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] shadow-sm">
+              {/* Component Screenshot from Figma */}
+              <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-2 shadow-sm sm:p-4">
                 <Image
-                  src={app.src}
-                  alt={app.alt}
-                  width={app.width}
-                  height={app.height}
+                  src={comp.src}
+                  alt={comp.alt}
+                  width={comp.width}
+                  height={comp.height}
                   sizes="(max-width: 768px) 100vw, 1280px"
-                  className="h-auto w-full object-cover"
+                  className="h-auto w-full rounded-lg object-contain"
                 />
               </div>
 
@@ -192,7 +188,7 @@ export default function SectionOutput() {
                   Falah One Token Integration in Production:
                 </span>
                 <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
-                  {app.designTokenIntegration.map((spec, idx) => (
+                  {comp.designTokenIntegration.map((spec, idx) => (
                     <li
                       key={idx}
                       className="rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]"
@@ -209,35 +205,38 @@ export default function SectionOutput() {
           ))}
         </div>
 
-        {/* VR Spatial Controller Standardization */}
+        {/* Cross-Squad Shared Primitives */}
         <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              Hardware Peripheral Standardization: Spatial VR Controllers
+              Cross-Squad Shared Primitives: Collaboration &amp; Telemetry
             </span>
             <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              Mapping button triggers, raycast laser anchors, and grip thresholds across varying VR hardware headsets into consistent interaction tokens.
+              Multi-platform component primitives synchronized between Figma, Tailwind React web portals, and Unity 3D world-space canvases.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {VR_CONTROLLERS.map((ctrl) => (
+            {SHARED_PRIMITIVES.map((item) => (
               <div
-                key={ctrl.label}
+                key={item.label}
                 className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4"
               >
-                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] p-2">
+                <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] p-2">
                   <Image
-                    src={ctrl.src}
-                    alt={ctrl.alt}
-                    width={400}
+                    src={item.src}
+                    alt={item.alt}
+                    width={600}
                     height={400}
                     className="h-auto max-h-full w-auto object-contain"
                   />
                 </div>
-                <div className="border-t border-[var(--cs-color-border)] pt-2">
-                  <p className="font-mono text-[11px] font-medium text-[var(--cs-color-text-secondary)]">
-                    {ctrl.label}
+                <div className="flex flex-col gap-1 border-t border-[var(--cs-color-border)] pt-2">
+                  <p className="font-mono text-[11px] font-medium text-[var(--cs-color-text-primary)]">
+                    {item.label}
+                  </p>
+                  <p className="font-[var(--cs-font-sans)] text-[11px] leading-relaxed text-[var(--cs-color-text-muted)]">
+                    {item.description}
                   </p>
                 </div>
               </div>

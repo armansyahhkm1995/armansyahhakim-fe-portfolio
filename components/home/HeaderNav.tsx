@@ -4,9 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "#specializations", label: "Specializations" },
-  { href: "#transformations", label: "Case Studies" },
-  { href: "#thinking", label: "Framework" },
+  { href: "#transformations", label: "Projects" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
@@ -19,7 +17,7 @@ export function HeaderNav() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-[var(--home-paper)]/90 backdrop-blur-md transition-colors">
-      <div className="mx-auto flex h-16 w-full max-w-350 items-center justify-between px-6 md:px-12">
+      <div className="flex h-16 w-full items-center justify-between px-6 md:px-12">
         {/* Identity */}
         <Link
           href="/"
@@ -28,9 +26,6 @@ export function HeaderNav() {
         >
           <span className="font-display text-xl tracking-tight sm:text-2xl">
             Armansyah Hakim
-          </span>
-          <span className="hidden font-mono text-[0.65rem] tracking-[0.2em] text-muted-foreground uppercase lg:inline">
-            / Systems &amp; Product
           </span>
         </Link>
 

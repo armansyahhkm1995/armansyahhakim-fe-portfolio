@@ -104,32 +104,6 @@ function TransformationItem({ item }: { item: PortfolioProject }) {
 
           {/* Main content */}
           <div className="flex-1">
-            {/* Domain category tag */}
-            <div className="mb-3 flex flex-wrap items-center gap-2">
-              <span
-                className={`
-                  inline-block
-                  rounded-full
-                  border
-                  px-2.5
-                  py-0.5
-                  font-mono
-                  text-[0.68rem]
-                  tracking-wider
-                  uppercase
-                  transition-colors
-                  duration-500
-                  ${
-                    isHovered
-                      ? "border-white/30 bg-white/10 text-white/90"
-                      : "border-border bg-muted/30 text-muted-foreground"
-                  }
-                `}
-              >
-                {item.domainTag}
-              </span>
-            </div>
-
             <motion.h3
               className="origin-left font-display text-[2rem] leading-[1.05] sm:text-4xl lg:text-[3.25rem]"
               animate={{
@@ -247,20 +221,10 @@ export function TransformationList() {
   return (
     <section id="transformations" className="px-6 py-28 md:px-12 md:py-36">
       <div className="mx-auto w-full max-w-350">
-        <div className="mb-16 flex flex-wrap items-end justify-between gap-8 border-b border-border pb-8">
-          <div>
-            <span className="font-mono text-xs tracking-[0.25em] text-muted-foreground uppercase">
-              Transformation Library
-            </span>
-            <h2 className="font-display mt-3 max-w-2xl text-[2.5rem] leading-[1.05] sm:text-5xl lg:text-6xl">
-              Selected Transformations
-            </h2>
-          </div>
-
-          <p className="max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Five complete case studies. Each project begins with an intractable business constraint
-            and concludes with measurable behavioral and operational impact.
-          </p>
+        <div className="mb-16 border-b border-border pb-8">
+          <h2 className="font-display max-w-2xl text-[2.5rem] leading-[1.05] sm:text-5xl lg:text-6xl">
+            Selected Projects &amp; Products
+          </h2>
         </div>
 
         <div className="border-b border-border">

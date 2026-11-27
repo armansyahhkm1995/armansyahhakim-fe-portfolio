@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { AnimatedDecisionDiagram } from "./AnimateDecisionDiagram";
 
 const lines = [
   "Designing clarity",
@@ -20,18 +19,8 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-between px-6 pt-8 pb-12 md:px-12"
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="flex items-center justify-between text-[0.7rem] tracking-[0.28em] text-muted-foreground uppercase"
-      >
-        <span>Product Design — Complex Systems &amp; B2B Enterprise</span>
-        <span className="hidden md:block">Index / 2026</span>
-      </motion.div>
-
-      <div className="grid flex-1 items-center gap-12 py-16 lg:grid-cols-[1.35fr_1fr] lg:py-20">
-        <div>
+      <div className="flex flex-1 items-center py-16 lg:py-20">
+        <div className="max-w-4xl">
           <h1
             id="hero-heading"
             className="font-display text-[2.75rem] leading-[0.98] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]"
@@ -62,7 +51,7 @@ export function Hero() {
               delay: 0.55,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+            className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
             <p>
               I help enterprise organizations transform convoluted datasets, industrial telemetry,
@@ -111,19 +100,6 @@ export function Hero() {
               </span>
             </a>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.95 }}
-            className="mt-8 font-mono text-xs tracking-wide text-muted-foreground"
-          >
-            Specializing in AgTech, Industrial IoT, Regulated Systems &amp; 3D Training Suites.
-          </motion.p>
-        </div>
-
-        <div className="flex justify-start lg:justify-end">
-          <AnimatedDecisionDiagram />
         </div>
       </div>
 

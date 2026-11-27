@@ -17,9 +17,8 @@ export function FooterCTA() {
       id="contact"
       className="flex min-h-svh flex-col justify-between bg-primary px-6 py-16 text-primary-foreground md:px-12 md:py-24"
     >
-      <div className="flex items-center justify-between font-mono text-[0.7rem] tracking-[0.28em] uppercase opacity-70">
+      <div className="font-mono text-[0.7rem] tracking-[0.28em] uppercase opacity-70">
         <span>Get in Touch</span>
-        <span>Availability / 2026</span>
       </div>
 
       <div className="my-auto max-w-5xl py-12">
@@ -109,40 +108,15 @@ export function FooterCTA() {
             </span>
           </a>
         </div>
-
-        {/* Anxiety Reducers & Micro-Proof */}
-        <div className="mt-8 flex flex-wrap items-center gap-6 font-mono text-xs text-primary-foreground/60">
-          <span>✓ Direct response within 24 hours</span>
-          <span>✓ NDA &amp; confidential project reviews available</span>
-          <span>✓ UTC+7 (Flexible overlap with US, EU &amp; APAC)</span>
-        </div>
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-6 border-t border-primary-foreground/15 pt-8 text-sm opacity-80">
-        <div className="flex gap-8">
-          <a
-            href={`mailto:${email}`}
-            className="transition-opacity hover:opacity-100 underline-offset-4 hover:underline"
-          >
-            {email}
-          </a>
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-opacity hover:opacity-100"
-          >
-            LinkedIn
-          </a>
-          <a
-            href={cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-opacity hover:opacity-100"
-          >
-            CV (Google Drive)
-          </a>
-        </div>
+        <a
+          href={`mailto:${email}`}
+          className="transition-opacity hover:opacity-100 underline-offset-4 hover:underline"
+        >
+          {email}
+        </a>
 
         <span className="font-mono text-[0.7rem] tracking-[0.28em] uppercase">
           © 2026 Armansyah Hakim

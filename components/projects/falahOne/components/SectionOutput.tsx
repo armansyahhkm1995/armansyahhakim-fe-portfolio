@@ -1,117 +1,177 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useState } from "react";
 import Image from "next/image";
 
-interface ComponentCard {
-  number: string;
-  squad: string;
-  title: string;
-  runtime: string;
-  description: string;
-  designTokenIntegration: string[];
+interface BentoComponent {
+  name: string;
+  category: "Web & SaaS" | "Unity XR" | "Content & Compro" | "Design Tokens";
   src: string;
-  alt: string;
   width: number;
   height: number;
 }
 
-interface SharedPrimitive {
-  src: string;
-  alt: string;
-  label: string;
-  description: string;
-}
-
-const SQUAD_COMPONENTS: ComponentCard[] = [
+const COLUMN_1: BentoComponent[] = [
   {
-    number: "01",
-    squad: "WEB DEVELOPER SQUAD",
-    title: "Enterprise Data Table & Telemetry Cockpit Suite",
-    runtime: "Next.js · React · Tailwind CSS · Enterprise Web & SaaS",
-    description:
-      "A high-density operational telemetry and tabular management suite deployed across Falah's web applications and IoT cockpits. Features 10 standardized states (Sorting, Filtering, Selection, Pagination, Loading, Dense) adhering to strict spatial constraints.",
-    designTokenIntegration: [
-      "Strict 8px spatial grid enforcing vertical rhythm and consistent cell height across massive telemetry data tables.",
-      "Semantic status color tokens (active, warning, critical) meeting WCAG AA 4.5:1 contrast across dark and light themes.",
-      "Deterministic Tailwind CSS utility classes compiled directly from central design tokens for rapid web development velocity.",
-    ],
+    name: "Data Table — Filtering & Pagination",
+    category: "Web & SaaS",
     src: "/images/falahOne/data-table.webp",
-    alt: "Falah One Data Table component in Figma with sorting and pagination",
     width: 960,
     height: 480,
   },
   {
-    number: "02",
-    squad: "UNITY DEVELOPER SQUAD",
-    title: "XR Spatial Interaction & Volumetric Component Suite",
-    runtime: "Unity 3D Engine · C# ScriptableObjects · OpenXR Stereoscopic UI",
-    description:
-      "Volumetric user interface primitives built for stereoscopic VR headsets, defense simulation cockpits, and 3D equipment maintenance suites. Directly standardizes 32x32mm/48x48mm spatial buttons, world-space spline tooltips, and proximity touch interactions.",
-    designTokenIntegration: [
-      "Physical 32mm and 48mm touch targets mapped to laser-pointer raycasts and hand-tracking depth sensors.",
-      "Minimum 28 dmm angular typography sizing and high-contrast HUD palettes preventing pixel shimmer in VR Fresnel lenses.",
-      "Spatial depth elevation tokens defining layer separation in world-space volume without texture degradation.",
-    ],
+    name: "Alert Dialog — Actions & Status",
+    category: "Design Tokens",
+    src: "/images/falahOne/shared-alert-dialog.webp",
+    width: 536,
+    height: 327,
+  },
+  {
+    name: "XR Spatial Touch & World-Space UI",
+    category: "Unity XR",
     src: "/images/falahOne/unity-xr-touch.webp",
-    alt: "Falah One XR Spatial Interaction Touch and Hand Tracking Component in Figma",
     width: 1200,
     height: 675,
   },
   {
-    number: "03",
-    squad: "CONTENT DEVELOPER SQUAD",
-    title: "Multi-Variant Content Cards & Dynamic Presentation Suite",
-    runtime: "Next.js SSR · Marketing CMS · Social Graphic Templates",
-    description:
-      "High-conversion editorial and brand components engineered for Falah corporate landing pages, company profiles (compro), and social media publication templates. Standardizes 5 content card variants (image headers, review cards, horizontal promo cards) and interactive carousels.",
-    designTokenIntegration: [
-      "Responsive aspect ratio tokens (16:9, 4:3, 1:1) maintaining visual balance across desktop landing pages and mobile social feeds.",
-      "Centralized brand color palettes and typography scales preventing rogue shadow styles in marketing collateral.",
-      "Reusable card and carousel abstractions enabling rapid deployment of new company profiles and campaign pages.",
-    ],
+    name: "Pricing Matrix & Plan Card",
+    category: "Content & Compro",
+    src: "/images/falahOne/content-pricing-card.webp",
+    width: 364,
+    height: 314,
+  },
+  {
+    name: "Badge System — Soft & Status",
+    category: "Design Tokens",
+    src: "/images/falahOne/shared-badges.webp",
+    width: 424,
+    height: 204,
+  },
+];
+
+const COLUMN_2: BentoComponent[] = [
+  {
+    name: "Telemetry Interactive Area Chart",
+    category: "Web & SaaS",
+    src: "/images/falahOne/web-chart.webp",
+    width: 1200,
+    height: 397,
+  },
+  {
+    name: "Multi-Variant Editorial Cards",
+    category: "Content & Compro",
     src: "/images/falahOne/content-cards.webp",
-    alt: "Falah One Content Cards component library in Figma",
     width: 1600,
     height: 328,
   },
-];
-
-const SHARED_PRIMITIVES: SharedPrimitive[] = [
   {
+    name: "Meeting Room Collaboration Toolbar",
+    category: "Web & SaaS",
     src: "/images/falahOne/web-meeting-control.webp",
-    alt: "Falah One Meeting Room Control component toolbar in Figma",
-    label: "Meeting Room Control Toolbar",
-    description: "Multi-state collaboration toolbar (mic, camera, screen share, raise hand) built on shadcn and Tailwind metrics.",
+    width: 1200,
+    height: 785,
   },
   {
-    src: "/images/falahOne/shared-talking-indicator.webp",
-    alt: "Falah One Talking Indicator voice pulse component in Figma",
-    label: "Real-Time Voice Talking Indicator",
-    description: "Active speaking pulse and idle states synchronized across web dashboards and VR multiplayer sessions.",
+    name: "3D Spline & Bezier World Tooltips",
+    category: "Unity XR",
+    src: "/images/falahOne/unity-xr-tooltips.webp",
+    width: 1200,
+    height: 394,
   },
   {
-    src: "/images/falahOne/web-chart.webp",
-    alt: "Falah One Interactive Area Chart component in Figma",
-    label: "Interactive Telemetry Area Chart",
-    description: "Diurnal curve data visualization with responsive tooltips and Lucide icon telemetry tokens.",
-  },
-  {
-    src: "/images/falahOne/unity-xr-hand-tracking.webp",
-    alt: "Falah One XR Hand Tracking Target with Hands component in Figma",
-    label: "Spatial Hand-Tracking Target Anchor",
-    description: "Ergonomic target anchor and collision bounds designed for world-space XR hand tracking.",
+    name: "Button States & Sizing Scale",
+    category: "Design Tokens",
+    src: "/images/falahOne/shared-buttons.webp",
+    width: 547,
+    height: 180,
   },
 ];
 
-const REVEAL_VARIANTS = {
-  hidden: { y: 24, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
+const COLUMN_3: BentoComponent[] = [
+  {
+    name: "Appointment & Range Calendar",
+    category: "Web & SaaS",
+    src: "/images/falahOne/web-calendar.webp",
+    width: 891,
+    height: 470,
+  },
+  {
+    name: "Spatial Hand-Tracking Target Anchor",
+    category: "Unity XR",
+    src: "/images/falahOne/unity-xr-hand-tracking.webp",
+    width: 1200,
+    height: 675,
+  },
+  {
+    name: "Hero Presentation Content Carousel",
+    category: "Content & Compro",
+    src: "/images/falahOne/content-carousel.webp",
+    width: 568,
+    height: 420,
+  },
+  {
+    name: "Real-Time Speaking Voice Pulse",
+    category: "Web & SaaS",
+    src: "/images/falahOne/shared-talking-indicator.webp",
+    width: 1200,
+    height: 545,
+  },
+  {
+    name: "Volumetric VR Interaction Card",
+    category: "Unity XR",
+    src: "/images/falahOne/unity-xr-card.webp",
+    width: 604,
+    height: 557,
+  },
+];
 
 export default function SectionOutput() {
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
     <section id="output" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
+      {/* Dynamic Keyframes for Seamless Infinite Downward Scroll */}
+      <style>{`
+        @keyframes bentoScrollDown1 {
+          0% {
+            transform: translateY(-50%);
+          }
+          100% {
+            transform: translateY(0%);
+          }
+        }
+        @keyframes bentoScrollDown2 {
+          0% {
+            transform: translateY(-50%);
+          }
+          100% {
+            transform: translateY(0%);
+          }
+        }
+        @keyframes bentoScrollDown3 {
+          0% {
+            transform: translateY(-50%);
+          }
+          100% {
+            transform: translateY(0%);
+          }
+        }
+        .bento-col-track-1 {
+          animation: bentoScrollDown1 50s linear infinite;
+        }
+        .bento-col-track-2 {
+          animation: bentoScrollDown2 62s linear infinite;
+        }
+        .bento-col-track-3 {
+          animation: bentoScrollDown3 56s linear infinite;
+        }
+        .bento-col-track-1:hover,
+        .bento-col-track-2:hover,
+        .bento-col-track-3:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-10 sm:gap-12">
         {/* Section label */}
         <div className="flex w-full items-center justify-between gap-6">
@@ -120,7 +180,7 @@ export default function SectionOutput() {
               04
             </span>
             <span className="font-[var(--cs-font-sans)] text-sm font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
-              Cross-Platform Application Showcase
+              Cross-Platform Component Library
             </span>
           </div>
         </div>
@@ -131,116 +191,155 @@ export default function SectionOutput() {
         {/* Section Headline */}
         <div className="flex flex-col gap-4">
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
-            One design language powering Web SaaS cockpits, Unity 3D/XR simulations, and marketing content.
+            A unified bento showcase of production design system components.
           </h2>
           <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
-            Falah One was validated by deploying its compiled tokens and component architecture directly from the 2026-FIT-Design-System library across three specialized engineering squads operating on completely distinct runtime environments.
+            Curated from the Mostly Used Components in Figma, showing cross-platform UI primitives spanning Next.js web applications, Unity 3D/XR world-space canvases, and marketing content systems.
           </p>
         </div>
 
-        {/* 3 Squads Component Showcase */}
-        <div className="flex flex-col gap-12 sm:gap-16">
-          {SQUAD_COMPONENTS.map((comp) => (
-            <motion.article
-              key={comp.number}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={REVEAL_VARIANTS}
-              transition={{ duration: 0.7 }}
-              className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-4 sm:p-6 lg:p-8"
-            >
-              <div className="flex flex-col gap-2 border-b border-[var(--cs-color-border)] pb-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
-                    {comp.squad} · COMPONENT {comp.number}
-                  </span>
-                  <span className="font-mono text-[11px] text-[var(--cs-color-accent)]">
-                    Figma Validated
-                  </span>
-                </div>
-                <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-[var(--cs-color-text-primary)] sm:text-2xl">
-                  {comp.title}
-                </h3>
-                <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">
-                  {comp.runtime}
-                </span>
-                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-sm">
-                  {comp.description}
-                </p>
-              </div>
+        {/* Auto-scrolling Bento Grid Showcase Container */}
+        <div className="relative h-[680px] sm:h-[780px] lg:h-[860px] w-full overflow-hidden rounded-3xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)]/20 p-3 sm:p-5">
+          {/* Top and Bottom Gradient Fade Overlays */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 z-20 h-28 sm:h-36 bg-gradient-to-b from-[var(--cs-color-bg)] via-[var(--cs-color-bg)]/80 to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 sm:h-36 bg-gradient-to-t from-[var(--cs-color-bg)] via-[var(--cs-color-bg)]/80 to-transparent"
+          />
 
-              {/* Component Screenshot from Figma */}
-              <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-2 shadow-sm sm:p-4">
-                <Image
-                  src={comp.src}
-                  alt={comp.alt}
-                  width={comp.width}
-                  height={comp.height}
-                  sizes="(max-width: 768px) 100vw, 1280px"
-                  className="h-auto w-full rounded-lg object-contain"
-                />
-              </div>
-
-              {/* Design Token Integration Highlights */}
-              <div className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 sm:p-5">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-                  Falah One Token Integration in Production:
-                </span>
-                <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
-                  {comp.designTokenIntegration.map((spec, idx) => (
-                    <li
-                      key={idx}
-                      className="rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-3 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]"
-                    >
-                      <strong className="block font-mono text-[10px] text-[var(--cs-color-text-muted)]">
-                        INTEGRATION PRINCIPLE 0{idx + 1}
-                      </strong>
-                      {spec}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-
-        {/* Cross-Squad Shared Primitives */}
-        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
-          <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              Cross-Squad Shared Primitives: Collaboration &amp; Telemetry
+          {/* Interactive Floating Status Pill */}
+          <div className="absolute top-4 right-4 z-30 flex items-center gap-2.5 rounded-full border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)]/90 px-3.5 py-1.5 backdrop-blur-md shadow-xs">
+            <span className="relative flex h-2 w-2">
+              <span className={`absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ${isPaused ? "" : "animate-ping"}`} />
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${isPaused ? "bg-amber-500" : "bg-emerald-500"}`} />
             </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              Multi-platform component primitives synchronized between Figma, Tailwind React web portals, and Unity 3D world-space canvases.
-            </p>
+            <span className="font-mono text-[10px] text-[var(--cs-color-text-secondary)]">
+              {isPaused ? "Flow Paused" : "Auto-scrolling (Hover to pause)"}
+            </span>
+            <button
+              type="button"
+              onClick={() => setIsPaused((prev) => !prev)}
+              className="cursor-pointer font-mono text-[10px] font-semibold text-[var(--cs-color-accent)] hover:underline"
+            >
+              {isPaused ? "Resume" : "Pause"}
+            </button>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {SHARED_PRIMITIVES.map((item) => (
+          {/* Multi-Column Bento Flow */}
+          <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Column 1 */}
+            <div className="relative h-full overflow-hidden">
               <div
-                key={item.label}
-                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4"
+                className="flex flex-col gap-4 bento-col-track-1"
+                style={{ animationPlayState: isPaused ? "paused" : "running" }}
               >
-                <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] p-2">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    width={600}
-                    height={400}
-                    className="h-auto max-h-full w-auto object-contain"
-                  />
-                </div>
-                <div className="flex flex-col gap-1 border-t border-[var(--cs-color-border)] pt-2">
-                  <p className="font-mono text-[11px] font-medium text-[var(--cs-color-text-primary)]">
-                    {item.label}
-                  </p>
-                  <p className="font-[var(--cs-font-sans)] text-[11px] leading-relaxed text-[var(--cs-color-text-muted)]">
-                    {item.description}
-                  </p>
-                </div>
+                {[...COLUMN_1, ...COLUMN_1].map((item, idx) => (
+                  <div
+                    key={`col1-${idx}`}
+                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] shadow-xs transition-all duration-300 hover:border-[var(--cs-color-accent)] hover:shadow-md"
+                  >
+                    <div className="flex items-center justify-between border-b border-[var(--cs-color-border)]/60 bg-[var(--cs-color-bg)]/60 px-4 py-2.5">
+                      <div className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[var(--cs-color-accent)]" />
+                        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
+                          {item.name}
+                        </span>
+                      </div>
+                      <span className="font-mono text-[9px] text-[var(--cs-color-text-muted)]">
+                        {item.category}
+                      </span>
+                    </div>
+                    <div className="relative flex w-full items-center justify-center bg-[var(--cs-color-bg)] p-3 sm:p-4">
+                      <Image
+                        src={item.src}
+                        alt={item.name}
+                        width={item.width}
+                        height={item.height}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="h-auto w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Column 2 */}
+            <div className="relative h-full overflow-hidden">
+              <div
+                className="flex flex-col gap-4 bento-col-track-2"
+                style={{ animationPlayState: isPaused ? "paused" : "running" }}
+              >
+                {[...COLUMN_2, ...COLUMN_2].map((item, idx) => (
+                  <div
+                    key={`col2-${idx}`}
+                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] shadow-xs transition-all duration-300 hover:border-[var(--cs-color-accent)] hover:shadow-md"
+                  >
+                    <div className="flex items-center justify-between border-b border-[var(--cs-color-border)]/60 bg-[var(--cs-color-bg)]/60 px-4 py-2.5">
+                      <div className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[var(--cs-color-accent)]" />
+                        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
+                          {item.name}
+                        </span>
+                      </div>
+                      <span className="font-mono text-[9px] text-[var(--cs-color-text-muted)]">
+                        {item.category}
+                      </span>
+                    </div>
+                    <div className="relative flex w-full items-center justify-center bg-[var(--cs-color-bg)] p-3 sm:p-4">
+                      <Image
+                        src={item.src}
+                        alt={item.name}
+                        width={item.width}
+                        height={item.height}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="h-auto w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 3 (hidden on small mobile, visible on desktop) */}
+            <div className="relative hidden h-full overflow-hidden lg:block">
+              <div
+                className="flex flex-col gap-4 bento-col-track-3"
+                style={{ animationPlayState: isPaused ? "paused" : "running" }}
+              >
+                {[...COLUMN_3, ...COLUMN_3].map((item, idx) => (
+                  <div
+                    key={`col3-${idx}`}
+                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] shadow-xs transition-all duration-300 hover:border-[var(--cs-color-accent)] hover:shadow-md"
+                  >
+                    <div className="flex items-center justify-between border-b border-[var(--cs-color-border)]/60 bg-[var(--cs-color-bg)]/60 px-4 py-2.5">
+                      <div className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[var(--cs-color-accent)]" />
+                        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
+                          {item.name}
+                        </span>
+                      </div>
+                      <span className="font-mono text-[9px] text-[var(--cs-color-text-muted)]">
+                        {item.category}
+                      </span>
+                    </div>
+                    <div className="relative flex w-full items-center justify-center bg-[var(--cs-color-bg)] p-3 sm:p-4">
+                      <Image
+                        src={item.src}
+                        alt={item.name}
+                        width={item.width}
+                        height={item.height}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="h-auto w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

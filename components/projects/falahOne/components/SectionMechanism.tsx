@@ -10,13 +10,6 @@ interface TokenTier {
   scope: string;
 }
 
-interface CompilerTarget {
-  platform: string;
-  compiler: string;
-  outputFormat: string;
-  runtimeBenefit: string;
-}
-
 const TOKEN_TIERS: TokenTier[] = [
   {
     tier: "TIER 01",
@@ -38,33 +31,6 @@ const TOKEN_TIERS: TokenTier[] = [
     role: "Component-specific parameters binding semantic roles to concrete UI states.",
     example: "btn-primary-bg: var(--action-primary) · vr-hud-laser-width: 2.5mm · card-border: var(--border-subtle)",
     scope: "Component Implementations",
-  },
-];
-
-const COMPILER_TARGETS: CompilerTarget[] = [
-  {
-    platform: "Web & Enterprise Dashboards",
-    compiler: "Style Dictionary → PostCSS & Tailwind",
-    outputFormat: "CSS Variables + tailwind.preset.js",
-    runtimeBenefit: "Zero runtime overhead; instantaneous hot module reload in Next.js/React.",
-  },
-  {
-    platform: "Unity 3D Simulation Engines",
-    compiler: "Style Dictionary C# Exporter → ScriptableObjects",
-    outputFormat: "FalahThemeConfig.cs + Unity USS",
-    runtimeBenefit: "Inspectable in Unity Editor inspector; hot-updates 3D world space text without recompilation.",
-  },
-  {
-    platform: "VR Head-Mounted Displays",
-    compiler: "Spatial Contrast Validator → Shaders",
-    outputFormat: "High-contrast stereoscopic UI materials",
-    runtimeBenefit: "Guaranteed minimum 7:1 contrast on dark VR cockpits; zero text glare on Fresnel lenses.",
-  },
-  {
-    platform: "Design Tooling (Figma)",
-    compiler: "GitHub Action → Tokens Studio Sync",
-    outputFormat: "Shared Figma Variable Collections",
-    runtimeBenefit: "Designers design with the exact same token names used by software and Unity engineers.",
   },
 ];
 
@@ -145,48 +111,6 @@ export default function SectionMechanism() {
                   </span>
                 </div>
               </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Multi-Target Build Pipeline */}
-        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
-          <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              Multi-Runtime Compilation Targets
-            </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              One shared JSON dictionary transformed through automated build pipelines into runtime-optimized outputs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {COMPILER_TARGETS.map((target) => (
-              <div
-                key={target.platform}
-                className="flex flex-col justify-between gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
-              >
-                <div className="flex flex-col gap-1.5">
-                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-primary)]">
-                    {target.platform}
-                  </span>
-                  <p className="font-mono text-[11px] text-[var(--cs-color-accent)]">
-                    Pipeline: {target.compiler}
-                  </p>
-                  <p className="font-mono text-[10px] text-[var(--cs-color-text-muted)]">
-                    Format: {target.outputFormat}
-                  </p>
-                </div>
-
-                <div className="border-t border-[var(--cs-color-border)] pt-3">
-                  <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-text-muted)]">
-                    Runtime Advantage
-                  </span>
-                  <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-                    {target.runtimeBenefit}
-                  </p>
-                </div>
-              </div>
             ))}
           </div>
         </div>

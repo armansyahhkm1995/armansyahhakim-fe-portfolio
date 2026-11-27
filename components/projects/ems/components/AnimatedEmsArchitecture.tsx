@@ -20,7 +20,7 @@ const DEVICES: Record<string, DeviceNode> = {
     codeName: "LVMDP 400 KW / 500 KVA",
     category: "power",
     functionSummary:
-      "Receives primary medium-voltage power feed from the utility grid (PLN) and backup diesel generators. Operates as the central low-voltage distribution hub (380V/220V), stabilizing current, routing electrical busbars, and providing master circuit protection via Air Circuit Breakers (ACB) and MCCB.",
+      "Receives main incoming power from the high-voltage utility grid (PLN) and standby diesel generator backup. Functions as the primary substation low-voltage distribution hub (380V/220V), stabilizing incoming power, energizing the primary copper busbars, and providing master circuit protection via Air Circuit Breakers (ACB) and MCCB.",
     electricalRole:
       "3-Phase AC power from grid/generator enters the LVMDP busbar assembly, where it is conditioned and channeled safely into the metering arrays of the Parent Smart kWh and downstream Child Smart kWh units.",
     specifications: [
@@ -330,7 +330,7 @@ export default function AnimatedEmsArchitecture() {
               </filter>
             </defs>
 
-            {/* ================= 1. RS485 MODBUS COMMUNICATION BUS (DRAWN UNDER POWER) ================= */}
+            {/* ================= 1. RS485 MODBUS COMMUNICATION BUS ================= */}
             {/* Trunk from Parent Smart KWH (x=430, y=145) to Gateway (x=665, y=145) */}
             <path
               d="M 430 145 L 665 145"
@@ -343,44 +343,44 @@ export default function AnimatedEmsArchitecture() {
             {/* Connection Port Dot on Gateway */}
             <circle cx="665" cy="145" r="3.5" fill="#818cf8" />
 
-            {/* Vertical RS485 Trunk Dropping Down to Child Meters */}
+            {/* Vertical RS485 Trunk Dropping Down at x=615 */}
             <path
-              d="M 640 145 L 640 575"
+              d="M 615 145 L 615 575"
               stroke="#818cf8"
               strokeWidth="2"
               strokeDasharray="5 3"
             />
-            <circle cx="640" cy="145" r="3" fill="#818cf8" />
+            <circle cx="615" cy="145" r="3" fill="#818cf8" />
 
-            {/* RS485 Branches into Child Meters */}
-            {/* Branch to Child 1 (Server Room) */}
+            {/* Fully connected branches from RS485 trunk directly into each Child Meter */}
+            {/* Branch into Child 1 (Server Room) */}
             <path
-              d="M 640 310 L 725 310"
+              d="M 615 305 L 725 305"
               stroke="#818cf8"
               strokeWidth="2"
               strokeDasharray="5 3"
             />
-            <circle cx="640" cy="310" r="2.5" fill="#818cf8" />
-            <circle cx="725" cy="310" r="3" fill="#818cf8" />
+            <circle cx="615" cy="305" r="2.5" fill="#818cf8" />
+            <circle cx="725" cy="305" r="3" fill="#818cf8" />
 
-            {/* Branch to Child 2 (Office) */}
+            {/* Branch into Child 2 (Office) */}
             <path
-              d="M 640 445 L 725 445"
+              d="M 615 440 L 725 440"
               stroke="#818cf8"
               strokeWidth="2"
               strokeDasharray="5 3"
             />
-            <circle cx="640" cy="445" r="2.5" fill="#818cf8" />
-            <circle cx="725" cy="445" r="3" fill="#818cf8" />
+            <circle cx="615" cy="440" r="2.5" fill="#818cf8" />
+            <circle cx="725" cy="440" r="3" fill="#818cf8" />
 
-            {/* Branch to Child 3 (Lab) */}
+            {/* Branch into Child 3 (Lab) */}
             <path
-              d="M 640 575 L 725 575"
+              d="M 615 575 L 725 575"
               stroke="#818cf8"
               strokeWidth="2"
               strokeDasharray="5 3"
             />
-            <circle cx="640" cy="575" r="2.5" fill="#818cf8" />
+            <circle cx="615" cy="575" r="2.5" fill="#818cf8" />
             <circle cx="725" cy="575" r="3" fill="#818cf8" />
 
             <text x="510" y="137" fill="#818cf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
@@ -388,52 +388,52 @@ export default function AnimatedEmsArchitecture() {
             </text>
 
             {/* ================= 2. DASHED SKY-BLUE CONTROL LINES (GATEWAY TO CHILD METERS) ================= */}
-            {/* Direct seamless connection starting from bottom port of Gateway at (695, 137) */}
+            {/* Seamless, fully connected control line dropping from Gateway port at (695, 137) */}
             <circle cx="695" cy="137" r="3.5" fill="#38bdf8" />
             
-            {/* Vertical Control Trunk */}
+            {/* Vertical Control Trunk at x=650 */}
             <path
-              d="M 695 137 L 695 510"
+              d="M 695 137 L 650 137 L 650 510"
               stroke="#38bdf8"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
 
-            {/* Horizontal Branch to Child 1 */}
+            {/* Continuous Branch into Child 1 */}
             <path
-              d="M 695 240 L 725 240"
+              d="M 650 240 L 725 240"
               stroke="#38bdf8"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
-            <circle cx="695" cy="240" r="2.5" fill="#38bdf8" />
+            <circle cx="650" cy="240" r="2.5" fill="#38bdf8" />
             <circle cx="725" cy="240" r="3" fill="#38bdf8" />
 
-            {/* Horizontal Branch to Child 2 */}
+            {/* Continuous Branch into Child 2 */}
             <path
-              d="M 695 375 L 725 375"
+              d="M 650 375 L 725 375"
               stroke="#38bdf8"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
-            <circle cx="695" cy="375" r="2.5" fill="#38bdf8" />
+            <circle cx="650" cy="375" r="2.5" fill="#38bdf8" />
             <circle cx="725" cy="375" r="3" fill="#38bdf8" />
 
-            {/* Horizontal Branch to Child 3 */}
+            {/* Continuous Branch into Child 3 */}
             <path
-              d="M 695 510 L 725 510"
+              d="M 650 510 L 725 510"
               stroke="#38bdf8"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
-            <circle cx="695" cy="510" r="2.5" fill="#38bdf8" />
+            <circle cx="650" cy="510" r="2.5" fill="#38bdf8" />
             <circle cx="725" cy="510" r="3" fill="#38bdf8" />
 
-            <text x="702" y="180" fill="#38bdf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
+            <text x="656" y="180" fill="#38bdf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
               CONTROL LINE
             </text>
 
-            {/* ================= 3. RED SOLID POWER BUS (DRAWN OVER COMM LINES TO PREVENT SEVERING) ================= */}
+            {/* ================= 3. RED SOLID POWER BUS (SOLID, CONTINUOUS, UNBROKEN FROM LVMDP TO CHILD METERS) ================= */}
             {/* PLN Input into LVMDP */}
             <path
               d="M 10 350 L 90 350"
@@ -446,7 +446,7 @@ export default function AnimatedEmsArchitecture() {
               PLN 380V AC &rarr;
             </text>
 
-            {/* 3-Phase Bus from LVMDP into Current Transformer (CT) */}
+            {/* 3-Phase Bus from LVMDP passing directly into Current Transformer (CT) */}
             <path d="M 170 335 L 355 335" stroke="#ef4444" strokeWidth="2.5" />
             <path d="M 170 345 L 355 345" stroke="#ef4444" strokeWidth="2.5" />
             <path d="M 170 355 L 355 355" stroke="#ef4444" strokeWidth="2.5" />
@@ -460,61 +460,70 @@ export default function AnimatedEmsArchitecture() {
             <circle cx="395" cy="190" r="2.5" fill="#ef4444" />
             <circle cx="415" cy="190" r="2.5" fill="#ef4444" />
 
-            {/* Unbroken Main Distribution Bus Exiting CT towards Child Meters */}
-            <path d="M 435 335 L 610 335" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 435 345 L 610 345" stroke="#ef4444" strokeWidth="2.5" />
-            <path d="M 435 355 L 610 355" stroke="#ef4444" strokeWidth="2.5" />
+            {/* Unbroken Main Distribution Bus Exiting CT going straight horizontally to x=680 */}
+            <path d="M 435 335 L 680 335" stroke="#ef4444" strokeWidth="2.5" />
+            <path d="M 435 345 L 680 345" stroke="#ef4444" strokeWidth="2.5" />
+            <path d="M 435 355 L 680 355" stroke="#ef4444" strokeWidth="2.5" />
 
-            {/* Continuous, Uncut Red Feeder Lines to Child Smart kWh Meters */}
-            {/* Feeder to Child 1: Overpasses comm lines cleanly with terminal connection */}
+            {/* Seamless, Continuous Red Power Feeder Lines reaching each Child Smart kWh Meter */}
+            {/* Feeder into Child 1: curves up to terminal at (725, 275) */}
             <path
-              d="M 610 335 L 650 335 L 650 280 L 725 280"
+              d="M 680 335 L 680 275 L 725 275"
               stroke="#ef4444"
               strokeWidth="2.5"
               fill="none"
             />
-            <circle cx="610" cy="335" r="3" fill="#ef4444" />
-            <circle cx="725" cy="280" r="3.5" fill="#ef4444" />
+            <circle cx="680" cy="335" r="3" fill="#ef4444" />
+            <circle cx="725" cy="275" r="3.5" fill="#ef4444" />
 
-            {/* Feeder to Child 2 */}
+            {/* Feeder into Child 2: continues to terminal at (725, 410) */}
             <path
-              d="M 610 345 L 635 345 L 635 415 L 725 415"
+              d="M 680 345 L 680 410 L 725 410"
               stroke="#ef4444"
               strokeWidth="2.5"
               fill="none"
             />
-            <circle cx="610" cy="345" r="3" fill="#ef4444" />
-            <circle cx="725" cy="415" r="3.5" fill="#ef4444" />
+            <circle cx="680" cy="345" r="3" fill="#ef4444" />
+            <circle cx="725" cy="410" r="3.5" fill="#ef4444" />
 
-            {/* Feeder to Child 3 */}
+            {/* Feeder into Child 3: curves down to terminal at (725, 545) */}
             <path
-              d="M 610 355 L 580 355 L 580 550 L 725 550"
+              d="M 680 355 L 680 545 L 725 545"
               stroke="#ef4444"
               strokeWidth="2.5"
               fill="none"
             />
-            <circle cx="610" cy="355" r="3" fill="#ef4444" />
-            <circle cx="725" cy="550" r="3.5" fill="#ef4444" />
+            <circle cx="680" cy="355" r="3" fill="#ef4444" />
+            <circle cx="725" cy="545" r="3.5" fill="#ef4444" />
 
-            {/* Power Out from Child Meters to Load Groups */}
-            <path d="M 773 280 L 890 280" stroke="#ef4444" strokeWidth="2.5" />
-            <circle cx="773" cy="280" r="3" fill="#ef4444" />
-            <circle cx="890" cy="280" r="3" fill="#ef4444" />
+            {/* Power Out from Child Meters directly into Load Groups */}
+            <path d="M 773 275 L 890 275" stroke="#ef4444" strokeWidth="2.5" />
+            <circle cx="773" cy="275" r="3" fill="#ef4444" />
+            <circle cx="890" cy="275" r="3" fill="#ef4444" />
 
-            <path d="M 773 415 L 890 415" stroke="#ef4444" strokeWidth="2.5" />
-            <circle cx="773" cy="415" r="3" fill="#ef4444" />
-            <circle cx="890" cy="415" r="3" fill="#ef4444" />
+            <path d="M 773 410 L 890 410" stroke="#ef4444" strokeWidth="2.5" />
+            <circle cx="773" cy="410" r="3" fill="#ef4444" />
+            <circle cx="890" cy="410" r="3" fill="#ef4444" />
 
-            <path d="M 773 550 L 890 550" stroke="#ef4444" strokeWidth="2.5" />
-            <circle cx="773" cy="550" r="3" fill="#ef4444" />
-            <circle cx="890" cy="550" r="3" fill="#ef4444" />
+            <path d="M 773 545 L 890 545" stroke="#ef4444" strokeWidth="2.5" />
+            <circle cx="773" cy="545" r="3" fill="#ef4444" />
+            <circle cx="890" cy="545" r="3" fill="#ef4444" />
 
-            {/* ================= 4. ANIMATED TELEMETRY PACKET DOTS (CONNECTING PARENT & CHILD METERS) ================= */}
-            {/* Packet 1: Telemetry flowing from Child 1 up through RS485 bus into Parent Smart KWH */}
+            {/* ================= 4. ANIMATED TELEMETRY PACKET DOTS (INTERCONNECTING PARENT & CHILD METERS) ================= */}
+            {/* Packet 1: Telemetry flowing from Child 1 directly into Parent Smart KWH */}
             <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
               <animateMotion
-                path="M 725 310 L 640 310 L 640 145 L 430 145"
-                dur="2.8s"
+                path="M 725 305 L 615 305 L 615 145 L 430 145"
+                dur="2.5s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            {/* Reverse Sync Packet from Parent KWH to Child 1 */}
+            <circle r="3" fill="#818cf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 430 145 L 615 145 L 615 305 L 725 305"
+                dur="2.5s"
+                begin="1.2s"
                 repeatCount="indefinite"
               />
             </circle>
@@ -522,9 +531,18 @@ export default function AnimatedEmsArchitecture() {
             {/* Packet 2: Telemetry flowing from Child 2 into Parent Smart KWH */}
             <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
               <animateMotion
-                path="M 725 445 L 640 445 L 640 145 L 430 145"
-                dur="3.4s"
-                begin="0.6s"
+                path="M 725 440 L 615 440 L 615 145 L 430 145"
+                dur="3.0s"
+                begin="0.4s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            {/* Reverse Sync Packet from Parent KWH to Child 2 */}
+            <circle r="3" fill="#818cf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 430 145 L 615 145 L 615 440 L 725 440"
+                dur="3.0s"
+                begin="1.8s"
                 repeatCount="indefinite"
               />
             </circle>
@@ -532,48 +550,65 @@ export default function AnimatedEmsArchitecture() {
             {/* Packet 3: Telemetry flowing from Child 3 into Parent Smart KWH */}
             <circle r="3.5" fill="#a5b4fc" filter="url(#packet-glow)">
               <animateMotion
-                path="M 725 575 L 640 575 L 640 145 L 430 145"
-                dur="4.0s"
-                begin="1.2s"
+                path="M 725 575 L 615 575 L 615 145 L 430 145"
+                dur="3.5s"
+                begin="0.8s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            {/* Reverse Sync Packet from Parent KWH to Child 3 */}
+            <circle r="3" fill="#818cf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 430 145 L 615 145 L 615 575 L 725 575"
+                dur="3.5s"
+                begin="2.2s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* Packet 4: Telemetry Aggregation flowing from Parent Smart KWH to Gateway */}
+            {/* Packet 4: Gateway MAC Discovery Query between Gateway and Parent Smart KWH */}
+            <circle r="3.8" fill="#38bdf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 665 145 L 430 145"
+                dur="1.8s"
+                repeatCount="indefinite"
+              />
+            </circle>
             <circle r="3.8" fill="#38bdf8" filter="url(#packet-glow)">
               <animateMotion
                 path="M 430 145 L 665 145"
-                dur="2.0s"
-                repeatCount="indefinite"
-              />
-            </circle>
-
-            {/* Packet 5: Gateway Remote Control Command Pulse flowing down to Child 1 */}
-            <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
-              <animateMotion
-                path="M 695 137 L 695 240 L 725 240"
-                dur="2.2s"
-                begin="0.3s"
-                repeatCount="indefinite"
-              />
-            </circle>
-
-            {/* Packet 6: Gateway Remote Control Command Pulse flowing down to Child 2 */}
-            <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
-              <animateMotion
-                path="M 695 137 L 695 375 L 725 375"
-                dur="2.6s"
+                dur="1.8s"
                 begin="0.9s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* Packet 7: Gateway Remote Control Command Pulse flowing down to Child 3 */}
+            {/* Packet 5: Gateway Remote Control Command Pulse flowing down directly to Child 1 */}
             <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
               <animateMotion
-                path="M 695 137 L 695 510 L 725 510"
-                dur="3.0s"
-                begin="1.5s"
+                path="M 695 137 L 650 137 L 650 240 L 725 240"
+                dur="2.0s"
+                begin="0.2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 6: Gateway Remote Control Command Pulse flowing down directly to Child 2 */}
+            <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 695 137 L 650 137 L 650 375 L 725 375"
+                dur="2.4s"
+                begin="0.7s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Packet 7: Gateway Remote Control Command Pulse flowing down directly to Child 3 */}
+            <circle r="3" fill="#38bdf8" filter="url(#packet-glow)">
+              <animateMotion
+                path="M 695 137 L 650 137 L 650 510 L 725 510"
+                dur="2.8s"
+                begin="1.3s"
                 repeatCount="indefinite"
               />
             </circle>
@@ -932,7 +967,7 @@ export default function AnimatedEmsArchitecture() {
               {activeStage.title}
             </span>
             <span className="font-mono text-[10px] text-stone-400">
-              Target Device: <strong className="text-stone-200">{DEVICES[activeStage.focusDeviceId]?.codeName}</strong>
+              Active Focus: <strong className="text-stone-200">{DEVICES[activeStage.focusDeviceId]?.codeName}</strong>
             </span>
           </div>
           <p className="font-[var(--cs-font-sans)] text-xs text-stone-300">
@@ -962,7 +997,7 @@ export default function AnimatedEmsArchitecture() {
                   {activeDevice.name}
                 </h4>
                 <span className="font-mono text-[11px] text-[var(--cs-color-text-muted)]">
-                  Model / Hardware Tag: {activeDevice.codeName}
+                  Model / Hardware Identifier: {activeDevice.codeName}
                 </span>
               </div>
             </div>
@@ -970,7 +1005,7 @@ export default function AnimatedEmsArchitecture() {
             {/* If Child 1 is selected, provide live toggle control demo */}
             {activeDevice.id === "childKwh1" && (
               <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-[var(--cs-color-text-secondary)]">AC Relay Simulation:</span>
+                <span className="font-mono text-xs text-[var(--cs-color-text-secondary)]">Live AC Relay Simulation:</span>
                 <button
                   type="button"
                   onClick={() => setIsRelay1Active(!isRelay1Active)}
@@ -999,7 +1034,7 @@ export default function AnimatedEmsArchitecture() {
 
             <div className="flex flex-col gap-1.5">
               <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-                Electrical Flow &amp; Telemetry:
+                Electrical Current &amp; Telemetry Flow:
               </span>
               <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                 {activeDevice.electricalRole}

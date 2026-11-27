@@ -19,12 +19,12 @@ const IMPACT_METRICS: MetricCard[] = [
   {
     value: "65%",
     label: "Faster UI Delivery Velocity",
-    detail: "New interface modules across web and Unity ship in days instead of multi-week custom CSS/canvas sprints.",
+    detail: "New interface modules across web, Unity, and content ship in days instead of multi-week custom asset sprints.",
   },
   {
-    value: "4",
-    label: "Technical Divisions Unified",
-    detail: "Web React, Unity 3D, VR headsets, and corporate brand assets now draw from a single synchronized token repo.",
+    value: "3",
+    label: "Squad Ecosystems Unified",
+    detail: "Web (web/mobile/SaaS), Unity (VR/AR/simulations), and Content (landing/compro/social) now draw from a single synchronized token architecture.",
   },
   {
     value: "100%",
@@ -63,9 +63,6 @@ export default function SectionImpact() {
   return (
     <section id="impact" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
         {/* Section label */}
         <div className="flex w-full items-center justify-between gap-6">
           <div className="flex items-center gap-3">
@@ -76,10 +73,10 @@ export default function SectionImpact() {
               Impact &amp; Retrospective
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Engineering Velocity &amp; Scalability
-          </span>
         </div>
+
+        {/* Section divider */}
+        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
 
         {/* Section Headline */}
         <div className="flex flex-col gap-4">

@@ -22,11 +22,11 @@ export default function SectionHero() {
               INTERNAL DESIGN SYSTEM · FALAH INOVASI TEKNOLOGI · Q1 2026
             </p>
 
-            <h1 className="font-display text-[2.75rem] leading-[0.95] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]">
+            <h1 className="font-display text-[2.75rem] leading-[1.05] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]">
               {lines.map((line, index) => (
-                <span key={line} className="block overflow-hidden">
+                <span key={line} className="block overflow-hidden pb-1 sm:pb-2">
                   <motion.span
-                    className="block"
+                    className="block pb-1"
                     initial={{ y: "110%" }}
                     animate={{ y: 0 }}
                     transition={{
@@ -43,16 +43,16 @@ export default function SectionHero() {
           </header>
 
           {/* Description + metadata */}
-          <div className="flex flex-col gap-8 md:gap-10 lg:flex-row lg:items-start lg:gap-16">
-            <p className="max-w-[760px] flex-1 font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
+          <div className="flex flex-col gap-6 md:gap-8">
+            <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
               Investigating how one unified design language could work systematically across
               Falah&apos;s software development, VR/AR simulations, and marketing content teams
               without flattening operational needs.
             </p>
 
-            <dl className="grid shrink-0 grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:flex lg:gap-8">
+            <dl className="flex flex-wrap items-start gap-8 border-t border-[var(--cs-color-border)] pt-6 sm:gap-12 md:gap-16">
               {METADATA.map(([label, value]) => (
-                <div key={label} className="flex flex-col gap-1.5 max-w-[240px]">
+                <div key={label} className="flex flex-col gap-1.5">
                   <dt className="font-mono text-[10px] uppercase tracking-wide text-[var(--cs-color-text-muted)]">
                     {label}
                   </dt>
@@ -65,17 +65,11 @@ export default function SectionHero() {
           </div>
         </div>
 
-        {/* Executive Summary Card (At-a-Glance) */}
+        {/* Executive Summary Card */}
         <div className="mt-12 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
-                EXECUTIVE SUMMARY
-              </span>
-              <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">· AT A GLANCE</span>
-            </div>
-            <span className="font-mono text-[11px] text-[var(--cs-color-text-muted)] hidden sm:inline">
-              Cross-Platform Architecture
+            <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
+              EXECUTIVE SUMMARY
             </span>
           </div>
 
@@ -85,7 +79,7 @@ export default function SectionHero() {
                 01 / The Friction
               </span>
               <p className="font-sans text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                Cross-squad front-end delivery was completely fragmented. Web squads, Unity 3D developers, and VR simulation engineers built disjointed UI components with zero token governance or accessibility standards.
+                Cross-squad front-end delivery was completely fragmented across 3 core teams: Web developers (web, mobile apps, SaaS), Unity developers (VR/AR &amp; 3D simulations), and Content developers (landing pages, compros, social media).
               </p>
             </div>
 
@@ -103,7 +97,7 @@ export default function SectionHero() {
                 03 / The Impact
               </span>
               <p className="font-sans text-xs leading-relaxed font-medium text-[var(--cs-color-text-primary)]">
-                Unified 4 core technical divisions under a single design language, slashed new module UI implementation time by 65%, and enforced 100% WCAG AA contrast compliance across all high-density cockpits.
+                Unified 3 core technical squads under a single design language, slashed new module UI implementation time by 65%, and enforced 100% WCAG AA contrast compliance across all high-density cockpits.
               </p>
             </div>
           </div>

@@ -120,9 +120,6 @@ export default function SectionOutput() {
   return (
     <section id="output" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-10 sm:gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
         {/* Section label */}
         <div className="flex w-full items-center justify-between gap-6">
           <div className="flex items-center gap-3">
@@ -133,10 +130,10 @@ export default function SectionOutput() {
               Cross-Platform Application Showcase
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Production Implementations in the Wild
-          </span>
         </div>
+
+        {/* Section divider */}
+        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
 
         {/* Section Headline */}
         <div className="flex flex-col gap-4">

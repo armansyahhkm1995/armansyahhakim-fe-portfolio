@@ -17,13 +17,6 @@ interface CompilerTarget {
   runtimeBenefit: string;
 }
 
-interface GovernanceStep {
-  step: string;
-  title: string;
-  owner: string;
-  description: string;
-}
-
 const TOKEN_TIERS: TokenTier[] = [
   {
     tier: "TIER 01",
@@ -75,33 +68,6 @@ const COMPILER_TARGETS: CompilerTarget[] = [
   },
 ];
 
-const GOVERNANCE_STEPS: GovernanceStep[] = [
-  {
-    step: "01",
-    title: "Request for Change (RFC)",
-    owner: "Any Squad Engineer or Designer",
-    description: "Submit a lightweight GitHub issue detailing the new component need, usage context, and fallback states.",
-  },
-  {
-    step: "02",
-    title: "System Review & Accessibility Audit",
-    owner: "Design Systems Core Team",
-    description: "Verify contrast ratios, keyboard navigation (web), laser pointer raycasts (VR), and token naming integrity.",
-  },
-  {
-    step: "03",
-    title: "Automated Multi-Target Build",
-    owner: "GitHub Actions CI Pipeline",
-    description: "Tokens JSON is compiled, validated against schema rules, and published under semantic versioning (SemVer).",
-  },
-  {
-    step: "04",
-    title: "Downstream Squad Adoption",
-    owner: "Web & Simulation Repos",
-    description: "Automated Dependabot / npm update alerts squads to non-breaking token updates with zero code migration.",
-  },
-];
-
 const REVEAL_VARIANTS = {
   hidden: { y: 24, opacity: 0 },
   visible: { y: 0, opacity: 1 },
@@ -111,22 +77,16 @@ export default function SectionMechanism() {
   return (
     <section id="mechanism" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
-        {/* Section label */}
-        <div className="flex w-full items-center justify-between gap-6">
+        {/* Section divider & label */}
+        <div className="flex flex-col items-start gap-2 border-b border-[var(--cs-color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
           <div className="flex items-center gap-3">
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold text-[var(--cs-color-text-secondary)]">
+            <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               03
             </span>
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
+            <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
               Multi-Platform Token Architecture
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Token Compilation &amp; Governance
-          </span>
         </div>
 
         {/* Section Headline */}
@@ -159,18 +119,13 @@ export default function SectionMechanism() {
                 viewport={{ once: true, amount: 0.15 }}
                 variants={REVEAL_VARIANTS}
                 transition={{ duration: 0.6 }}
-                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5 sm:p-6"
+                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-6"
               >
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-[var(--cs-color-accent)]">
-                      {tier.tier}
-                    </span>
-                    <span className="font-mono text-[10px] text-[var(--cs-color-text-muted)]">
-                      {tier.scope}
-                    </span>
-                  </div>
-                  <h3 className="font-[var(--cs-font-sans)] text-base font-bold text-[var(--cs-color-text-primary)]">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-accent)]">
+                    {tier.tier}
+                  </span>
+                  <h3 className="font-[var(--cs-font-sans)] text-lg font-bold text-[var(--cs-color-text-primary)]">
                     {tier.name}
                   </h3>
                   <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
@@ -178,45 +133,48 @@ export default function SectionMechanism() {
                   </p>
                 </div>
 
-                <div className="border-t border-[var(--cs-color-border)] pt-3">
+                <div className="flex flex-col gap-2 border-t border-[var(--cs-color-border)] pt-3">
                   <span className="font-mono text-[10px] font-bold uppercase text-[var(--cs-color-text-muted)]">
-                    Token Pattern:
+                    Example Signature:
                   </span>
-                  <p className="mt-1 font-mono text-[11px] text-[var(--cs-color-text-secondary)]">
+                  <code className="rounded bg-[var(--cs-color-bg-secondary)] p-2 font-mono text-[11px] text-[var(--cs-color-text-primary)] break-all">
                     {tier.example}
-                  </p>
+                  </code>
+                  <span className="font-mono text-[10px] text-[var(--cs-color-text-muted)]">
+                    Scope: {tier.scope}
+                  </span>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Multi-Platform Compilation Pipeline */}
+        {/* Multi-Target Build Pipeline */}
         <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <div className="flex flex-col gap-1">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              Cross-Platform Compilation Matrix
+              Multi-Runtime Compilation Targets
             </span>
             <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              How the single token pipeline feeds distinct engineering runtimes without manual translation.
+              One shared JSON dictionary transformed through automated build pipelines into runtime-optimized outputs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {COMPILER_TARGETS.map((target) => (
               <div
                 key={target.platform}
                 className="flex flex-col justify-between gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
               >
-                <div className="flex flex-col gap-1">
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
+                <div className="flex flex-col gap-1.5">
+                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-primary)]">
                     {target.platform}
-                  </h4>
-                  <p className="font-mono text-[10px] text-[var(--cs-color-accent)]">
-                    {target.compiler}
+                  </span>
+                  <p className="font-mono text-[11px] text-[var(--cs-color-accent)]">
+                    Pipeline: {target.compiler}
                   </p>
-                  <p className="mt-2 font-mono text-[11px] font-semibold text-[var(--cs-color-text-secondary)]">
-                    Output: {target.outputFormat}
+                  <p className="font-mono text-[10px] text-[var(--cs-color-text-muted)]">
+                    Format: {target.outputFormat}
                   </p>
                 </div>
 
@@ -226,42 +184,6 @@ export default function SectionMechanism() {
                   </span>
                   <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
                     {target.runtimeBenefit}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Governance & Contribution Cycle */}
-        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
-          <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              Lightweight Governance &amp; Contribution Lifecycle
-            </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              Empowering federated team contributions without risking brand drift or breaking changes.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {GOVERNANCE_STEPS.map((gov) => (
-              <div
-                key={gov.step}
-                className="flex flex-col justify-between gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
-              >
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
-                    PHASE {gov.step}
-                  </span>
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
-                    {gov.title}
-                  </h4>
-                  <p className="font-mono text-[10px] text-[var(--cs-color-accent)]">
-                    Owner: {gov.owner}
-                  </p>
-                  <p className="mt-2 font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                    {gov.description}
                   </p>
                 </div>
               </div>

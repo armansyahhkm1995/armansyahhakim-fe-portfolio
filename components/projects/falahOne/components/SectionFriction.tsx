@@ -18,28 +18,22 @@ interface FragmentationSymptom {
 
 const DIVISIONS: DivisionInfo[] = [
   {
-    division: "Software & Web Division",
-    technologies: "Next.js · React · Tailwind CSS · TypeScript · HTML5 DOM",
-    primaryOutput: "Industrial IoT dashboards, administrative cockpits, analytics portals.",
-    divergencePattern: "Relied on web flexbox, Tailwind classes, and browser layout engines.",
+    division: "Web Developer Squad",
+    technologies: "Next.js · React · Tailwind CSS · TypeScript · Responsive HTML5 DOM",
+    primaryOutput: "Industrial IoT dashboards, cloud SaaS platforms, and mobile apps.",
+    divergencePattern: "Relied on web flexbox, Tailwind utility classes, and browser DOM layout engines.",
   },
   {
-    division: "Simulation & 3D Division",
-    technologies: "Unity 3D Engine · C# · World Space Canvas · High-poly 3D models",
-    primaryOutput: "Interactive military maintenance trainers and physical equipment simulators.",
-    divergencePattern: "Rendered UI as 3D textures in camera space with fixed pixel dimensions.",
+    division: "Unity Developer Squad",
+    technologies: "Unity 3D Engine · C# · World Space Canvas · OpenXR · VR/AR SDKs",
+    primaryOutput: "Military maintenance simulators, virtual reality training, and spatial 3D environments.",
+    divergencePattern: "Rendered UI as 3D textures in stereoscopic space with strict 90 FPS draw-call budgets.",
   },
   {
-    division: "VR/AR Immersive Division",
-    technologies: "OpenXR · HTC Vive / Quest 3 SDKs · Spatial Controller Handshakes",
-    primaryOutput: "Virtual Reality technical procedure training and immersive language labs.",
-    divergencePattern: "UI placed in stereoscopic 3D space requiring 90 FPS strict draw-call budgets.",
-  },
-  {
-    division: "Brand & Marketing Division",
-    technologies: "Figma · Adobe Suite · Vector SVG · Motion Graphics",
-    primaryOutput: "Corporate identity, exhibition collateral, and marketing landing pages.",
-    divergencePattern: "Exported static rasterized assets without systematic tokens.",
+    division: "Content Developer Squad",
+    technologies: "Figma · Modern Web CMS · Vector SVG · Motion Graphics · Brand Design",
+    primaryOutput: "Public landing pages, company profiles (compro), and social media digital collateral.",
+    divergencePattern: "Exported ad-hoc vector and rasterized assets without synchronized token governance.",
   },
 ];
 
@@ -79,36 +73,30 @@ export default function SectionFriction() {
   return (
     <section id="friction" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
-        {/* Section label */}
-        <div className="flex w-full items-center justify-between gap-6">
+        {/* Section divider & label */}
+        <div className="flex flex-col items-start gap-2 border-b border-[var(--cs-color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
           <div className="flex items-center gap-3">
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold text-[var(--cs-color-text-secondary)]">
+            <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               02
             </span>
-            <span className="font-[var(--cs-font-sans)] text-sm font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
+            <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
               Cross-Platform Fragmentation
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Multi-Runtime Technical Debt
-          </span>
         </div>
 
         {/* Section Headline */}
         <div className="flex flex-col gap-4">
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
-            Four engineering squads, four different tech stacks, zero shared source of truth.
+            Three engineering squads, diverse technical runtimes, zero shared source of truth.
           </h2>
           <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
-            When teams scale independently across web applications, Unity 3D simulators, and VR head-mounted displays, UI patterns fragment rapidly. Each team solved the same layout, color, and interaction problems in complete isolation.
+            When teams scale independently across web/mobile applications, Unity 3D/VR simulators, and marketing content, UI patterns fragment rapidly. Each team solved layout, color, and interaction problems in complete isolation.
           </p>
         </div>
 
-        {/* The 4 Divisions Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {/* The 3 Squads Grid */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {DIVISIONS.map((item) => (
             <motion.div
               key={item.division}
@@ -150,7 +138,7 @@ export default function SectionFriction() {
               The Four Costly Symptoms of Systemic Fragmentation
             </span>
             <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              Audit findings across 12 internal repositories revealed massive duplicate engineering hours and customer-facing inconsistency.
+              Audit findings across internal repositories revealed massive duplicate engineering hours and customer-facing inconsistency.
             </p>
           </div>
 

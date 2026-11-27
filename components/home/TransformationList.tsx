@@ -221,7 +221,7 @@ export function TransformationList() {
   return (
     <section id="transformations" className="px-6 py-28 md:px-12 md:py-36">
       <div className="mx-auto w-full max-w-350">
-        <div className="mb-16 border-b border-border pb-8">
+        <div className="mb-12 md:mb-16">
           <h2 className="font-display max-w-2xl text-[2.5rem] leading-[1.05] sm:text-5xl lg:text-6xl">
             Selected Projects &amp; Products
           </h2>

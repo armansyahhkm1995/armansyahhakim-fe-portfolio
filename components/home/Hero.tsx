@@ -23,13 +23,16 @@ export function Hero() {
         <div className="max-w-4xl">
           <h1
             id="hero-heading"
-            className="font-display text-[2.75rem] leading-[0.98] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]"
+            className="font-display text-[2.75rem] leading-[1.04] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]"
           >
             {lines.map((line, index) => (
-              <span key={line} className="block overflow-hidden">
+              <span
+                key={line}
+                className="block overflow-hidden pb-[0.2em] -mb-[0.2em]"
+              >
                 <motion.span
                   className="block"
-                  initial={{ y: "110%" }}
+                  initial={{ y: "115%" }}
                   animate={{ y: 0 }}
                   transition={{
                     duration: 1,

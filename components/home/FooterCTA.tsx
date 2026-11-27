@@ -15,19 +15,22 @@ export function FooterCTA() {
   return (
     <footer
       id="contact"
-      className="flex min-h-svh flex-col justify-between bg-primary px-6 py-16 text-primary-foreground md:px-12 md:py-24"
+      className="flex flex-col justify-between bg-primary px-6 py-16 text-primary-foreground md:px-12 md:py-24"
     >
-      <div className="font-mono text-[0.7rem] tracking-[0.28em] uppercase opacity-70">
-        <span>Get in Touch</span>
-      </div>
+      <div className="max-w-5xl">
+        <div className="mb-6 font-mono text-[0.7rem] tracking-[0.28em] uppercase opacity-70">
+          <span>Get in Touch</span>
+        </div>
 
-      <div className="my-auto max-w-5xl py-12">
-        <h2 className="font-display text-[2.75rem] leading-[0.98] sm:text-[4.5rem] lg:text-[5.75rem] xl:text-[6.5rem]">
+        <h2 className="font-display text-[2.75rem] leading-[1.02] sm:text-[4.5rem] lg:text-[5.75rem] xl:text-[6.5rem]">
           {lines.map((line, index) => (
-            <span key={line} className="block overflow-hidden">
+            <span
+              key={line}
+              className="block overflow-hidden pb-[0.15em] -mb-[0.15em]"
+            >
               <motion.span
                 className="block"
-                initial={{ y: "110%" }}
+                initial={{ y: "115%" }}
                 whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{
@@ -42,13 +45,13 @@ export function FooterCTA() {
           ))}
         </h2>
 
-        <p className="mt-8 max-w-xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
           Available for Senior Product Designer, Systems Lead positions, and high-impact
           product strategy contracts. Open to international remote &amp; hybrid teams.
         </p>
 
         {/* Dual-Track Conversion Actions */}
-        <div className="mt-12 flex flex-wrap items-center gap-4 sm:gap-6">
+        <div className="mt-10 flex flex-wrap items-center gap-4 sm:gap-6">
           <a
             href={`mailto:${email}`}
             className="group inline-flex items-center gap-3 rounded-full bg-primary-foreground px-8 py-4 text-sm font-medium text-primary transition-opacity hover:opacity-90"
@@ -110,7 +113,7 @@ export function FooterCTA() {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-6 border-t border-primary-foreground/15 pt-8 text-sm opacity-80">
+      <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-primary-foreground/15 pt-8 text-sm opacity-80 md:mt-24">
         <a
           href={`mailto:${email}`}
           className="transition-opacity hover:opacity-100 underline-offset-4 hover:underline"

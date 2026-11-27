@@ -86,7 +86,7 @@ export default function SectionImpact() {
         </div>
 
         {/* Quantified Outcomes */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mb-12 grid grid-cols-1 gap-6 sm:mb-16 sm:grid-cols-3">
           {IMPACT_METRICS.map((metric) => (
             <motion.div
               key={metric.label}
@@ -111,7 +111,7 @@ export default function SectionImpact() {
         </div>
 
         {/* Systems Learnings */}
-        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
+        <div className="mb-16 flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
           <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
             Three Core Systems Learnings
           </span>

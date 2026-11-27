@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import AnimatedEmsArchitecture from "./AnimatedEmsArchitecture";
 
 const REVEAL_VARIANTS = {
   hidden: { y: 24, opacity: 0 },
@@ -57,6 +58,9 @@ export default function SectionMechanism() {
             Fig 03. — System Architecture Schematic: Mapping physical circuits and Modbus RS485 loops to Edge Concentrators and the Cloud EMS application layer.
           </figcaption>
         </motion.figure>
+
+        {/* Animated Interactive Architecture Flow */}
+        <AnimatedEmsArchitecture />
       </div>
     </section>
   );

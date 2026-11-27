@@ -44,15 +44,15 @@ export default function SectionHero() {
           </header>
 
           {/* Description + metadata */}
-          <div className="flex flex-col gap-8 md:gap-10 lg:flex-row lg:items-start lg:gap-16">
-            <p className="max-w-[760px] flex-1 font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
+          <div className="flex flex-col gap-8">
+            <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
               In Singapore, ex-offenders navigating post-release reintegration face a fragmented web
               of government ministries, social services, and grassroots charities. The legacy ACTS
               platform functioned as a sterile agency telephone directory. This case study details
               how we redesigned the experience into a guided, empathetic support ecosystem.
             </p>
 
-            <dl className="grid shrink-0 grid-cols-2 gap-x-8 gap-y-6 lg:flex lg:gap-8">
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4 sm:gap-8 lg:gap-12">
               {METADATA.map(([label, value]) => (
                 <div key={label} className="flex flex-col gap-1.5">
                   <dt className="font-mono text-[10px] uppercase tracking-wide text-[var(--cs-color-text-muted)]">
@@ -91,7 +91,6 @@ export default function SectionHero() {
             <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               EXECUTIVE SUMMARY
             </span>
-            <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">/ AT A GLANCE</span>
           </div>
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

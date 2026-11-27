@@ -24,24 +24,21 @@ const LEGACY_FAILURES = [
 export default function SectionProblem() {
   return (
     <section id="bottleneck" className="py-[var(--cs-section-padding)]">
-      <div className="mx-auto max-w-[var(--cs-content-max-width)] px-[var(--cs-content-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
         {/* Section Header */}
-        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2">
+        <div className="mb-12 flex flex-col items-start gap-2 border-b border-[var(--cs-color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+          <div className="flex items-center gap-3">
             <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               02
             </span>
-            <span className="font-sans text-xs font-semibold uppercase text-[var(--cs-color-text-secondary)]">
+            <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
               The Bottleneck
             </span>
           </div>
-          <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">
-            AMASE / ECOSYSTEM &amp; LEGACY AUDIT
-          </span>
         </div>
 
         {/* Narrative Headline */}
-        <div className="mb-14 mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-20">
+        <div className="mb-14 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-20">
           <h2 className="max-w-[680px] font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] font-normal leading-[1.2] tracking-[-0.02em] text-[var(--cs-color-text-primary)]">
             When people hit rock bottom, a directory of telephone numbers is not a lifeline.
           </h2>
@@ -61,21 +58,39 @@ export default function SectionProblem() {
           </div>
         </div>
 
-        {/* Context Photo */}
-        <figure className="mb-16">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)]">
-            <Image
-              src="/images/amase/Inmate undergoing the Community Based Programme.webp"
-              alt="Inmate undergoing the Community Based Programme during the rehabilitation phase"
-              width={1440}
-              height={810}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-wider text-[var(--cs-color-text-muted)]">
-            High-stakes context: Beneficiaries participating in the Community Based Programme under probationary oversight.
-          </figcaption>
-        </figure>
+        {/* Context Visuals: Field Photo & Video Embed */}
+        <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <figure className="flex flex-col">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)]">
+              <Image
+                src="/images/amase/Inmate undergoing the Community Based Programme.webp"
+                alt="Inmate undergoing the Community Based Programme during the rehabilitation phase"
+                width={720}
+                height={405}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-wider text-[var(--cs-color-text-muted)]">
+              High-stakes context: Beneficiaries participating in the Community Based Programme under probationary oversight.
+            </figcaption>
+          </figure>
+
+          <figure className="flex flex-col">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-black">
+              <iframe
+                src="https://www.youtube.com/embed/8Uorr-mb8m8"
+                title="Community Based Programme — Singapore Reintegration Support"
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-wider text-[var(--cs-color-text-muted)]">
+              Field documentation: Singapore Prison Service Community Based Programme ecosystem.
+            </figcaption>
+          </figure>
+        </div>
 
         {/* Legacy Failure Modes (3 Cards) */}
         <div>

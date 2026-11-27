@@ -32,24 +32,21 @@ const IA_TRACKS = [
 export default function SectionMechanism() {
   return (
     <section id="mechanism" className="py-[var(--cs-section-padding)]">
-      <div className="mx-auto max-w-[var(--cs-content-max-width)] px-[var(--cs-content-padding)]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
         {/* Section Header */}
-        <div className="flex flex-col gap-4 border-t border-[var(--cs-color-border)] py-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2">
+        <div className="mb-12 flex flex-col items-start gap-2 border-b border-[var(--cs-color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+          <div className="flex items-center gap-3">
             <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
               03
             </span>
-            <span className="font-sans text-xs font-semibold uppercase text-[var(--cs-color-text-secondary)]">
+            <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[var(--cs-color-text-secondary)]">
               The Strategic Mechanism
             </span>
           </div>
-          <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">
-            AMASE / IA REFRAME &amp; DESIGN SYSTEM
-          </span>
         </div>
 
         {/* Narrative Headline */}
-        <div className="mb-14 mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-20">
+        <div className="mb-14 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-20">
           <h2 className="max-w-[680px] font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] font-normal leading-[1.2] tracking-[-0.02em] text-[var(--cs-color-text-primary)]">
             Reframing from an institutional directory to an empathetic personal compass.
           </h2>

@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 
 interface InteractionPrimitive {
   name: string;
+  video: string;
   mechanicalPurpose: string;
   parameters: string;
   exampleUse: string;
@@ -12,30 +13,35 @@ interface InteractionPrimitive {
 const INTERACTION_PRIMITIVES: InteractionPrimitive[] = [
   {
     name: "ROTATE",
+    video: "/videos/vts/vts_script_rotate.mp4",
     mechanicalPurpose: "Radial displacement around local pivot bounds.",
     parameters: "Axis (X/Y/Z), Min/Max Angles (e.g. 0°–360°), Detent Snap Steps.",
     exampleUse: "Unscrewing bolts, opening valves, turning spatial control dials.",
   },
   {
     name: "DRAG / TRANSLATE",
+    video: "/videos/vts/vts_script_drag.mp4",
     mechanicalPurpose: "Linear displacement along locked Cartesian plane axes.",
     parameters: "Travel Distance (mm), Axis Constraint, Return-on-Release boolean.",
     exampleUse: "Pulling release pins, extracting modular components, sliding equipment trays.",
   },
   {
     name: "OUTLINE & FOCUS",
+    video: "/videos/vts/vts_script_outline.mp4",
     mechanicalPurpose: "Emission shader glow triggered on hover or step guidance.",
     parameters: "Color Accent, Glow Thickness (px), Pulsing Frequency.",
     exampleUse: "Guiding user focus toward the exact target part requiring inspection.",
   },
   {
     name: "BILLBOARD LABEL",
+    video: "/videos/vts/vts_script_label.mp4",
     mechanicalPurpose: "3D camera-facing spatial metadata anchor.",
     parameters: "Anchor Offset, Part Nomenclature, Technical Specs, Safety Cautions.",
     exampleUse: "Displaying 'Hydraulic Return Fitting — Max Torque 45 Nm' hovering over assembly.",
   },
   {
     name: "VOLUMETRIC SLICE",
+    video: "/videos/vts/vts_script_slice.mp4",
     mechanicalPurpose: "Dynamic shader clip-plane revealing internal mechanisms.",
     parameters: "Slice Normal Vector, Invert Cut boolean, Depth Offset.",
     exampleUse: "Exposing internal motor components and structural rings without destroying source 3D geometry.",
@@ -113,6 +119,19 @@ export default function SectionMechanism() {
                   <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
                     {primitive.mechanicalPurpose}
                   </p>
+                </div>
+
+                {/* Micro-interaction Video Clip */}
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)] my-1">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover"
+                  >
+                    <source src={primitive.video} type="video/mp4" />
+                  </video>
                 </div>
 
                 <div className="border-t border-[var(--cs-color-border)] pt-3">

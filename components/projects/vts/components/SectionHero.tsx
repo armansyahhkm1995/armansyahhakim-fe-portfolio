@@ -14,6 +14,7 @@ const SYSTEM_VIEWS = [
   {
     title: "VTS Workbench (Authoring Studio)",
     status: "blue",
+    video: "/videos/vts/vts_workbench_hero.mp4",
     image: "/images/vts/Workspace - normal screen - hierarchy - no script.webp",
     alt: "VTS Workbench interface showing 3D hierarchy, viewport, and visual script configuration",
     description: "Visual 3D staging, asset hierarchy management, and zero-code script template configuration for anyone.",
@@ -21,6 +22,7 @@ const SYSTEM_VIEWS = [
   {
     title: "Interactive 3D Simulation Player (Runtime)",
     status: "green",
+    video: "/videos/vts/vts_training_hero.mp4",
     image:
       "/images/vts/Simulation - fullscreen - outline & label state - outline & label active.webp",
     alt: "Interactive 3D Player interface showing full-screen 3D model inspection and procedural steps",
@@ -152,13 +154,23 @@ export default function SectionHero() {
                 className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 shadow-sm"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)]">
-                  <Image
-                    src={view.image}
-                    alt={view.alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
-                  />
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    poster={view.image}
+                    className="h-full w-full object-cover"
+                  >
+                    <source src={view.video} type="video/mp4" />
+                    <Image
+                      src={view.image}
+                      alt={view.alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </video>
                 </div>
 
                 <figcaption className="flex flex-col gap-1 border-t border-[var(--cs-color-border)] pt-3">

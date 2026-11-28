@@ -23,6 +23,7 @@ interface OutputModule {
   title: string;
   description: string;
   uxFeatures: string[];
+  primaryVideo?: string;
   primaryImage?: string;
   primaryAlt?: string;
   twoColumnImages?: TwoColumnImage[];
@@ -68,6 +69,7 @@ const OUTPUT_MODULES: OutputModule[] = [
       "Isolate & Ghost modes: Dim surrounding geometry to focus purely on the target component.",
       "Contextual multi-object selection for grouping related parts into batch interactions.",
     ],
+    primaryVideo: "/videos/vts/vts_workbench_hero.mp4",
     primaryImage: "/images/vts/Workspace - normal screen - hierarchy - no script.webp",
     primaryAlt: "VTS Workbench workspace showing 3D mechanical model and part hierarchy",
   },
@@ -114,6 +116,7 @@ const OUTPUT_MODULES: OutputModule[] = [
       "Step-by-step procedure ledger tracking elapsed time, incorrect attempts, and successful interactions.",
       "Instant error feedback alerting users when attempting out-of-order mechanical operations.",
     ],
+    primaryVideo: "/videos/vts/vts_training_hero.mp4",
     primaryImage:
       "/images/vts/Simulation - fullscreen - outline & label state - outline & label active.webp",
     primaryAlt: "Interactive 3D Player showing mechanical inspection with active outline and label state",
@@ -237,7 +240,20 @@ export default function SectionOutput() {
                   ))}
                 </div>
               ) : (
-                module.primaryImage && (
+                module.primaryVideo ? (
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] shadow-sm">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      poster={module.primaryImage}
+                      className="h-full w-full object-cover"
+                    >
+                      <source src={module.primaryVideo} type="video/mp4" />
+                    </video>
+                  </div>
+                ) : module.primaryImage && (
                   <div className="relative w-full overflow-hidden rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] shadow-sm">
                     <Image
                       src={module.primaryImage}

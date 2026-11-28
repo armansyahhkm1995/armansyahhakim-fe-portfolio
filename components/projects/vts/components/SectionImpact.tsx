@@ -19,17 +19,17 @@ const IMPACT_METRICS: MetricCard[] = [
   {
     value: "90%",
     label: "Authoring Cycle Reduction",
-    detail: "From 6 weeks of dedicated Unity developer sprints to under 4 hours of visual authoring by domain instructors.",
+    detail: "From 6 weeks of dedicated Unity developer sprints to under 4 hours of visual script templating by everyday practitioners.",
   },
   {
     value: "0",
     label: "Lines of Code Required",
-    detail: "Mechanical training instructors author complex multi-step disassembly procedures with zero C# knowledge.",
+    detail: "Domain practitioners author complex multi-step 3D interactions with zero C# programming knowledge.",
   },
   {
     value: "100%",
-    label: "High-Poly CAD Precision",
-    detail: "Full military-grade aircraft and jet engine assemblies ingested without loss of geometric accuracy.",
+    label: "3D Model Precision",
+    detail: "High-density mechanical and equipment assemblies ingested without loss of geometric accuracy.",
   },
 ];
 
@@ -38,19 +38,19 @@ const REFLECTIONS: ReflectionItem[] = [
     number: "01",
     title: "Simplification over emulation",
     description:
-      "VTS does not attempt to reproduce the entire Unity or Blender game engine. By focusing strictly on procedural training workflows, we eliminated 80% of unnecessary tool clutter and cognitive fatigue.",
+      "VTS does not attempt to reproduce the entire Unity or Blender game engine. By focusing strictly on practical 3D interaction workflows using script templates, we eliminated 80% of tool complexity and cognitive fatigue.",
   },
   {
     number: "02",
     title: "Familiarity as a design strategy",
     description:
-      "Borrowing established 3D outliner and spatial gizmo conventions reduced the conceptual leap for aerospace instructors, cutting initial onboarding from days to under 30 minutes.",
+      "Borrowing established 3D outliner and spatial gizmo conventions reduced the conceptual leap for practitioners, cutting initial onboarding from days to under 30 minutes.",
   },
   {
     number: "03",
     title: "Partitioning authoring from runtime evaluation",
     description:
-      "Workbench requires dense configuration panels; the Maintenance Player demands distraction-free operational simplicity. Strictly partitioning these two environments preserved system stability and user focus.",
+      "Workbench provides focused visual script templating; the Interactive Player delivers distraction-free operation. Strictly partitioning these two environments preserved system stability and user focus.",
   },
 ];
 
@@ -63,9 +63,6 @@ export default function SectionImpact() {
   return (
     <section id="impact" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
         {/* Section label */}
         <div className="flex w-full items-center justify-between gap-6">
           <div className="flex items-center gap-3">
@@ -76,18 +73,18 @@ export default function SectionImpact() {
               Impact &amp; Systems Retrospective
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Production Velocity &amp; Tool Architecture
-          </span>
         </div>
+
+        {/* Section divider */}
+        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
 
         {/* Section Headline */}
         <div className="flex flex-col gap-4">
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
-            VTS moved 3D simulation content from engineering tickets into the hands of domain experts.
+            VTS moved 3D simulation from complex engineering tickets into the hands of everyday users.
           </h2>
           <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
-            By shifting from manual C# game development to an intuitive declarative authoring desktop suite, Falah Inovasi Teknologi unlocked massive throughput for defense and aviation simulation training programs.
+            By shifting from manual C# game development to an intuitive declarative authoring desktop suite, Falah Inovasi Teknologi democratized interactive 3D modeling for practitioners and non-technical teams.
           </p>
         </div>
 

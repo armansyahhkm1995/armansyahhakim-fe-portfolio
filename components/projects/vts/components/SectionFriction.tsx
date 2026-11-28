@@ -1,73 +1,29 @@
 "use client";
 
-import { motion } from "motion/react";
-
 interface WorkflowStage {
   step: string;
   action: string;
   detail: string;
 }
 
-interface ConstraintItem {
-  index: string;
-  title: string;
-  challenge: string;
-  architecturalSolution: string;
-}
-
 const LEGACY_WORKFLOW: WorkflowStage[] = [
-  { step: "01", action: "Import FBX Mesh", detail: "CAD technician exports FBX asset from CATIA/SolidWorks into Unity project directory." },
-  { step: "02", action: "Write Bespoke C#", detail: "Software engineer writes custom MonoBehaviour scripts to define part clicks and movement pivots." },
-  { step: "03", action: "Collider & Physics Setup", detail: "Manually add MeshColliders, Rigidbody constraints, and layer collision matrices in Inspector." },
+  { step: "01", action: "Import 3D Mesh", detail: "3D modeler exports raw mesh (FBX/OBJ) from CAD into the complex Unity project hierarchy." },
+  { step: "02", action: "Write Bespoke C#", detail: "Software engineer writes custom MonoBehaviour scripts to define part clicks, raycasts, and movement pivots." },
+  { step: "03", action: "Collider & Physics Setup", detail: "Manually configure MeshColliders, Rigidbody constraints, and layer collision matrices in Inspector." },
   { step: "04", action: "Re-bake & Compile Build", detail: "Full executable build compiled to test a single procedure step. Any revision takes days." },
 ];
 
 const VTS_WORKFLOW: WorkflowStage[] = [
-  { step: "01", action: "Direct FBX Ingestion", detail: "Drag FBX directly into VTS Project Hub. Hierarchy trees are extracted automatically." },
-  { step: "02", action: "Select Part in Outliner", detail: "Click any component (e.g., 'Turbine_Lock_Pin_04') directly in the 3D viewport or tree outliner." },
-  { step: "03", action: "Toggle Interaction Rules", detail: "Enable checkbox behaviors: ROTATE around pivot, DRAG on axis, or EMIT outline glow." },
-  { step: "04", action: "1-Click Runtime Sync", detail: "Instant synchronization to Training Player. Instructors test procedures in real time." },
+  { step: "01", action: "Direct 3D Asset Ingestion", detail: "Drag 3D models directly into VTS Project Hub. Hierarchy trees are extracted automatically." },
+  { step: "02", action: "Select Part in Outliner", detail: "Click any component (e.g., 'Cylinder_Housing_02') directly in the 3D viewport or tree outliner." },
+  { step: "03", action: "Apply Script Templates", detail: "Enable ready-to-use interaction templates: ROTATE around pivot, DRAG on axis, or EMIT highlight outline via simple toggles." },
+  { step: "04", action: "1-Click Runtime Sync", detail: "Instant synchronization to the 3D interactive viewer. Anyone can test and experience the interaction in real time." },
 ];
-
-const CONSTRAINTS: ConstraintItem[] = [
-  {
-    index: "01",
-    title: "High-Poly Defense CAD Ingestion",
-    challenge: "Military aircraft models often exceed 150,000 polygons with hundreds of nested sub-assemblies, bogging down consumer GPUs.",
-    architecturalSolution: "Built automated LOD generation and lazy-rendered outliner trees that keep the 3D viewport smooth at 60 FPS.",
-  },
-  {
-    index: "02",
-    title: "Zero-Code Mechanical Logic",
-    challenge: "Maintenance procedures require specific physical behaviors: unscrewing bolts, flipping breaker switches, and extracting filters.",
-    architecturalSolution: "Standardized 5 parametric interaction behaviors with configurable degree limits, axis locks, and torque tolerances.",
-  },
-  {
-    index: "03",
-    title: "Sequential Procedure Dependencies",
-    challenge: "Trainees must follow strict aerospace protocols: 'Do not remove turbine shroud before safety grounding wire is severed'.",
-    architecturalSolution: "Implemented a visual sequence prerequisite matrix in Workbench preventing out-of-order component manipulation.",
-  },
-  {
-    index: "04",
-    title: "Non-Destructive CAD Revisions",
-    challenge: "When engineering teams release a revised 3D model, re-importing in traditional tools wiped out all previously attached scripts.",
-    architecturalSolution: "Decoupled mesh geometry from interaction metadata using persistent part-naming GUID anchors.",
-  },
-];
-
-const REVEAL_VARIANTS = {
-  hidden: { y: 24, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-} as const;
 
 export default function SectionFriction() {
   return (
     <section id="friction" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
         {/* Section label */}
         <div className="flex w-full items-center justify-between gap-6">
           <div className="flex items-center gap-3">
@@ -78,18 +34,18 @@ export default function SectionFriction() {
               The Engineering Bottleneck
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            Workflow Transformation &amp; Technical Constraints
-          </span>
         </div>
+
+        {/* Section divider */}
+        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
 
         {/* Section Headline */}
         <div className="flex flex-col gap-4">
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
-            The bottleneck was never importing a 3D model. It was configuring what the model could do.
+            The bottleneck was never importing a 3D model. It was configuring how anyone can interact with it.
           </h2>
           <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
-            Traditional 3D authoring trapped domain instructors in an engineering dependency loop. To empower instructors to build interactive simulations themselves, we decoupled 3D geometry ingestion from runtime procedural logic.
+            Traditional 3D authoring trapped domain practitioners in an engineering dependency loop. To empower non-technical users to build interactive 3D simulations themselves, we replaced manual C# scripting with visual script templates.
           </p>
         </div>
 
@@ -141,53 +97,6 @@ export default function SectionFriction() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* 4 Architectural Constraints */}
-        <div className="flex flex-col gap-6 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 sm:p-8">
-          <div className="flex flex-col gap-1">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
-              Four Core Architectural Challenges in Desktop 3D Authoring
-            </span>
-            <p className="font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-secondary)]">
-              Designing desktop tools for high-precision military maintenance simulations required solving deep graphics and procedural constraints.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-            {CONSTRAINTS.map((item) => (
-              <motion.div
-                key={item.index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-                variants={REVEAL_VARIANTS}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-5"
-              >
-                <div className="flex flex-col gap-1.5">
-                  <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
-                    {item.index} / ARCHITECTURAL CONSTRAINT
-                  </span>
-                  <h4 className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
-                    {item.title}
-                  </h4>
-                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                    {item.challenge}
-                  </p>
-                </div>
-
-                <div className="border-t border-[var(--cs-color-border)] pt-3">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--cs-color-accent)]">
-                    VTS Solution:
-                  </span>
-                  <p className="mt-1 font-[var(--cs-font-sans)] text-xs text-[var(--cs-color-text-primary)]">
-                    {item.architecturalSolution}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </div>

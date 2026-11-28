@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 const METADATA = [
   ["Role", "Lead Product & Systems Designer"],
   ["Company", "Falah Inovasi Teknologi"],
-  ["Scope", "Authoring Studio · Runtime Player · CAD Ingestion"],
+  ["Scope", "Authoring Studio · Runtime Player · 3D Interaction Templates"],
   ["Platform", "Desktop Studio Application · Unity 3D Engine"],
 ] as const;
 
@@ -16,15 +16,15 @@ const SYSTEM_VIEWS = [
     status: "blue",
     image: "/images/vts/Workspace - normal screen - hierarchy - no script.webp",
     alt: "VTS Workbench interface showing 3D hierarchy, viewport, and visual script configuration",
-    description: "Visual 3D staging, asset hierarchy management, and zero-code interaction logic configuration.",
+    description: "Visual 3D staging, asset hierarchy management, and zero-code script template configuration for anyone.",
   },
   {
-    title: "Maintenance Training Player (Runtime Simulation)",
+    title: "Interactive 3D Simulation Player (Runtime)",
     status: "green",
     image:
       "/images/vts/Simulation - fullscreen - outline & label state - outline & label active.webp",
-    alt: "Maintenance Training Player interface showing full-screen 3D aircraft inspection and procedural steps",
-    description: "Distraction-free trainee runtime with spatial camera controls, emission outlines, and automated step verification.",
+    alt: "Interactive 3D Player interface showing full-screen 3D model inspection and procedural steps",
+    description: "Distraction-free runtime with spatial camera controls, emission outlines, and automated step verification for interactive 3D model inspection.",
   },
 ] as const;
 
@@ -40,7 +40,7 @@ function StatusIndicator({ variant }: { variant: "blue" | "green" }) {
   );
 }
 
-const lines = ["VTS Workbench &", "maintenance", "training"];
+const lines = ["Democratizing Unity 3D", "via visual script", "templates."];
 
 export default function SectionHero() {
   return (
@@ -51,12 +51,12 @@ export default function SectionHero() {
           {/* Header & Title */}
           <header className="flex flex-col gap-4">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--cs-color-accent)] md:text-xs">
-              3D AUTHORING PLATFORM · SIMULATION &amp; DEFENSE TRAINING · Q1 2026
+              3D AUTHORING PLATFORM · INTERACTIVE 3D SIMULATION · Q1 2026
             </p>
 
-            <h1 className="font-display text-[2.75rem] leading-[0.95] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]">
+            <h1 className="font-display text-[2.75rem] leading-[1.05] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.5rem]">
               {lines.map((line, index) => (
-                <span key={line} className="block overflow-hidden">
+                <span key={line} className="block overflow-hidden pb-1 sm:pb-2">
                   <motion.span
                     className="block"
                     initial={{ y: "110%" }}
@@ -74,17 +74,17 @@ export default function SectionHero() {
             </h1>
           </header>
 
-          {/* Description + metadata */}
-          <div className="flex flex-col gap-8 md:gap-10 lg:flex-row lg:items-start lg:gap-16">
-            <p className="max-w-[760px] flex-1 font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
-              Democratizing interactive 3D training authoring: Turning steep Unity game engine
-              engineering into an approachable scenario builder for aerospace and military
-              maintenance instructors without writing a single line of code.
+          {/* Description + metadata (repositioned below paragraph) */}
+          <div className="flex flex-col gap-6">
+            <p className="max-w-[840px] font-[var(--cs-font-sans)] text-[clamp(1rem,1.5vw,1.375rem)] leading-[1.65] text-[var(--cs-color-text-secondary)]">
+              Democratizing interactive 3D model interaction: Turning complex Unity game engine
+              engineering into an intuitive visual scenario builder so anyone can test, author,
+              and interact with 3D models using script templates without writing code.
             </p>
 
-            <dl className="grid shrink-0 grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:flex lg:gap-8">
+            <dl className="grid shrink-0 grid-cols-2 gap-x-8 gap-y-4 border-t border-[var(--cs-color-border)] pt-6 sm:grid-cols-4 lg:gap-12">
               {METADATA.map(([label, value]) => (
-                <div key={label} className="flex flex-col gap-1.5 max-w-[240px]">
+                <div key={label} className="flex flex-col gap-1.5">
                   <dt className="font-mono text-[10px] uppercase tracking-wide text-[var(--cs-color-text-muted)]">
                     {label}
                   </dt>
@@ -97,17 +97,11 @@ export default function SectionHero() {
           </div>
         </div>
 
-        {/* Executive Summary Card (At a Glance) */}
+        {/* Executive Summary Card */}
         <div className="mt-12 rounded-2xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg-secondary)] p-6 md:p-8">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
-                EXECUTIVE SUMMARY
-              </span>
-              <span className="font-mono text-xs text-[var(--cs-color-text-muted)]">· AT A GLANCE</span>
-            </div>
-            <span className="font-mono text-[11px] text-[var(--cs-color-text-muted)] hidden sm:inline">
-              3D Authoring Architecture
+            <span className="font-mono text-xs font-semibold text-[var(--cs-color-accent)]">
+              EXECUTIVE SUMMARY
             </span>
           </div>
 
@@ -117,7 +111,7 @@ export default function SectionHero() {
                 01 / The Friction
               </span>
               <p className="font-sans text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                Aviation and defense maintenance instructors could not produce interactive 3D procedures without dedicated Unity programmers writing bespoke C# code, creating multi-month training backlogs.
+                Domain instructors and non-technical practitioners could not produce interactive 3D procedures without dedicated Unity programmers writing bespoke C# code, creating lengthy production backlogs.
               </p>
             </div>
 
@@ -126,7 +120,7 @@ export default function SectionHero() {
                 02 / The Mechanism
               </span>
               <p className="font-sans text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                Architected a decoupled dual-system desktop suite: VTS Workbench (zero-code FBX asset staging &amp; interaction checkboxes) and Maintenance Training Player (distraction-free procedural trainee evaluation).
+                Architected a decoupled dual-system desktop suite: VTS Workbench (zero-code 3D asset staging &amp; visual script templates) and Interactive 3D Player (distraction-free procedural evaluation).
               </p>
             </div>
 
@@ -135,7 +129,7 @@ export default function SectionHero() {
                 03 / The Impact
               </span>
               <p className="font-sans text-xs leading-relaxed font-medium text-[var(--cs-color-text-primary)]">
-                Slashed 3D scenario authoring time from 6 weeks of game engine programming down to under 4 hours of visual configuration by domain instructors, requiring zero lines of code.
+                Slashed 3D interaction authoring from weeks of game engine programming down to under 4 hours of visual script configuration by everyday practitioners, requiring zero lines of code.
               </p>
             </div>
           </div>
@@ -148,10 +142,6 @@ export default function SectionHero() {
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--cs-color-text-primary)]">
               Fig 01. — Dual-System Architecture: Authoring Workbench vs Runtime Simulation
             </span>
-
-            <span className="w-fit rounded-lg border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] px-2.5 py-1 font-mono text-[10px] font-semibold text-[var(--cs-color-text-secondary)]">
-              Desktop Suite v1.0
-            </span>
           </div>
 
           {/* System Views */}
@@ -159,34 +149,29 @@ export default function SectionHero() {
             {SYSTEM_VIEWS.map((view) => (
               <figure
                 key={view.title}
-                className="flex flex-col justify-between gap-4 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 sm:p-5 shadow-sm"
+                className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 shadow-sm"
               >
-                <div className="flex items-center justify-between gap-4 border-b border-[var(--cs-color-border)] pb-3">
-                  <figcaption className="font-[var(--cs-font-sans)] text-sm font-bold text-[var(--cs-color-text-primary)]">
-                    {view.title}
-                  </figcaption>
-
-                  <div className="flex items-center gap-2">
-                    <StatusIndicator variant={view.status} />
-                    <span className="font-mono text-[10px] text-[var(--cs-color-text-muted)] uppercase">
-                      {view.status === "blue" ? "Authoring Mode" : "Trainee Mode"}
-                    </span>
-                  </div>
-                </div>
-
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)]">
                   <Image
                     src={view.image}
                     alt={view.alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, 800px"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>
 
-                <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
-                  {view.description}
-                </p>
+                <figcaption className="flex flex-col gap-1 border-t border-[var(--cs-color-border)] pt-3">
+                  <div className="flex items-center gap-2">
+                    <StatusIndicator variant={view.status} />
+                    <span className="font-sans text-xs font-bold text-[var(--cs-color-text-primary)]">
+                      {view.title}
+                    </span>
+                  </div>
+                  <p className="font-[var(--cs-font-sans)] text-xs leading-relaxed text-[var(--cs-color-text-secondary)]">
+                    {view.description}
+                  </p>
+                </figcaption>
               </figure>
             ))}
           </div>

@@ -34,26 +34,26 @@ const OUTPUT_MODULES: OutputModule[] = [
   {
     number: "01",
     system: "VTS WORKBENCH",
-    title: "Project Hub & Multi-Asset FBX Management",
+    title: "Project Hub & Multi-Asset 3D Management",
     description:
-      "The front door of VTS. Enables instructors to organize complex training curriculum into discrete scenarios, upload military CAD assemblies, and manage revision versions without touching developer repositories.",
+      "The front door of VTS. Enables users to organize interactive 3D scenarios, upload mechanical CAD/3D assemblies, and manage revision versions without touching developer repositories.",
     uxFeatures: [
-      "Drag-and-drop batch FBX ingestion with real-time poly-count and vertex health warnings.",
-      "Scenario tagging by military qualification levels (e.g., Level 1 Pre-Flight, Level 3 Overhaul).",
-      "Instant scenario clone and branch workflows to build alternative procedure branches.",
+      "Drag-and-drop batch 3D asset ingestion with real-time poly-count and vertex health warnings.",
+      "Scenario tagging by procedural difficulty and inspection category.",
+      "Instant scenario clone and branch workflows to test alternative interaction flows.",
     ],
     twoColumnImages: [
       {
         src: "/images/vts/Project hub - project management.webp",
         alt: "VTS Project Hub showing project organization and scenario cards",
         label: "Workspace 01 · Project Management Hub",
-        caption: "Organizing training curriculum into discrete scenarios with qualification tagging and branch versioning.",
+        caption: "Organizing 3D interactive scenarios with structured categorization and branch versioning.",
       },
       {
         src: "/images/vts/Project hub - fbx management.webp",
         alt: "VTS FBX asset management interface displaying 3D model files and metadata",
-        label: "Workspace 02 · Multi-Asset FBX Hub",
-        caption: "Ingesting high-poly aircraft and engine CAD assemblies with batch drag-and-drop and mesh integrity checks.",
+        label: "Workspace 02 · Multi-Asset 3D Hub",
+        caption: "Ingesting high-density mechanical and equipment 3D assemblies with batch drag-and-drop and mesh integrity checks.",
       },
     ],
   },
@@ -62,23 +62,23 @@ const OUTPUT_MODULES: OutputModule[] = [
     system: "VTS WORKBENCH",
     title: "3D Staging Viewport & Object Hierarchy Outliner",
     description:
-      "A streamlined spatial workspace giving instructors direct visual manipulation of assemblies. Combines an outliner tree hierarchy with camera orbit, pan, and focus tools calibrated for intuitive mechanical inspection.",
+      "A streamlined spatial workspace giving users direct visual manipulation of assemblies. Combines an outliner tree hierarchy with camera orbit, pan, and focus tools calibrated for intuitive 3D model interaction.",
     uxFeatures: [
-      "Deep nested assembly selection: Click any bolt in the 3D viewport to highlight its outliner node.",
-      "Isolate & Ghost modes: Dim surrounding airframe geometry to focus purely on the target component.",
-      "Contextual multi-object selection for grouping related fasteners into batch steps.",
+      "Deep nested assembly selection: Click any part or fastener in the 3D viewport to highlight its outliner node.",
+      "Isolate & Ghost modes: Dim surrounding geometry to focus purely on the target component.",
+      "Contextual multi-object selection for grouping related parts into batch interactions.",
     ],
     primaryImage: "/images/vts/Workspace - normal screen - hierarchy - no script.webp",
-    primaryAlt: "VTS Workbench workspace showing 3D jet engine model and part hierarchy",
+    primaryAlt: "VTS Workbench workspace showing 3D mechanical model and part hierarchy",
   },
   {
     number: "03",
     system: "VTS WORKBENCH",
-    title: "Parametric Property Inspector & Script Assignment",
+    title: "Parametric Property Inspector & Script Templates",
     description:
-      "Replaces complex coding with progressive disclosure configuration cards. Instructors inspect part coordinates, assign interaction behaviors via dropdowns, and configure rotational limits in seconds.",
+      "Replaces complex coding with progressive disclosure configuration cards. Users inspect part coordinates, assign interaction behaviors via dropdowns, and configure rotational limits in seconds.",
     uxFeatures: [
-      "Progressive disclosure: Default view shows transform coordinates; applying a script reveals tailored physics parameters.",
+      "Progressive disclosure: Default view shows transform coordinates; applying a script template reveals tailored interaction parameters.",
       "Visual rotation axis gizmos showing min/max angle limits directly in the 3D viewport.",
       "Real-time validation flags warning if a designated rotation angle causes geometry clipping.",
     ],
@@ -98,25 +98,25 @@ const OUTPUT_MODULES: OutputModule[] = [
       {
         src: "/images/vts/Object properties - script applied.webp",
         alt: "Object properties inspector with interaction script and degree parameters applied",
-        label: "State 03 · Script Attached",
-        caption: "Declarative parameters: Min/max angles, rotation axis detents, and torque limits.",
+        label: "State 03 · Script Template Attached",
+        caption: "Declarative parameters: Min/max angles, rotation axis detents, and travel limits.",
       },
     ],
   },
   {
     number: "04",
-    system: "MAINTENANCE PLAYER",
-    title: "Runtime Training Simulation & Procedure Verification",
+    system: "INTERACTIVE PLAYER",
+    title: "Runtime 3D Simulation & Procedure Verification",
     description:
-      "The student execution environment. Trainees enter a distraction-free, full-screen simulator where interactive parts emit high-visibility outline glows, spatial billboard callouts guide actions, and automated evaluation tracks accuracy.",
+      "The end-user execution environment. Users enter a distraction-free, full-screen simulator where interactive parts emit high-visibility outline glows, spatial billboard callouts guide actions, and automated evaluation tracks accuracy.",
     uxFeatures: [
-      "Dynamic emission outlines that illuminate candidate components when hovered by virtual tools.",
-      "Step-by-step procedure ledger tracking elapsed time, incorrect attempts, and safety violations.",
-      "Instant error feedback alerting trainees when attempting out-of-order mechanical operations.",
+      "Dynamic emission outlines that illuminate candidate components when hovered by user cursor.",
+      "Step-by-step procedure ledger tracking elapsed time, incorrect attempts, and successful interactions.",
+      "Instant error feedback alerting users when attempting out-of-order mechanical operations.",
     ],
     primaryImage:
       "/images/vts/Simulation - fullscreen - outline & label state - outline & label active.webp",
-    primaryAlt: "Maintenance Training Player showing 3D aircraft inspection with active outline and label state",
+    primaryAlt: "Interactive 3D Player showing mechanical inspection with active outline and label state",
   },
 ];
 
@@ -129,9 +129,6 @@ export default function SectionOutput() {
   return (
     <section id="output" className="p-4 sm:p-8 md:pt-24 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[var(--cs-content-max-width)] flex-col gap-10 sm:gap-12">
-        {/* Section divider */}
-        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
-
         {/* Section label */}
         <div className="flex w-full items-center justify-between gap-6">
           <div className="flex items-center gap-3">
@@ -142,15 +139,15 @@ export default function SectionOutput() {
               Production Product Suite
             </span>
           </div>
-          <span className="hidden font-mono text-xs text-[var(--cs-color-text-muted)] sm:block">
-            VTS Workbench &amp; Maintenance Player
-          </span>
         </div>
+
+        {/* Section divider */}
+        <div aria-hidden="true" className="h-px w-full bg-[var(--cs-color-border)]" />
 
         {/* Section Headline */}
         <div className="flex flex-col gap-4">
           <h2 className="font-[var(--cs-font-sans)] text-3xl font-normal leading-tight text-[var(--cs-color-text-primary)] sm:text-4xl lg:text-5xl">
-            From raw CAD geometry to validated military training: Four production interfaces.
+            From raw 3D models to interactive simulations: Four core production interfaces.
           </h2>
           <p className="max-w-[840px] font-[var(--cs-font-sans)] text-base font-normal leading-relaxed text-[var(--cs-color-text-secondary)] sm:text-lg">
             Every screen in the VTS suite was engineered for high ergonomic comfort, keyboard shortcut density, and distraction-free procedural operation.
@@ -173,9 +170,6 @@ export default function SectionOutput() {
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-bold text-[var(--cs-color-text-muted)]">
                     MODULE {module.number} / {module.system}
-                  </span>
-                  <span className="font-mono text-[11px] text-[var(--cs-color-accent)]">
-                    Production v1.0
                   </span>
                 </div>
                 <h3 className="font-[var(--cs-font-sans)] text-xl font-bold text-[var(--cs-color-text-primary)] sm:text-2xl">

@@ -153,7 +153,7 @@ export default function SectionHero() {
                 key={view.title}
                 className="flex flex-col gap-3 rounded-xl border border-[var(--cs-color-border)] bg-[var(--cs-color-bg)] p-4 shadow-sm"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)]">
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-[var(--cs-color-bg-secondary)] border border-[var(--cs-color-border)]">
                   <video
                     autoPlay
                     loop
